@@ -55,7 +55,7 @@ p_load(
 options(htmltools.dir.version = FALSE)
 
 # Notes directory
-dir_slides <- "~/Users/zhouzhengqing/Desktop/SportsEconAnalysis-master/08_LabourEcon1"
+dir_slides <- "~/Users/zhouzhengqing/Desktop/SportsEconAnalysis/08_LabourEcon1"
 # Define pink color
 red_pink <- "#e64173"
 turquoise <- "#20B2AA"
