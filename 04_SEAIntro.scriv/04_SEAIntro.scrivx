@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScrivenerProject Identifier="9EBA37BF-0D46-4583-A6DC-45EE6E1A7C5C" Version="2.0" Creator="SCRMAC-3.2.3-14869" Device="zhouzhengqingdeMacBook-Pro" Author="zhou" Modified="2022-02-03 02:28:32 +0800" ModID="C08CA78F-A2A5-4CC7-BEBF-555C1FC38C62">
+    <Binder>
+        <BinderItem UUID="0E804D2D-A3E2-40DD-856B-3E889E57F710" Type="Text" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-05 18:37:29 +0800">
+            <Title>Non-Fiction Format</Title>
+            <MetaData>
+                <LabelID>5</LabelID>
+                <IncludeInCompile>Yes</IncludeInCompile>
+                <IconFileName>Information.png</IconFileName>
+            </MetaData>
+            <TextSettings>
+                <TextSelection>38,0</TextSelection>
+            </TextSettings>
+            <CorkboardAndOutliner>
+                <CorkboardSettings>
+                    <Arrangement>Freeform</Arrangement>
+                </CorkboardSettings>
+            </CorkboardAndOutliner>
+        </BinderItem>
+        <BinderItem UUID="3FA74D50-2B26-46FC-A9A8-9661879F8971" Type="DraftFolder" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-05 18:40:10 +0800">
+            <Title>01-ch1-intro</Title>
+            <CorkboardAndOutliner>
+                <SelectedSubdocumentUUIDs></SelectedSubdocumentUUIDs>
+                <CorkboardSettings>
+                    <Arrangement>Freeform</Arrangement>
+                    <FreeformCorkboardDocuments>
+                        <IndexCardBinderUUID Position="0.053333,0.073333" TimeStamp="2021-02-17 16:51:24 +0800">F0ABADB3-7727-4C5F-82A9-37C3F65AC8A5</IndexCardBinderUUID>
+                        <IndexCardBinderUUID Position="0.07,0.086667" TimeStamp="2021-03-15 00:14:13 +0800">1E29EF5F-92CF-4E35-B788-DBA837A7607B</IndexCardBinderUUID>
+                        <IndexCardBinderUUID Position="0.143333,0.809933" TimeStamp="2021-02-17 16:51:24 +0800">23A8E21E-EB62-4040-9177-6F3824F8AD61</IndexCardBinderUUID>
+                        <IndexCardBinderUUID Position="2.133333,0.073333" TimeStamp="2021-02-17 16:51:24 +0800">B417D41A-F2A9-44B1-A836-938BAE95CBBD</IndexCardBinderUUID>
+                        <IndexCardBinderUUID Position="1.15,0.11" TimeStamp="2021-02-17 16:51:24 +0800">B243567F-DB02-44BA-AD71-3BBE7F805ABB</IndexCardBinderUUID>
+                    </FreeformCorkboardDocuments>
+                </CorkboardSettings>
+            </CorkboardAndOutliner>
+            <Children>
+                <BinderItem UUID="F0ABADB3-7727-4C5F-82A9-37C3F65AC8A5" Type="Folder" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-05 18:38:58 +0800">
+                    <Title>大纲</Title>
+                    <MetaData>
+                        <IncludeInCompile>Yes</IncludeInCompile>
+                    </MetaData>
+                    <TextSettings>
+                        <TextSelection>0,0</TextSelection>
+                    </TextSettings>
+                    <Children>
+                        <BinderItem UUID="94828BB7-D8CA-4410-99EF-F17C0561D1E0" Type="Text" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-11 02:22:20 +0800">
+                            <Title>基本问题</Title>
+                            <MetaData>
+                                <IncludeInCompile>Yes</IncludeInCompile>
+                            </MetaData>
+                            <TextSettings>
+                                <TextSelection>45,38</TextSelection>
+                            </TextSettings>
+                        </BinderItem>
+                        <BinderItem UUID="3966D1AF-4F16-464D-894C-BD798DFFABF8" Type="Text" Created="2021-11-10 03:36:24 +0800" Modified="2021-11-11 02:28:27 +0800">
+                            <Title>PPT思路</Title>
+                            <MetaData>
+                                <IncludeInCompile>Yes</IncludeInCompile>
+                            </MetaData>
+                            <TextSettings>
+                                <TextSelection>95,0</TextSelection>
+                            </TextSettings>
+                        </BinderItem>
+                    </Children>
+                </BinderItem>
+                <BinderItem UUID="74C6861B-EB85-4A5C-8416-6949E7E441FB" Type="Folder" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-17 00:36:07 +0800">
+                    <Title>内容提要及学时分配 </Title>
+                    <MetaData>
+                        <IncludeInCompile>Yes</IncludeInCompile>
+                    </MetaData>
+                    <TextSettings>
+                        <TextSelection>0,0</TextSelection>
+                    </TextSettings>
+                    <Children>
+                        <BinderItem UUID="5605BC82-F238-4E2C-AB17-15CB7B02C666" Type="Folder" Created="2022-01-16 03:52:35 +0800" Modified="2022-01-16 03:54:42 +0800">
+                            <Title>专题1：回归分析</Title>
+                            <MetaData>
+                                <IncludeInCompile>Yes</IncludeInCompile>
+                            </MetaData>
+                            <TextSettings>
+                                <TextSelection>0,0</TextSelection>
+                            </TextSettings>
+                            <Bookmarks>
+                                <Bookmark BinderUUID="E7ED66E1-6981-49D6-ADA4-2B3DACEF8B44"/>
+                            </Bookmarks>
+                            <Children>
+                                <BinderItem UUID="D49BD690-FBF4-4043-BE87-07D1B166036D" Type="Text" Created="2022-01-16 03:53:03 +0800" Modified="2022-01-16 03:53:13 +0800">
+                                    <Title>概要与预备知识</Title>
+                                    <MetaData>
+                                        <IncludeInCompile>Yes</IncludeInCompile>
+                                    </MetaData>
+                                    <TextSettings>
+                                        <TextSelection>0,0</TextSelection>
+                                    </TextSettings>
+                                </BinderItem>
+                                <BinderItem UUID="F5B1BDA5-EAC4-408E-B971-4F01958DC2DD" Type="Text" Created="2022-01-16 03:53:14 +0800" Modified="2022-01-16 03:53:55 +0800">
+                                    <Title>回归</Title>
+                                    <MetaData>
+                                        <IncludeInCompile>Yes</IncludeInCompile>
+                                    </MetaData>
+                                    <TextSettings>
+                                        <TextSelection>0,0</TextSelection>
+                                    </TextSettings>
+                                </BinderItem>
+                                <BinderItem UUID="EC39FF76-40C6-4DC2-BA93-FE193B4E7DA2" Type="Text" Created="2022-01-16 03:53:57 +0800" Modified="2022-01-16 03:54:05 +0800">
+                                    <Title>回归与因果</Title>
+                                    <MetaData>
+                                        <IncludeInCompile>Yes</IncludeInCompile>
+                                    </MetaData>
+                                    <TextSettings>
+                                        <TextSelection>0,0</TextSelection>
+                                    </TextSettings>
+                                </BinderItem>
+                            </Children>
+                        </BinderItem>
+                        <BinderItem UUID="644037C6-2484-4A9C-A923-759FF3174D33" Type="Folder" Created="2022-01-16 03:54:16 +0800" Modified="2022-01-16 03:57:52 +0800">
+                            <Title>专题2：职业联盟</Title>
+                            <MetaData>
+                                <IncludeInCompile>Yes</IncludeInCompile>
+                            </MetaData>
+                            <TextSettings>
+                                <TextSelection>0,0</TextSelection>
+                            </TextSettings>
+                            <Children>
+                                <BinderItem UUID="7C499A3A-643A-44E1-93B2-71EE59C7B3EF" Type="Text" Created="2021-11-17 00:37:39 +0800" Modified="2022-01-16 03:55:23 +0800">
+                                    <Title>体育经济的起点</Title>
+                                    <MetaData>
+                                        <IncludeInCompile>Yes</IncludeInCompile>
+                                    </MetaData>
+                                    <TextSettings>
+                                        <TextSelection>880,0</TextSelection>
+                                    </TextSettings>
+                                    <Children>
+                                        <BinderItem UUID="72117E33-5864-4053-9394-41D9566B4D72" Type="Text" Created="2022-01-20 00:31:38 +0800" Modified="2022-01-20 03:41:21 +0800">
+                                            <Title>框架</Title>
+                                            <MetaData>
+                                                <IncludeInCompile>Yes</IncludeInCompile>
+                                            </MetaData>
+                                            <TextSettings>
+                                                <TextSelection>972,50</TextSelection>
+                                            </TextSettings>
+                                            <Children>
+                                                <BinderItem UUID="E7ED66E1-6981-49D6-ADA4-2B3DACEF8B44" Type="Text" Created="2022-01-30 13:28:59 +0800" Modified="2022-02-03 01:36:41 +0800">
+                                                    <MetaData>
+                                                        <IncludeInCompile>Yes</IncludeInCompile>
+                                                    </MetaData>
+                                                    <TextSettings>
+                                                        <TextSelection>1232,0</TextSelection>
+                                                    </TextSettings>
+                                                </BinderItem>
+                                            </Children>
+                                        </BinderItem>
+                                        <BinderItem UUID="47BDDE94-7A2D-4F2C-BA0C-4DF8130DE1F6" Type="Text" Created="2021-11-24 17:17:48 +0800" Modified="2021-11-24 17:17:55 +0800">
+                                            <MetaData>
+                                                <IncludeInCompile>Yes</IncludeInCompile>
+                                            </MetaData>
+                                            <TextSettings>
+                                                <TextSelection>254,0</TextSelection>
+                                            </TextSettings>
+                                        </BinderItem>
+                                        <BinderItem UUID="61733977-D5D5-4B9F-99E5-09781F8581AD" Type="Text" Created="2022-01-21 01:39:28 +0800" Modified="2022-01-21 01:39:55 +0800">
+                                            <MetaData>
+                                                <IncludeInCompile>Yes</IncludeInCompile>
+                                            </MetaData>
+                                            <TextSettings>
+                                                <TextSelection>2172,0</TextSelection>
+                                            </TextSettings>
+                                        </BinderItem>
+                                    </Children>
+                                </BinderItem>
+                                <BinderItem UUID="D0745B3D-6DB4-4B2B-A772-C179224E765F" Type="Text" Created="2021-11-17 00:36:23 +0800" Modified="2021-11-18 14:44:47 +0800">
+                                    <Title>SESSIONS 2 ：THE STRUCTURE OF SPORTS LEAGUES </Title>
+                                    <MetaData>
+                                        <IncludeInCompile>Yes</IncludeInCompile>
+                                    </MetaData>
+                                    <TextSettings>
+                                        <TextSelection>146,0</TextSelection>
+                                    </TextSettings>
+                                </BinderItem>
+                            </Children>
+                        </BinderItem>
+                        <BinderItem UUID="00C1924B-0FFE-49B8-9774-2B0A0DDBE6E9" Type="Folder" Created="2022-01-16 03:55:54 +0800" Modified="2022-01-16 03:58:04 +0800">
+                            <Title>专题3：Economics of Sport Participation and Health</Title>
+                            <MetaData>
+                                <IncludeInCompile>Yes</IncludeInCompile>
+                            </MetaData>
+                            <TextSettings>
+                                <TextSelection>0,0</TextSelection>
+                            </TextSettings>
+                            <Children>
+                                <BinderItem UUID="8D8EF52E-9034-4BC8-9F23-F0E7A4C49A72" Type="Text" Created="2022-01-16 03:56:05 +0800" Modified="2022-01-16 03:56:05 +0800">
+                                    <MetaData>
+                                        <IncludeInCompile>Yes</IncludeInCompile>
+                                    </MetaData>
+                                    <TextSettings>
+                                        <TextSelection>0,0</TextSelection>
+                                    </TextSettings>
+                                </BinderItem>
+                            </Children>
+                        </BinderItem>
+                        <BinderItem UUID="0F5F03A4-85EF-404E-9977-905989C36969" Type="Text" Created="2021-11-17 00:19:47 +0800" Modified="2021-12-03 15:26:27 +0800">
+                            <Title>SESSIONS 1 ：概要与预备知识</Title>
+                            <MetaData>
+                                <IncludeInCompile>Yes</IncludeInCompile>
+                            </MetaData>
+                            <TextSettings>
+                                <TextSelection>818,0</TextSelection>
+                            </TextSettings>
+                        </BinderItem>
+                        <BinderItem UUID="7E97FE12-8B40-4E9C-AB12-880FE2AC8FA4" Type="Text" Created="2021-11-17 00:39:02 +0800" Modified="2021-11-17 00:39:21 +0800">
+                            <Title>SESSIONS 5 ：Economics of Sport Participation and Health</Title>
+                            <MetaData>
+                                <IncludeInCompile>Yes</IncludeInCompile>
+                            </MetaData>
+                            <TextSettings>
+                                <TextSelection>0,0</TextSelection>
+                            </TextSettings>
+                        </BinderItem>
+                    </Children>
+                </BinderItem>
+                <BinderItem UUID="936DDA56-6C4B-45E1-9C85-52580CEC7226" Type="Text" Created="2021-11-17 00:28:36 +0800" Modified="2021-11-17 00:28:53 +0800">
+                    <Title>作业要求</Title>
+                    <MetaData>
+                        <IncludeInCompile>Yes</IncludeInCompile>
+                    </MetaData>
+                    <TextSettings>
+                        <TextSelection>109,0</TextSelection>
+                    </TextSettings>
+                </BinderItem>
+            </Children>
+        </BinderItem>
+        <BinderItem UUID="1D7280B2-69A8-428B-9868-E1A4D92BC76B" Type="Text" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-05 18:37:29 +0800">
+            <Title>研究不足</Title>
+            <MetaData>
+                <IncludeInCompile>Yes</IncludeInCompile>
+            </MetaData>
+            <TextSettings>
+                <TextSelection>325,0</TextSelection>
+            </TextSettings>
+        </BinderItem>
+        <BinderItem UUID="BA61EE3A-C7EA-47E2-A722-ABDC2F19AE37" Type="Text" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-05 18:37:29 +0800">
+            <Title>Bibliography</Title>
+            <MetaData>
+                <IncludeInCompile>Yes</IncludeInCompile>
+            </MetaData>
+            <TextSettings>
+                <TextSelection>228,0</TextSelection>
+            </TextSettings>
+        </BinderItem>
+        <BinderItem UUID="E683CB63-AE18-404F-B233-CC8825D76E0D" Type="Folder" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-05 18:37:29 +0800">
+            <Title>Front Matter</Title>
+            <MetaData>
+                <IncludeInCompile>Yes</IncludeInCompile>
+                <IconFileName>Front Matter</IconFileName>
+            </MetaData>
+            <TextSettings>
+                <TextSelection>0,0</TextSelection>
+            </TextSettings>
+            <CorkboardAndOutliner>
+                <CorkboardSettings>
+                    <Arrangement>Freeform</Arrangement>
+                </CorkboardSettings>
+            </CorkboardAndOutliner>
+            <Children>
+                <BinderItem UUID="0677725D-2DC3-4BE8-9C6B-8AECD0CF4148" Type="Text" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-05 18:37:29 +0800">
+                    <Title>Title Page</Title>
+                    <MetaData>
+                        <SectionType>0EEF043A-9757-41E4-838C-FADA756FA2B9</SectionType>
+                        <StatusID>6</StatusID>
+                        <IncludeInCompile>Yes</IncludeInCompile>
+                        <FileExtension>rtf</FileExtension>
+                    </MetaData>
+                    <TextSettings>
+                        <TextSelection>145,0</TextSelection>
+                    </TextSettings>
+                </BinderItem>
+                <BinderItem UUID="10F8E55A-B584-4B82-A308-C7D44200A058" Type="Text" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-05 18:37:29 +0800">
+                    <Title>Foreword</Title>
+                    <MetaData>
+                        <IncludeInCompile>Yes</IncludeInCompile>
+                    </MetaData>
+                    <TextSettings>
+                        <TextSelection>0,0</TextSelection>
+                    </TextSettings>
+                    <CorkboardAndOutliner>
+                        <CorkboardSettings>
+                            <Arrangement>Freeform</Arrangement>
+                        </CorkboardSettings>
+                    </CorkboardAndOutliner>
+                </BinderItem>
+                <BinderItem UUID="D1E1A0C5-717C-4AD5-95E2-B886C7C0677B" Type="Text" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-05 18:37:29 +0800">
+                    <Title>Contents</Title>
+                    <MetaData>
+                        <SectionType>0EEF043A-9757-41E4-838C-FADA756FA2B9</SectionType>
+                        <IncludeInCompile>Yes</IncludeInCompile>
+                    </MetaData>
+                    <TextSettings>
+                        <TextSelection>21,0</TextSelection>
+                    </TextSettings>
+                    <CorkboardAndOutliner>
+                        <CorkboardSettings>
+                            <Arrangement>Freeform</Arrangement>
+                        </CorkboardSettings>
+                    </CorkboardAndOutliner>
+                </BinderItem>
+            </Children>
+        </BinderItem>
+        <BinderItem UUID="1EA4671A-226E-4DFC-B501-6A0E7FDA5205" Type="Folder" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-05 18:37:29 +0800">
+            <Title>Notes</Title>
+            <MetaData>
+                <IncludeInCompile>Yes</IncludeInCompile>
+                <IconFileName>Notes (Blue Notepad).png</IconFileName>
+            </MetaData>
+            <TextSettings>
+                <TextSelection>0,0</TextSelection>
+            </TextSettings>
+            <CorkboardAndOutliner>
+                <CorkboardSettings>
+                    <Arrangement>Freeform</Arrangement>
+                </CorkboardSettings>
+            </CorkboardAndOutliner>
+            <Children>
+                <BinderItem UUID="6F9EC2B1-1B74-4DD0-B7D3-1308C85E56E5" Type="Other" Created="2021-11-10 02:29:58 +0800" Modified="2021-11-10 02:30:08 +0800">
+                    <Title>BOA-18092020 Economie 1</Title>
+                    <MetaData>
+                        <IncludeInCompile>Yes</IncludeInCompile>
+                        <FileExtension>ppt</FileExtension>
+                    </MetaData>
+                </BinderItem>
+                <BinderItem UUID="02011838-4DAE-425E-B345-9DF0BEA36B52" Type="Text" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-05 18:37:29 +0800">
+                    <Title>个人社会经济</Title>
+                    <MetaData>
+                        <IncludeInCompile>Yes</IncludeInCompile>
+                    </MetaData>
+                    <TextSettings>
+                        <TextSelection>14,0</TextSelection>
+                    </TextSettings>
+                </BinderItem>
+                <BinderItem UUID="5A7E8523-2C57-4FD6-A86B-AE380EBB708C" Type="Text" Created="2021-11-10 03:09:26 +0800" Modified="2021-12-06 03:40:48 +0800">
+                    <Title>文献目录</Title>
+                    <MetaData>
+                        <IncludeInCompile>Yes</IncludeInCompile>
+                    </MetaData>
+                    <TextSettings>
+                        <TextSelection>503,0</TextSelection>
+                    </TextSettings>
+                </BinderItem>
+            </Children>
+        </BinderItem>
+        <BinderItem UUID="E4D250BF-8047-4F88-BE3A-F9D65F8DA7E9" Type="Folder" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-05 18:37:29 +0800">
+            <Title>Ideas</Title>
+            <MetaData>
+                <IncludeInCompile>Yes</IncludeInCompile>
+                <IconFileName>Light Bulb.png</IconFileName>
+            </MetaData>
+            <TextSettings>
+                <TextSelection>0,0</TextSelection>
+            </TextSettings>
+            <Children>
+                <BinderItem UUID="C47FA271-BA8E-473C-ABB8-35DBE26C70EA" Type="Text" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-05 18:37:29 +0800">
+                    <Title>涉及概念</Title>
+                    <TextSettings>
+                        <TextSelection>468,0</TextSelection>
+                    </TextSettings>
+                </BinderItem>
+                <BinderItem UUID="B8686E7C-A01D-4B39-BA5F-F454D7EABFC8" Type="Text" Created="2021-11-11 02:24:38 +0800" Modified="2021-11-11 02:26:07 +0800">
+                    <Title>Baade</Title>
+                    <MetaData>
+                        <IncludeInCompile>Yes</IncludeInCompile>
+                    </MetaData>
+                    <TextSettings>
+                        <TextSelection>303,0</TextSelection>
+                    </TextSettings>
+                </BinderItem>
+                <BinderItem UUID="F9242788-BFCA-4DEE-8C7F-6E6810745A5C" Type="Text" Created="2021-11-11 02:56:35 +0800" Modified="2021-11-11 12:55:38 +0800">
+                    <Title> Zero inflated models</Title>
+                    <MetaData>
+                        <IncludeInCompile>Yes</IncludeInCompile>
+                    </MetaData>
+                    <TextSettings>
+                        <TextSelection>4913,0</TextSelection>
+                    </TextSettings>
+                </BinderItem>
+            </Children>
+        </BinderItem>
+        <BinderItem UUID="89491C59-BBFC-4A32-8C42-371D9DC8897E" Type="ResearchFolder" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-05 18:37:29 +0800">
+            <Title>Research</Title>
+            <Children>
+                <BinderItem UUID="0DE825EB-3332-4E5E-B7DF-387DC78312DD" Type="PDF" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-05 18:37:29 +0800">
+                    <Title>Sample MS</Title>
+                    <MetaData>
+                        <IncludeInCompile>Yes</IncludeInCompile>
+                        <FileExtension>pdf</FileExtension>
+                    </MetaData>
+                    <MediaSettings>
+                        <CurrentPDFPage>9</CurrentPDFPage>
+                    </MediaSettings>
+                    <CorkboardAndOutliner>
+                        <CorkboardSettings>
+                            <Arrangement>Freeform</Arrangement>
+                        </CorkboardSettings>
+                    </CorkboardAndOutliner>
+                </BinderItem>
+            </Children>
+        </BinderItem>
+        <BinderItem UUID="4BBDD91D-1155-4B22-97DD-D74FBA80A27D" Type="TrashFolder" Created="2021-11-05 18:37:29 +0800" Modified="2021-11-05 18:37:29 +0800">
+            <Title>Trash</Title>
+            <CorkboardAndOutliner>
+                <SelectedSubdocumentUUIDs>B54AB68B-D933-459B-84CD-FEA95A47B22C</SelectedSubdocumentUUIDs>
+                <CorkboardSettings>
+                    <Arrangement>Freeform</Arrangement>
+                    <FreeformCorkboardDocuments>
+                        <IndexCardBinderUUID Position="0.153333,0.123333" TimeStamp="2021-02-17 16:54:47 +0800">B54AB68B-D933-459B-84CD-FEA95A47B22C</IndexCardBinderUUID>
+                    </FreeformCorkboardDocuments>
+                </CorkboardSettings>
+            </CorkboardAndOutliner>
+        </BinderItem>
+        <BinderItem UUID="81010641-C896-4FC8-A40C-446345C3660B" Type="Folder" Created="2022-02-03 01:36:11 +0800" Modified="2022-02-03 01:36:11 +0800">
+            <Title>剪辑</Title>
+            <MetaData>
+                <IncludeInCompile>Yes</IncludeInCompile>
+            </MetaData>
+            <TextSettings>
+                <TextSelection>0,0</TextSelection>
+            </TextSettings>
+        </BinderItem>
+    </Binder>
+    <Collections>
+        <Collection Type="Binder" ID="48DE1CBF-217F-4B94-944D-6D8C97396DCF" Color="0.015924 0.126521 0.159696">
+            <Title>活页夹</Title>
+        </Collection>
+        <Collection Type="RecentSearch" ID="2655DDF6-4AB8-42CB-A433-1CD76FC351D2" Color="0.084464 0.183137 0.21437">
+            <Title>搜索结果</Title>
+            <SearchSettings Operator="Exact" Type="All" CaseSensitive="No" IgnoreDiacritics="No">non-fiction format</SearchSettings>
+        </Collection>
+    </Collections>
+    <SectionTypes>
+        <TypeDefinitions>
+            <Type ID="89C0A984-3C09-4210-B156-1D6797F279F3">Chapter Heading</Type>
+            <Type ID="74B681B0-FED3-4211-B200-1EF0E3E46C91">Section</Type>
+            <Type ID="7F2B69AC-DB81-4C8D-ABE4-674AEECDDBA4">Chapter</Type>
+            <Type ID="5275F7E1-D22B-440B-8042-94C4C655B8C6">Heading</Type>
+            <Type ID="740F011C-A843-47F1-A3CC-C66755527426">Headed Section</Type>
+            <Type ID="D03F0C01-9162-4A7B-B1B8-A4DA36F67ECA">Sub-Heading</Type>
+            <Type ID="8B88AC37-8359-401E-80D7-2D13BF9EBEDE">Front Matter</Type>
+            <Type ID="9B7CC6A5-14B4-4916-84BB-57D48011B8A4">Contents Page</Type>
+            <Type ID="A1EF6DAC-41B2-4516-ABB7-6342AB8CF038">Endnotes Holder</Type>
+            <Type ID="8EA6121D-9568-4C30-9618-479A443FEF77">N/A</Type>
+            <Type ID="0EEF043A-9757-41E4-838C-FADA756FA2B9">不适用</Type>
+        </TypeDefinitions>
+        <LevelTypes>
+            <Folders>
+                <Type>8EA6121D-9568-4C30-9618-479A443FEF77</Type>
+                <Type>89C0A984-3C09-4210-B156-1D6797F279F3</Type>
+            </Folders>
+            <Containers>
+                <Type>D03F0C01-9162-4A7B-B1B8-A4DA36F67ECA</Type>
+            </Containers>
+            <Files>
+                <Type>740F011C-A843-47F1-A3CC-C66755527426</Type>
+                <Type>740F011C-A843-47F1-A3CC-C66755527426</Type>
+                <Type>74B681B0-FED3-4211-B200-1EF0E3E46C91</Type>
+            </Files>
+        </LevelTypes>
+    </SectionTypes>
+    <LabelSettings>
+        <Title>Label</Title>
+        <DefaultLabelID>-1</DefaultLabelID>
+        <Labels>
+            <Label ID="-1">No Label</Label>
+            <Label ID="1" Color="0.952941 0.917647 0.329412">Idea</Label>
+            <Label ID="5" Color="0.894118 0.529412 0.219608">Notes</Label>
+            <Label ID="6" Color="0.913725 0.098039 0.184314">Research</Label>
+            <Label ID="2" Color="0.282353 0.701961 0.0">Chapter</Label>
+            <Label ID="4" Color="0.27451 0.556863 1.0">Sub-Section</Label>
+        </Labels>
+    </LabelSettings>
+    <StatusSettings>
+        <Title>Status</Title>
+        <DefaultStatusID>-1</DefaultStatusID>
+        <StatusItems>
+            <Status ID="-1">No Status</Status>
+            <Status ID="1">To Do</Status>
+            <Status ID="2">First Draft</Status>
+            <Status ID="3">Revised Draft</Status>
+            <Status ID="4">Final Draft</Status>
+            <Status ID="6">Title Page</Status>
+            <Status ID="5">Done</Status>
+        </StatusItems>
+    </StatusSettings>
+    <ProjectTargets Notify="No">
+        <DraftTarget Type="Characters" CountIncludedOnly="Yes" CurrentCompileGroupOnly="Yes" Deadline="2011-04-12 20:24:39 +0800" IgnoreDeadline="Yes">15000</DraftTarget>
+        <SessionTarget Type="Words" CountDraftOnly="Yes" AllowNegatives="No" NextResetDate="2022-02-04 00:00:00 +0800" ResetType="Time" ResetTime="00:00" DeterminedFromDeadline="No" WritingDays="" CanWriteOnDeadlineDate="No">50</SessionTarget>
+        <PreviousSession Words="0" Characters="1" Date="2022-02-03 02:28:25 +0800"/>
+    </ProjectTargets>
+    <RecentWritingHistory Date="2022-02-03 00:00:00 +0800">
+        <DraftWordCount>0</DraftWordCount>
+        <DraftCharCount>1</DraftCharCount>
+        <OtherWordCount>2</OtherWordCount>
+        <OtherCharCount>17</OtherCharCount>
+    </RecentWritingHistory>
+    <PrintSettings PaperSize="612.0,792.0" LeftMargin="72.0" RightMargin="72.0" TopMargin="90.0" BottomMargin="90.0" PaperType="na-letter" Orientation="Portrait" HorizontalPagination="Clip" VerticalPagination="Auto" ScaleFactor="1.0" HorizontallyCentered="Yes" VerticallyCentered="Yes" Collates="Yes" PagesAcross="1" PagesDown="1"/>
+</ScrivenerProject>
