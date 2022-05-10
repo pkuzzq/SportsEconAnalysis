@@ -1,0 +1,2293 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>体育经济分析：理论与应用</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="周正卿" />
+    <meta name="date" content="2022-03-23" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# 体育经济分析：理论与应用
+## 专题二: 微观经济基础1
+### 周正卿
+### 23 March 2022
+
+---
+
+class: center, middle, inverse
+
+
+
+&lt;style type="text/css"&gt;
+@media print {
+  .has-continuation {
+    display: block !important;
+  }
+}
+&lt;/style&gt;
+
+# 引言
+
+---
+
+name: schedule
+
+# 课程进度
+
+### 第一阶段
+
+- 专题一: 回归与因果
+
+### 今天
+
+- 消费者理论 .mono[-&gt;] 需求
+- 生产者理论 .mono[-&gt;] 供给
+- 市场机制
+- 利用供需曲线分析市场变化
+- 市场的溢出效应
+    
+---
+layout: true
+# 从经济学基本问题出发
+---
+class: title-slide-section,inverse, middle
+---
+
+## 写在前面
+
+本部分开始进入到经济学（微观）在职业体育领域中的应用。部分概念看似很熟悉，但在经济学中却有严谨的论证逻辑（我们不会展开）。
+
+与回归和因果推断主要以概率论为基础不同的是，本部分主要以微积分为基础。当然，没有微积分为基础不会阻碍各位对经济逻辑和理论的理解。经济学家的“武器库”中为各位提供“图形分析”，具体来是供需曲线来理解。
+
+图形虽提供直觉见解，但经济分析真正的力量来自于对经济问题的数量计算。因此，我试图以最短的时间能够覆盖到微观经济学基础，以满足部分希望继续在体育经济精深的同学的需求；这也不太符合就业导向为职场的同学需求，因此后面的职业体育分析内容期望会对这部分同学的市场思维逻辑有所启发。
+
+---
+
+## 核心概念
+
+经济学是一门社会科学，研究人们如何在进行选择。它是社会的，因为它涉及到人和人的行为。它是科学，因为它在调查选择时尽可能地使用科学方法。有的选择有放弃，有的没有。经济学核心概念：稀缺性、选择和机会成本。
+
+1.稀缺性。任何时候可获得的资源是有限的，但人的欲望是无限的。当作出选择，意味着不得不放弃或拒绝其他活动。**稀缺性**稀缺性意味着我们在选择另一种选择时必须放弃一种选择。三个最基本的经济问题是:
+- WHAT 应该生产什么？
+- HOW 生产商品和服务？
+- FOR WHOM 生产商品和服务？
+
+---
+
+2.选择。由于资源稀缺，每个人都必须要有所选择。这意味在经济学是对个体所选择的“行动集合”进行分析。
+
+
+3.由于资源稀缺，每一个决定或者选择意味着不得不放弃一些东西。这些放弃的次优选择就是机会成本。每个选择都有机会成本，机会成本影响着人们的选择。
+
+- **机会成本:** 放弃次优选择的价值。机会成本是因人而异的。
+
+- 参加这个课程的机会成本也许是看网剧，去健身房，或任何你认为是下一个最好的选择。
+
+- .hi[重要] 不是 .hi.slate[你可以选择的所有其他事情]，而是 .hi.slate[你可以选择的下一件事]。
+
+任何行动的成本都包括**直接成本**和**机会成本**。稍作理解...
+
+---
+layout: false
+
+.center[**一个典型的年龄收入概况**]
+
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-2-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+count: false
+.center[**一个典型的年龄收入概况**]
+
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-3-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+.pink[Q:] 以下哪个部分代表了大学的机会成本？
+&gt; .pink[A:]
+
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-4-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+count: false
+.pink[Q:] 以下哪个部分代表了大学的机会成本？
+&gt; .pink[A:] .pink[ 区域 B]
+
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-5-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+.pink[Q:] 如果你只关心钱，在什么情况下你会去上大学？
+
+&gt; **A.** A .mono[+] B .mono[&gt;] C 
+
+&gt; **B.** A .mono[+] B .mono[&lt;] C 
+
+&gt; **C.** A .mono[+] C .mono[&gt;] B
+
+&gt; **D.** A .mono[+] C .mono[&lt;] B
+
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-6-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+count: false
+.pink[Q:] 如果你只关心钱，在什么情况下你会去上大学？
+
+&gt; **A.** A .mono[+] B .mono[&gt;] C 
+
+&gt; .pink[**B.** A .mono[+] B .mono[&lt;] C]
+
+&gt; **C.** A .mono[+] C .mono[&gt;] B
+
+&gt; **D.** A .mono[+] C .mono[&lt;] B
+
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-7-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 逻辑 
+
+.less-right[
+微观经济理论就是从个体决策出发，基于稀缺性、个体选择与机会成本为逻辑起点，构建其经济分析的框架大厦。
+
+- 左图是Varian高级微观经济学的框架，我们将从中级微观经济学的框架入手。
+]
+
+
+.more-left[
+.center[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/9RXn3f.png  height="450" width="500"&gt;
+]
+]
+
+
+---
+layout: true
+# 从经济学基本问题出发
+---
+
+## 需求与供给
+
+如果商品和时间稀缺，那么就要在相互竞争的替代品中做出选择。
+
+- .hi-pink[消费者理论]以一种系统的方式描述了.pink[消费者的选择]。
+
+- .hi-purple[生产者理论]以系统的方式描述了.purple[生产者和销售者的选择]。
+
+---
+layout: true
+# 消费者理论
+---
+class: title-slide-section,inverse, middle
+---
+
+## 意愿支付
+
+**意愿支付(willness to pay)** :也称为“心理价位”，是消费者为获得一单位产品所原意支付的最高价格。人们对所需要的产品都会有一个心理价位，它**因人而异**。
+
+
+.hi[Q:] 对同一件商品，每个的意愿支付都不同。那么什么决定了差异化的每个人的意愿支付？
+
+.hi[A:] 商品的价值
+
+---
+
+## 商品价值
+
+一个商品的价值 .mono[=] 你愿意放弃什么来获得它(意愿支付可以看成是**商品消费行为给消费者带来的效用的货币度量**)。
+
+例：如果你放弃了价值20万元的其他商品来购买一辆汽车，那么这辆汽车对你的价值至少为20万元。
+
+一个物品的价值仅限于人们愿意为控制该物品的权利所付出的代价。
+---
+
+## 总价值 total value
+
+- 定义 1
+
+&gt; 消费者为.pink[获得]某一特定数量的商品而.pink[意愿支付]的.pink[最大]金额
+(买的角度)
+
+- 定义 2
+
+&gt; 消费者为.pink[放弃]某一特定数量的商品而.pink[意愿接受]的.pink[最低]金额。
+(卖的角度)
+
+
+---
+
+## 边际价值 marginal value
+
+- 定义 1
+
+&gt; 消费者为.pink[获得]额外一个单位商品而.pink[意愿支付]的.pink[最大]金额（买）
+
+- 定义 2
+
+&gt; 消费者为.pink[放弃]额外一个单位商品而.pink[意愿接受]的.pink[最低]金额。（卖）
+
+
+.pink[Q:] 在跑完马拉松后，你会如何为第一杯水估价？你会如何为第二杯估计？
+
+**重要的假设:**  边际价值递减
+
+对于所有商品和所有个人,其他条件相同的情况下,一种商品的边际价值随着你消费的增加而减少。
+
+---
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/mv-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[边际价值表]
+
+MV .mono[=] 边际价值.
+
+q .mono[=] 一件商品的数量.
+
+q 增加 .mono[-&gt;] MV 下降
+
+- 同一件商品对于不同的人边际价值表是不同的
+]
+
+---
+
+## 最优购买
+
+.pink[Q:] 消费者如何决定购买多少商品？
+
+.pink[A:] 消费者**在边际**决策 .
+
+$$
+`\begin{aligned}
+ &amp;边际价值（30w）&amp;&gt;&amp; &amp;汽车价格（20w） &amp;: &amp;选择购买  \\
+ &amp;边际价值（10w）&amp;&lt;&amp; &amp;汽车价格（20w） &amp;: &amp;放弃购买  \\
+ &amp;边际价值（20w）&amp;=&amp; &amp;汽车价格（20w） &amp;: &amp;无差异    \\
+\end{aligned}`
+$$
+
+---
+layout: false
+
+## 最优购买
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/mv1b-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+.pink[Q:] 如果价格为.mono[]4.50，消费者会购买多少个单位？
+
+&gt; .pink[A: 4单位
+]
+
+]
+
+---
+
+## 最优购买
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/mv2b-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+.pink[Q:] 如果价格为.mono[]3.50，消费者会购买多少个单位？
+
+
+&gt; .pink[A: 6单位]
+
+]
+
+---
+
+## 最优购买
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/mv3-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+.pink[Q:] 如果价格为.mono[]9，消费者会购买多少个单位？
+
+&gt; .pink[A: 0单位]
+
+
+
+规律就是
+
+&gt; 一个消费者选择的最优购买**q.sup[*]**
+**s.t.** **MV** .mono[**=**] **P**。
+
+]
+
+---
+
+## 最优购买(决策过程)
+
+价格 `\(P\)` 是外生，如果消费者
+
+- 在 .green[MV .mono[&gt;] P] 时选择继续购买 
+.mono[==&gt;]买的.hi-green[太少] .mono[==&gt;] MV下降
+
+- 在 .purple[MV .mono[&lt;] P] 时选择停止购买
+.mono[==&gt;] 买的.hi-purple[太多] .mono[==&gt;] 想办法转手卖出去，MV上升
+
+- 在 .pink[MV .mono[=] P] 时 .mono[==&gt;]就是他的 .hi-pink[最佳购买]。
+
+
+.hi-slate[问题是: ]真实的情况是你会按照上述规则再决定购买么？
+
+- 当价格确定后，你的购买(实际的行为选择)就是**最优购买**
+
+- 重要的不是你是否按照上述规则，而是你的**行为**，好像你按照了一样。
+---
+### 钻石与水悖论
+
+.pink[Q:] 亚当·斯密在《国富论》中指出：
+&gt; 没什么东西比水更有用；能用它交换的货物却非常有限；很少的东西就可以换到水。相反，钻石没有什么用处，但可以用它换来大量的货品。
+
+水非常有用，但在市场上价格很低；钻石几乎没什么用，但在市场上价格很高。该悖论也称作价值悖论这种强烈的反差就构成了这个悖论。为什么会有这样的现象呢？
+
+
+如何解决该悖论？
+
+- 市场价格反映了消费者对这些商品的边际价值，而不是其总价值。
+
+
+---
+### 钻石与水悖论
+
+.less-right[
+.pink[TV.sub[水]] .mono[&gt;] .purple[TV.sub[钻石]]
+
+.purple[MV.sub[钻石]] .mono[&gt;] .pink[MV.sub[水]]
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/diamond_water-1.svg" style="display: block; margin: auto;" /&gt;
+]
+---
+## 消费者盈余 Consumer Surplus
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/cs-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[消费者盈余]
+
+消费者购买的**总价值** .hi.purple[超过] 购买**成本(价格)**的部分。
+
+衡量消费者从交易中获得的收益。
+]
+
+---
+## MV .mono[-&gt;] 个体需求曲线
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/ind_demand1-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+
+(个体)边际价值表 .mono[&lt;=&gt;] 个体需求函数
+
+两者都表明需求量是如何随着价格的变化而变化的，*在所有其他需求决定因素不变的情况下*。
+
+]
+
+---
+## MV .mono[-&gt;] 个体需求曲线
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/ind_demand2-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+
+由于边际价值的递减，我们P与 q.sub[D] 的关系是向下倾斜的.
+
+]
+
+---
+### 小结
+
+WTP .mono[-&gt;] Value .mono[-&gt;] TV and MV (Diminishing MV) .mono[-&gt;] 最优购买
+
+.mono[-&gt;] 消费者盈余 .mono[-&gt;] 个体需求曲线 .mono[=] MV 
+
+所以建立在WTP基础上的需求理论，必然要求人满足以下4中行为假定：
+
+1. 人们有偏好
+2. 人们喜欢更多而不是更少
+3. 人们愿意替代 
+4. 一种商品的边际价值随着人们消费的增加而减少
+
+---
+### 练习
+
+**Q:** 根据下面的表格，如果价格是59，消费者会购买多少个单位？购买这一数量的产品会有多大的好处？提示：购买行为是边际上的决策；消费福利是总体的。
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 单位 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 边际价值 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 总价值 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 90 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 85 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 235 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 55 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 360 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+**A:** .pink[ 购买3单位. 消费盈余是235 .mono[-] 3 .mono[×] 59 .mono[=] 58.]
+
+---
+layout: true
+# 消费者理论
+---
+
+## 需求曲线(总)
+
+对商品（冰酒）估价。若对每人的心理价位按照从高到低排序，就会呈现下面的分布。随着定价（红色方块）下降，产品价格会低于更多消费者的意愿支付值，产品的需求就会变多。
+.middle[
+.center[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/UviQYW.png height="300" width="580"&gt;
+]
+]
+
+---
+
+## 需求曲线(总)
+
+排好序的、每个消费者的最大意愿支付值的连线就是反映出对该产品的需求，其拟合直线就是需求曲线。
+
+.middle[
+.center[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/r5rvZ9.png height="300" width="580"&gt;
+]
+]
+
+---
+
+.less-right[
+### .pink[需求曲线]
+
+显示在特定的价格下，.pink[消费者]愿意并能够购买的商品数量(从纵轴价格开始看)。
+
+.pink[向下倾斜：] P增加 .mono[-&gt;] Q.sub[D] 减少。
+
+`\(Q = a -bP\)` ,其中 `\(a&gt;0,b&gt;0\)` ，反映的是**需求定律**，即需求量与价格之间的负向关系。
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/market_demand-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+
+.center[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/eJctxs.png height="260" width="580"&gt;
+]
+.hi[原因]：在通过将消费者意愿支付价格的排序来生成需求曲线的框架下，将产品价格，或者消费者的心理价位放在纵轴上是一个很自然的选择。.mono[-&gt;] .hi[习惯]
+
+.center[
+ .pink[反需求函数（图）:   ] `\(P=a/b-1/b Q\)`
+ ]
+
+---
+
+## 需求"法则"
+
+- 法则 1 
+&gt; *其他环境变量不变* &lt;sup&gt;.pink[†]&lt;/sup&gt; ，商品的需求量随着价格的上升而下降。
+
+.footnote[ .pink[†]  *其他环境变量* 意味着 收入、其他商品(替代品)的价格、品味、质量、年龄、季节、广告和其他需求决定因素均不改变. 
+]
+
+---
+layout: false
+
+.center[**价格增加 .mono[-&gt;]  需求量q.sub[D] 下降**]
+&lt;img src="04_MicroeconBasics1_files/figure-html/p_increase-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+count: false
+class: clear-slide
+
+.center[**价格增加 .mono[-&gt;]  需求量q.sub[D] 下降**]
+&lt;img src="04_MicroeconBasics1_files/figure-html/p_increase2-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+class: clear-slide
+
+.center[**价格下降 .mono[-&gt;] 需求量q.sub[D] 上升**]
+&lt;img src="04_MicroeconBasics1_files/figure-html/p_decrease-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+count: false
+class: clear-slide
+
+.center[**价格下降 .mono[-&gt;] 需求量q.sub[D] 上升 **]
+&lt;img src="04_MicroeconBasics1_files/figure-html/p_decrease2-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+## 一个重要的区分
+
+### .pink[需求 Demand]
+
+
+&gt; 反映的是需求曲线的 .pink[*整体移动*] .
+
+### .green[需求量 Quantity demanded]
+
+&gt; 反映的是价格和消费量 .green[*沿着*] 需求曲线移动.
+
+- 法则 2 
+&gt; *其他环境变量变化* ，商品需求整体变化。
+
+---
+class: clear-slide
+
+.center[**需求增加**]
+&lt;img src="04_MicroeconBasics1_files/figure-html/demand_increase-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+count: false
+
+.center[**需求增加**]
+&lt;img src="04_MicroeconBasics1_files/figure-html/demand_increase2-1.svg" style="display: block; margin: auto;" /&gt;
+---
+
+.center[**需求降低**]
+&lt;img src="04_MicroeconBasics1_files/figure-html/demand_decrease-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+count: false
+
+.center[**需求降低**]
+&lt;img src="04_MicroeconBasics1_files/figure-html/demand_decrease2-1.svg" style="display: block; margin: auto;" /&gt;
+
+
+---
+layout: true
+# 消费者理论
+
+---
+## 响应
+
+.hi.pink[问题:] 如果一年会卖出100亿包香烟。现在每包加收1元的税，那么将产生多少税收？
+
+
+--
+
+&gt; .hi.pink[答案:] 少于100亿.
+
+
+---
+layout: false
+## 需求的价格弹性  Price Elasticity of Demand
+
+- 定义
+
+&gt; 衡量需求量对价格变化的反应能力。
+
+&gt; `$$\epsilon_d = \dfrac{\text{% 需求量变化}}{\text{% 价格变化}} \leq 0$$`
+
+.hi[解释:] "价格提高一个百分点，需求量就会增加 `\(\epsilon_d\)` 个百分点。" A的B弹性，A在分子，B在分母
+
+
+- `\(\epsilon_d &lt; -1\)` .mono[==&gt;] 需求是对价格变动 .pink[敏感的] (.pink[富有弹性的]).
+
+- `\(-1 &lt;\epsilon_d \leq 0\)` .mono[==&gt;] 需求是对价格变 .pink[不敏感的] (.pink[缺乏弹性的]).
+
+- 这里 敏感 .mono[==] 弹性
+
+---
+layout: false
+
+## 需求的价格弹性
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-9-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[完全敏感(弹性)]
+
+当价格上升时，需求量下降到零;当价格下降时，需求量接近无限大。
+
+`\(\epsilon_d\)` .mono[-&gt;] `\(-\infty\)`
+
+]
+
+---
+
+## 需求的价格弹性
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-10-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[完全不敏感(无弹性)]
+
+价格变化时，需求量不发生变化。
+
+`\(\epsilon_d = 0\)`
+
+]
+
+---
+
+## 需求的价格弹性
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-11-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+*其他环境变量不发生变化*, 扁平的需求曲线比陡峭的需求曲线 .pink[更有弹性]。
+
+随着 `\(\epsilon_d\)` **向零的增加，同样的价格上涨幅度导致需求量的减少**。
+]
+
+---
+count: false
+## 需求的价格弹性
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-12-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+*其他环境变量不发生变化*, 扁平的需求曲线比陡峭的需求曲线 .pink[更有弹性]。
+
+随着 `\(\epsilon_d\)` **向零的增加，同样的价格上涨幅度导致需求量的减少**。
+]
+
+---
+count: false
+## 需求的价格弹性
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-13-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+*其他环境变量不发生变化*, 扁平的需求曲线比陡峭的需求曲线 .pink[更有弹性]。
+
+随着 `\(\epsilon_d\)` **向零的增加，同样的价格上涨幅度导致需求量的减少**。
+]
+
+---
+count: false
+## 需求的价格弹性
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-14-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+*其他环境变量不发生变化*, 扁平的需求曲线比陡峭的需求曲线 .pink[更有弹性]。
+
+随着 `\(\epsilon_d\)` **向零的增加，同样的价格上涨幅度导致需求量的减少**。
+]
+
+---
+count: false
+## 需求的价格弹性
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-15-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+*其他环境变量不发生变化*, 扁平的需求曲线比陡峭的需求曲线 .pink[更有弹性]。
+
+随着 `\(\epsilon_d\)` **向零的增加，同样的价格上涨幅度导致需求量的减少**。
+]
+
+---
+
+## 响应
+
+影响需求(的价格)弹性的因素：
+
+1. .pink[替代品越多] .mono[-&gt;] .pink[对价格更敏感].
+
+2. .pink[该物消费支出占总所得比越高].mono[-&gt;] .pink[对价格更敏感]. 吃大餐！
+
+3. .pink[物品越耐用] .mono[-&gt;] .pink[对价格更敏感]. 物品耐用（汽车），加价可迟一些再买，所以弹性较高。
+
+4. .pink[奢侈品].mono[-&gt;] .pink[对价格更敏感] ；.pink[必需品].mono[-&gt;] .pink[对价格不敏感] （所谓的刚性需求）
+
+5. .pink[时间长].mono[-&gt;] .pink[对价格更敏感].
+一般，长期需求弹性大于短期需求弹性。因为时间长时，寻找替代品和进行调整总是比较容易的。
+  
+&gt; 休闲体育活动的价格敏感性？
+&gt; 项目的多样性(替代品多) .mono[+] 中等收入群体扩大（休闲时间长） .mono[+]   体育休闲活动不是必需品 .mono[--&gt;] 极为敏感的
+
+---
+
+.center[**现实中的价格敏感性**]
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 商品/服务 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 需求(价格)弹性 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 是否敏感 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 商务旅行 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; -0.10 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 不敏感 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 医疗服务 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; -0.17 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 不敏感 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 咖啡 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; -0.25 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 不敏感 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 烟草 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; -0.45 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 不敏感 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 电影 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; -0.90 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 不敏感 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 私立学校 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; -1.10 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 敏感 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 餐厅用餐 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; -1.60 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 敏感 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-style: italic;color: #272822 !important;"&gt; 休闲旅行 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -2.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 敏感 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-style: italic;color: #272822 !important;"&gt; 新鲜蔬菜 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -3.70 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 敏感 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-style: italic;color: #272822 !important;"&gt; 本田车 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -4.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 敏感 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+需求弹性是很好的研究方向：测试市场、历史销售数据的分析和综合分析
+---
+
+## 需求的价格弹性
+
+- 精确表示
+
+&gt; `$$\epsilon_d = \dfrac{\partial Q_d}{\partial P} \dfrac{P}{Q} \leq 0$$`
+
+.hi[意义：]随着**需求量**沿着线性的需求曲线增加， `\(\epsilon_d\)`  向零趋近。
+
+- *例如.,* 需求对价格变得不敏感
+
+- .pink[Q:]  价格上涨一定意味总收入增加么？价格上涨对总收入意味着什么？ `\(TR=P*Q_{d}\)`
+
+---
+
+## 响应与总收入
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-17-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[富有弹性的区域]
+
+价格上升 .mono[==&gt;] .hi-green[总收入] .green[下降].
+
+需求量的减少（.pink[带来的收入损失]）超过了价格上升（.purple[带来的收入获得]）。
+
+]
+
+---
+count: false
+
+## 响应与总收入
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-18-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[富有弹性的区域]
+
+价格上升 .mono[==&gt;] .hi-green[总收入] .green[下降].
+
+需求量的减少（.pink[带来的收入损失]）超过了价格上升（.purple[带来的收入获得]）。
+
+]
+
+---
+count: false
+## 响应与总收入
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-19-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[富有弹性的区域]
+
+价格上升 .mono[==&gt;] .hi-green[总收入] .green[下降].
+
+需求量的减少（.pink[带来的收入损失]）超过了价格上升（.purple[带来的收入获得]）。
+
+]
+
+---
+
+## 响应与总收入
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-20-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[单位弹性区域]
+
+价格上升 .mono[==&gt;] .hi-green[总收入] .green[没有变化].
+
+.pink[收入损失] .mono[=] .purple[收入获得].
+
+]
+
+---
+count: false
+## 响应与总收入
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-21-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[单位弹性区域]
+
+价格上升 .mono[==&gt;] .hi-green[总收入] .green[没有变化].
+
+.pink[收入损失] .mono[=] .purple[收入获得].
+
+]
+
+---
+count: false
+## 响应与总收入
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-22-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[单位弹性区域]
+
+价格上升 .mono[==&gt;] .hi-green[总收入] .green[没有变化].
+
+.pink[收入损失] .mono[=] .purple[收入获得].
+
+]
+
+---
+## 响应与总收入
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-23-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[缺乏弹性区域]
+
+价格上升 .mono[==&gt;] .hi-green[总收入] .green[增加].
+
+价格上升 (.purple[带来的收入获得]) 超过 需求量下降 (.pink[带来的收入损失]). 
+
+]
+
+---
+count: false
+## 响应与总收入
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-24-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[缺乏弹性区域]
+
+价格上升 .mono[==&gt;] .hi-green[总收入] .green[增加].
+
+价格上升 (.purple[带来的收入获得]) 超过 需求量下降 (.pink[带来的收入损失]). 
+
+]
+
+---
+count: false
+## 响应与总收入
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-25-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[缺乏弹性区域]
+
+价格上升 .mono[==&gt;] .hi-green[总收入] .green[增加].
+
+价格上升 (.purple[带来的收入获得]) 超过 需求量下降 (.pink[带来的收入损失]). 
+
+]
+---
+count: false
+## 响应与总收入
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-26-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[缺乏弹性区域]
+
+- .pink[Q:]  体育培训业的价格上涨, 那么对总收入的影响是什么？
+- .pink[A:]  由于大部分的体育培训行业是价格敏感的 .mono[-&gt;] 需求曲线比较"平" .mono[-&gt;]  缺乏弹性的区域小 .mono[-&gt;] 涨价的空间小 .mono[-&gt;] 一但大幅度涨价，就会带来总收入下降
+]
+
+---
+count: false
+## 响应与总收入
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.center[
+调整价格前，必须先进行市场调研，确定当前价格是否处于**价格不敏感带**
+]
+
+
+
+---
+## 需求的决定因素
+
+.pink[Q:] 什么因素决定了消费者对某一产品的需求？
+
+--
+
+.pink[A:]
+- 收入或财富（正常品或劣等品）。
+
+- 相关商品(替代或互补)的价格。
+
+- 对未来价格或未来收入的预期。
+
+- 消费者口味（偏好）。
+
+- 年龄、健康、质量、广告、维持货物的成本、货物的合法性，*等等*。
+
+---
+## 需求的决定因素
+
+
+
+其实，收入和其他商品的价格对一种商品的需求有**模糊**的影响
+
+- 商品需求对收入的响应，要看商品是正常品还是劣等品
+
+- 商品需求对其他商品价格的响应，要看另一商品是替代品还是互补品
+
+---
+
+## 需求的收入弹性
+
+&gt; 衡量需求量对收入变化的反应能力:
+
+&gt; `$$\epsilon_Y = \dfrac{\text{% 需求量的变化}}{\text{% 收入的变化}}$$`
+
+.hi[含义:] "收入增加一个百分点会导致百分之 `\(\epsilon_Y\)` 需求量增加."
+
+- `\(\epsilon_Y &gt; 0\)` .mono[==&gt;] .pink[正常品:] 指随收入增加，消费者对该产品的需求增加的商品
+
+- `\(\epsilon_Y &lt; 0\)` .mono[==&gt;] .pink[劣等品:] 指随收入增加，消费者对该产品的需求减少的商品.
+&gt; 方便面.
+
+- 一种特殊的劣等品，吉芬品(Giffen good):
+不再符合需求定律。当价格上升的时候，需求量增加， `\(\epsilon_d &gt; 0\)`  
+&gt; 疫情时期的大米。
+
+---
+class: clear-slide
+
+.center[**现实中的收入敏感性**]
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 商品/服务 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 对收入的敏感 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 正常品还是劣等品 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 汽车 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3.00 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 正常品 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 餐馆用餐 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1.40 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 正常品 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 业主自用住房 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1.20 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 正常品 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 汽油 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1.06 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 正常品 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 租赁住房 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 正常品 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 咖啡 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0.51 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 正常品 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 烟草 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0.42 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 正常品 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 医疗 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0.22 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 正常品 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 人造黄油 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; -0.20 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 劣等品 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 公共交通 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; -0.36 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 劣等品 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## 需求的交叉价格弹性
+
+&gt; 衡量一种商品的需求量对另一种商品的价格变化的响应。
+
+&gt; `$$\epsilon_X = \dfrac{\text{% 商品A需求量变化}}{\text{% 商品B的价格变化}}$$`
+
+.hi[含义:] "商品B的价格增加一个百分点，会导致商品A的需求量增加 `\(\epsilon_X &gt; 0\)` 个百分点"。"
+
+### 替代品与互补品
+
+- `\(\epsilon_X &gt; 0\)` .mono[==&gt;] .pink[替代品.] 
+若B商品价格上升，就会去购买A商品，因为它相较于B商品更便宜且有相似满足度。
+
+- `\(\epsilon_X &lt; 0\)` .mono[==&gt;] .pink[互补品.]
+若B商品价格上升，它的需求下降，由于A与B必须结合才能发挥作用，所以A商品的需求下降。
+---
+class: clear-slide
+## 替代品与互补品
+
+.center[**现实中的交叉价格敏感性**]
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 商品A &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 商品B &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 交叉价格弹性 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 替代品还是互补品 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 黄油 &lt;/td&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 人造黄油 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1.53 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 替代品 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 电能 &lt;/td&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 天然气 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 替代品 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 咖啡 &lt;/td&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 茶 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0.15 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 替代品 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 烈性酒 &lt;/td&gt;
+   &lt;td style="text-align:left;color: #272822 !important;line-height: 110%;font-style: italic;color: #272822 !important;"&gt; 啤酒 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; -0.11 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 互补品 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## 需求的变动
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-29-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[需求增加]
+
+在每个价格下，个人现在都愿意并能够购买比以前更多的单位。
+
+均衡数量增加。
+
+均衡价格增加。
+
+]
+
+---
+count: false
+## 需求的变动
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-30-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[需求增加]
+
+在每个价格下，个人现在都愿意并能够购买比以前更多的单位。
+
+均衡数量增加。
+
+均衡价格增加。
+]
+
+---
+## 需求的变动
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-31-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[需求降低]
+
+在每个价格下，个人现在都愿意并能够购买比以前更少的单位。
+
+均衡数量下降。
+
+均衡价格下降。
+
+]
+
+---
+count: false
+## 需求的变动
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-32-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[需求降低]
+
+在每个价格下，个人现在都愿意并能够购买比以前更少的单位。
+
+均衡数量下降。
+
+均衡价格下降。
+
+]
+
+---
+## 需求理论的分析路线（中级）
+
+WTP .mono[-&gt;] Value .mono[-&gt;] TV and MV (Diminishing MV) .mono[-&gt;] 最优购买
+
+.mono[-&gt;] 消费者盈余 .mono[-&gt;] 个体需求曲线 .mono[=] MV 
+
+---- 
+
+WTP .mono[-&gt;]总体需求曲线 .mono[-&gt;]
+
+需求"定律" （需求 .mono[v.s.]需求量的变动）.mono[-&gt;]
+
+响应（需求的价格弹性）.mono[-&gt;]
+
+需求的影响因素（需求的收入弹性：正常品&gt;0、劣等品&lt;0和吉芬品；需求的交叉价格弹性：替代品和互补品）.mono[-&gt;] 需求的变动
+
+
+---
+## 消费者理论的分析路线（高级）
+
+.less-right[有兴趣深入消费者行为理论的同学可以研习建立在效用论基础上的消费者行为模型
+]
+
+.more-left[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/x4gfaF.png  height="450" width="500"&gt;
+]
+
+---
+layout: true
+# 生产者理论
+---
+class: title-slide-section,inverse, middle
+---
+
+## 供给理论的分析路线（中级）
+
+供给曲线 .mono[==&gt;] 
+
+供给定律 .mono[==&gt;]
+
+决定供给的因素 .mono[==&gt;]
+
+供给的变动
+
+---
+layout: false
+
+## 供给曲线
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-33-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .pink[供给定律]
+.pink[向上倾斜：] P增加 .mono[-&gt;] Q.sub[S] 增加。
+
+`\(Q=c+d P\)` ,其中 `\(c&gt;0,d&gt;0\)`
+，反映的是**供给定律**，在其他环境条件不变的情况下，某种商品的价格上升时，该商品的供给量也上升；当它的价格下降时，供给量也下降。这种价格与供给量之间的正向关系，称为供给定律。
+
+]
+
+---
+## 供给的影响因素
+
+.pink[Q:]是什么决定了某一产品的市场供给？
+
+.pink[A:] 任何影响到最低接受意愿或生产边际成本的东西。
+
+- 投入价格（*例如，*工资）。
+
+- 生产技术。
+
+- 对未来价格的预期。
+
+- 商品的合法性。
+
+- 卖家的数量。
+
+- 天气（例如*飓风，干旱，*等等*）。
+
+---
+layout: false
+## 供给的变动
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-34-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .purple[供给增加]
+
+在每个价格下，生产者现在都愿意并能够比以前销售更多的单位。
+
+均衡数量增加。
+
+均衡价格下降。
+
+]
+
+---
+layout: false
+count: false
+## 供给的变动
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-35-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+### .purple[供给增加]
+
+在每个价格下，生产者现在都愿意并能够比以前销售更多的单位。
+
+均衡数量增加。
+
+均衡价格下降。
+
+]
+
+---
+### 例：原材料价格变动
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-36-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+.pink[Q:] 木材价格的上涨会如何影响纸张市场？
+
+]
+
+---
+count: false
+### 例：原材料价格变动
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-37-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+.pink[Q:] 木材价格的上涨会如何影响纸张市场？
+
+
+.pink[Q:] .purple[木材是纸张生产的投入品]
+&lt;br&gt; .purple[.mono[--&gt;] 纸张供应减少]
+&lt;br&gt; .purple[.mono[--&gt;] 纸张的均衡价格上升，均衡数量下降.]
+]
+---
+layout:true
+# 市场均衡
+---
+class: title-slide-section,inverse, middle
+---
+layout:false
+## 市场机制
+
+.less-right[
+### 均衡
+
+
+假设价格为6时市场出清 .super[.pink[†]] .
+
+.footnote[.pink[†]: *市场出清* .mono[&lt;=&gt;] Q.sub[D] .mono[=] Q.sub[S].]
+
+.pink[Q:] 市场谁会交易？谁不会？
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-38-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+count: false
+## 市场机制
+
+.less-right[
+### 均衡
+
+假设价格为6时市场出清 .super[.pink[†]] .
+
+.footnote[.pink[†]: *市场出清* .mono[&lt;=&gt;] Q.sub[D] .mono[=] Q.sub[S].]
+
+.pink[Q:] 市场谁会交易？谁不会？
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-39-1.svg" style="display: block; margin: auto;" /&gt;
+]
+---
+## 市场机制
+
+.less-right[
+### 市场剩余
+
+价格高于6时产生了**市场剩余** .super[.pink[†]]
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-40-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.footnote[.pink[†]: *市场剩余* .mono[&lt;=&gt;] Q.sub[D] .mono[&lt;] Q.sub[S].]
+
+---
+count: false
+## 市场机制
+
+.less-right[
+### 市场剩余
+
+价格高于6时产生了**市场剩余** .super[.pink[†]]
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-41-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.footnote[.pink[†]: *市场剩余* .mono[&lt;=&gt;] Q.sub[D] .mono[&lt;] Q.sub[S].]
+
+---
+## 市场机制
+
+.less-right[
+### 市场短缺
+
+价格低于 .mono[]6 时产生**市场短缺**..super[.pink[†]]
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-42-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.footnote[.pink[†]: *市场短缺* .mono[&lt;=&gt;] Q.sub[D] .mono[&gt;] Q.sub[S].]
+
+---
+count: false
+## 市场机制
+
+.less-right[
+### 市场短缺
+
+价格低于6时产生**市场短缺**. .super[.pink[†]]
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-43-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.footnote[.pink[†]: *市场短缺* .mono[&lt;=&gt;] Q.sub[D] .mono[&gt;] Q.sub[S].]
+
+---
+## 市场机制
+
+.less-right[
+### 税收作用
+
+该税种使每个卖家的**成本**增加了.mono[]2。
+
+1. 供给曲线左（上）移动。
+2. 市场调整到新的均衡状态。
+
+
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-44-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+## 市场机制
+
+.less-right[
+### 税收作用
+
+该税种使每个卖家的**成本**增加了.mono[]2。
+
+1. 供给曲线左（上）移动。
+2. 市场调整到新的均衡状态。
+
+
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-45-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+## 市场机制
+
+.less-right[
+### 税收作用
+
+该税种使每个卖家的**成本**增加了.mono[]2。
+
+1. 供给曲线左（上）移动。
+2. 市场调整到新的均衡状态。
+
+
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-46-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+## 市场机制
+
+.less-right[
+### 税收作用
+
+该税种使每个卖家的**成本**增加了.mono[]2。
+
+1. 供给曲线左（上）移动。
+2. 市场调整到新的均衡状态。
+
+
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-47-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+## 市场机制
+
+.less-right[
+### 税收作用
+
+该税种使每个卖家的**成本**增加了.mono[]2。
+
+1. 供给曲线左（上）移动。
+2. 市场调整到新的均衡状态。
+
+
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-48-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## 市场交易为买卖双方带来盈余
+
+.less-right[
+
+.pink[消费者盈余] .mono[=] 买方的获得总额.
+
+.purple[生产者盈余] .mono[=] 卖方的获得总额.
+
+.green[总盈余] .mono[=] .pink[消费者盈余] .mono[+] .purple[生产者盈余].
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-49-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+## 市场交易为买卖双方带来盈余
+
+.less-right[
+
+.pink[消费者盈余] .mono[=] 买方的获得总额.
+
+.purple[生产者盈余] .mono[=] 卖方的获得总额.
+
+.green[总盈余] .mono[=] .pink[消费者盈余] .mono[+] .purple[生产者盈余].
+
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-50-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## 市场交易为买卖双方带来盈余
+
+.less-right[
+### 市场均衡
+
+P .mono[=].mono[]6 .mono[==&gt;] TS .mono[=] .mono[]40.
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-51-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## 市场交易为买卖双方带来盈余
+
+.less-right[
+### 市场剩余
+
+P .mono[=].mono[]7.50 .mono[==&gt;] TS .mono[=] .mono[]36.
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-52-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## 市场交易为买卖双方带来盈余
+
+.less-right[
+### 市场短缺
+
+P .mono[=].mono[]4.50 .mono[==&gt;] TS .mono[=] .mono[]36.
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-53-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+## 市场交易为买卖双方带来盈余
+
+.less-right[
+### 政府干预
+
+.pink[Q:]真还是假？政府期望通过强制增加产出来获得更多市场福利，命令生产到12来增加TS。
+
+&gt; A. 真
+
+&gt; B. 假
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-54-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+## 市场交易为买卖双方带来盈余
+
+.less-right[
+### 政府干预
+
+.pink[Q:]真还是假？政府期望通过强制增加产出来获得更多市场福利，命令生产到12来增加TS。
+
+&gt; A. 真
+
+&gt; .pink[B. 假]
+
+TS 将会从 .mono[]40  下降到  .mono[]34
+
+]
+
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-55-1.svg" style="display: block; margin: auto;" /&gt;
+]
+---
+count: false
+## 市场交易为买卖双方带来盈余
+
+.less-right[
+### 政府干预
+
+.pink[Q:]真还是假？政府期望通过强制增加产出来获得更多市场福利，命令生产到12来增加TS。
+
+&gt; A. 真
+
+&gt; .pink[B. 假]
+
+TS 将会从 .mono[]40  下降到  .mono[]34
+
+]
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-56-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## 效率
+
+- 定义 1 (市场角度)
+&gt; 从自愿交易中买卖双方会获得最大互利的结果（*即*总剩余）。
+
+- 定义 2 (更一般化)
+&gt; 完美的市场机制不会有浪费。
+
+- 定义 3 (.pink[*帕累托效率*])
+&gt; **帕累托最优**是指在不减少一方福利的情况下，就不可能增加另外一方的福利；而**帕累托改进**是指在不减少一方的福利时，通过改变现有的资源配置而提高另一方的福利。帕累托改进可以在资源闲置或市场失效的情况下实现。
+
+.pink[†]
+卡尔多-希克斯改进(Kaldor-Hicks-Improvement):如果一个人的境况由于**改革**而变好，因而他能够补偿另一个人的损失而且还有剩余，那么整体的效益就改进了。
+
+---
+class: inverse, middle
+
+# 利用供需曲线分析市场变化
+
+---
+class: clear-slide
+
+**Q:** 假设司机和加油站老板都会预期春节时汽油价格会比平时高。预期的汽油价格上涨是如何影响春节前一周的汽油均衡价格和数量的？
+
+--
+
+**A.sub[1]:** 需求侧：司机的需求整体增加.
+
+- 在其他条件相同的情况下，均衡价格上升，均衡数量增加。
+
+**A.sub[2]:** 供给侧：加油站老板增加汽油供给.
+
+- 在其他条件不变的情况下，均衡价格上升，均衡数量减少。
+
+--
+
+**A.sub[Final]:** 价格毫无疑问会上涨，但数量呢？
+
+---
+class: clear-slide
+
+**Case 1:** 供给移动 .mono[&gt;] 需求移动.
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-57-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+均衡价格增加.
+
+均衡数量减少.
+]
+
+---
+count: false
+class: clear-slide
+
+**Case 1:** 供给移动 .mono[&gt;] 需求移动.
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-58-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+均衡价格增加.
+
+均衡数量减少.
+]
+
+---
+class: clear-slide
+
+**Case 2:** 供给移动 .mono[&lt;] 需求移动.
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-59-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+均衡价格增加.
+
+均衡数量增加.
+]
+
+---
+count: false
+class: clear-slide
+
+**Case 2:** 供给移动 .mono[&lt;] 需求移动.
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-60-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+均衡价格增加.
+
+均衡数量增加.
+]
+
+---
+class: clear-slide
+
+**Case 3:** 供给移动 .mono[=] 需求移动.
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-61-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+均衡价格增加.
+
+均衡数量不变.
+]
+
+---
+count: false
+class: clear-slide
+
+**Case 3:** 供给移动 .mono[=] 需求移动.
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-62-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+均衡价格增加.
+
+均衡数量不变.
+]
+
+---
+class: clear-slide
+
+**Q:** 假设福岛核泄漏污染杀死了太平洋地区5%的金枪鱼，并激起了人们对食用鱼的恐惧。这些变化是如何影响金枪鱼罐头的均衡价格和数量的？
+
+--
+
+**A.sub[1]:** 要素投入的价格增加 .mono[--&gt;] 供给减少.
+
+- 在其他条件不变的情况下，均衡价格上升，均衡数量减少。
+
+**A.sub[2]:** 消费者偏好改变 .mono[--&gt;] 需求减少.
+
+- 在其他条件不变的情况下，均衡价格下降，均衡数量减少。
+
+--
+
+**A.sub[Final]:** 毫无疑问，均衡数量肯定减少，但价格呢？
+
+---
+class: clear-slide
+
+**Case 1:** 供给移动 .mono[&gt;] 需求移动.
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-63-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+均衡价格增加。
+
+均衡数量减少。
+]
+
+---
+count: false
+class: clear-slide
+
+**Case 1:** 供给移动 .mono[&gt;] 需求移动.
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-64-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+均衡价格增加。
+
+均衡数量减少。
+]
+
+---
+class: clear-slide
+
+**Case 2:** 供给移动 .mono[&lt;] 需求移动.
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-65-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+均衡价格下降。
+
+均衡数量减少。
+]
+
+---
+count: false
+class: clear-slide
+
+**Case 2:** 供给移动 .mono[&lt;] 需求移动.
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-66-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+均衡价格下降。
+
+均衡数量减少。
+]
+
+---
+class: clear-slide
+
+**Case 3:** 供给移动 .mono[=] 需求移动.
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-67-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+均衡价格不改变。
+
+均衡数量减少。
+]
+
+---
+count: false
+class: clear-slide
+
+**Case 3:** 供给移动 .mono[=] 需求移动.
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-68-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+均衡价格不改变。
+
+均衡数量减少。
+]
+
+---
+class: inverse, middle
+
+# 市场的溢出效应
+
+---
+# 市场溢出效应
+
+一个市场的变化往往会波及其他市场。
+
+- 不可能只改变一个市场价格!
+
+--
+
+## 例子
+
+**Q:** 作为对伊拉克1990年入侵科威特的回应，联合国发布了限制伊拉克原油出口的制裁。制裁对全球原油市场有何影响？
+
+--
+
+- **A:** .purple[全球原油供应减少 .mono[--&gt;] 均衡价格上升，均衡数量减少.]
+
+--
+
+**Q:** 其他市场会对油价的上涨作出怎样反应？
+
+---
+class: clear-slide
+
+**Q:** 原油价格的上涨对美国的取暖油市场是否会影响？
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-69-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+**A:**
+]
+
+---
+count: false
+class: clear-slide
+
+**Q:** 原油价格的上涨对美国的取暖油市场是否会影响？
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-70-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+**A:** .purple[原油是生产取暖油的投入品。]
+&lt;br&gt; .purple[.mono[--&gt;] 取暖油供应减少]
+&lt;br&gt; .purple[.mono[--&gt;] 取暖油的均衡价格上升，均衡数量下降.]
+]
+
+---
+class: clear-slide
+
+**Q:** 原油价格的上涨对美国的煤炭市场是否有影响？
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-71-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+**A:**
+]
+
+---
+count: false
+class: clear-slide
+
+**Q:** 原油价格的上涨对美国的煤炭市场是否有影响？
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-72-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+**A:** .pink[煤炭是取暖油的替代品，而原油是取暖用油的投入品。]
+&lt;br&gt; .pink[.mono[--&gt;] 对煤炭的需求增加]
+&lt;br&gt; .pink[.mono[--&gt;] 煤炭的均衡价格上升，均衡数量增加]
+]
+
+---
+class: clear-slide
+
+**Q:** 原油价格的上涨如何影响美国的汽油市场？
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-73-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+**A:**
+]
+
+---
+count: false
+class: clear-slide
+
+**Q:** 原油价格的上涨如何影响美国的汽油市场？
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-74-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+**A:** .purple[原油是一种汽油投入品]
+&lt;br&gt; .purple[.mono[--&gt;] 汽油的供应量减少]
+&lt;br&gt; .purple[.mono[--&gt;] 汽油的均衡价格上涨，数量下降.]
+]
+
+---
+class: clear-slide
+
+**Q:** 原油价格的上涨如何影响美国的SUV市场?
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-75-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+**A:**
+]
+
+---
+count: false
+class: clear-slide
+
+**Q:** 原油价格的上涨如何影响美国的SUV市场？
+
+.more-left[
+&lt;img src="04_MicroeconBasics1_files/figure-html/unnamed-chunk-76-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+**A:** .pink[汽油价格上升]
+&lt;br&gt; .pink[.mono[--&gt;] 汽油和SUV是互补品]
+&lt;br&gt; .pink[.mono[--&gt;] 对SUV的需求减少]
+&lt;br&gt; .pink[.mono[--&gt;] SUV的均衡价格和数量减少.]
+]
+
+---
+exclude: true
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": true,
+"ratio": "16:10.85"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
