@@ -223,7 +223,7 @@ step_supply <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(2,
 step_supply_tax <- step_supply %>% 
   mutate(mv = mv + 2)
 
-data <- read_csv("/Users/zhouzhengqing/Desktop/SportsEconAnalysis-master/05_MicroeconBasics2/Activity_Pit_Market/Results.csv") %>% 
+data <- read_csv("/Users/zhouzhengqing/Desktop/SportsEconAnalysis/05_MicroeconBasics2/Activity_Pit_Market/Results.csv") %>% 
   dplyr::filter(!is.na(price))
 
 theme_set(theme_gray(base_size = 20))
@@ -662,9 +662,9 @@ layout: false
 .center[<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/FTkcYR.png width="660" >]
 
 - w提高代表约束线从FE.mono[->]GE更陡峭
-- P.mono[->]R的过程：Step1是IE，P.mono[->]Q；Step2是SE，Q.mono[->]R
-- (a)图：收入效应 .mono[>] 替代效应，w提高 .mono[->] 约束线更陡峭 .mono[->] L增加，h减少
-- (b)图：替代效应 .mono[>] 收入效应，w提高 .mono[->] 约束线更陡峭 .mono[->] L减少，h增加
+- P.mono[->]R的过程统一表示为：Step1是.purple[IE]，P.mono[->]Q；Step2是.pink[SE]，Q.mono[->]R
+  - (a)图：收入效应 .mono[>] 替代效应，w提高 .mono[->] 约束线更陡峭 .mono[->] L增加，h减少
+  - (b)图：替代效应 .mono[>] 收入效应，w提高 .mono[->] 约束线更陡峭 .mono[->] L减少，h增加
 
 ---
 ### 应用3：工作还是不工作？
@@ -673,24 +673,25 @@ layout: false
 .pull-left[<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/fSk3EC.png width="500" >]
 
 .pull-right[
-- 市场条件是否有足够吸引力来 "贿赂"一个工人进入劳动力市场？
-- .purple[保留工资(reservation wage)]：能使人在工作和不工作之间无动于衷的最低工资率， $\widetilde{w}$ 。维持效用偏好不变，那么有：
-- 市场条件1(TE段)：市场工资率.mono[<]保留工资    
-- 市场条件2(EY段)：保留工资随着非劳动收入的增加而增加
+- 市场条件如何变化才能吸引力工人进入劳动力市场？
+- .purple[保留工资(reservation wage)]：能使人在工作和不工作之间无动于衷的最低工资率，表示为 $\widetilde{w}$ 。
+- 假设效用偏好不因市场条件而改变，那么有：
+  - 市场工资率(GE).mono[<]保留工资 → 退出劳动力市场   
+  - 市场工资率(HE).mono[>]保留工资 → 进入劳动力市场
 - **是否进入劳动力市场：**第1个小时的市场工资 vs. 第1个小时的保留工资
 ]
 
 ---
 ## 后弯的劳动力供给曲线(w与h的关系)
 
-.more-left[<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/aHHa8j.png width="700" >]
+.pull-left[<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/aHHa8j.png width="700" >]
 
-.less-right[
-- .hi-purple[定义：]最优工作时长h.super[*]与工资率w间的关系 
+.pull-right[
+- .hi-purple[劳动力供给曲线的定义:]最优工作时长h.super[*]与工资率w间的关系。既然w增加对休闲L有两个相反方向的作用：
 
-- 替代效应 .mono[>] 收入效应：w增加（刚高于保留工资，代表w还处于低位） .mono[->] h会增加 .mono[->] 劳动力供给曲线斜率为正
+- 替代效应 .mono[>] 收入效应：w增加（**刚刚高于保留工资，代表w还处于低位**） .mono[->] L下降 .mono[->]  h会增加 .mono[->] 劳动力供给曲线斜率为正
 
-- 收入效应 .mono[>] 替代作用：w增加 .mono[->] h会下降 .mono[->] 劳动力供给曲线斜率为负
+- 收入效应 .mono[>] 替代作用：w增加 .mono[->] L上升 .mono[->] h会下降 .mono[->] 劳动力供给曲线斜率为负
 ]
 
 
@@ -699,13 +700,13 @@ layout: false
 
 - 定义
 
-> 衡量工作时长对工资率变动的反应能力
+> 衡量工作时长对工资率变动的反应
 
 > $$\sigma = \dfrac{\text{% 工作时长变化}}{\text{% 工资率变化}} = \frac{\Delta h}{\Delta w} \cdot \frac{w}{h} $$
 
 .hi[解释:] "工资率提高一个百分点，工作时长就会增加 $\sigma$ 个百分点。" A的B弹性，A在分子，B在分母
 
-- $\sigma< 0$ .mono[==>] 工资增加，劳动时长减少 .mono[==>] 劳动曲线后弯部分
+- $\sigma< 0$ .mono[==>] 工资增加，劳动时长减少 .mono[==>] 劳动供给曲线后弯部分
 
 - $|\sigma|> 1$ .mono[==>] 劳动供给对工资率 .pink[敏感的] (.pink[富有弹性的]).
 
@@ -721,9 +722,9 @@ layout: false
   - 反映了替代效应大于收入效应
   - 如果收入效应大于替代效应，会选择家庭工作替代市场工作
       
-- 家庭联合劳动力供给
+- 个人供给受家庭其他成员收入交互影响 → 家庭联合劳动力供给 
   - 已婚妇女的劳动力参与率和工作时间会随着丈夫工资的变化而变化
-  - 家庭劳动力供应决定由家庭成员共同做出的，女性劳动力供应对丈夫工资的变化特别敏感。
+  - 女性劳动力供应对丈夫工资的变化特别敏感。
 ]
 
 
@@ -733,7 +734,7 @@ layout: false
 .center[
 <img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/U51ht4.png width="800" >
 
-.caption[.smallest[1960-1980间各国女性劳动力参与率平均增长率与工资率平均增长率]]
+.caption[.smallest[1960-1980间各国女性劳动力参与率的平均增长率与工资率平均增长率]]
 ]
 ]
 
