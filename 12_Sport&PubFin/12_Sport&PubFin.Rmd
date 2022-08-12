@@ -1,13 +1,13 @@
 ---
-title: "体育经济分析：理论与应用"
-subtitle: "专题：体育与中国经济"
+title: "体育经济分析:理论与应用"
+subtitle: "专题:体育与公共财政"
 author: 
    - 周正卿
 date: "`r format(Sys.time(), '%d %B %Y')`"
 # xaringan模板
 output:
   xaringan::moon_reader:
-    css: xaringan-themer.css
+    css: ['xaringan-themer.css', 'animate.css']
     nature:
       highlightStyle: github
       highlightLines: yes
@@ -54,7 +54,7 @@ p_load(
 options(htmltools.dir.version = FALSE)
 
 # Notes directory
-dir_slides <- "~/Users/zhouzhengqing/Desktop/SportsEconAnalysis/10_Sport&PE1/"
+dir_slides <- "~/Users/zhouzhengqing/Desktop/SportsEconAnalysis-master/12_Sport&PubFin"
 # Define pink color
 red_pink <- "#e64173"
 turquoise <- "#20B2AA"
@@ -222,7 +222,7 @@ step_supply <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(2,
 step_supply_tax <- step_supply %>% 
   mutate(mv = mv + 2)
 
-data <- read_csv("/Users/zhouzhengqing/Desktop/SportsEconAnalysis/04_MicroeconBasics2/Activity_Pit_Market/Results.csv") %>% 
+data <- read_csv("/Users/zhouzhengqing/Desktop/SportsEconAnalysis/04_MicroeconBasics1/Activity_Pit_Market/Results.csv") %>%
   dplyr::filter(!is.na(price))
 
 theme_set(theme_gray(base_size = 20))
@@ -265,28 +265,111 @@ tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", h
   }
 }
 ```
-
 # Welcome to the Course!!
 
 ---
+class: animated slideInRight fadeOutLeft
 
-## 关于我
+## 大纲
 
-- 兴趣领域: 体育经济，数据分析
+体育场地设施、职业俱乐部和重大体育赛事的经济影响
+
+- 新的体育场地设施会为：俱乐部、球迷和城市带来哪些好处？
+  - 如何增加俱乐部收入来源
+  - 如何使球迷变得更好（即使他们从未参加比赛）
+  - 如何为当地经济做出贡献
+
+- 谁为这些好处付费以及如何进行支付
+
+- 重大体育赛事往往需要主办方投入巨额的公共资金，那么是否合理？
 
 ---
+## 体育场地设施如何增加球队收益
 
-## 课程进度
+职业球场的造价非常昂贵，通常超过10亿美元。随着新场地建设成本上升，为其买单的城市和球队必须期待其收益也会飙升。
 
-- 前期：方法和理论的基础
+新球场设施通常会使上座率的增加，但随着时间流逝，人们对球场的“新鲜感”就下降了，这也会导致上座率下降。.mono[->] .hi[“蜜月期效应”（honeymoon effect）] 
+
+  - 1990年代-2000年初，美国兴起了职业运动场地的建设热潮，随后一批学者开始对新场地设施投入使用对职业球队影响开始研究。有学者就认为，新场地对棒球队影响比其他项目更大（Clapp和Hakes，2005），差不多是1/3。之所以对棒球影响更大，是因为本身棒球球市的票房没有NBA、NFL和NHL那么大。原因可能是棒球联赛的赛季更长，是NBA和NHL的2倍，是橄榄球的10倍；与NBA和NHL相比，MLB的场地设施规模也更大。以上两者造成了新场地建成后对上座率有更大的提升空间。
 
 ---
+## 体育场地设施如何增加球队收益
 
+“蜜月期”之后呢？
+
+  - 经验研究表明，其他条件不变的话，上座率通常会在.hi[10年]后回落到原来的水平。这是因为，长期来看新设施再好也不能掩盖球队的实力，正如密尔沃基酿酒人队的经验所示。当米勒公园（Miller Park）在2001年首次开放时，上座率 .mono[↑] 80%，从每场19,427人上升到34,704人。然而，当球队连续糟糕的表现时，2年后，上座率.mono[↓] 到20,992人，几乎在米勒公园前水平。从2004年开始，上座率随着球队表现起伏，2001年达到每场37,918名球迷，当时酿酒人自1982年以来第一次赢得了他们的分区，但在2016年，在连续平庸表现后下降到28,575人。
+
+ - 相较于MLB，新NHL和NBA球馆对上座率的影响较小，持续时间更短。原因可能是容量较小，在设施启用后第1年，上座率只上升了15%到20%。此外，蜜月效应很快就会减弱。 曲棍球的上座率在第9年就会回落到以前的水平。
+ 
+---
+## 体育场地设施如何增加球队收益
+
+当然上述理论也并非一致的：
+
+- 在少数情况下，新体育场未能吸引更多球迷。在2008-2009年的金融危机期间内，NY Yankee体育场的第1年中吸引的球迷就比2008年少了50多万。尽管上座率下降，但《福布斯》指出球队门票收入.hi.mono[↑]1亿多美元。原因在于，除了吸引更多球迷外，在新设施中球队将球迷放在差异化的、更昂贵的座位上。新Yankee体育场的平均票价比旧体育场.hi.mono[↑]26美元。
+  - 这里有助于进一步理解弹性的意义。通常，弹性的测量是经验性的，弹性大小与收集的样本与应用情境非常相关。
+  - 在Yankee情况下，最后球队收入增加意味着门票需求的收入弹性和需求的价格弹性都很.hi[小]。这是因为只有在需求的价格弹性.hi[小]的情况下，门票价格 .hi.mono[↑] 导致门票收入 .hi.mono[↑]；只有在需求的收入弹性.hi[小]的情况下，金融危机使得球迷平均收入.green.mono[↓] ，门票需求.green.mono[↓].hi[小]。
+
+---
+### 新体育场的影响面
+
+虽然新体育场影响到所有的票价，但最大影响通常是.b[豪华包厢]和.b[其他特殊座位的数量、尺寸和成本]。
+
+1965年前，现代体育场是没有豪华包厢的，直到MLB Houston Asros 的Astrodome投入使用。借鉴了"古罗马竞技场的贵族高台 "的启发，创建了 "空中包厢"。现在，豪华包厢和其他高级座位已经成为当代体育设施不可或缺的一部分。
+
+NFL球队与联盟分享大部分收入，但豪华包厢的收入是自留的。位于好莱坞公园（Hollywood Park）新LA体育场在2020年开放时，2009年以来新建NFL体育场平均拥有220个豪华包厢，比2009前建的其余24个体育场多出约80个。
+
+---
+### 数据
+
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/Y8gpNA.png width=800>
+]
+
+- 这五支球队都1997年后建造体育场，而49人队拥有NFL中最新的设施之一。
+- NFL最有价值的5支球队中，有3支球队在联盟中拥有最多豪华包厢的三个体育场内比赛。
+- 虽然爱国者队和49人队的豪华包厢较少，但在其他方面进行弥补。爱国者队的套房是NFL中最大的，包括两个超级套房，可容纳36人。49人队拥有NFL中最昂贵的套房。2020年，公羊队和充电器队将一起搬进位于加州的英格尔伍德新体育场，有275个行政套房，比两支队在圣路易斯和圣地亚哥的旧体育场的总和还要多。
+
+---
+## 体育场地设施如何增加球迷收益
+### 规模与形状
+
+直到20世纪60年代，大部分NFL都是租赁场地的，而场地是棒球队老板建造的。为了降低成本，各城市建造了大型、多用途体育场。多功能体育场的规模是一种妥协，对棒球来说太大，对橄榄球来说太小。20世纪90年代开始，MLB与NFL开始拥有自己的专属球场，不再共享不同项目。新棒球场平均缩减了1w个座椅，而新橄榄球场则平均增加了1w个座椅。
+
+20世纪60-80年代，大部分建造的NFL和MLB球场是千篇一律的圆形。圆形形状是为同时满足棒球和橄榄球的需要。然而，这两项运动完全不同，理想座位完全不同，部分设施甚至产生冲突。NFL在标准化的长方形场地比赛，虽然是球队会进攻到两端，但大部分的动作都发生在球场中间。因此，球场两端座位视角狭窄，大多数情况是看不清楚的。相比下，棒球场上的大部分动作都发生在内野钻石形状的区域。
+
+---
+### 规模与形状
+
+.pull-left[
+- 圆球球场有很多座位在最不理想的位置。当看橄榄球时，太多座位在端区角落，如BB和GG；即使中场附近最好座位，如A区和H区，也离场地很远。然而A和H区对观看棒球比赛就不友好了。
+- 座位朝向也是问题。G区座位应该朝向橄榄球场地的中间还是本垒？结果是，这两项运动的球迷都很难有好的观赛体验，自然票价受限，而且球票很难大卖。事实上，在20世纪90年代末，明尼苏达双城队每场比赛最远的外场座位的季票售价低至1美元。
+
+]
+
+.pull-right[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/dgMng9.png height=400>
+]
+
+
+---
+### 规模与形状
+
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/wLPPlt.png height=230>
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/sQd3FQ.png height=230>
+]
+
+- 20世纪80年代,转向单一用途后的球场，每项运动都能找到最佳规模和形状。
+- 橄榄球球场中间区域，如A和H，离球员更近，而上端区的座位数则被减少到最低，如BB和GG区。即使高层座位，如AA和HH区，也由于在场地中间也能提供良好视线。2/3的座位在中间区域，1/3区域在端区和角区；圆形则相反。
+- 棒球场的大部分座位在本垒和内野附近。19世纪和20世纪初建造的棒球场都采用了类似设计，新建球场与100多年前场地非常相似。
+
+---
 exclude: true
 
 ```{R, generate pdfs, include = F, eval = F}
 
-pagedown::chrome_print("10_Sport&PE1.html", output = "10_Sport&PE1.pdf")
+pagedown::chrome_print("12_Sport&PubFin.html", output = "12_Sport&PubFin.pdf")
 
 ```
 
