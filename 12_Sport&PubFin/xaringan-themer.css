@@ -540,3 +540,15 @@ hr,
   color: #e64173;
   height: 0.03px;
 }
+
+.more-left {
+  float: left;
+  width: 63%;
+}
+.less-right {
+  float: right;
+  width: 31%;
+}
+.more-right ~ * {
+  clear: both;
+}
