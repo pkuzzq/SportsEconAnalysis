@@ -1,0 +1,617 @@
+% SYLLABUS ----
+% This is just here so I know exactly what I'm looking at in Rstudio when messing with stuff.
+\documentclass[11pt,]{article}
+\usepackage[margin=1in]{geometry}
+\newcommand*{\authorfont}{\fontfamily{phv}\selectfont}
+\usepackage[]{mathpazo}
+\usepackage{abstract}
+\renewcommand{\abstractname}{}    % clear the title
+\renewcommand{\absnamepos}{empty} % originally center
+\newcommand{\blankline}{\quad\pagebreak[2]}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable,booktabs}
+
+\usepackage{parskip}
+\usepackage{titlesec}
+\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{6pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{6pt plus 2pt minus 2pt}
+
+\titleformat*{\subsubsection}{\normalsize\itshape}
+
+\usepackage{titling}
+\setlength{\droptitle}{-.25cm}
+
+%\setlength{\parindent}{0pt}
+%\setlength{\parskip}{6pt plus 2pt minus 1pt}
+%\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{lastpage}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.0pt}
+
+\lhead{}
+\chead{}
+\rhead{\footnotesize Sports econ analysis: theory and
+application -- 2023 Spring}
+\lfoot{}
+\cfoot{\small \thepage/\pageref*{LastPage}}
+\rfoot{}
+
+\fancypagestyle{firststyle}
+{
+\renewcommand{\headrulewidth}{0pt}%
+   \fancyhf{}
+   \fancyfoot[C]{\small \thepage/\pageref*{LastPage}}
+}
+
+%\def\labelitemi{--}
+%\usepackage{enumitem}
+%\setitemize[0]{leftmargin=25pt}
+%\setenumerate[0]{leftmargin=25pt}
+
+
+
+
+\makeatletter
+\@ifpackageloaded{hyperref}{}{%
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+}
+\@ifpackageloaded{color}{
+    \PassOptionsToPackage{usenames,dvipsnames}{color}
+}{%
+    \usepackage[usenames,dvipsnames]{color}
+}
+\makeatother
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={ ()},
+             pdfkeywords = {},
+            pdftitle={Sports econ analysis: theory and application},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+
+
+\setcounter{secnumdepth}{0}
+
+
+
+
+
+\usepackage{setspace}
+
+\title{Sports econ analysis: theory and application}
+\author{Zhou Zhengqing}
+\date{2023 Spring}
+
+\usepackage{tikz}
+
+\newcommand{\shrug}[1][]{%
+\begin{tikzpicture}[baseline,x=0.8\ht\strutbox,y=0.8\ht\strutbox,line width=0.125ex,#1]
+\def\arm{(-2.5,0.95) to (-2,0.95) (-1.9,1) to (-1.5,0) (-1.35,0) to (-0.8,0)};
+\draw \arm;
+\draw[xscale=-1] \arm;
+\def\headpart{(0.6,0) arc[start angle=-40, end angle=40,x radius=0.6,y radius=0.8]};
+\draw \headpart;
+\draw[xscale=-1] \headpart;
+\def\eye{(-0.075,0.15) .. controls (0.02,0) .. (0.075,-0.15)};
+\draw[shift={(-0.3,0.8)}] \eye;
+\draw[shift={(0,0.85)}] \eye;
+% draw mouth
+\draw (-0.1,0.2) to [out=15,in=-100] (0.4,0.95);
+\end{tikzpicture}}
+
+\linespread{1.05}
+\usepackage{float}
+
+\begin{document}
+
+		\maketitle
+	
+
+		\thispagestyle{firststyle}
+
+%	\thispagestyle{empty}
+
+
+	\noindent \begin{tabular*}{\textwidth}{ @{\extracolsep{\fill}} lr @{\extracolsep{\fill}}}
+
+
+E-mail: \texttt{\href{mailto:pkuzzq@pku.edu.cn}{\nolinkurl{pkuzzq@pku.edu.cn}}} & Web: TBD\\
+Office Hours: Fri 10:00-12:00  &  Class Hours: Mon 13:00-14:30\\
+Office: Wusi Center 315  & Class Room: SciAcaBuilding-316\\
+	&  \\
+	\hline
+	\end{tabular*}
+
+\vspace{2mm}
+
+
+
+\hypertarget{course-description}{%
+\section{Course Description}\label{course-description}}
+
+This class will prepare you to teach Stanford students as a TA or
+instructor. The philosophy of this class is that teaching is both an art
+to learn and cultivate, and a source of great joy and personal meaning
+during your graduate career and beyond. In this class, we will cover key
+teaching skills and abilities such as leading an engaging discussion
+section, building an inclusive classroom, delivering a lecture, and
+juggling teaching logistics and competing demands. Throughout the
+quarter, we will explore different philosophies and ways of teaching so
+that you can begin to cultivate and employ your own teaching style.
+
+\hypertarget{course-objectives}{%
+\section{Course Objectives}\label{course-objectives}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Acquire strategies for inclusive and equitable teaching.
+\item
+  Develop and effectively teach from lesson plans.
+\item
+  Assess students' learning efficiently and effectively.
+\item
+  Assess your own teaching and strive for continuous improvement.
+\end{enumerate}
+
+\hypertarget{course-components}{%
+\section{Course Components}\label{course-components}}
+
+\textbf{Teaching Moments}
+
+In this course, we will take the opportunity to learn about teaching by
+\emph{doing} some teaching in-class or planning for a lesson that we
+might teach. There will be 5 points in the quarter where you will engage
+in a teaching moment. A teaching moment is a moment in which you are
+actively teaching others or discussing how you would hypothetically
+teach others.
+
+\emph{Teaching Moment \#1}: This will be a \emph{Microteaching session}
+for which you will prepare 5 minutes of teaching on a topic of your
+choice. During class-time, you will teach the class and then afterward
+the group will give feedback to identify strengths and weaknesses. After
+debriefing with the class, you will write a 1-paragraph reflection about
+the experience and your key takeaways.
+
+\emph{Teaching Moment \#2}: You will prepare a 1-page lesson plan for a
+\emph{discussion} that you could potentially use for a 50-minute
+section. Select a topic from the topic-bank on Canvas and then decide
+the content that you would use. Submit your plans to Canvas, and be
+prepared to discuss them in class.
+
+\emph{Teaching Moment \#3}: You will prepare a 1-page lesson plan for a
+\emph{lecture} that you could potentially use for a 50-minute section.
+Select a topic from the topic-bank and then decide the content that you
+would use. Submit your plans to Canvas, and be prepared to discuss them
+in class.
+
+\emph{Teaching Moment \#4}: You will prepare a 1-page lesson plan for an
+\emph{activity} that you could potentially use for a 50-minute section.
+Select a topic from the topic-bank and then decide the content that you
+would use. Submit your plans to Canvas, and be prepared to discuss them
+in class.
+
+\emph{Teaching Moment \#5}: For the final teaching moment, you will
+\emph{teach a 10-minute version of one of the lessons that you submitted
+for teaching moments \#2 - \#4}. During our final class meeting you will
+teach for 10 minutes. Students in the course will play the role of
+students in your section. Afterward, you will evaluate yourself and
+submit a brief reflection with key takeaways from your experience.
+
+\textbf{Grading Assignment}
+
+To help prepare you for grading, you will be given some exams from an
+undergraduate sociology course to grade. You will design a grading
+rubric and grade three student exams. You will be assessed on the
+thoroughness of your rubric and whether you apply it in the comments and
+grades that you give.
+
+\hypertarget{course-policy}{%
+\section{Course Policy}\label{course-policy}}
+
+\hypertarget{grading-policy}{%
+\subsection{Grading Policy}\label{grading-policy}}
+
+\begin{itemize}
+\item
+  \textbf{20\%} of your grade will be determined by participation in
+  class meetings.
+\item
+  \textbf{60\%} of your grade will be determined by completing 5
+  teaching moments. Teaching Moment \#1 is worth \textbf{10\%}. Teaching
+  Moments \#2-\#4 are worth \textbf{10\%} each. The final Teaching
+  Moment (\#5) is worth \textbf{20\%}.
+\item
+  \textbf{20\%} of your grade will be determined by completing the
+  grading assignment.
+\end{itemize}
+
+\hypertarget{late-work}{%
+\subsection{Late Work}\label{late-work}}
+
+All assignments and due dates have been posted on Canvas to help you
+plan. Please double check due dates and times. I understand that other
+priorities arise and can result in a late assignment submission. For
+this class, you are allowed 3 ``late days'' for your assignments. The
+``3 late days'' policy means that there would be no penalty if you
+submitted one of the assignments three days late, or three of the
+assignments one day late. After those 3 ``late days'' are used up, you
+will be docked on the following system:
+
+\begin{itemize}
+\tightlist
+\item
+  1 day late: 25\% of the maximum allowable marks
+\item
+  2 days late: 50\% of the maximum allowable marks
+\item
+  3+ days late: 75\% of the maximum allowable marks
+\end{itemize}
+
+\hypertarget{attendance-policy}{%
+\subsection{Attendance Policy}\label{attendance-policy}}
+
+Each of you are important to the in-class discussion and student
+learning, so missed classes will be reflected in your participation
+grade. I understand that unexpected circumstances occur and attendance
+in-person or on Zoom may not always be possible. \textbf{If you are
+unable to make one of our class meetings, please contact me in advance
+and we will work out alternative arrangements.} Only missed classes that
+are not made up will impact your participation grade.
+
+\hypertarget{course-privacy}{%
+\subsection{Course Privacy}\label{course-privacy}}
+
+Two of our class meetings are scheduled to take place on Zoom. These are
+marked in the class schedule, so that you can plan accordingly. For
+these classes we will adhere to the university's course privacy policy.
+The
+\href{https://library.stanford.edu/using/copyright-reminder/common-situations/recording-broadcasting-courses}{university's
+policy around recording and broadcasting courses} states that students
+may not audio or video record class meetings without permission from the
+instructor (and guest speakers, when applicable). If the instructor
+grants permission or if the teaching team posts videos themselves,
+students may keep recordings only for personal use and may not post
+recordings on the Internet, or otherwise distribute them. These policies
+protect the privacy rights of instructors and students, and the
+intellectual property and other rights of the university. Students who
+need lectures recorded for the purposes of an academic accommodation
+should contact the \href{https://oae.stanford.edu/}{Office of Accessible
+Education}.
+
+\hypertarget{the-honor-code}{%
+\subsection{The Honor Code}\label{the-honor-code}}
+
+It is expected that you and I will follow Stanford's Honor Code in all
+matters relating to this online course. You are encouraged to meet and
+exchange ideas with your classmates while studying and working on
+assignments, but you are individually responsible for your own work. You
+are not permitted to copy or otherwise reference another student's work.
+Compromising your academic integrity may lead to serious consequences,
+including (but not limited to) one or more of the following: failure of
+the assignment, failure of the course, disciplinary probation,
+suspension from the university, or dismissal from the university.
+
+You, as students, are responsible for understanding the University's
+Honor Code policy and must make proper use of citations of sources for
+writing papers, creating, presenting, and performing their work, taking
+examinations, and doing research. For tips on how to uphold the honor
+code in an online learning environment, read these recommendations. If
+you have any questions regarding this policy, please contact me.
+
+\hypertarget{academic-accomodations}{%
+\subsection{Academic Accomodations}\label{academic-accomodations}}
+
+Students who may need an academic accommodation based on the impact of a
+disability must initiate the request with the Office of Accessible
+Education (OAE). Professional staff will evaluate the request with
+required documentation, recommend reasonable accommodations, and prepare
+an Accommodation Letter for faculty dated in the current quarter in
+which the request is being made. Students should contact the OAE as soon
+as possible since timely notice is needed to coordinate accommodations.
+Contact the \href{http://oae.stanford.edu}{OAE} at 650-723-1066.
+
+\hypertarget{mental-well-being}{%
+\subsection{Mental Well-Being}\label{mental-well-being}}
+
+As a student, you may experience a range of other challenges that can
+cause barriers to learning. These mental health concerns or stressful
+events may lead to diminished academic performance or reduce your
+ability to participate in daily life. If you or someone you know is
+feeling overwhelmed, depressed, and/or in need of support, services are
+available. You can learn more about the broad range of confidential
+mental health services available on campus here:
+\href{https://caps.stanford.edu/}{Counseling \& Psychological Services
+(CAPS)}. Within the department, you can also contact your Wellness
+Information Network for Graduate Students (WINGS) representatives: Amy
+Johnson
+(\href{mailto:aljohnson@stanford.edu}{\nolinkurl{aljohnson@stanford.edu}})
+and Cat Sanchez
+(\href{mailto:catsan@stanford.edu}{\nolinkurl{catsan@stanford.edu}}).
+
+\hypertarget{class-schedule}{%
+\section{Class Schedule}\label{class-schedule}}
+
+\begin{figure}[H]
+  \includegraphics[width=0.95\columnwidth]{figs/calendar.png}
+  \caption{A Class Calender for SOC300, Spring 2022.}
+\end{figure}
+
+\hypertarget{week-01-0329-syllabus-day}{%
+\subsection{Week 01, 03/29: Syllabus
+Day}\label{week-01-0329-syllabus-day}}
+
+In Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Introductions
+\item
+  Discuss syllabus \& course assignments
+\end{itemize}
+
+\hypertarget{week-02-0405-microteaching}{%
+\subsection{Week 02, 04/05:
+Microteaching}\label{week-02-0405-microteaching}}
+
+Before Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Prepare microteaching demonstration (5 minutes)
+\end{itemize}
+
+In Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Microteaching Demonstrations \& Feedback
+\end{itemize}
+
+\hypertarget{week-03-0412-lesson-planning-learner-centered-teaching}{%
+\subsection{Week 03, 04/12: Lesson Planning \& Learner Centered
+Teaching}\label{week-03-0412-lesson-planning-learner-centered-teaching}}
+
+Before Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Submit microteaching reflection to Canvas by Monday 4/11 at 11:59 pm
+\item
+  Watch Diane Lam's video on
+  \href{https://stanford.zoom.us/rec/play/Lcfmo1wLFLgZXNdYgthaLDMGDxFuDHKu7Xq1CLIHKmMsKzjnUNZhQuJI91SRpCD9OPrw7TvDLw5osudx.5MVRl6P7_tsvtEBm?startTime=1592259933000\&_x_zm_rtaid=NLWZrE4PQqGaigDIkeAlkg.1614367820420.cd397df1d9e6e93f88fe84cb458cbea4\&_x_zm_rhtaid=726}{backward
+  design} (7 min)
+\item
+  Read Fink, 2005 ``Integrated Course Design''
+\item
+  Read Stanford CTL's
+  \href{https://docs.google.com/document/d/1NNQvCTwHfdX7r-z4axdWnzlGy5LYw9ZIvvWQas1aJYE/edit?usp=sharing}{``Introduction
+  to Bloom's Taxonomy''}
+\end{itemize}
+
+In Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Applying learner-centered teaching to section
+\item
+  Review Lesson Plans
+\end{itemize}
+
+\hypertarget{week-04-0419-leading-engaging-classroom-discussions}{%
+\subsection{Week 04, 04/19: Leading Engaging Classroom
+Discussions}\label{week-04-0419-leading-engaging-classroom-discussions}}
+
+Before Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Submit discussion teaching plan to Canvas by Monday 4/18 at 11:59 pm
+\item
+  Read Tanner, 2013 ``Structure Matters: Twenty-one Teaching Strategies
+  to Promote Student Engagement and Cultivate Classroom Equity''
+\item
+  Read Cashin (2011) ``Effective Classroom Discussions''
+\item
+  Read The Discussion Book: Chapters 13 (Nominating Questions), 31
+  (Quick Writes), 36 (Hatful of Quotes), 37 (Quotes to Affirm \&
+  Challenge)
+\end{itemize}
+
+In Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Discuss strategies for facilitating discussion
+\item
+  Discuss teaching plans: Discussion
+\end{itemize}
+
+\hypertarget{week-05-0426-lecturing-running-labs-zoom-class}{%
+\subsection{Week 05, 04/26: Lecturing \& Running Labs {[}ZOOM
+CLASS{]}}\label{week-05-0426-lecturing-running-labs-zoom-class}}
+
+Before Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Submit lecturing/labs teaching plan to Canvas by Monday 4/25 at 11:59
+  pm
+\item
+  Read Cashin (2010) ``Effective Lecturing''
+\end{itemize}
+
+In Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Discuss strategies for lecturing \& facilitating labs
+\item
+  Discuss teaching plans: Lecture/Lab
+\end{itemize}
+
+\hypertarget{week-06-0503-assessments-grading-part-i-zoom-class}{%
+\subsection{Week 06, 05/03: Assessments \& Grading, Part I {[}ZOOM
+CLASS{]}}\label{week-06-0503-assessments-grading-part-i-zoom-class}}
+
+Before Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Read Schinske \& Tanner, 2014 ``Teaching More by Grading Less (or
+  Differently)''
+\item
+  Read Wright, ``Assessment and Grading (Evaluation)''
+\end{itemize}
+
+In Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Discuss grading strategies
+\item
+  Review example rubrics
+\item
+  Discuss grading assignment
+\end{itemize}
+
+\hypertarget{week-07-0510-active-learning-leading-in-class-activities}{%
+\subsection{Week 07, 05/10: Active Learning \& Leading In-Class
+Activities}\label{week-07-0510-active-learning-leading-in-class-activities}}
+
+Before Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Post at least 2 questions for the faculty panel to Canvas by
+  \textbf{Monday 5/9 at 11:59 pm}
+\item
+  Submit activity teaching plan to Canvas by Monday 5/9 at 11:59 pm
+\item
+  Read Millis, 2014 ``Active Learning Strategies in Face-to-Face
+  Courses''
+\end{itemize}
+
+In Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Discuss activity teaching plans
+\item
+  Student Panel
+\end{itemize}
+
+\hypertarget{week-08-0517-assessments-grading-part-ii-final-teaching-moment-presentations}{%
+\subsection{Week 08, 05/17: Assessments \& Grading, Part II
+\textbar\textbar{} Final Teaching Moment
+Presentations}\label{week-08-0517-assessments-grading-part-ii-final-teaching-moment-presentations}}
+
+Before Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Prepare Final Teaching Moment (10 min)
+\end{itemize}
+
+In Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Discuss teaching self-assessment strategies
+\item
+  Final Teaching Moment Demonstrations \& Feedback
+\end{itemize}
+
+\hypertarget{week-09-0524-final-teaching-moment-presentation}{%
+\subsection{Week 09, 05/24: Final Teaching Moment
+Presentation}\label{week-09-0524-final-teaching-moment-presentation}}
+
+Before Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Prepare Final Teaching Moment (10 min)
+\item
+  Submit grading assignment to Canvas by Monday 5/23 at 11:59 pm
+\end{itemize}
+
+In Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Final Teaching Moment Demonstrations \& Feedback
+\item
+  Discuss grading assignments
+\end{itemize}
+
+\hypertarget{week-10-0531-no-class}{%
+\subsection{Week 10, 05/31: No Class}\label{week-10-0531-no-class}}
+
+Before Class:
+
+\begin{itemize}
+\tightlist
+\item
+  Submit self-assessment of final teaching moment to Canvas by Monday
+  5/30 at 11:59 pm
+\end{itemize}
+
+In Class:
+
+\begin{itemize}
+\tightlist
+\item
+  No class meeting.
+\end{itemize}
+
+
+
+
+\end{document}
+
+\makeatletter
+\def\@maketitle{%
+  \newpage
+%  \null
+%  \vskip 2em%
+%  \begin{center}%
+  \let \footnote \thanks
+    {\fontsize{18}{20}\selectfont\raggedright  \setlength{\parindent}{0pt} \@title \par}%
+}
+%\fi
+\makeatother

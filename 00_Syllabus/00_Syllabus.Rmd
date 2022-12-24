@@ -1,0 +1,404 @@
+---
+output: 
+  stevetemplates::syllabus:
+    latex_engine: xelatex
+    keep_tex: true
+    dev: cairo_pdf
+    extra_dependencies: ["float"]
+geometry: margin=1in
+
+title: "Economic analysis in sport：theory and applications"
+author: "Zhou Zhengqing"
+date: "2023 Spring"
+
+email: "pkuzzq@pku.edu.cn"
+web: ""
+officehours: "Fri 10:00-12:00 a.m."
+office: "Wusi Center 315"
+classroom: "SciAcaBuilding-316"
+classhours: "Mon 13:00-14:30 p.m."
+
+fontfamily: mathpazo
+fontsize: 11pt
+header-includes:
+   - \linespread{1.05}
+---
+
+```{r setup, include=FALSE}
+# knitr::opts_chunk$set(cache=FALSE, dev='pdf')
+knitr::opts_chunk$set(cache=F,
+                      fig.path = 'figs/',
+                      cache.path='cache/',
+                      warning=F,
+                      message=F)
+
+knitr::opts_chunk$set(
+                  fig.process = function(x) {
+                      x2 = sub('-\\d+([.][a-z]+)$', '\\1', x)
+                      if (file.rename(x, x2)) x2 else x
+                      }
+                  )
+
+tue <- as.Date("2022-03-29")
+
+advdate <- function(obj, adv) {
+ ttue <- obj + 7*(adv-1)
+ ttue <- format(ttue, format="%m/%d")
+ zadv <- sprintf("%02d", adv)
+ tmp <- paste("Week ",zadv,sep='',", ", ttue)
+ return(tmp)
+}
+
+options(scipen=999)
+library(tidyverse)
+library(stevemisc)
+library(lubridate)
+
+# Create a calendar for your syllabus ----
+# Source: http://svmiller.com/blog/2020/08/a-ggplot-calendar-for-your-semester/
+
+# 1) what is the first Monday of the semester?
+# Any number of ways to identify dates in R, but we'll use {lubridate} and the ymd() function here.
+
+mon <- ymd(20230220)
+
+# What are some dates you won't be here? In this example, I had a conference on 7 January 2021.
+# Spring Break was 15 March 2021 to 19 March 2021.
+not_here_dates <- c(
+  # Last Class,
+  ymd(20220531)
+  )
+
+zoom_classes <- c(
+  ymd(20220426),
+  ymd(20220503)
+)
+
+# You can adjust this as you see fit. Basically: add assignment types (e.g. papers, quizzes).
+# My intro class was fairly simple: just exams.
+teaching_moments <- c(ymd(20220405),
+                      ymd(20220418),
+                      ymd(20220425),
+                      ymd(20220509),
+                      ymd(20220524),
+                      ymd(20220530)
+                      )
+grading_assignment <- c(ymd(20220523))
+panel_sessions <- c(ymd(20220510)
+                    )
+
+
+# What are the full dates of the semester? Here, I'll exclude exam week as I like to do.
+quarter_dates <- seq(ymd(20230220), ymd(20230605), by=1)
+
+# Custom function for treating the first day of the month as the first week 
+# of the month up until the first Sunday (unless Sunday was the start of the month)
+wom <- function(date) {
+    first <- wday(as.Date(paste(year(date),month(date),1,sep="-")))
+    return((mday(date)+(first-2)) %/% 7+1)
+  }
+
+# Create a data frame of dates, assign to Cal
+tibble(date = seq(ymd(20230220), ymd(20230605), by=1))  %>%
+  mutate(mon = lubridate::month(date, label=T, abbr=F), # get month label
+         wkdy = weekdays(date, abbreviate=T), # get weekday label
+         wkdy = fct_relevel(wkdy, "Sun", "Mon", "Tue", "Wed", "Thu","Fri","Sat"), # make sure Sunday comes first
+         quarter = ifelse(date %in% quarter_dates, 1, 0), # is date part of the semester?
+         teaching_moments = ifelse(date %in% teaching_moments, 1, 0), # is it a teaching moment?
+         grading_assignment = ifelse(date %in% grading_assignment, 1, 0),
+         zoom_meetings = ifelse(date %in% zoom_classes, 1, 0),
+         not_here = ifelse(date %in% not_here_dates, 1, 0), # is it a day off?
+         day = lubridate::mday(date), # get day of month to add later as a label
+         # Below: our custom wom() function
+         #week = date
+         week = wom(date)
+         ) -> Cal
+
+# Create a category variable, for filling.
+# I can probably make this a case_when(), but this will work.
+
+Cal %>%
+  mutate(category = NA,
+         category = ifelse(quarter == 1, "Quarter", category),
+         category = ifelse(quarter == 1 & wkdy %in% c("Tue"), "Class Day", category),
+         category = ifelse(teaching_moments == 1, "Teaching Moment", category),
+         category = ifelse(grading_assignment == 1, "Grading Assignment", category),
+         category = ifelse(zoom_meetings == 1, "Zoom Class", category),
+         category = ifelse(is.na(category) | (quarter == 1 & not_here == 1), "No Class", category)) -> Cal 
+
+Cal %>% 
+  ggplot(.,aes(wkdy, week)) +
+  # custom theme stuff below
+  theme_bw() +
+  theme(panel.grid.major.x = element_blank()) +
+  # geom_tile and facet_wrap will do all the heavy lifting
+  geom_tile(alpha=0.8, aes(fill=category), color="black", size=.45) +
+  facet_wrap(~mon, scales="free", ncol=3) +
+  # fill in tiles to make it look more "calendary" (sic)
+  geom_text(aes(label=day),family="Open Sans") +
+  # put your y-axis down, flip it, and reverse it
+  scale_y_reverse(breaks=NULL) +
+  # manually fill scale colors to something you like...
+  scale_fill_manual(values=c(
+                             "Class Day"="steelblue", 
+                             "Teaching Moment"="#90D1F8",
+                             "Quarter"="lightsteelblue",
+                             "No Class" = "white", # I like these whited out...
+                             "Grading Assignment"="#D0B529",
+                             "Zoom Class"="#043C8C"),
+      
+                    #... but also suppress a label for a non-class semester day
+                    breaks=c("Class Day",
+                             "Zoom Class",
+                             "Teaching Moment",
+                             "Grading Assignment"
+                             )) +
+  labs(fill = "", x="", y="",
+       caption = "Notable dates: We will not meet in the last week of the quarter (05/31)") + 
+  theme(legend.position="bottom",
+        plot.caption = element_text(size = 12, face = "italic"),
+        strip.text.x = element_text(size = 14),
+        legend.key.size = unit(1, 'cm') #change legend key size
+) -> class_cal
+
+#extrafont::loadfonts()
+#ggsave("calendar.png", width=11)
+```
+
+# Course Description
+
+This course will help you identify key economic concepts and construct logical sports analyses.We will discuss various applications of economic theory to the topic of sports in this class.This class is being offered because the world of sports provides so many clear opportunities to apply and test economic ideas - not so that sports fans can take a class where they have advantages over others who are less interested in sports.We are focusing on economics rather than sports.Furthermore, we take into account key research skills and abilities such as writing an acdamic article, leading a paper discussion section, and creating a simple workable project proposal.
+
+Students should be familiar with intermediate microeconomics and, at the very least, the analytical tools of econometrics.Class participation is essential for doing well and scoring well in this course.If you do not intend to attend on a regular basis, I would recommend finding another class. 
+
+The assessment of academic performance will be based on the collective outcome of the group work, involvement in class, completion of assignments and presence in lectures. The group project will be due before the start of class session #5 and two of the groups will be asked to make short presentations of their work during the final session (#6).
+
+# Course Objectives
+
+-  Gaining an insight into the larger economic and financial milieu in which the sports sector is embedded.
+
+- Conduct research using economic models.
+
+1. Acquire strategies for inclusive and equitable teaching.  
+
+2. Develop and effectively teach from lesson plans. 
+
+3. Assess students' learning efficiently and effectively. 
+
+4. Assess your own teaching and strive for continuous improvement. 
+
+•	了解体育产业所处的更广泛的经济和金融环境
+•	使用经济模型分析
+•	了解体育如何为经济学家提供一个测试经济理论的“实验室”
+•	识别体育经济学文献中的关键议题（key topics）
+
+
+# Course Components
+
+**Teaching Moments**
+
+In this course, we will take the opportunity to learn about teaching by *doing* some teaching in-class or planning for a lesson that we might teach. There will be 5 points in the quarter where you will engage in a teaching moment. A teaching moment is a moment in which you are actively teaching others or discussing how you would hypothetically teach others. 
+
+*Teaching Moment #1*: This will be a *Microteaching session* for which you will prepare 5 minutes of teaching on a topic of your choice. During class-time, you will teach the class and then afterward the group will give feedback to identify strengths and weaknesses. After debriefing with the class, you will write a 1-paragraph reflection about the experience and your key takeaways.  
+
+*Teaching Moment #2*: You will prepare a 1-page lesson plan for a *discussion* that you could potentially use for a 50-minute section. Select a topic from the topic-bank on Canvas and then decide the content that you would use. Submit your plans to Canvas, and be prepared to discuss them in class.
+
+*Teaching Moment #3*: You will prepare a 1-page lesson plan for a *lecture* that you could potentially use for a 50-minute section. Select a topic from the topic-bank and then decide the content that you would use. Submit your plans to Canvas, and be prepared to discuss them in class. 
+
+*Teaching Moment #4*: You will prepare a 1-page lesson plan for an *activity* that you could potentially use for a 50-minute section. Select a topic from the topic-bank and then decide the content that you would use. Submit your plans to Canvas, and be prepared to discuss them in class.
+
+*Teaching Moment #5*: For the final teaching moment, you will *teach a 10-minute version of one of the lessons that you submitted for teaching moments #2 - #4*. During our final class meeting you will teach for 10 minutes. Students in the course will play the role of students in your section. Afterward, you will evaluate yourself and submit a brief reflection with key takeaways from your experience. 
+
+
+**Grading Assignment**
+
+To help prepare you for grading, you will be given some exams from an undergraduate sociology course to grade. You will design a grading rubric and grade three student exams. You will be assessed on the thoroughness of your rubric and whether you apply it in the comments and grades that you give. 
+
+
+# Course Policy
+
+## Grading Policy
+
+- **20%** of your grade will be determined by participation in class meetings.
+
+- **60%** of your grade will be determined by completing 5 teaching moments. Teaching Moment #1 is worth **10%**. Teaching Moments #2-#4 are worth **10%** each. The final Teaching Moment (#5) is worth **20%**.
+
+- **20%** of your grade will be determined by completing the grading assignment. 
+
+## Late Work
+
+All assignments and due dates have been posted on Canvas to help you plan. Please double check due dates and times. I understand that other priorities arise and can result in a late assignment submission. For this class, you are allowed 3 “late days” for your assignments. The "3 late days" policy means that there would be no penalty if you submitted one of the assignments three days late, or three of the assignments one day late. After those 3 “late days” are used up, you will be docked on the following system:
+
+- 1 day late: 25% of the maximum allowable marks 
+- 2 days late: 50% of the maximum allowable marks
+- 3+ days late: 75% of the maximum allowable marks
+
+## Attendance Policy
+
+Each of you are important to the in-class discussion and student learning, so missed classes will be reflected in your participation grade. I understand that unexpected circumstances occur and attendance in-person or on Zoom may not always be possible. **If you are unable to make one of our class meetings, please contact me in advance and we will work out alternative arrangements.** Only missed classes that are not made up will impact your participation grade.
+
+## Course Privacy
+
+Two of our class meetings are scheduled to take place on Zoom. These are marked in the class schedule, so that you can plan accordingly. For these classes we will adhere to the university's course privacy policy. The [university’s policy around recording and broadcasting courses](https://library.stanford.edu/using/copyright-reminder/common-situations/recording-broadcasting-courses) states that students may not audio or video record class meetings without permission from the instructor (and guest speakers, when applicable). If the instructor grants permission or if the teaching team posts videos themselves, students may keep recordings only for personal use and may not post recordings on the Internet, or otherwise distribute them. These policies protect the privacy rights of instructors and students, and the intellectual property and other rights of the university. Students who need lectures recorded for the purposes of an academic accommodation should contact the [Office of Accessible Education](https://oae.stanford.edu/).
+
+## The Honor Code
+
+It is expected that you and I will follow Stanford’s Honor Code in all matters relating to this online course. You are encouraged to meet and exchange ideas with your classmates while studying and working on assignments, but you are individually responsible for your own work. You are not permitted to copy or otherwise reference another student’s work. Compromising your academic integrity may lead to serious consequences, including (but not limited to) one or more of the following: failure of the assignment, failure of the course, disciplinary probation, suspension from the university, or dismissal from the university.
+
+You, as students, are responsible for understanding the University’s Honor Code policy and must make proper use of citations of sources for writing papers, creating, presenting, and performing their work, taking examinations, and doing research. For tips on how to uphold the honor code in an online learning environment, read these recommendations. If you have any questions regarding this policy, please contact me.
+
+## Academic Accomodations
+
+Students who may need an academic accommodation based on the impact of a disability must initiate the request with the Office of Accessible Education (OAE). Professional staff will evaluate the request with required documentation, recommend reasonable accommodations, and prepare an Accommodation Letter for faculty dated in the current quarter in which the request is being made. Students should contact the OAE as soon as possible since timely notice is needed to coordinate accommodations. Contact the [OAE](http://oae.stanford.edu) at 650-723-1066.
+
+## Mental Well-Being
+As a student, you may experience a range of other challenges that can cause barriers to learning. These mental health concerns or stressful events may lead to diminished academic performance or reduce your ability to participate in daily life. If you or someone you know is feeling overwhelmed, depressed, and/or in need of support, services are available. You can learn more about the broad range of confidential mental health services available on campus here: [Counseling & Psychological Services (CAPS)](https://caps.stanford.edu/). Within the department, you can also contact your Wellness Information Network for Graduate Students (WINGS) representatives: Amy Johnson (aljohnson@stanford.edu) and Cat Sanchez (catsan@stanford.edu).
+
+
+
+
+# Class Schedule
+
+```{r calendar, echo=F, eval=F,fig.cap="A Calendar for the Class (SOC300, Spring 2022)",warning=F}
+
+class_cal
+
+```
+
+\begin{figure}[H]
+  \includegraphics[width=0.95\columnwidth]{figs/calendar.png}
+  \caption{A Class Calender for SOC300, Spring 2022.}
+\end{figure}
+
+
+## `r advdate(tue, 1)`: Syllabus Day
+
+In Class: 
+
+- Introductions
+- Discuss syllabus & course assignments
+    
+
+## `r advdate(tue, 2)`: Microteaching
+
+Before Class:  
+
+- Prepare microteaching demonstration (5 minutes)
+
+In Class: 
+
+- Microteaching Demonstrations & Feedback
+
+
+##  `r advdate(tue, 3)`: Lesson Planning & Learner Centered Teaching
+
+Before Class: 
+
+- Submit microteaching reflection to Canvas by Monday 4/11 at 11:59 pm
+- Watch Diane Lam's video on [backward design](https://stanford.zoom.us/rec/play/Lcfmo1wLFLgZXNdYgthaLDMGDxFuDHKu7Xq1CLIHKmMsKzjnUNZhQuJI91SRpCD9OPrw7TvDLw5osudx.5MVRl6P7_tsvtEBm?startTime=1592259933000&_x_zm_rtaid=NLWZrE4PQqGaigDIkeAlkg.1614367820420.cd397df1d9e6e93f88fe84cb458cbea4&_x_zm_rhtaid=726) (7 min)
+- Read Fink, 2005 "Integrated Course Design" 
+- Read Stanford CTL's ["Introduction to Bloom's Taxonomy"](https://docs.google.com/document/d/1NNQvCTwHfdX7r-z4axdWnzlGy5LYw9ZIvvWQas1aJYE/edit?usp=sharing)
+
+  
+In Class: 
+
+- Applying learner-centered teaching to section
+- Review Lesson Plans
+  
+
+##  `r advdate(tue, 4)`: Leading Engaging Classroom Discussions
+
+Before Class: 
+
+- Submit discussion teaching plan to Canvas by Monday 4/18 at 11:59 pm
+- Read Tanner, 2013 "Structure Matters: Twenty-one Teaching Strategies to Promote Student Engagement and Cultivate Classroom Equity" 
+- Read Cashin (2011) "Effective Classroom Discussions"
+- Read The Discussion Book: Chapters 13 (Nominating Questions), 31 (Quick Writes), 36 (Hatful of Quotes), 37 (Quotes to Affirm & Challenge) 
+  
+  
+In Class:   
+
+- Discuss strategies for facilitating discussion
+- Discuss teaching plans: Discussion
+
+
+##  `r advdate(tue, 5)`: Lecturing & Running Labs [ZOOM CLASS]
+
+Before Class: 
+
+- Submit lecturing/labs teaching plan to Canvas by Monday 4/25 at 11:59 pm
+- Read Cashin (2010) "Effective Lecturing"
+
+  
+In Class:  
+
+- Discuss strategies for lecturing & facilitating labs
+- Discuss teaching plans: Lecture/Lab
+
+
+##  `r advdate(tue, 6)`: Assessments & Grading, Part I [ZOOM CLASS]
+
+Before Class: 
+
+- Read Schinske & Tanner, 2014 "Teaching More by Grading Less (or Differently)"
+- Read Wright, "Assessment and Grading (Evaluation)"
+
+  
+In Class:   
+
+- Discuss grading strategies
+- Review example rubrics
+- Discuss grading assignment
+  
+
+##  `r advdate(tue, 7)`: Active Learning & Leading In-Class Activities
+
+Before Class: 
+
+- Post at least 2 questions for the faculty panel to Canvas by **Monday 5/9 at 11:59 pm** 
+- Submit activity teaching plan to Canvas by Monday 5/9 at 11:59 pm 
+- Read Millis, 2014 "Active Learning Strategies in Face-to-Face Courses"
+
+  
+In Class:   
+
+- Discuss activity teaching plans
+- Student Panel
+
+
+##  `r advdate(tue, 8)`: Assessments & Grading, Part II || Final Teaching Moment Presentations
+
+Before Class:   
+
+- Prepare Final Teaching Moment (10 min)
+  
+In Class:   
+
+- Discuss teaching self-assessment strategies
+- Final Teaching Moment Demonstrations & Feedback
+
+
+##  `r advdate(tue, 9)`: Final Teaching Moment Presentation
+
+Before Class: 
+
+- Prepare Final Teaching Moment (10 min)
+- Submit grading assignment to Canvas by Monday 5/23 at 11:59 pm 
+
+  
+In Class:  
+
+- Final Teaching Moment Demonstrations & Feedback
+- Discuss grading assignments
+
+
+##  `r advdate(tue, 10)`: No Class
+
+Before Class:  
+
+- Submit self-assessment of final teaching moment to Canvas by Monday 5/30 at 11:59 pm
+
+  
+In Class:  
+
+- No class meeting. 
