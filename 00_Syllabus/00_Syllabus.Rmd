@@ -123,7 +123,7 @@ Cal %>%
          category = ifelse(quarter == 1 & wkdy %in% c("Tue"), "Class Day", category),
          category = ifelse(teaching_moments == 1, "Teaching Moment", category),
          category = ifelse(grading_assignment == 1, "Grading Assignment", category),
-         category = ifelse(zoom_meetings == 1, "Zoom Class", category),
+         category = ifelse(zoom_meetings == 1, "Online", category),
          category = ifelse(is.na(category) | (quarter == 1 & not_here == 1), "No Class", category)) -> Cal 
 
 Cal %>% 
@@ -145,11 +145,11 @@ Cal %>%
                              "Quarter"="lightsteelblue",
                              "No Class" = "white", # I like these whited out...
                              "Grading Assignment"="#D0B529",
-                             "Zoom Class"="#043C8C"),
+                             "Online"="#043C8C"),
       
                     #... but also suppress a label for a non-class semester day
                     breaks=c("Class Day",
-                             "Zoom Class",
+                             "Online",
                              "Teaching Moment",
                              "Grading Assignment"
                              )) +
@@ -169,27 +169,35 @@ Cal %>%
 
 This course will help you identify key economic concepts and construct logical sports analyses.We will discuss various applications of economic theory to the topic of sports in this class.This class is being offered because the world of sports provides so many clear opportunities to apply and test economic ideas - not so that sports fans can take a class where they have advantages over others who are less interested in sports.We are focusing on economics rather than sports.Furthermore, we take into account key research skills and abilities such as writing an acdamic article, leading a paper discussion section, and creating a simple workable project proposal.
 
-Students should be familiar with intermediate microeconomics and, at the very least, the analytical tools of econometrics.Class participation is essential for doing well and scoring well in this course.If you do not intend to attend on a regular basis, I would recommend finding another class. 
+Students should be familiar with intermediate microeconomics and, at the very least, the analytical tools of econometrics. Class participation is essential for doing well and scoring well in this course. If you do not intend to attend regularly, I would recommend finding another class. 
 
 The assessment of academic performance will be based on the collective outcome of the group work, involvement in class, completion of assignments and presence in lectures. The group project will be due before the start of class session #5 and two of the groups will be asked to make short presentations of their work during the final session (#6).
 
-# Course Objectives
+# Course Objectives & Student Learning Outcomes:
+Upon successful completion of this course students will be able to:
 
--  Gaining an insight into the larger economic and financial milieu in which the sports sector is embedded.
+1. Interpret, construct and analyze economic models that apply to various settings in sports. 
+解释、构建和分析适用于体育领域各种情况的经济模型。
 
-- Conduct research using economic models.
+2. Understand the incentives that influence and motivate the various participants involved in sports (e.g., players, 
+fans, owners, city officials, and so on).
 
-1. Acquire strategies for inclusive and equitable teaching.  
+3. Think critically about how economic issues related to both efficiency and equity apply to the field of sports. 
 
-2. Develop and effectively teach from lesson plans. 
+4. Understand how classic demographic factors including race, gender, geography (i.e. urban/rural), nationality, age, 
+and even political affiliation relate to the field of sports. 
 
-3. Assess students' learning efficiently and effectively. 
+5. Identify the relationships between various national/state/local governments and sports leagues, and understand 
+why they are important. 
 
-4. Assess your own teaching and strive for continuous improvement. 
+6. Apply the economic concepts we cover to current issues in sports. Unfortunately, this course has a distinct bias 
+towards American Sports activities, mostly because of the distribution of OU’s student body as well as mine own 
+areas of expertise – but hopefully connections to broader global sports (i.e., Olympics, sports in developing 
+countries, etc) will be given some attention. 
 
-•	了解体育产业所处的更广泛的经济和金融环境
-•	使用经济模型分析
-•	了解体育如何为经济学家提供一个测试经济理论的“实验室”
+7. All of these objectives will be tested through a combination of engaged class discussions, graded quizzes/exams, 
+and a semester-long data driven research paper/project.
+
 •	识别体育经济学文献中的关键议题（key topics）
 
 
@@ -322,7 +330,7 @@ In Class:
 - Discuss teaching plans: Discussion
 
 
-##  `r advdate(tue, 5)`: Lecturing & Running Labs [ZOOM CLASS]
+##  `r advdate(tue, 5)`: Lecturing & Running Labs [Online]
 
 Before Class: 
 
@@ -336,7 +344,7 @@ In Class:
 - Discuss teaching plans: Lecture/Lab
 
 
-##  `r advdate(tue, 6)`: Assessments & Grading, Part I [ZOOM CLASS]
+##  `r advdate(tue, 6)`: Assessments & Grading, Part I [Online]
 
 Before Class: 
 
