@@ -1,0 +1,3729 @@
+---
+title: "体育经济分析：理论与应用"
+subtitle: "专题二: 微观经济基础1"
+author: 
+   - 周正卿
+date: "`r format(Sys.time(), '%d %B %Y')`"
+
+# xaringan模板
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: yes
+      countIncrementalSlides: yes
+      ratio: '16:10.85'
+    seal: true
+    lib_dir: libs
+
+knit: pagedown::chrome_print
+
+# beamer模板
+
+# mainfont: Times New Roman
+# fontsize: 10pt
+# output: 
+#   beamer_presentation: 
+#     fonttheme: structurebold
+#     theme: Madrid
+#     colortheme: lily
+#     includes:
+#         in_header: "../beamer_header.tex"
+#     df_print: tibble
+#     latex_engine: xelatex
+
+---
+class: center, middle, inverse
+
+```{R, setup, include = F}
+# devtools::install_github("dill/emoGG")
+library(pacman)
+p_load(
+  broom, tidyverse,
+  ggplot2, ggthemes, ggforce, ggridges,
+  latex2exp, viridis, extrafont, gridExtra,
+  kableExtra, snakecase, janitor,
+  data.table, dplyr, estimatr,
+  lubridate, knitr, parallel,
+  lfe,
+  here, magrittr, RcmdrPlugin.KMggplot2
+)
+
+options(htmltools.dir.version = FALSE)
+
+# Notes directory
+dir_slides <- "/Users/zhouzhengqing/Library/CloudStorage/Nutstore-pkuzzq@gmail.com/SportsEconAnalysis/SportsEconAnalysis_2023/04_MicroeconBasics1"
+# Define pink color
+red_pink <- "#e64173"
+turquoise <- "#20B2AA"
+orange <- "#FFA500"
+red <- "#fb6107"
+blue <- "#3b3b9a"
+green <- "#8bb174"
+grey_light <- "grey70"
+grey_mid <- "grey50"
+grey_dark <- "grey20"
+purple <- "#6A5ACD"
+slate <- "#314f4f"
+met_slate <- "#272822" # metropolis font color 
+
+# Dark slate grey: #314f4f
+
+# Knitr options
+opts_chunk$set(
+  comment = "#>",
+  fig.align = "center",
+  fig.height = 7,
+  fig.width = 10.5,
+  warning = F,
+  message = F
+)
+opts_chunk$set(dev = "svg")
+options(device = function(file, width, height) {
+  svg(tempfile(), width = width, height = height)
+})
+options(crayon.enabled = F)
+options(knitr.table.format = "html")
+# A blank theme for ggplot
+theme_empty <- theme_bw() + theme(
+  line = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  axis.text = element_blank(),
+  plot.title = element_blank(),
+  axis.title = element_blank(),
+  plot.margin = structure(c(0, 0, -0.5, -1), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_simple <- theme_bw() + theme(
+  line = element_blank(),
+  panel.grid = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  axis.text.x = element_text(size = 18, family = "STIXGeneral"),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank(),
+  plot.title = element_blank(),
+  axis.title = element_blank(),
+  # plot.margin = structure(c(0, 0, -1, -1), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes_math <- theme_void() + theme(
+  text = element_text(family = "MathJax_Math"),
+  axis.title = element_text(size = 22),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = "grey70",
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+  )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes_serif <- theme_void() + theme(
+  text = element_text(family = "MathJax_Main"),
+  axis.title = element_text(size = 22),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = "grey70",
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+  )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes <- theme_void() + theme(
+  text = element_text(family = "Fira Sans Book"),
+  axis.title = element_text(size = 18),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = grey_light,
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+  )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_market <- theme_bw() + theme(
+  axis.line = element_line(color = met_slate),
+  panel.grid = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  text = element_text(family = cnfont, color = met_slate, size = 17),
+  axis.title.x = element_text(hjust = 1, size = 17),
+  axis.title.y = element_text(hjust = 1, angle = 0, size = 17),
+  # axis.text.x = element_text(size = 12),
+  # axis.text.y = element_text(size = 12),
+  axis.ticks = element_blank()
+)
+theme_gif <- theme_bw() + theme(
+  axis.line = element_line(color = met_slate),
+  panel.grid = element_blank(),
+  rect = element_blank(),
+  text = element_text(family = cnfont, color = met_slate, size = 17),
+  axis.text.x = element_text(size = 12),
+  axis.text.y = element_text(size = 12),
+  axis.ticks = element_blank()
+)
+wrapper <- function(x, ...) paste(strwrap(x, ...), collapse = "\n")
+# functions
+demand <- function(x) 10 - x
+demand_2 <- function(x) 9 - x
+demand_3 <- function(x) 8 - x
+demand_inc <- function(x) 11 - x
+demand_dec <- function(x) 5 - x
+supply <- function(x) 1 + (4/5)*x
+
+step_demand <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8), mv = c(8, 7, 6, 5, 4, 3, 2, 1, 0))
+step_demand2 <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(10, 10, 9, 9, 8, 8, 7, 7, 6, 6, 5, 4, 4))
+step_supply <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 8, 8))
+step_supply_tax <- step_supply %>% 
+  mutate(mv = mv + 2)
+
+data <- read_csv("/Users/zhouzhengqing/Desktop/SportsEconAnalysis-master/04_MicroeconBasics1/Activity_Pit_Market/Results.csv") %>% 
+  dplyr::filter(!is.na(price))
+
+theme_set(theme_gray(base_size = 20))
+# Column names for regression results
+reg_columns <- c("Term", "Est.", "S.E.", "t stat.", "p-Value")
+# Function for formatting p values
+format_pvi <- function(pv) {
+  return(ifelse(
+    pv < 0.0001,
+    "<0.0001",
+    round(pv, 4) %>% format(scientific = F)
+  ))
+}
+format_pv <- function(pvs) lapply(X = pvs, FUN = format_pvi) %>% unlist()
+# Tidy regression results table
+tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", highlight_bold = T, digits = c(NA, 3, 3, 2, 5), title = NULL) {
+  x %>%
+    tidy() %>%
+    select(1:5) %>%
+    mutate(
+      term = terms,
+      p.value = p.value %>% format_pv()
+    ) %>%
+    kable(
+      col.names = reg_columns,
+      escape = F,
+      digits = digits,
+      caption = title
+    ) %>%
+    kable_styling(font_size = 20) %>%
+    row_spec(1:nrow(tidy(x)), background = "white") %>%
+    row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
+}
+```
+
+```{css, echo = F, eval = T}
+@media print {
+  .has-continuation {
+    display: block !important;
+  }
+}
+```
+
+# 引言
+
+---
+
+name: schedule
+
+# 课程进度
+
+### 第一阶段
+
+- 专题一: 回归与因果
+
+### 今天
+
+- 消费者理论 .mono[->] 需求
+- 生产者理论 .mono[->] 供给
+- 市场机制
+- 利用供需曲线分析市场变化
+- 市场的溢出效应
+    
+---
+layout: true
+# 从经济学基本问题出发
+---
+class: title-slide-section,inverse, middle
+---
+
+## 写在前面
+
+本部分开始进入到经济学（微观）在职业体育领域中的应用。部分概念看似很熟悉，但在经济学中却有严谨的论证逻辑（我们不会展开）。
+
+与回归和因果推断主要以概率论为基础不同的是，本部分主要以微积分为基础。当然，没有微积分为基础不会阻碍各位对经济逻辑和理论的理解。经济学家的“武器库”中为各位提供“图形分析”，具体来是供需曲线来理解。
+
+图形虽提供直觉见解，但经济分析真正的力量来自于对经济问题的数量计算。因此，我试图以最短的时间能够覆盖到微观经济学基础，以满足部分希望继续在体育经济精深的同学的需求；这也不太符合就业导向为职场的同学需求，因此后面的职业体育分析内容期望会对这部分同学的市场思维逻辑有所启发。
+
+---
+
+## 核心概念
+
+经济学是一门社会科学，研究人们如何在进行选择。它是社会的，因为它涉及到人和人的行为。它是科学，因为它在调查选择时尽可能地使用科学方法。有的选择有放弃，有的没有。经济学核心概念：稀缺性、选择和机会成本。
+
+1.稀缺性。任何时候可获得的资源是有限的，但人的欲望是无限的。当作出选择，意味着不得不放弃或拒绝其他活动。**稀缺性**稀缺性意味着我们在选择另一种选择时必须放弃一种选择。三个最基本的经济问题是:
+- WHAT 应该生产什么？
+- HOW 生产商品和服务？
+- FOR WHOM 生产商品和服务？
+
+---
+
+2.选择。由于资源稀缺，每个人都必须要有所选择。这意味在经济学是对个体所选择的“行动集合”进行分析。
+
+
+3.由于资源稀缺，每一个决定或者选择意味着不得不放弃一些东西。这些放弃的次优选择就是机会成本。每个选择都有机会成本，机会成本影响着人们的选择。
+
+- **机会成本:** 放弃次优选择的价值。机会成本是因人而异的。
+
+- 参加这个课程的机会成本也许是看网剧，去健身房，或任何你认为是下一个最好的选择。
+
+- .hi[重要] 不是 .hi.slate[你可以选择的所有其他事情]，而是 .hi.slate[你可以选择的下一件事]。
+
+任何行动的成本都包括**直接成本**和**机会成本**。稍作理解...
+
+---
+layout: false
+
+.center[**一个典型的年龄收入概况**]
+
+```{R, echo = FALSE, fig.height = 5.75, dev = "svg"}
+x <- 18:40
+
+No_College <- function(x) 125*x^2 - 2.4*x^3 - 5000
+College <- function(x){ifelse(x >= 22, 155*x^2 - 2.95*x^3, NA)}
+
+base_plot <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(18, 40), expand=c(0,0), breaks = c(18, 22.2), labels = c("18", "22")) +
+  scale_y_continuous(limits = c(-15000, 75000), label = scales::comma) +
+  theme_bw() +
+  theme(text = element_text(family = "SourceHanSerifSC-Medium", color = slate, size = 17),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.ticks = element_blank(),
+        axis.line = element_line(size = 0.75, color = slate),
+        axis.line.x = element_blank(),
+        axis.text = element_text(size = 18),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank(), 
+        panel.background = element_rect(fill = "transparent", color = NA),
+        plot.background = element_rect(fill = "transparent", color = NA)) +
+  labs(x = "Age", y = "Income") +
+  geom_hline(yintercept = 0, size = 0.75, color = slate) +
+  stat_function(aes(x), fun = No_College, color = green, size = 0.75) + # no college
+  annotate("text", label = "没有上大学", x = 35, y = 41000, color = green, family = cnfont, size = 5)
+
+base_plot
+```
+
+---
+count: false
+.center[**一个典型的年龄收入概况**]
+
+```{R, echo = FALSE, fig.height = 5.75, dev = "svg"}
+base_plot +
+  stat_function(aes(x), fun = College, color = red_pink, size = 0.75) + # college
+  geom_segment(aes(x = 22.2, y = -13000, xend = 22.2, yend = 43945), color = red_pink, size = 0.75, linetype = "solid") +
+  geom_segment(aes(x = 18, y = -13000, xend = 22.2, yend = -13000), color = red_pink, size = 0.75) +
+  annotate("text", label = "上大学", x = 35, y = 68000, color = red_pink, family = cnfont, size = 5)
+```
+
+---
+
+.pink[Q:] 以下哪个部分代表了大学的机会成本？
+> .pink[A:]
+
+```{R, echo = FALSE, fig.height = 5.5, dev = "svg"}
+w <- seq(22.2, 40, 0.01)
+z <- seq(18, 22.2, 0.01)
+
+base_plot +
+  stat_function(aes(x), fun = College, color = red_pink, size = 0.75) + # college
+  geom_segment(aes(x = 22.2, y = -13000, xend = 22.2, yend = 43945), color = red_pink, size = 0.75, linetype = "solid") +
+  geom_segment(aes(x = 18, y = -13000, xend = 22.2, yend = -13000), color = red_pink, size = 0.75) +
+  annotate("text", label = "上大学", x = 35, y = 68000, color = red_pink, family = cnfont, size = 5) +
+  #geom_ribbon(aes(x = z, ymax = 0, ymin = -13000), alpha = 0.2, fill = purple) +
+  annotate("text", label = "A", x = 20, y = -6500, color = slate, family = cnfont, size = 6) +
+  #geom_ribbon(aes(x = z, ymax = No_College(z), ymin = 0), alpha = 0.2, fill = orange) +
+  annotate("text", label = "B", x = 20, y = 12500, color = slate, family = cnfont, size = 6) +
+  #geom_ribbon(aes(x = w, ymax = College(w), ymin = No_College(w)), alpha = 0.2, fill = turquoise) +
+  annotate("text", label = "C", x = 35, y = 54500, color = slate, family = cnfont, size = 6)
+```
+
+---
+count: false
+.pink[Q:] 以下哪个部分代表了大学的机会成本？
+> .pink[A:] .pink[ 区域 B]
+
+```{R, echo = FALSE, fig.height = 5.5, dev = "svg"}
+w <- seq(22.2, 40, 0.01)
+z <- seq(18, 22.2, 0.01)
+
+base_plot +
+  stat_function(aes(x), fun = College, color = red_pink, size = 0.75) + # college
+  geom_segment(aes(x = 22.2, y = -13000, xend = 22.2, yend = 43945), color = red_pink, size = 0.75, linetype = "solid") +
+  geom_segment(aes(x = 18, y = -13000, xend = 22.2, yend = -13000), color = red_pink, size = 0.75) +
+  annotate("text", label = "上大学", x = 35, y = 68000, color = red_pink, family = cnfont, size = 5) +
+  # geom_ribbon(aes(x = z, ymax = 0, ymin = -13000), alpha = 0.2, fill = purple) +
+  annotate("text", label = "A", x = 20, y = -6500, color = slate, family = cnfont, size = 6) +
+  #geom_ribbon(aes(x = z, ymax = No_College(z), ymin = 0), alpha = 0.2, fill = orange) +
+  annotate("text", label = "B", x = 20, y = 12500, color = slate, family = cnfont, size = 6) +
+  #geom_ribbon(aes(x = w, ymax = College(w), ymin = No_College(w)), alpha = 0.2, fill = turquoise) +
+  annotate("text", label = "C", x = 35, y = 54500, color = slate, family = cnfont, size = 6)
+```
+
+---
+
+.pink[Q:] 如果你只关心钱，在什么情况下你会去上大学？
+
+> **A.** A .mono[+] B .mono[>] C 
+
+> **B.** A .mono[+] B .mono[<] C 
+
+> **C.** A .mono[+] C .mono[>] B
+
+> **D.** A .mono[+] C .mono[<] B
+
+```{R, echo = FALSE, fig.height = 3, dev = "svg"}
+w <- seq(22.2, 40, 0.01)
+z <- seq(18, 22.2, 0.01)
+
+base_plot +
+  stat_function(aes(x), fun = College, color = red_pink, size = 0.75) + # college
+  geom_segment(aes(x = 22.2, y = -13000, xend = 22.2, yend = 43945), color = red_pink, size = 0.75, linetype = "solid") +
+  geom_segment(aes(x = 18, y = -13000, xend = 22.2, yend = -13000), color = red_pink, size = 0.75) +
+  annotate("text", label = "上大学", x = 35, y = 68000, color = red_pink, family = cnfont, size = 5) +
+  #geom_ribbon(aes(x = z, ymax = 0, ymin = -13000), alpha = 0.2, fill = purple) +
+  annotate("text", label = "A", x = 20, y = -6500, color = slate, family = cnfont, size = 6) +
+  #geom_ribbon(aes(x = z, ymax = No_College(z), ymin = 0), alpha = 0.2, fill = orange) +
+  annotate("text", label = "B", x = 20, y = 12500, color = slate, family = cnfont, size = 6) +
+  #geom_ribbon(aes(x = w, ymax = College(w), ymin = No_College(w)), alpha = 0.2, fill = turquoise) +
+  annotate("text", label = "C", x = 35, y = 54500, color = slate, family = cnfont, size = 6)
+```
+
+---
+count: false
+.pink[Q:] 如果你只关心钱，在什么情况下你会去上大学？
+
+> **A.** A .mono[+] B .mono[>] C 
+
+> .pink[**B.** A .mono[+] B .mono[<] C]
+
+> **C.** A .mono[+] C .mono[>] B
+
+> **D.** A .mono[+] C .mono[<] B
+
+```{R, echo = FALSE, fig.height = 3, dev = "svg"}
+w <- seq(22.2, 40, 0.01)
+z <- seq(18, 22.2, 0.01)
+
+base_plot +
+  stat_function(aes(x), fun = College, color = red_pink, size = 0.75) + # college
+  geom_segment(aes(x = 22.2, y = -13000, xend = 22.2, yend = 43945), color = red_pink, size = 0.75, linetype = "solid") +
+  geom_segment(aes(x = 18, y = -13000, xend = 22.2, yend = -13000), color = red_pink, size = 0.75) +
+  annotate("text", label = "上大学", x = 35, y = 68000, color = red_pink, family = cnfont, size = 5) +
+  #geom_ribbon(aes(x = z, ymax = 0, ymin = -13000), alpha = 0.2, fill = purple) +
+  annotate("text", label = "A", x = 20, y = -6500, color = slate, family = cnfont, size = 6) +
+  #geom_ribbon(aes(x = z, ymax = No_College(z), ymin = 0), alpha = 0.2, fill = orange) +
+  annotate("text", label = "B", x = 20, y = 12500, color = slate, family = cnfont, size = 6) +
+  #geom_ribbon(aes(x = w, ymax = College(w), ymin = No_College(w)), alpha = 0.2, fill = turquoise) +
+  annotate("text", label = "C", x = 35, y = 54500, color = slate, family = cnfont, size = 6)
+```
+
+---
+
+## 逻辑 
+
+.less-right[
+微观经济理论就是从个体决策出发，基于稀缺性、个体选择与机会成本为逻辑起点，构建其经济分析的框架大厦。
+
+- 左图是Varian高级微观经济学的框架，我们将从中级微观经济学的框架入手。
+]
+
+
+.more-left[
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/9RXn3f.png  height="450" width="500">
+]
+]
+
+
+---
+layout: true
+# 从经济学基本问题出发
+---
+
+## 需求与供给
+
+如果商品和时间稀缺，那么就要在相互竞争的替代品中做出选择。
+
+- .hi-pink[消费者理论]以一种系统的方式描述了.pink[消费者的选择]。
+
+- .hi-purple[生产者理论]以系统的方式描述了.purple[生产者和销售者的选择]。
+
+---
+layout: true
+# 消费者理论
+---
+class: title-slide-section,inverse, middle
+---
+
+## 意愿支付
+
+**意愿支付(willness to pay)** :也称为“心理价位”，是消费者为获得一单位产品所原意支付的最高价格。人们对所需要的产品都会有一个心理价位，它**因人而异**。
+
+
+.hi[Q:] 对同一件商品，每个的意愿支付都不同。那么什么决定了差异化的每个人的意愿支付？
+
+.hi[A:] 商品的价值
+
+---
+
+## 商品价值
+
+一个商品的价值 .mono[=] 你愿意放弃什么来获得它(意愿支付可以看成是**商品消费行为给消费者带来的效用的货币度量**)。
+
+例：如果你放弃了价值20万元的其他商品来购买一辆汽车，那么这辆汽车对你的价值至少为20万元。
+
+一个物品的价值仅限于人们愿意为控制该物品的权利所付出的代价。
+---
+
+## 总价值 total value
+
+- 定义 1
+
+> 消费者为.pink[获得]某一特定数量的商品而.pink[意愿支付]的.pink[最大]金额
+(买的角度)
+
+- 定义 2
+
+> 消费者为.pink[放弃]某一特定数量的商品而.pink[意愿接受]的.pink[最低]金额。
+(卖的角度)
+
+
+---
+
+## 边际价值 marginal value
+
+- 定义 1
+
+> 消费者为.pink[获得]额外一个单位商品而.pink[意愿支付]的.pink[最大]金额（买）
+
+- 定义 2
+
+> 消费者为.pink[放弃]额外一个单位商品而.pink[意愿接受]的.pink[最低]金额。（卖）
+
+
+.pink[Q:] 在跑完马拉松后，你会如何为第一杯水估价？你会如何为第二杯估计？
+
+**重要的假设:**  边际价值递减
+
+对于所有商品和所有个人,其他条件相同的情况下,一种商品的边际价值随着你消费的增加而减少。
+
+---
+
+.more-left[
+```{r mv, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
+  geom_step(color = red_pink, size = 1) +
+  labs(x = "q", y = "MV") +
+  scale_x_continuous(limits = c(0, 9.5), expand = c(0, 0), breaks = seq(0, 9, 1)) +
+  scale_y_continuous(limits = c(0, 9.5), expand = c(0, 0), breaks = seq(0, 9, 1)) +
+  theme_market
+```
+]
+
+.less-right[
+### .pink[边际价值表]
+
+MV .mono[=] 边际价值.
+
+q .mono[=] 一件商品的数量.
+
+q 增加 .mono[->] MV 下降
+
+- 同一件商品对于不同的人边际价值表是不同的
+]
+
+---
+
+## 最优购买
+
+.pink[Q:] 消费者如何决定购买多少商品？
+
+.pink[A:] 消费者**在边际**决策 .
+
+$$
+\begin{aligned}
+ &边际价值（30w）&>& &汽车价格（20w） &: &选择购买  \\
+ &边际价值（10w）&<& &汽车价格（20w） &: &放弃购买  \\
+ &边际价值（20w）&=& &汽车价格（20w） &: &无差异    \\
+\end{aligned}
+$$
+
+---
+layout: false
+
+## 最优购买
+
+.more-left[
+```{r mv1b, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
+  geom_step(color = red_pink, size = 1) +
+  labs(x = "q", y = "MV") +
+  scale_x_continuous(limits = c(0, 9.5), expand = c(0, 0), breaks = seq(0, 9, 1)) +
+  scale_y_continuous(limits = c(0, 9.5), expand = c(0, 0), breaks = seq(0, 9, 1)) +
+  theme_market + 
+  geom_hline(yintercept = 4.5, linetype  = "dashed", color = met_slate, size = 1) +
+  geom_segment(aes(x = 4, y = 0, xend = 4, yend = 4.5), linetype  = "dashed", color = met_slate, size = 1) + 
+  geom_point(aes(x = 4, y = 4.5), color = met_slate, size = 2)
+```
+]
+
+.less-right[
+.pink[Q:] 如果价格为.mono[]4.50，消费者会购买多少个单位？
+
+> .pink[A: 4单位
+]
+
+]
+
+---
+
+## 最优购买
+
+.more-left[
+```{r mv2b, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
+  geom_step(color = red_pink, size = 1) +
+  labs(x = "q", y = "MV") +
+  scale_x_continuous(limits = c(0, 9.5), expand = c(0, 0), breaks = seq(0, 9, 1)) +
+  scale_y_continuous(limits = c(0, 9.5), expand = c(0, 0), breaks = seq(0, 9, 1)) +
+  theme_market + 
+  geom_hline(yintercept = 3, linetype  = "dashed", color = met_slate, size = 1) +
+  geom_segment(aes(x = 6, y = 0, xend = 6, yend = 3), linetype  = "dashed", color = met_slate, size = 1) + 
+  geom_point(aes(x = 6, y = 3), color = met_slate, size = 2)
+```
+]
+
+.less-right[
+.pink[Q:] 如果价格为.mono[]3.50，消费者会购买多少个单位？
+
+
+> .pink[A: 6单位]
+
+]
+
+---
+
+## 最优购买
+
+.more-left[
+```{r mv3, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
+  geom_step(color = red_pink, size = 1) +
+  labs(x = "q", y = "MV") +
+  scale_x_continuous(limits = c(0, 9.5), expand = c(0, 0), breaks = seq(0, 9, 1)) +
+  scale_y_continuous(limits = c(0, 9.5), expand = c(0, 0), breaks = seq(0, 9, 1)) +
+  theme_market + 
+  geom_hline(yintercept = 9, linetype  = "dashed", color = met_slate, size = 1) 
+```
+]
+
+.less-right[
+.pink[Q:] 如果价格为.mono[]9，消费者会购买多少个单位？
+
+> .pink[A: 0单位]
+
+
+
+规律就是
+
+> 一个消费者选择的最优购买**q.sup[*]**
+**s.t.** **MV** .mono[**=**] **P**。
+
+]
+
+---
+
+## 最优购买(决策过程)
+
+价格 $P$ 是外生，如果消费者
+
+- 在 .green[MV .mono[>] P] 时选择继续购买 
+.mono[==>]买的.hi-green[太少] .mono[==>] MV下降
+
+- 在 .purple[MV .mono[<] P] 时选择停止购买
+.mono[==>] 买的.hi-purple[太多] .mono[==>] 想办法转手卖出去，MV上升
+
+- 在 .pink[MV .mono[=] P] 时 .mono[==>]就是他的 .hi-pink[最佳购买]。
+
+
+.hi-slate[问题是: ]真实的情况是你会按照上述规则再决定购买么？
+
+- 当价格确定后，你的购买(实际的行为选择)就是**最优购买**
+
+- 重要的不是你是否按照上述规则，而是你的**行为**，好像你按照了一样。
+---
+### 钻石与水悖论
+
+.pink[Q:] 亚当·斯密在《国富论》中指出：
+> 没什么东西比水更有用；能用它交换的货物却非常有限；很少的东西就可以换到水。相反，钻石没有什么用处，但可以用它换来大量的货品。
+
+水非常有用，但在市场上价格很低；钻石几乎没什么用，但在市场上价格很高。该悖论也称作价值悖论这种强烈的反差就构成了这个悖论。为什么会有这样的现象呢？
+
+
+如何解决该悖论？
+
+- 市场价格反映了消费者对这些商品的边际价值，而不是其总价值。
+
+
+---
+### 钻石与水悖论
+
+.less-right[
+.pink[TV.sub[水]] .mono[>] .purple[TV.sub[钻石]]
+
+.purple[MV.sub[钻石]] .mono[>] .pink[MV.sub[水]]
+
+]
+
+.more-left[
+```{r diamond_water, echo = FALSE, fig.height = 5, fig.width = 6, dev = "svg"}
+water <- function(x) {
+  1/(0.05*x + 0.1)
+}
+diamond <- function(x) {
+  0.5/(0.05*x + 0.1)
+}
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 14.5), expand = c(0, 0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  theme_market +
+  labs(x = "Q", y = "MV") +
+  stat_function(fun = water, color = red_pink, size = 1) +
+  stat_function(fun = diamond, color = purple, size = 1) +
+  annotate("text", label = expression(MV[水]), x = 4.5, y = 4.25, color = red_pink, family = cnfont, size = 9) +
+  annotate("text", label = expression(MV[钻石]), x = 4.25, y = 1.1, color = purple, family = cnfont, size = 9) +
+  geom_point(aes(x = 8, y = 2), color = met_slate, size = 2) +
+  geom_segment(aes(x = 8, y = 0, xend = 8, yend = 2), linetype = "dashed", color = met_slate, size = 1) +
+  geom_segment(aes(x = 0, y = 2, xend = 8, yend = 2), linetype = "dashed", color = met_slate, size = 1) +
+  geom_point(aes(x = .5, y = 4), color = met_slate, size = 2) +
+  geom_segment(aes(x = .5, y = 0, xend = .5, yend = 4), linetype = "dashed", color = met_slate, size = 1) +
+  geom_segment(aes(x = 0, y = 4, xend = .5, yend = 4), linetype = "dashed", color = met_slate, size = 1)
+
+```
+]
+---
+## 消费者盈余 Consumer Surplus
+
+.more-left[
+```{r cs, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
+  geom_step(color = red_pink, size = 1) +
+  labs(x = "q", y = "MV") +
+  scale_x_continuous(limits = c(0, 9.5), expand = c(0, 0), breaks = seq(0, 9, 1)) +
+  scale_y_continuous(limits = c(0, 9.5), expand = c(0, 0), breaks = seq(0, 9, 1)) +
+  theme_market + 
+  geom_hline(yintercept = 4.5, linetype  = "dashed", color = met_slate, size = 1) +
+  geom_segment(aes(x = 4, y = 0, xend = 4, yend = 4.5), linetype  = "dashed", color = met_slate, size = 1) + 
+  geom_point(aes(x = 4, y = 4.5), color = met_slate, size = 2) +
+  geom_stepribbon(aes(ymax = ifelse(x < 4, mv, 4.5), ymin = 4.5), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  annotate("text", label = "CS", x = 1.25, y = 5.75, color = red_pink, family = "Fira Sans", size = 9)
+```
+]
+
+.less-right[
+### .pink[消费者盈余]
+
+消费者购买的**总价值** .hi.purple[超过] 购买**成本(价格)**的部分。
+
+衡量消费者从交易中获得的收益。
+]
+
+---
+## MV .mono[->] 个体需求曲线
+
+.more-left[
+```{r ind_demand1, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
+  geom_step(color = red_pink, size = 1) +
+  labs(x = "q", y = "P") +
+  scale_x_continuous(limits = c(0, 9.5), expand = c(0, 0), breaks = seq(0, 9, 1)) +
+  scale_y_continuous(limits = c(0, 9.5), expand = c(0, 0), breaks = seq(0, 9, 1)) +
+  theme_market +
+  annotate("text", label = "MV = D", x = 7.75, y = 3, color = red_pink, family = "Fira Sans", size = 9)
+```
+]
+
+.less-right[
+
+(个体)边际价值表 .mono[<=>] 个体需求函数
+
+两者都表明需求量是如何随着价格的变化而变化的，*在所有其他需求决定因素不变的情况下*。
+
+]
+
+---
+## MV .mono[->] 个体需求曲线
+
+.more-left[
+```{r ind_demand2, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
+  stat_function(fun = demand_2, color = red_pink, size = 1) + 
+  labs(x = "q", y = "P") +
+  scale_x_continuous(limits = c(0, 9.5), expand = c(0, 0), breaks = seq(0, 9, 1)) +
+  scale_y_continuous(limits = c(0, 9.5), expand = c(0, 0), breaks = seq(0, 9, 1)) +
+  theme_market +
+  annotate("text", label = "D", x = 9, y = 0.65, color = red_pink, family = "Fira Sans", size = 9)
+```
+]
+
+.less-right[
+
+由于边际价值的递减，我们P与 q.sub[D] 的关系是向下倾斜的.
+
+]
+
+---
+### 小结
+
+WTP .mono[->] Value .mono[->] TV and MV (Diminishing MV) .mono[->] 最优购买
+
+.mono[->] 消费者盈余 .mono[->] 个体需求曲线 .mono[=] MV 
+
+所以建立在WTP基础上的需求理论，必然要求人满足以下4中行为假定：
+
+1. 人们有偏好
+2. 人们喜欢更多而不是更少
+3. 人们愿意替代 
+4. 一种商品的边际价值随着人们消费的增加而减少
+
+---
+### 练习
+
+**Q:** 根据下面的表格，如果价格是59，消费者会购买多少个单位？购买这一数量的产品会有多大的好处？提示：购买行为是边际上的决策；消费福利是总体的。
+
+```{R, echo = F, escape = F}
+data.frame(
+  v1 = c(1, 2, 3, 4, 5, 6, 7),
+  v2 = c(90, 85, "", 55, 40, "", 20),
+  v3 = c("", "", 235, "", "", 360, "")
+) %>% kable(
+  escape = F,
+  col.names = c("单位", "边际价值", "总价值"),
+  align = c("c", "c", "c")#,
+) %>%
+row_spec(1:7, color = met_slate) %>%
+row_spec(1:7, extra_css = "line-height: 110%;")
+```
+
+--
+
+**A:** .pink[ 购买3单位. 消费盈余是235 .mono[-] 3 .mono[×] 59 .mono[=] 58.]
+
+---
+layout: true
+# 消费者理论
+---
+
+## 需求曲线(总)
+
+对商品（冰酒）估价。若对每人的心理价位按照从高到低排序，就会呈现下面的分布。随着定价（红色方块）下降，产品价格会低于更多消费者的意愿支付值，产品的需求就会变多。
+.middle[
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/UviQYW.png height="300" width="580">
+]
+]
+
+---
+
+## 需求曲线(总)
+
+排好序的、每个消费者的最大意愿支付值的连线就是反映出对该产品的需求，其拟合直线就是需求曲线。
+
+.middle[
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/r5rvZ9.png height="300" width="580">
+]
+]
+
+---
+
+.less-right[
+### .pink[需求曲线]
+
+显示在特定的价格下，.pink[消费者]愿意并能够购买的商品数量(从纵轴价格开始看)。
+
+.pink[向下倾斜：] P增加 .mono[->] Q.sub[D] 减少。
+
+$Q = a -bP$ ,其中 $a>0,b>0$ ，反映的是**需求定律**，即需求量与价格之间的负向关系。
+]
+
+.more-left[
+```{r market_demand, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "Q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9)
+```
+]
+
+
+---
+
+
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/eJctxs.png height="260" width="580">
+]
+.hi[原因]：在通过将消费者意愿支付价格的排序来生成需求曲线的框架下，将产品价格，或者消费者的心理价位放在纵轴上是一个很自然的选择。.mono[->] .hi[习惯]
+
+.center[
+ .pink[反需求函数（图）:   ] $P=a/b-1/b Q$
+ ]
+
+---
+
+## 需求"法则"
+
+- 法则 1 
+> *其他环境变量不变* <sup>.pink[†]</sup> ，商品的需求量随着价格的上升而下降。
+
+.footnote[ .pink[†]  *其他环境变量* 意味着 收入、其他商品(替代品)的价格、品味、质量、年龄、季节、广告和其他需求决定因素均不改变. 
+]
+
+---
+layout: false
+
+.center[**价格增加 .mono[->]  需求量q.sub[D] 下降**]
+```{r p_increase, echo = FALSE, fig.height = 5.7, fig.width = 5.7, dev = "svg"}
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  stat_function(fun = demand_3, color = red_pink, size = 1)  + 
+  annotate("text", label = "D", x = 8, y = 0.65, color = red_pink, family = cnfont, size = 9) +
+  geom_point(aes(x = 4, y = 4), color = met_slate, size = 2) +
+  geom_segment(aes(x = 4, y = 0, xend = 4, yend = 4), linetype = "dashed", color = met_slate, size = 1) +
+  geom_hline(yintercept = 4, linetype = "dashed", color = met_slate, size = 1)
+```
+
+---
+count: false
+class: clear-slide
+
+.center[**价格增加 .mono[->]  需求量q.sub[D] 下降**]
+```{r p_increase2, echo = FALSE, fig.height = 5.7, fig.width = 5.7, dev = "svg"}
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  stat_function(fun = demand_3, color = red_pink, size = 1)  + 
+  annotate("text", label = "D", x = 8, y = 0.65, color = red_pink, family = cnfont, size = 9) +
+  geom_point(aes(x = 4, y = 4), color = met_slate, size = 2) +
+  geom_segment(aes(x = 4, y = 0, xend = 4, yend = 4), linetype = "dashed", color = met_slate, alpha = 0.5, size = 1) +
+  geom_hline(yintercept = 4, linetype = "dashed", color = met_slate, alpha = 0.5, size = 1) +
+  
+  geom_point(aes(x = 2, y = 6), color = met_slate, size = 2) +
+  geom_segment(aes(x = 2, y = 0, xend = 2, yend = 6), linetype = "dashed", color = met_slate, size = 1) +
+  geom_hline(yintercept = 6, linetype = "dashed", color = met_slate, size = 1) +
+  
+  geom_segment(aes(x = 4.1, y = 4 + 0.2, xend = 2.4, yend = 5.9), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1)
+```
+
+---
+class: clear-slide
+
+.center[**价格下降 .mono[->] 需求量q.sub[D] 上升**]
+```{r p_decrease, echo = FALSE, fig.height = 5.7, fig.width = 5.7, dev = "svg"}
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  stat_function(fun = demand_3, color = red_pink, size = 1)  + 
+  annotate("text", label = "D", x = 8, y = 0.65, color = red_pink, family = cnfont, size = 9) +
+  geom_point(aes(x = 4, y = 4), color = met_slate, size = 2) +
+  geom_segment(aes(x = 4, y = 0, xend = 4, yend = 4), linetype = "dashed", color = met_slate, size = 1) +
+  geom_hline(yintercept = 4, linetype = "dashed", color = met_slate, size = 1)
+```
+
+---
+count: false
+class: clear-slide
+
+.center[**价格下降 .mono[->] 需求量q.sub[D] 上升 **]
+```{r p_decrease2, echo = FALSE, fig.height = 5.7, fig.width = 5.7, dev = "svg"}
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  stat_function(fun = demand_3, color = red_pink, size = 1)  + 
+  annotate("text", label = "D", x = 8, y = 0.65, color = red_pink, family = cnfont, size = 9) +
+  geom_point(aes(x = 4, y = 4), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = 4, y = 0, xend = 4, yend = 4), linetype = "dashed", color = met_slate, size = 1, alpha = 0.5) +
+  geom_hline(yintercept = 4, linetype = "dashed", color = met_slate, size = 1, alpha = 0.5) +
+  geom_point(aes(x = 6, y = 2), color = met_slate, size = 2) +
+  geom_segment(aes(x = 6, y = 0, xend = 6, yend = 2), linetype = "dashed", color = met_slate, size = 1) +
+  geom_hline(yintercept = 2, linetype = "dashed", color = met_slate, size = 1) +
+  geom_segment(aes(x = 4.4, y = 4 - 0.1, xend = 6.1, yend = 2.2), arrow = arrow(angle = 20, length = unit(0.4, "cm"), type = "closed"), color = met_slate, size = 1)
+```
+
+---
+## 一个重要的区分
+
+### .pink[需求 Demand]
+
+
+> 反映的是需求曲线的 .pink[*整体移动*] .
+
+### .green[需求量 Quantity demanded]
+
+> 反映的是价格和消费量 .green[*沿着*] 需求曲线移动.
+
+- 法则 2 
+> *其他环境变量变化* ，商品需求整体变化。
+
+---
+class: clear-slide
+
+.center[**需求增加**]
+```{r demand_increase, echo = FALSE, fig.height = 5.7, fig.width = 5.7, dev = "svg"}
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  stat_function(fun = demand_3, color = red_pink, size = 1)  + 
+  annotate("text", label = expression(D[1]), x = 8, y = 0.65, color = red_pink, family = cnfont, size = 9) 
+```
+
+---
+count: false
+
+.center[**需求增加**]
+```{r demand_increase2, echo = FALSE, fig.height = 5.7, fig.width = 5.7, dev = "svg"}
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  stat_function(fun = demand_3, color = red_pink, size = 1, alpha = 0.5) + 
+  annotate("text", label = expression(D[1]), x = 8, y = 0.65, color = red_pink, family = cnfont, size = 9, alpha = 0.5) +
+  stat_function(fun = demand_inc, color = red_pink, size = 1) + # increase in demand
+  geom_segment(aes(x = 4 + 0.2, y = 4, xend = 7 - 0.2, yend = 4), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1) + 
+  annotate("text", label = expression(D[2]), x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9)
+```
+---
+
+.center[**需求降低**]
+```{r demand_decrease, echo = FALSE, fig.height = 5.7, fig.width = 5.7, dev = "svg"}
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  stat_function(fun = demand_3, color = red_pink, size = 1)  + 
+  annotate("text", label = expression(D[1]), x = 8, y = 0.65, color = red_pink, family = cnfont, size = 9) 
+```
+
+---
+count: false
+
+.center[**需求降低**]
+```{r demand_decrease2, echo = FALSE, fig.height = 5.7, fig.width = 5.7, dev = "svg"}
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  stat_function(fun = demand_3, color = red_pink, size = 1, alpha = 0.5) + 
+  annotate("text", label = expression(D[1]), x = 8, y = 0.65, color = red_pink, family = cnfont, size = 9, alpha = 0.5) +
+  stat_function(fun = demand_dec, color = red_pink, size = 1) + # increase in demand
+  geom_segment(aes(x = 5 - 0.2, y = 3, xend = 2 + 0.2, yend = 3), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1) + 
+  annotate("text", label = expression(D[2]), x = 5, y = 0.65, color = red_pink, family = cnfont, size = 9)
+```
+
+
+---
+layout: true
+# 消费者理论
+
+---
+## 响应
+
+.hi.pink[问题:] 如果一年会卖出100亿包香烟。现在每包加收1元的税，那么将产生多少税收？
+
+
+--
+
+> .hi.pink[答案:] 少于100亿.
+
+
+---
+layout: false
+## 需求的价格弹性  Price Elasticity of Demand
+
+- 定义
+
+> 衡量需求量对价格变化的反应能力。
+
+> $$\epsilon_d = \dfrac{\text{% 需求量变化}}{\text{% 价格变化}} \leq 0$$
+
+.hi[解释:] "价格提高一个百分点，需求量就会增加 $\epsilon_d$ 个百分点。" A的B弹性，A在分子，B在分母
+
+
+- $\epsilon_d < -1$ .mono[==>] 需求是对价格变动 .pink[敏感的] (.pink[富有弹性的]).
+
+- $-1 <\epsilon_d \leq 0$ .mono[==>] 需求是对价格变 .pink[不敏感的] (.pink[缺乏弹性的]).
+
+- 这里 敏感 .mono[==] 弹性
+
+---
+layout: false
+
+## 需求的价格弹性
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  geom_hline(yintercept = 5, color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 10, y = 5.5, color = red_pink, family = cnfont, size = 9)
+```
+]
+
+.less-right[
+### .pink[完全敏感(弹性)]
+
+当价格上升时，需求量下降到零;当价格下降时，需求量接近无限大。
+
+$\epsilon_d$ .mono[->] $-\infty$
+
+]
+
+---
+
+## 需求的价格弹性
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  geom_vline(xintercept = 5, color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 5.35, y = 0.5, color = red_pink, family = cnfont, size = 9)
+```
+]
+
+.less-right[
+### .pink[完全不敏感(无弹性)]
+
+价格变化时，需求量不发生变化。
+
+$\epsilon_d = 0$
+
+]
+
+---
+
+## 需求的价格弹性
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 6 - (1/5)*x
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  geom_rect(aes(xmin = 0, xmax = 5, ymin = 5, ymax = 10.5), alpha = 0.2, fill = red_pink) +
+  geom_rect(aes(xmin = 5, xmax = 10.5, ymin = 0, ymax = 5), alpha = 0.2, fill = red_pink) +
+  geom_vline(xintercept = 5, color = red_pink, size = 1, linetype = "dashed") +
+  geom_hline(yintercept = 5, color = red_pink, size = 1, linetype = "dashed") +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 10, y = 4.5, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+*其他环境变量不发生变化*, 扁平的需求曲线比陡峭的需求曲线 .pink[更有弹性]。
+
+随着 $\epsilon_d$ **向零的增加，同样的价格上涨幅度导致需求量的减少**。
+]
+
+---
+count: false
+## 需求的价格弹性
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 8 - 0.6*x
+inv_demand <- function(x) (5/3)*(8 - x)
+p_1 <- 7
+p_2 <- 6
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  geom_rect(aes(xmin = 0, xmax = 5, ymin = 5, ymax = 10.5), alpha = 0.2, fill = red_pink) +
+  geom_rect(aes(xmin = 5, xmax = 10.5, ymin = 0, ymax = 5), alpha = 0.2, fill = red_pink) +
+  geom_vline(xintercept = 5, color = red_pink, size = 1, linetype = "dashed") +
+  geom_hline(yintercept = 5, color = red_pink, size = 1, linetype = "dashed") +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dotted", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dotted", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dotted", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dotted", size = 1) +
+  annotate("text", label = "D", x = 10, y = 2.5, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+*其他环境变量不发生变化*, 扁平的需求曲线比陡峭的需求曲线 .pink[更有弹性]。
+
+随着 $\epsilon_d$ **向零的增加，同样的价格上涨幅度导致需求量的减少**。
+]
+
+---
+count: false
+## 需求的价格弹性
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 7
+p_2 <- 6
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  geom_rect(aes(xmin = 0, xmax = 5, ymin = 5, ymax = 10.5), alpha = 0.2, fill = red_pink) +
+  geom_rect(aes(xmin = 5, xmax = 10.5, ymin = 0, ymax = 5), alpha = 0.2, fill = red_pink) +
+  geom_vline(xintercept = 5, color = red_pink, size = 1, linetype = "dashed") +
+  geom_hline(yintercept = 5, color = red_pink, size = 1, linetype = "dashed") +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dotted", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dotted", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dotted", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dotted", size = 1) +
+  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+*其他环境变量不发生变化*, 扁平的需求曲线比陡峭的需求曲线 .pink[更有弹性]。
+
+随着 $\epsilon_d$ **向零的增加，同样的价格上涨幅度导致需求量的减少**。
+]
+
+---
+count: false
+## 需求的价格弹性
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 40/3 - 10/6*x 
+inv_demand <- function(x) (1/5)*(40 - 3*x)
+p_1 <- 7
+p_2 <- 6
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  geom_rect(aes(xmin = 0, xmax = 5, ymin = 5, ymax = 10.5), alpha = 0.2, fill = red_pink) +
+  geom_rect(aes(xmin = 5, xmax = 10.5, ymin = 0, ymax = 5), alpha = 0.2, fill = red_pink) +
+  geom_vline(xintercept = 5, color = red_pink, size = 1, linetype = "dashed") +
+  geom_hline(yintercept = 5, color = red_pink, size = 1, linetype = "dashed") +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dotted", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dotted", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dotted", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dotted", size = 1) +
+  annotate("text", label = "D", x = 8, y = 0.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+*其他环境变量不发生变化*, 扁平的需求曲线比陡峭的需求曲线 .pink[更有弹性]。
+
+随着 $\epsilon_d$ **向零的增加，同样的价格上涨幅度导致需求量的减少**。
+]
+
+---
+count: false
+## 需求的价格弹性
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 35 - 6*x
+inv_demand <- function(x) (35 - x)/6
+p_1 <- 7
+p_2 <- 6
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  geom_rect(aes(xmin = 0, xmax = 5, ymin = 5, ymax = 10.5), alpha = 0.2, fill = red_pink) +
+  geom_rect(aes(xmin = 5, xmax = 10.5, ymin = 0, ymax = 5), alpha = 0.2, fill = red_pink) +
+  geom_vline(xintercept = 5, color = red_pink, size = 1, linetype = "dashed") +
+  geom_hline(yintercept = 5, color = red_pink, size = 1, linetype = "dashed") +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dotted", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dotted", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dotted", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dotted", size = 1) +
+  annotate("text", label = "D", x = 6, y = 0.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+*其他环境变量不发生变化*, 扁平的需求曲线比陡峭的需求曲线 .pink[更有弹性]。
+
+随着 $\epsilon_d$ **向零的增加，同样的价格上涨幅度导致需求量的减少**。
+]
+
+---
+
+## 响应
+
+影响需求(的价格)弹性的因素：
+
+1. .pink[替代品越多] .mono[->] .pink[对价格更敏感].
+
+2. .pink[该物消费支出占总所得比越高].mono[->] .pink[对价格更敏感]. 吃大餐！
+
+3. .pink[物品越耐用] .mono[->] .pink[对价格更敏感]. 物品耐用（汽车），加价可迟一些再买，所以弹性较高。
+
+4. .pink[奢侈品].mono[->] .pink[对价格更敏感] ；.pink[必需品].mono[->] .pink[对价格不敏感] （所谓的刚性需求）
+
+5. .pink[时间长].mono[->] .pink[对价格更敏感].
+一般，长期需求弹性大于短期需求弹性。因为时间长时，寻找替代品和进行调整总是比较容易的。
+  
+> 休闲体育活动的价格敏感性？
+> 项目的多样性(替代品多) .mono[+] 中等收入群体扩大（休闲时间长） .mono[+]   体育休闲活动不是必需品 .mono[-->] 极为敏感的
+
+---
+
+.center[**现实中的价格敏感性**]
+```{R, echo = F, escape = F}
+data.frame(
+  v1 = c("商务旅行", "医疗服务", "咖啡", "烟草", "电影", "私立学校", "餐厅用餐", "休闲旅行", "新鲜蔬菜", "本田车"),
+  v2 = c(-0.1, -0.17, -0.25, -0.45, -0.9, -1.1, -1.6, -2.4, -3.7, -4),
+  v3 = c(rep("不敏感", 5), rep("敏感", 5))
+) %>% kable(
+  escape = F,
+  col.names = c("商品/服务", "需求(价格)弹性", "是否敏感"),
+  align = c("l", "c", "c")
+) %>%
+row_spec(1:7, color = met_slate) %>%
+row_spec(1:7, extra_css = "line-height: 110%;") %>% 
+column_spec(1, italic = T, color = met_slate)
+```
+
+需求弹性是很好的研究方向：测试市场、历史销售数据的分析和综合分析
+---
+
+## 需求的价格弹性
+
+- 精确表示
+
+> $$\epsilon_d = \dfrac{\partial Q_d}{\partial P} \dfrac{P}{Q} \leq 0$$
+
+.hi[意义：]随着**需求量**沿着线性的需求曲线增加， $\epsilon_d$  向零趋近。
+
+- *例如.,* 需求对价格变得不敏感
+
+- .pink[Q:]  价格上涨一定意味总收入增加么？价格上涨对总收入意味着什么？ $TR=P*Q_{d}$
+
+---
+
+## 响应与总收入
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 7
+p_2 <- 9
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
+  #geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  #geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  #geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  #geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+### .pink[富有弹性的区域]
+
+价格上升 .mono[==>] .hi-green[总收入] .green[下降].
+
+需求量的减少（.pink[带来的收入损失]）超过了价格上升（.purple[带来的收入获得]）。
+
+]
+
+---
+count: false
+
+## 响应与总收入
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 7
+p_2 <- 9
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  #geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
+  geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+### .pink[富有弹性的区域]
+
+价格上升 .mono[==>] .hi-green[总收入] .green[下降].
+
+需求量的减少（.pink[带来的收入损失]）超过了价格上升（.purple[带来的收入获得]）。
+
+]
+
+---
+count: false
+## 响应与总收入
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 7
+p_2 <- 9
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  geom_rect(aes(xmin = 0, xmax = q_2, ymin = p_1, ymax = p_2), alpha = 0.2, fill = purple) +
+  geom_rect(aes(xmin = q_1, xmax = q_2, ymin = 0, ymax = p_1), alpha = 0.2, fill = red_pink) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+### .pink[富有弹性的区域]
+
+价格上升 .mono[==>] .hi-green[总收入] .green[下降].
+
+需求量的减少（.pink[带来的收入损失]）超过了价格上升（.purple[带来的收入获得]）。
+
+]
+
+---
+
+## 响应与总收入
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 4
+p_2 <- 6
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
+  #geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  #geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  #geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  #geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+### .pink[单位弹性区域]
+
+价格上升 .mono[==>] .hi-green[总收入] .green[没有变化].
+
+.pink[收入损失] .mono[=] .purple[收入获得].
+
+]
+
+---
+count: false
+## 响应与总收入
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 4
+p_2 <- 6
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  #geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
+  geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+### .pink[单位弹性区域]
+
+价格上升 .mono[==>] .hi-green[总收入] .green[没有变化].
+
+.pink[收入损失] .mono[=] .purple[收入获得].
+
+]
+
+---
+count: false
+## 响应与总收入
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 4
+p_2 <- 6
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  geom_rect(aes(xmin = 0, xmax = q_2, ymin = p_1, ymax = p_2), alpha = 0.2, fill = purple) +
+  geom_rect(aes(xmin = q_1, xmax = q_2, ymin = 0, ymax = p_1), alpha = 0.2, fill = red_pink) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+### .pink[单位弹性区域]
+
+价格上升 .mono[==>] .hi-green[总收入] .green[没有变化].
+
+.pink[收入损失] .mono[=] .purple[收入获得].
+
+]
+
+---
+## 响应与总收入
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 1
+p_2 <- 3
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
+  #geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  #geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  #geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  #geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+### .pink[缺乏弹性区域]
+
+价格上升 .mono[==>] .hi-green[总收入] .green[增加].
+
+价格上升 (.purple[带来的收入获得]) 超过 需求量下降 (.pink[带来的收入损失]). 
+
+]
+
+---
+count: false
+## 响应与总收入
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 1
+p_2 <- 3
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  #geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
+  geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+### .pink[缺乏弹性区域]
+
+价格上升 .mono[==>] .hi-green[总收入] .green[增加].
+
+价格上升 (.purple[带来的收入获得]) 超过 需求量下降 (.pink[带来的收入损失]). 
+
+]
+
+---
+count: false
+## 响应与总收入
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 1
+p_2 <- 3
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  geom_rect(aes(xmin = 0, xmax = q_2, ymin = p_1, ymax = p_2), alpha = 0.2, fill = purple) +
+  geom_rect(aes(xmin = q_1, xmax = q_2, ymin = 0, ymax = p_1), alpha = 0.2, fill = red_pink) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+### .pink[缺乏弹性区域]
+
+价格上升 .mono[==>] .hi-green[总收入] .green[增加].
+
+价格上升 (.purple[带来的收入获得]) 超过 需求量下降 (.pink[带来的收入损失]). 
+
+]
+---
+count: false
+## 响应与总收入
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 1
+p_2 <- 3
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  geom_rect(aes(xmin = 0, xmax = q_2, ymin = p_1, ymax = p_2), alpha = 0.2, fill = purple) +
+  geom_rect(aes(xmin = q_1, xmax = q_2, ymin = 0, ymax = p_1), alpha = 0.2, fill = red_pink) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+### .pink[缺乏弹性区域]
+
+- .pink[Q:]  体育培训业的价格上涨, 那么对总收入的影响是什么？
+- .pink[A:]  由于大部分的体育培训行业是价格敏感的 .mono[->] 需求曲线比较"平" .mono[->]  缺乏弹性的区域小 .mono[->] 涨价的空间小 .mono[->] 一但大幅度涨价，就会带来总收入下降
+]
+
+---
+count: false
+## 响应与总收入
+
+<br><br><br><br><br><br>
+.center[
+调整价格前，必须先进行市场调研，确定当前价格是否处于**价格不敏感带**
+]
+
+
+
+---
+## 需求的决定因素
+
+.pink[Q:] 什么因素决定了消费者对某一产品的需求？
+
+--
+
+.pink[A:]
+- 收入或财富（正常品或劣等品）。
+
+- 相关商品(替代或互补)的价格。
+
+- 对未来价格或未来收入的预期。
+
+- 消费者口味（偏好）。
+
+- 年龄、健康、质量、广告、维持货物的成本、货物的合法性，*等等*。
+
+---
+## 需求的决定因素
+
+
+
+其实，收入和其他商品的价格对一种商品的需求有**模糊**的影响
+
+- 商品需求对收入的响应，要看商品是正常品还是劣等品
+
+- 商品需求对其他商品价格的响应，要看另一商品是替代品还是互补品
+
+---
+
+## 需求的收入弹性
+
+> 衡量需求量对收入变化的反应能力:
+
+> $$\epsilon_Y = \dfrac{\text{% 需求量的变化}}{\text{% 收入的变化}}$$
+
+.hi[含义:] "收入增加一个百分点会导致百分之 $\epsilon_Y$ 需求量增加."
+
+- $\epsilon_Y > 0$ .mono[==>] .pink[正常品:] 指随收入增加，消费者对该产品的需求增加的商品
+
+- $\epsilon_Y < 0$ .mono[==>] .pink[劣等品:] 指随收入增加，消费者对该产品的需求减少的商品.
+> 方便面.
+
+- 一种特殊的劣等品，吉芬品(Giffen good):
+不再符合需求定律。当价格上升的时候，需求量增加， $\epsilon_d > 0$  
+> 疫情时期的大米。
+
+---
+class: clear-slide
+
+.center[**现实中的收入敏感性**]
+```{R, echo = F, escape = F}
+data.frame(
+  v1 = c("汽车", "餐馆用餐", "业主自用住房", "汽油", "租赁住房", "咖啡", "烟草", "医疗", "人造黄油", "公共交通"),
+  v2 = c(3.00, 1.40, 1.2, 1.06, 1.00, 0.51, 0.42, 0.22, -0.20, -0.36),
+  v3 = c(rep("正常品", 8), rep("劣等品", 2))
+) %>% kable(
+  escape = F,
+  col.names = c("商品/服务", "对收入的敏感", "正常品还是劣等品"),
+  align = c("l", "c", "c")
+) %>%
+row_spec(1:10, color = met_slate) %>%
+row_spec(1:10, extra_css = "line-height: 110%;") %>% 
+column_spec(1, italic = T, color = met_slate)
+```
+
+---
+## 需求的交叉价格弹性
+
+> 衡量一种商品的需求量对另一种商品的价格变化的响应。
+
+> $$\epsilon_X = \dfrac{\text{% 商品A需求量变化}}{\text{% 商品B的价格变化}}$$
+
+.hi[含义:] "商品B的价格增加一个百分点，会导致商品A的需求量增加 $\epsilon_X > 0$ 个百分点"。"
+
+### 替代品与互补品
+
+- $\epsilon_X > 0$ .mono[==>] .pink[替代品.] 
+若B商品价格上升，就会去购买A商品，因为它相较于B商品更便宜且有相似满足度。
+
+- $\epsilon_X < 0$ .mono[==>] .pink[互补品.]
+若B商品价格上升，它的需求下降，由于A与B必须结合才能发挥作用，所以A商品的需求下降。
+---
+class: clear-slide
+## 替代品与互补品
+
+.center[**现实中的交叉价格敏感性**]
+```{R, echo = F, escape = F}
+data.frame(
+  v1 = c("黄油", "电能", "咖啡", "烈性酒"),
+  v2 = c("人造黄油", "天然气", "茶", "啤酒"),
+  v3 = c(1.53, 0.50, 0.15, -0.11),
+  v4 = c(rep("替代品", 3), rep("互补品", 1))
+) %>% kable(
+  escape = F,
+  col.names = c("商品A", "商品B", "交叉价格弹性", "替代品还是互补品"),
+  align = c("l", "l", "c", "c")
+) %>%
+row_spec(1:4, color = met_slate) %>%
+row_spec(1:4, extra_css = "line-height: 110%;") %>% 
+column_spec(1:2, italic = T, color = met_slate)
+```
+
+---
+## 需求的变动
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+demand_2 <- function(x) 12 - x
+supply <- function(x) 1 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+p_2 <- demand_2(q_2)
+
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  #geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  #geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  #geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = expression(D[1]), x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) +
+  annotate("text", label = "S", x = 9.2, y = 9.65, color = purple, family = cnfont, size = 9)
+```
+]
+
+.less-right[
+### .pink[需求增加]
+
+在每个价格下，个人现在都愿意并能够购买比以前更多的单位。
+
+均衡数量增加。
+
+均衡价格增加。
+
+]
+
+---
+count: false
+## 需求的变动
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+demand_2 <- function(x) 12 - x
+supply <- function(x) 1 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+p_2 <- demand_2(q_2)
+
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  stat_function(fun = demand_2, color = red_pink, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2, alpha = 0.5) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(aes(x = 6 + 0.2, y = 4, xend = 8 - 0.2, yend = 4), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1) + 
+  annotate("text", label = expression(D[1]), x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9, alpha = 0.5) +
+  annotate("text", label = expression(D[2]), x = 10, y = 2.65, color = red_pink, family = cnfont, size = 9) +
+  annotate("text", label = "S", x = 9.2, y = 9.65, color = purple, family = cnfont, size = 9)
+```
+]
+
+.less-right[
+### .pink[需求增加]
+
+在每个价格下，个人现在都愿意并能够购买比以前更多的单位。
+
+均衡数量增加。
+
+均衡价格增加。
+]
+
+---
+## 需求的变动
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+demand_2 <- function(x) 8 - x
+supply <- function(x) 1 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+p_2 <- demand_2(q_2)
+
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  #geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  #geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  #geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = expression(D[1]), x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) +
+  annotate("text", label = "S", x = 9.2, y = 9.65, color = purple, family = cnfont, size = 9)
+```
+]
+
+.less-right[
+### .pink[需求降低]
+
+在每个价格下，个人现在都愿意并能够购买比以前更少的单位。
+
+均衡数量下降。
+
+均衡价格下降。
+
+]
+
+---
+count: false
+## 需求的变动
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+demand_2 <- function(x) 8 - x
+supply <- function(x) 1 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+p_2 <- demand_2(q_2)
+
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  stat_function(fun = demand_2, color = red_pink, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2, alpha = 0.5) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(aes(x = 6 - 0.2, y = 4, xend = 4 + 0.2, yend = 4), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1) + 
+  annotate("text", label = expression(D[1]), x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9, alpha = 0.5) +
+  annotate("text", label = expression(D[2]), x = 8, y = 0.65, color = red_pink, family = cnfont, size = 9) +
+  annotate("text", label = "S", x = 9.2, y = 9.65, color = purple, family = cnfont, size = 9)
+```
+]
+
+.less-right[
+### .pink[需求降低]
+
+在每个价格下，个人现在都愿意并能够购买比以前更少的单位。
+
+均衡数量下降。
+
+均衡价格下降。
+
+]
+
+---
+## 需求理论的分析路线（中级）
+
+WTP .mono[->] Value .mono[->] TV and MV (Diminishing MV) .mono[->] 最优购买
+
+.mono[->] 消费者盈余 .mono[->] 个体需求曲线 .mono[=] MV 
+
+---- 
+
+WTP .mono[->]总体需求曲线 .mono[->]
+
+需求"定律" （需求 .mono[v.s.]需求量的变动）.mono[->]
+
+响应（需求的价格弹性）.mono[->]
+
+需求的影响因素（需求的收入弹性：正常品>0、劣等品<0和吉芬品；需求的交叉价格弹性：替代品和互补品）.mono[->] 需求的变动
+
+
+---
+## 消费者理论的分析路线（高级）
+
+.less-right[有兴趣深入消费者行为理论的同学可以研习建立在效用论基础上的消费者行为模型
+]
+
+.more-left[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/x4gfaF.png  height="450" width="500">
+]
+
+---
+layout: true
+# 生产者理论
+---
+class: title-slide-section,inverse, middle
+---
+
+## 供给理论的分析路线（中级）
+
+供给曲线 .mono[==>] 
+
+供给定律 .mono[==>]
+
+决定供给的因素 .mono[==>]
+
+供给的变动
+
+---
+layout: false
+
+## 供给曲线
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+demand_2 <- function(x) 12 - x
+supply <- function(x) 1 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+p_2 <- demand_2(q_2)
+
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "Q", y = "P") +
+  # stat_function(fun = demand, color = red_pink, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  #geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  #geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  #geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  # annotate("text", label = expression(D[1]), x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) +
+  annotate("text", label = "S", x = 9.2, y = 9.65, color = purple, family = cnfont, size = 9)
+```
+]
+
+.less-right[
+### .pink[供给定律]
+.pink[向上倾斜：] P增加 .mono[->] Q.sub[S] 增加。
+
+$Q=c+d P$ ,其中 $c>0,d>0$
+，反映的是**供给定律**，在其他环境条件不变的情况下，某种商品的价格上升时，该商品的供给量也上升；当它的价格下降时，供给量也下降。这种价格与供给量之间的正向关系，称为供给定律。
+
+]
+
+---
+## 供给的影响因素
+
+.pink[Q:]是什么决定了某一产品的市场供给？
+
+.pink[A:] 任何影响到最低接受意愿或生产边际成本的东西。
+
+- 投入价格（*例如，*工资）。
+
+- 生产技术。
+
+- 对未来价格的预期。
+
+- 商品的合法性。
+
+- 卖家的数量。
+
+- 天气（例如*飓风，干旱，*等等*）。
+
+---
+layout: false
+## 供给的变动
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+supply <- function(x) 1 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+base_2 <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(q_1), labels = c(expression(Q^"*"))) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(p_1), labels = c(expression(P^"*"))) +
+  theme_market +
+  labs(x = "Q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = expression(D), x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) +
+  annotate("text", label = expression(S[1]), x = 9.4, y = 9.65, color = purple, family = cnfont, size = 9)
+
+base_2
+```
+]
+
+.less-right[
+### .purple[供给增加]
+
+在每个价格下，生产者现在都愿意并能够比以前销售更多的单位。
+
+均衡数量增加。
+
+均衡价格下降。
+
+]
+
+---
+layout: false
+count: false
+## 供给的变动
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+supply <- function(x) 1 + x
+supply_2 <- function(x) -1 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand(x) - supply_2(x), range(x))$root
+p_2 <- demand(q_2)
+
+supply_increase <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(q_2), labels = c(expression(Q^"*"))) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(p_2), labels = c(expression(P^"*"))) +
+  theme_market +
+  labs(x = "Q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  stat_function(fun = supply_2, color = purple, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1, alpha = 0.5) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2, alpha = 0.5) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(aes(x = 6 + 0.2, y = 7, xend = 8 - 0.2, yend = 7), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1) + 
+  annotate("text", label = expression(D), x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) +
+  annotate("text", label = expression(S[2]), x = 9.4, y = 7.65, color = purple, family = cnfont, size = 9) +
+  annotate("text", label = expression(S[1]), x = 9.4, y = 9.65, color = purple, family = cnfont, size = 9, alpha = 0.5)
+
+supply_increase
+```
+]
+
+.less-right[
+### .purple[供给增加]
+
+在每个价格下，生产者现在都愿意并能够比以前销售更多的单位。
+
+均衡数量增加。
+
+均衡价格下降。
+
+]
+
+---
+### 例：原材料价格变动
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+base_2
+```
+]
+
+.less-right[
+.pink[Q:] 木材价格的上涨会如何影响纸张市场？
+
+]
+
+---
+count: false
+### 例：原材料价格变动
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+supply <- function(x) 1 + x
+supply_2 <- function(x) 3 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand(x) - supply_2(x), range(x))$root
+p_2 <- demand(q_2)
+
+supply_decrease <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(q_2), labels = c(expression(Q^"*"))) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(p_2), labels = c(expression(P^"*"))) +
+  theme_market +
+  labs(x = "Q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  stat_function(fun = supply_2, color = purple, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1, alpha = 0.5) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2, alpha = 0.5) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(aes(x = 6 - 0.2, y = 7, xend = 4 + 0.2, yend = 7), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1) + 
+  annotate("text", label = expression(D), x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) +
+  annotate("text", label = expression(S[2]), x = 7.4, y = 9.65, color = purple, family = cnfont, size = 9) +
+  annotate("text", label = expression(S[1]), x = 9.4, y = 9.65, color = purple, family = cnfont, size = 9, alpha = 0.5)
+
+supply_decrease
+```
+]
+
+.less-right[
+.pink[Q:] 木材价格的上涨会如何影响纸张市场？
+
+
+.pink[Q:] .purple[木材是纸张生产的投入品]
+<br> .purple[.mono[-->] 纸张供应减少]
+<br> .purple[.mono[-->] 纸张的均衡价格上升，均衡数量下降.]
+]
+---
+layout:true
+# 市场均衡
+---
+class: title-slide-section,inverse, middle
+---
+layout:false
+## 市场机制
+
+.less-right[
+### 均衡
+
+
+假设价格为6时市场出清 .super[.pink[†]] .
+
+.footnote[.pink[†]: *市场出清* .mono[<=>] Q.sub[D] .mono[=] Q.sub[S].]
+
+.pink[Q:] 市场谁会交易？谁不会？
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  # geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  # annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market
+```
+]
+
+
+---
+count: false
+## 市场机制
+
+.less-right[
+### 均衡
+
+假设价格为6时市场出清 .super[.pink[†]] .
+
+.footnote[.pink[†]: *市场出清* .mono[<=>] Q.sub[D] .mono[=] Q.sub[S].]
+
+.pink[Q:] 市场谁会交易？谁不会？
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  # geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  # annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  geom_point(aes(x = 9, y = 6), color = met_slate, size = 2) +
+  geom_segment(aes(x = 9, y = 0, xend = 9, yend = 6), linetype  = "dashed", color = met_slate, size = 1) + 
+  geom_segment(aes(x = 0, y = 6, xend = 9, yend = 6), linetype  = "dashed", color = met_slate, size = 1)
+```
+]
+---
+## 市场机制
+
+.less-right[
+### 市场剩余
+
+价格高于6时产生了**市场剩余** .super[.pink[†]]
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  # geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  # annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  geom_hline(yintercept = 7.5, linetype  = "dashed", color = met_slate, size = 1) #+
+  # geom_point(aes(x = 11, y = 7.5), color = met_slate, size = 2) +
+  # geom_point(aes(x = 6, y = 7.5), color = met_slate, size = 2) +
+  # geom_segment(aes(x = 6, y = 0, xend = 6, yend = 7.5), linetype  = "dashed", color = met_slate, size = 1) + 
+  # geom_segment(aes(x = 11, y = 0, xend = 11, yend = 7.5), linetype  = "dashed", color = met_slate, size = 1)
+```
+]
+
+.footnote[.pink[†]: *市场剩余* .mono[<=>] Q.sub[D] .mono[<] Q.sub[S].]
+
+---
+count: false
+## 市场机制
+
+.less-right[
+### 市场剩余
+
+价格高于6时产生了**市场剩余** .super[.pink[†]]
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  # geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  # annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  geom_hline(yintercept = 7.5, linetype  = "dashed", color = met_slate, size = 1) +
+  geom_point(aes(x = 11, y = 7.5), color = met_slate, size = 2) +
+  geom_point(aes(x = 6, y = 7.5), color = met_slate, size = 2) +
+  geom_segment(aes(x = 6, y = 0, xend = 6, yend = 7.5), linetype  = "dashed", color = met_slate, size = 1) +
+  geom_segment(aes(x = 11, y = 0, xend = 11, yend = 7.5), linetype  = "dashed", color = met_slate, size = 1)
+```
+]
+
+.footnote[.pink[†]: *市场剩余* .mono[<=>] Q.sub[D] .mono[<] Q.sub[S].]
+
+---
+## 市场机制
+
+.less-right[
+### 市场短缺
+
+价格低于 .mono[]6 时产生**市场短缺**..super[.pink[†]]
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  # geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  # annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  geom_hline(yintercept = 4.5, linetype  = "dashed", color = met_slate, size = 1)
+```
+]
+
+.footnote[.pink[†]: *市场短缺* .mono[<=>] Q.sub[D] .mono[>] Q.sub[S].]
+
+---
+count: false
+## 市场机制
+
+.less-right[
+### 市场短缺
+
+价格低于6时产生**市场短缺**. .super[.pink[†]]
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  # geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  # annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  geom_hline(yintercept = 4.5, linetype  = "dashed", color = met_slate, size = 1) +
+  geom_point(aes(x = 11, y = 4.5), color = met_slate, size = 2) +
+  geom_point(aes(x = 6, y = 4.5), color = met_slate, size = 2) +
+  geom_segment(aes(x = 6, y = 0, xend = 6, yend = 4.5), linetype  = "dashed", color = met_slate, size = 1) +
+  geom_segment(aes(x = 11, y = 0, xend = 11, yend = 4.5), linetype  = "dashed", color = met_slate, size = 1)
+```
+]
+
+.footnote[.pink[†]: *市场短缺* .mono[<=>] Q.sub[D] .mono[>] Q.sub[S].]
+
+---
+## 市场机制
+
+.less-right[
+### 税收作用
+
+该税种使每个卖家的**成本**增加了.mono[]2。
+
+1. 供给曲线左（上）移动。
+2. 市场调整到新的均衡状态。
+
+
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  # geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  # annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market
+```
+]
+
+---
+count: false
+## 市场机制
+
+.less-right[
+### 税收作用
+
+该税种使每个卖家的**成本**增加了.mono[]2。
+
+1. 供给曲线左（上）移动。
+2. 市场调整到新的均衡状态。
+
+
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  # geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  # annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  geom_point(aes(x = 9, y = 6), color = met_slate, size = 2) +
+  geom_segment(aes(x = 9, y = 0, xend = 9, yend = 6), linetype  = "dashed", color = met_slate, size = 1) + 
+  geom_segment(aes(x = 0, y = 6, xend = 9, yend = 6), linetype  = "dashed", color = met_slate, size = 1)
+```
+]
+
+---
+count: false
+## 市场机制
+
+.less-right[
+### 税收作用
+
+该税种使每个卖家的**成本**增加了.mono[]2。
+
+1. 供给曲线左（上）移动。
+2. 市场调整到新的均衡状态。
+
+
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1, alpha = 0.5) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9, alpha = 0.5) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  geom_point(aes(x = 9, y = 6), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = 9, y = 0, xend = 9, yend = 6), linetype  = "dashed", color = met_slate, size = 1, alpha = 0.5) + 
+  geom_segment(aes(x = 0, y = 6, xend = 9, yend = 6), linetype  = "dashed", color = met_slate, size = 1, alpha = 0.5)
+```
+]
+
+---
+count: false
+## 市场机制
+
+.less-right[
+### 税收作用
+
+该税种使每个卖家的**成本**增加了.mono[]2。
+
+1. 供给曲线左（上）移动。
+2. 市场调整到新的均衡状态。
+
+
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1, alpha = 0.5) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9, alpha = 0.5) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  geom_point(aes(x = 9, y = 6), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = 9, y = 0, xend = 9, yend = 6), linetype  = "dashed", color = met_slate, size = 1, alpha = 0.5) + 
+  geom_segment(aes(x = 0, y = 6, xend = 9, yend = 6), linetype  = "dashed", color = met_slate, size = 1, alpha = 0.5) +
+  geom_point(aes(x = 7, y = 7), color = met_slate, size = 2, alpha = 1) +
+  geom_segment(aes(x = 7, y = 0, xend = 7, yend = 7), linetype  = "dashed", color = met_slate, size = 1, alpha = 1) + 
+  geom_segment(aes(x = 0, y = 7, xend = 7, yend = 7), linetype  = "dashed", color = met_slate, size = 1, alpha = 1)
+```
+]
+
+---
+count: false
+## 市场机制
+
+.less-right[
+### 税收作用
+
+该税种使每个卖家的**成本**增加了.mono[]2。
+
+1. 供给曲线左（上）移动。
+2. 市场调整到新的均衡状态。
+
+
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1, alpha = 0.5) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9, alpha = 0.5) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  geom_point(aes(x = 7, y = 7), color = met_slate, size = 2, alpha = 1) +
+  geom_segment(aes(x = 7, y = 0, xend = 7, yend = 7), linetype  = "dashed", color = met_slate, size = 1, alpha = 1) + 
+  geom_segment(aes(x = 0, y = 7, xend = 7, yend = 7), linetype  = "dashed", color = met_slate, size = 1, alpha = 1)
+```
+]
+
+---
+## 市场交易为买卖双方带来盈余
+
+.less-right[
+
+.pink[消费者盈余] .mono[=] 买方的获得总额.
+
+.purple[生产者盈余] .mono[=] 卖方的获得总额.
+
+.green[总盈余] .mono[=] .pink[消费者盈余] .mono[+] .purple[生产者盈余].
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  # geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  # annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  geom_stepribbon(data = step_demand2, aes(ymax = ifelse(x < 9, mv, 6), ymin = 6, x = x), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  annotate("text", label = "CS", x = 2, y = 7.5, color = red_pink, family = cnfont, size = 9) +
+  geom_stepribbon(data = step_supply, aes(ymax = ifelse(x < 9, mv, 6), ymin = 6, x = x), fill = purple, alpha = 0.2, linetype = "blank") +
+  annotate("text", label = "PS", x = 2, y = 4.5, color = purple, family = cnfont, size = 9) +
+  geom_point(aes(x = 9, y = 6), color = met_slate, size = 2) +
+  geom_segment(aes(x = 9, y = 0, xend = 9, yend = 6), linetype  = "dashed", color = met_slate, size = 1) + 
+  geom_segment(aes(x = 0, y = 6, xend = 9, yend = 6), linetype  = "dashed", color = met_slate, size = 1)
+```
+]
+
+---
+count: false
+## 市场交易为买卖双方带来盈余
+
+.less-right[
+
+.pink[消费者盈余] .mono[=] 买方的获得总额.
+
+.purple[生产者盈余] .mono[=] 卖方的获得总额.
+
+.green[总盈余] .mono[=] .pink[消费者盈余] .mono[+] .purple[生产者盈余].
+
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  # geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  # annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  geom_stepribbon(data = step_demand2, aes(ymax = ifelse(x < 9, mv, 6), ymin = 6, x = x), fill = green, alpha = 0.2, linetype = "blank") +
+  annotate("text", label = "TS", x = 1.5, y = 7, color = green, family = cnfont, size = 9) +
+  geom_stepribbon(data = step_supply, aes(ymax = ifelse(x < 9, mv, 6), ymin = 6, x = x), fill = green, alpha = 0.2, linetype = "blank") +
+  geom_point(aes(x = 9, y = 6), color = met_slate, size = 2) +
+  geom_segment(aes(x = 9, y = 0, xend = 9, yend = 6), linetype  = "dashed", color = met_slate, size = 1) + 
+  geom_segment(aes(x = 0, y = 6, xend = 9, yend = 6), linetype  = "dashed", color = met_slate, size = 1)
+```
+]
+
+---
+## 市场交易为买卖双方带来盈余
+
+.less-right[
+### 市场均衡
+
+P .mono[=].mono[]6 .mono[==>] TS .mono[=] .mono[]40.
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  # geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  # annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  geom_stepribbon(data = step_demand2, aes(ymax = ifelse(x < 9, mv, 6), ymin = 6, x = x), fill = green, alpha = 0.2, linetype = "blank") +
+  annotate("text", label = "TS", x = 1.5, y = 7, color = green, family = cnfont, size = 9) +
+  geom_stepribbon(data = step_supply, aes(ymax = ifelse(x < 9, mv, 6), ymin = 6, x = x), fill = green, alpha = 0.2, linetype = "blank") +
+  geom_point(aes(x = 9, y = 6), color = met_slate, size = 2) +
+  geom_segment(aes(x = 9, y = 0, xend = 9, yend = 6), linetype  = "dashed", color = met_slate, size = 1) + 
+  geom_segment(aes(x = 0, y = 6, xend = 9, yend = 6), linetype  = "dashed", color = met_slate, size = 1)
+```
+]
+
+---
+## 市场交易为买卖双方带来盈余
+
+.less-right[
+### 市场剩余
+
+P .mono[=].mono[]7.50 .mono[==>] TS .mono[=] .mono[]36.
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  # geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  # annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  geom_stepribbon(data = step_demand2, aes(ymax = ifelse(x < 6, mv, 7.5), ymin = 7.5, x = x), fill = green, alpha = 0.2, linetype = "blank") +
+  annotate("text", label = "TS", x = 2, y = 6, color = green, family = cnfont, size = 9) +
+  geom_stepribbon(data = step_supply, aes(ymax = ifelse(x < 6, mv, 7.5), ymin = 7.5, x = x), fill = green, alpha = 0.2, linetype = "blank") +
+  geom_hline(yintercept = 7.5, linetype  = "dashed", color = met_slate, size = 1) +
+  geom_point(aes(x = 11, y = 7.5), color = met_slate, size = 2) +
+  geom_point(aes(x = 6, y = 7.5), color = met_slate, size = 2) +
+  geom_segment(aes(x = 6, y = 0, xend = 6, yend = 7.5), linetype  = "dashed", color = met_slate, size = 1) +
+  geom_segment(aes(x = 11, y = 0, xend = 11, yend = 7.5), linetype  = "dashed", color = met_slate, size = 1)
+```
+]
+
+---
+## 市场交易为买卖双方带来盈余
+
+.less-right[
+### 市场短缺
+
+P .mono[=].mono[]4.50 .mono[==>] TS .mono[=] .mono[]36.
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  # geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  # annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  geom_hline(yintercept = 4.5, linetype  = "dashed", color = met_slate, size = 1) +
+  geom_point(aes(x = 11, y = 4.5), color = met_slate, size = 2) +
+  geom_point(aes(x = 6, y = 4.5), color = met_slate, size = 2) +
+  geom_vline(xintercept = 6, linetype  = "dashed", color = met_slate, size = 1) +
+  geom_segment(aes(x = 11, y = 0, xend = 11, yend = 4.5), linetype  = "dashed", color = met_slate, size = 1) +
+  geom_stepribbon(data = step_demand2, aes(ymax = ifelse(x < 6, mv, 7.5), ymin = 7.5, x = x), fill = green, alpha = 0.2, linetype = "blank") +
+  annotate("text", label = "TS", x = 2, y = 6, color = green, family = cnfont, size = 9) +
+  geom_stepribbon(data = step_supply, aes(ymax = ifelse(x < 6, mv, 7.5), ymin = 7.5, x = x), fill = green, alpha = 0.2, linetype = "blank")
+```
+]
+
+
+---
+## 市场交易为买卖双方带来盈余
+
+.less-right[
+### 政府干预
+
+.pink[Q:]真还是假？政府期望通过强制增加产出来获得更多市场福利，命令生产到12来增加TS。
+
+> A. 真
+
+> B. 假
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  # geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  # annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  #geom_stepribbon(data = step_demand2, aes(ymax = ifelse(x < 9, mv, 6), ymin = 6, x = x), fill = green, alpha = 0.2, linetype = "blank") +
+  #annotate("text", label = "TS", x = 2, y = 6, color = green, family = cnfont, size = 9) +
+  #geom_stepribbon(data = step_supply, aes(ymax = ifelse(x < 9, mv, 6), ymin = 6, x = x), fill = green, alpha = 0.2, linetype = "blank") +
+  geom_vline(xintercept = 12, linetype  = "dashed", color = met_slate, size = 1)
+```
+]
+
+---
+count: false
+## 市场交易为买卖双方带来盈余
+
+.less-right[
+### 政府干预
+
+.pink[Q:]真还是假？政府期望通过强制增加产出来获得更多市场福利，命令生产到12来增加TS。
+
+> A. 真
+
+> .pink[B. 假]
+
+TS 将会从 .mono[]40  下降到  .mono[]34
+
+]
+
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  # geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  # annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  #geom_stepribbon(data = step_demand2, aes(ymax = ifelse(x < 9, mv, 6), ymin = 6, x = x), fill = green, alpha = 0.2, linetype = "blank") +
+  #annotate("text", label = "TS", x = 2, y = 6, color = green, family = cnfont, size = 9) +
+  #geom_stepribbon(data = step_supply, aes(ymax = ifelse(x < 9, mv, 6), ymin = 6, x = x), fill = green, alpha = 0.2, linetype = "blank") +
+  geom_vline(xintercept = 12, linetype  = "dashed", color = met_slate, size = 1)
+```
+]
+---
+count: false
+## 市场交易为买卖双方带来盈余
+
+.less-right[
+### 政府干预
+
+.pink[Q:]真还是假？政府期望通过强制增加产出来获得更多市场福利，命令生产到12来增加TS。
+
+> A. 真
+
+> .pink[B. 假]
+
+TS 将会从 .mono[]40  下降到  .mono[]34
+
+]
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5.4, dev = "svg"}
+ggplot() +
+  geom_step(data = step_supply, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  annotate("text", label = "S", x = 12.5, y = 8, color = purple, family = cnfont, size = 9) +
+  geom_step(data = step_demand2, mapping = aes(x = x, y = mv), color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 12.5, y = 4, color = red_pink, family = cnfont, size = 9) +
+  # geom_step(data = step_supply_tax, mapping = aes(x = x, y = mv), color = purple, size = 1) +
+  # annotate("text", label = expression(S[Tax]), x = 13, y = 10, color = purple, family = cnfont, size = 9) +
+  labs(x = "Q", y = "P") +
+  scale_x_continuous(limits = c(0, 14), expand = c(0, 0), breaks = seq(0, 12, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  geom_stepribbon(data = step_demand2, aes(ymax = ifelse(x < 9, mv, 6), ymin = 6, x = x), fill = green, alpha = 0.2, linetype = "blank") +
+  annotate("text", label = "+TS", x = 2, y = 6, color = green, family = cnfont, size = 9) +
+  geom_stepribbon(data = step_supply, aes(ymax = ifelse(x < 9, mv, 6), ymin = 6, x = x), fill = green, alpha = 0.2, linetype = "blank") +
+  
+  geom_stepribbon(data = step_demand2, aes(ymax = ifelse(x > 9, mv, 6), ymin = 6, x = x), fill = orange, alpha = 0.2, linetype = "blank") +
+  annotate("text", label = "-TS", x = 11, y = 6, color = orange, family = cnfont, size = 9) +
+  geom_stepribbon(data = step_supply, aes(ymax = ifelse(x > 9, mv, 6), ymin = 6, x = x), fill = orange, alpha = 0.2, linetype = "blank") +
+  
+  geom_vline(xintercept = 12, linetype  = "dashed", color = met_slate, size = 1)
+```
+]
+
+---
+## 效率
+
+- 定义 1 (市场角度)
+> 从自愿交易中买卖双方会获得最大互利的结果（*即*总剩余）。
+
+- 定义 2 (更一般化)
+> 完美的市场机制不会有浪费。
+
+- 定义 3 (.pink[*帕累托效率*])
+> **帕累托最优**是指在不减少一方福利的情况下，就不可能增加另外一方的福利；而**帕累托改进**是指在不减少一方的福利时，通过改变现有的资源配置而提高另一方的福利。帕累托改进可以在资源闲置或市场失效的情况下实现。
+
+.pink[†]
+卡尔多-希克斯改进(Kaldor-Hicks-Improvement):如果一个人的境况由于**改革**而变好，因而他能够补偿另一个人的损失而且还有剩余，那么整体的效益就改进了。
+
+---
+class: inverse, middle
+
+# 利用供需曲线分析市场变化
+
+---
+class: clear-slide
+
+**Q:** 假设司机和加油站老板都会预期春节时汽油价格会比平时高。预期的汽油价格上涨是如何影响春节前一周的汽油均衡价格和数量的？
+
+--
+
+**A.sub[1]:** 需求侧：司机的需求整体增加.
+
+- 在其他条件相同的情况下，均衡价格上升，均衡数量增加。
+
+**A.sub[2]:** 供给侧：加油站老板增加汽油供给.
+
+- 在其他条件不变的情况下，均衡价格上升，均衡数量减少。
+
+--
+
+**A.sub[Final]:** 价格毫无疑问会上涨，但数量呢？
+
+---
+class: clear-slide
+
+**Case 1:** 供给移动 .mono[>] 需求移动.
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+demand_2 <- function(x) 12 - x
+supply <- function(x) 1 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+p_2 <- demand_2(q_2)
+
+base_3 <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(q_1), labels = c(expression(Q^"*"))) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(p_1), labels = c(expression(P^"*"))) +
+  theme_market +
+  labs(x = "Q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  #geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  #geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  #geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = expression(D[1]), x = 10, y = 0.65, color = red_pink, family = "Fira Sans", size = 9) +
+  annotate("text", label = expression(S[1]), x = 9.4, y = 9.65, color = purple, family = "Fira Sans", size = 9)
+
+base_3
+```
+]
+
+.less-right[
+均衡价格增加.
+
+均衡数量减少.
+]
+
+---
+count: false
+class: clear-slide
+
+**Case 1:** 供给移动 .mono[>] 需求移动.
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+demand_2 <- function(x) 12 - x
+supply <- function(x) 1 + x
+supply_2 <- function(x) 5 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand_2(x) - supply_2(x), range(x))$root
+p_2 <- demand_2(q_2)
+
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(q_2), labels = c(expression(Q^"*"))) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(p_2), labels = c(expression(P^"*"))) +
+  theme_market +
+  labs(x = "Q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  stat_function(fun = demand_2, color = red_pink, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1, alpha = 0.5) +
+  stat_function(fun = supply_2, color = purple, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2, alpha = 0.5) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = expression(D[1]), x = 10, y = 0.65, color = red_pink, family = "Fira Sans", size = 9, alpha = 0.5) +
+  annotate("text", label = expression(D[2]), x = 10, y = 2.65, color = red_pink, family = "Fira Sans", size = 9) +
+  annotate("text", label = expression(S[1]), x = 9.4, y = 9.65, color = purple, family = "Fira Sans", size = 9, alpha = 0.5) +
+  annotate("text", label = expression(S[2]), x = 5.4, y = 9.65, color = purple, family = "Fira Sans", size = 9) + geom_segment(aes(x = 6 + 0.2, y = 4, xend = 8 - 0.2, yend = 4), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1) + 
+  geom_segment(aes(x = 8 - 0.2, y = 9, xend = 4 + 0.2, yend = 9), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1)
+```
+]
+
+.less-right[
+均衡价格增加.
+
+均衡数量减少.
+]
+
+---
+class: clear-slide
+
+**Case 2:** 供给移动 .mono[<] 需求移动.
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+base_3
+```
+]
+
+.less-right[
+均衡价格增加.
+
+均衡数量增加.
+]
+
+---
+count: false
+class: clear-slide
+
+**Case 2:** 供给移动 .mono[<] 需求移动.
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+demand_2 <- function(x) 14 - x
+supply <- function(x) 1 + x
+supply_2 <- function(x) 3 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand_2(x) - supply_2(x), range(x))$root
+p_2 <- demand_2(q_2)
+
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(q_2), labels = c(expression(Q^"*"))) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(p_2), labels = c(expression(P^"*"))) +
+  theme_market +
+  labs(x = "Q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  stat_function(fun = demand_2, color = red_pink, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1, alpha = 0.5) +
+  stat_function(fun = supply_2, color = purple, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2, alpha = 0.5) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = expression(D[1]), x = 10, y = 0.65, color = red_pink, family = "Fira Sans", size = 9, alpha = 0.5) +
+  annotate("text", label = expression(D[2]), x = 10, y = 4.65, color = red_pink, family = "Fira Sans", size = 9) +
+  annotate("text", label = expression(S[1]), x = 9.4, y = 9.65, color = purple, family = "Fira Sans", size = 9, alpha = 0.5) +
+  annotate("text", label = expression(S[2]), x = 7.4, y = 9.65, color = purple, family = "Fira Sans", size = 9) + geom_segment(aes(x = 6 + 0.2, y = 4, xend = 10 - 0.2, yend = 4), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1) + 
+  geom_segment(aes(x = 8 - 0.2, y = 9, xend = 6 + 0.2, yend = 9), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1)
+```
+]
+
+.less-right[
+均衡价格增加.
+
+均衡数量增加.
+]
+
+---
+class: clear-slide
+
+**Case 3:** 供给移动 .mono[=] 需求移动.
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+base_3
+```
+]
+
+.less-right[
+均衡价格增加.
+
+均衡数量不变.
+]
+
+---
+count: false
+class: clear-slide
+
+**Case 3:** 供给移动 .mono[=] 需求移动.
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+demand_2 <- function(x) 12 - x
+supply <- function(x) 1 + x
+supply_2 <- function(x) 3 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand_2(x) - supply_2(x), range(x))$root
+p_2 <- demand_2(q_2)
+
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(q_2), labels = c(expression(Q^"*"))) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(p_2), labels = c(expression(P^"*"))) +
+  theme_market +
+  labs(x = "Q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  stat_function(fun = demand_2, color = red_pink, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1, alpha = 0.5) +
+  stat_function(fun = supply_2, color = purple, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2, alpha = 0.5) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = expression(D[1]), x = 10, y = 0.65, color = red_pink, family = "Fira Sans", size = 9, alpha = 0.5) +
+  annotate("text", label = expression(D[2]), x = 10, y = 2.65, color = red_pink, family = "Fira Sans", size = 9) +
+  annotate("text", label = expression(S[1]), x = 9.4, y = 9.65, color = purple, family = "Fira Sans", size = 9, alpha = 0.5) +
+  annotate("text", label = expression(S[2]), x = 7.4, y = 9.65, color = purple, family = "Fira Sans", size = 9) + geom_segment(aes(x = 6 + 0.2, y = 4, xend = 8 - 0.2, yend = 4), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1) + 
+  geom_segment(aes(x = 8 - 0.2, y = 9, xend = 6 + 0.2, yend = 9), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1)
+```
+]
+
+.less-right[
+均衡价格增加.
+
+均衡数量不变.
+]
+
+---
+class: clear-slide
+
+**Q:** 假设福岛核泄漏污染杀死了太平洋地区5%的金枪鱼，并激起了人们对食用鱼的恐惧。这些变化是如何影响金枪鱼罐头的均衡价格和数量的？
+
+--
+
+**A.sub[1]:** 要素投入的价格增加 .mono[-->] 供给减少.
+
+- 在其他条件不变的情况下，均衡价格上升，均衡数量减少。
+
+**A.sub[2]:** 消费者偏好改变 .mono[-->] 需求减少.
+
+- 在其他条件不变的情况下，均衡价格下降，均衡数量减少。
+
+--
+
+**A.sub[Final]:** 毫无疑问，均衡数量肯定减少，但价格呢？
+
+---
+class: clear-slide
+
+**Case 1:** 供给移动 .mono[>] 需求移动.
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+base_3
+```
+]
+
+.less-right[
+均衡价格增加。
+
+均衡数量减少。
+]
+
+---
+count: false
+class: clear-slide
+
+**Case 1:** 供给移动 .mono[>] 需求移动.
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+demand_2 <- function(x) 8 - x
+supply <- function(x) 1 + x
+supply_2 <- function(x) 5 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand_2(x) - supply_2(x), range(x))$root
+p_2 <- demand_2(q_2)
+
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(q_2), labels = c(expression(Q^"*"))) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(p_2), labels = c(expression(P^"*"))) +
+  theme_market +
+  labs(x = "Q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  stat_function(fun = demand_2, color = red_pink, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1, alpha = 0.5) +
+  stat_function(fun = supply_2, color = purple, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2, alpha = 0.5) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = expression(D[1]), x = 10, y = 0.65, color = red_pink, family = "Fira Sans", size = 9, alpha = 0.5) +
+  annotate("text", label = expression(D[2]), x = 8, y = 0.65, color = red_pink, family = "Fira Sans", size = 9) +
+  annotate("text", label = expression(S[1]), x = 9.4, y = 9.65, color = purple, family = "Fira Sans", size = 9, alpha = 0.5) +
+  annotate("text", label = expression(S[2]), x = 5.4, y = 9.65, color = purple, family = "Fira Sans", size = 9) + geom_segment(aes(x = 6 - 0.2, y = 4, xend = 4 + 0.2, yend = 4), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1) + 
+  geom_segment(aes(x = 8 - 0.2, y = 9, xend = 4 + 0.2, yend = 9), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1)
+```
+]
+
+.less-right[
+均衡价格增加。
+
+均衡数量减少。
+]
+
+---
+class: clear-slide
+
+**Case 2:** 供给移动 .mono[<] 需求移动.
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+base_3
+```
+]
+
+.less-right[
+均衡价格下降。
+
+均衡数量减少。
+]
+
+---
+count: false
+class: clear-slide
+
+**Case 2:** 供给移动 .mono[<] 需求移动.
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+demand_2 <- function(x) 6 - x
+supply <- function(x) 1 + x
+supply_2 <- function(x) 3 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand_2(x) - supply_2(x), range(x))$root
+p_2 <- demand_2(q_2)
+
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(q_2), labels = c(expression(Q^"*"))) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(p_2), labels = c(expression(P^"*"))) +
+  theme_market +
+  labs(x = "Q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  stat_function(fun = demand_2, color = red_pink, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1, alpha = 0.5) +
+  stat_function(fun = supply_2, color = purple, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2, alpha = 0.5) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = expression(D[1]), x = 10, y = 0.65, color = red_pink, family = "Fira Sans", size = 9, alpha = 0.5) +
+  annotate("text", label = expression(D[2]), x = 6, y = 0.65, color = red_pink, family = "Fira Sans", size = 9) +
+  annotate("text", label = expression(S[1]), x = 9.4, y = 9.65, color = purple, family = "Fira Sans", size = 9, alpha = 0.5) +
+  annotate("text", label = expression(S[2]), x = 7.4, y = 9.65, color = purple, family = "Fira Sans", size = 9) + geom_segment(aes(x = 6 - 0.2, y = 4, xend = 2 + 0.2, yend = 4), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1) + 
+  geom_segment(aes(x = 8 - 0.2, y = 9, xend = 6 + 0.2, yend = 9), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1)
+```
+]
+
+.less-right[
+均衡价格下降。
+
+均衡数量减少。
+]
+
+---
+class: clear-slide
+
+**Case 3:** 供给移动 .mono[=] 需求移动.
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+base_3
+```
+]
+
+.less-right[
+均衡价格不改变。
+
+均衡数量减少。
+]
+
+---
+count: false
+class: clear-slide
+
+**Case 3:** 供给移动 .mono[=] 需求移动.
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+demand_2 <- function(x) 8 - x
+supply <- function(x) 1 + x
+supply_2 <- function(x) 3 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand_2(x) - supply_2(x), range(x))$root
+p_2 <- demand_2(q_2)
+
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(q_2), labels = c(expression(Q^"*"))) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(p_2), labels = c(expression(P^"*"))) +
+  theme_market +
+  labs(x = "Q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  stat_function(fun = demand_2, color = red_pink, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1, alpha = 0.5) +
+  stat_function(fun = supply_2, color = purple, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2, alpha = 0.5) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = expression(D[1]), x = 10, y = 0.65, color = red_pink, family = "Fira Sans", size = 9, alpha = 0.5) +
+  annotate("text", label = expression(D[2]), x = 8, y = 0.65, color = red_pink, family = "Fira Sans", size = 9) +
+  annotate("text", label = expression(S[1]), x = 9.4, y = 9.65, color = purple, family = "Fira Sans", size = 9, alpha = 0.5) +
+  annotate("text", label = expression(S[2]), x = 7.4, y = 9.65, color = purple, family = "Fira Sans", size = 9) + geom_segment(aes(x = 6 - 0.2, y = 4, xend = 4 + 0.2, yend = 4), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1) + 
+  geom_segment(aes(x = 8 - 0.2, y = 9, xend = 6 + 0.2, yend = 9), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1)
+```
+]
+
+.less-right[
+均衡价格不改变。
+
+均衡数量减少。
+]
+
+---
+class: inverse, middle
+
+# 市场的溢出效应
+
+---
+# 市场溢出效应
+
+一个市场的变化往往会波及其他市场。
+
+- 不可能只改变一个市场价格!
+
+--
+
+## 例子
+
+**Q:** 作为对伊拉克1990年入侵科威特的回应，联合国发布了限制伊拉克原油出口的制裁。制裁对全球原油市场有何影响？
+
+--
+
+- **A:** .purple[全球原油供应减少 .mono[-->] 均衡价格上升，均衡数量减少.]
+
+--
+
+**Q:** 其他市场会对油价的上涨作出怎样反应？
+
+---
+class: clear-slide
+
+**Q:** 原油价格的上涨对美国的取暖油市场是否会影响？
+
+.more-left[
+```{r, echo = FALSE, fig.height = 4.75, fig.width = 5, dev = "svg"}
+base_3
+```
+]
+
+.less-right[
+**A:**
+]
+
+---
+count: false
+class: clear-slide
+
+**Q:** 原油价格的上涨对美国的取暖油市场是否会影响？
+
+.more-left[
+```{r, echo = FALSE, fig.height = 4.75, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+supply <- function(x) 1 + x
+supply_2 <- function(x) 3 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand(x) - supply_2(x), range(x))$root
+p_2 <- demand(q_2)
+
+supply_decrease_2 <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(q_2), labels = c(expression(Q^"*"))) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(p_2), labels = c(expression(P^"*"))) +
+  theme_market +
+  labs(x = "Q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  stat_function(fun = supply_2, color = purple, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1, alpha = 0.5) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2, alpha = 0.5) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(aes(x = 6 - 0.2, y = 7, xend = 4 + 0.2, yend = 7), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1) + 
+  annotate("text", label = expression(D[1]), x = 10, y = 0.65, color = red_pink, family = "Fira Sans", size = 9) +
+  annotate("text", label = expression(S[2]), x = 7.4, y = 9.65, color = purple, family = "Fira Sans", size = 9) +
+  annotate("text", label = expression(S[1]), x = 9.4, y = 9.65, color = purple, family = "Fira Sans", size = 9, alpha = 0.5)
+
+supply_decrease_2
+```
+]
+
+.less-right[
+**A:** .purple[原油是生产取暖油的投入品。]
+<br> .purple[.mono[-->] 取暖油供应减少]
+<br> .purple[.mono[-->] 取暖油的均衡价格上升，均衡数量下降.]
+]
+
+---
+class: clear-slide
+
+**Q:** 原油价格的上涨对美国的煤炭市场是否有影响？
+
+.more-left[
+```{r, echo = FALSE, fig.height = 4.75, fig.width = 5, dev = "svg"}
+base_3
+```
+]
+
+.less-right[
+**A:**
+]
+
+---
+count: false
+class: clear-slide
+
+**Q:** 原油价格的上涨对美国的煤炭市场是否有影响？
+
+.more-left[
+```{r, echo = FALSE, fig.height = 4.75, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+demand_2 <- function(x) 12 - x
+supply <- function(x) 1 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+p_2 <- demand_2(q_2)
+
+demand_increase_2 <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(q_2), labels = c(expression(Q^"*"))) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(p_2), labels = c(expression(P^"*"))) +
+  theme_market +
+  labs(x = "Q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  stat_function(fun = demand_2, color = red_pink, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2, alpha = 0.5) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(aes(x = 6 + 0.2, y = 4, xend = 8 - 0.2, yend = 4), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1) + 
+  annotate("text", label = expression(D[1]), x = 10, y = 0.65, color = red_pink, family = "Fira Sans", size = 9, alpha = 0.5) +
+  annotate("text", label = expression(D[2]), x = 10, y = 2.65, color = red_pink, family = "Fira Sans", size = 9) +
+  annotate("text", label = expression(S[1]), x = 9.4, y = 9.65, color = purple, family = "Fira Sans", size = 9)
+
+demand_increase_2
+```
+]
+
+.less-right[
+**A:** .pink[煤炭是取暖油的替代品，而原油是取暖用油的投入品。]
+<br> .pink[.mono[-->] 对煤炭的需求增加]
+<br> .pink[.mono[-->] 煤炭的均衡价格上升，均衡数量增加]
+]
+
+---
+class: clear-slide
+
+**Q:** 原油价格的上涨如何影响美国的汽油市场？
+
+.more-left[
+```{r, echo = FALSE, fig.height = 4.75, fig.width = 5, dev = "svg"}
+base_3
+```
+]
+
+.less-right[
+**A:**
+]
+
+---
+count: false
+class: clear-slide
+
+**Q:** 原油价格的上涨如何影响美国的汽油市场？
+
+.more-left[
+```{r, echo = FALSE, fig.height = 4.75, fig.width = 5, dev = "svg"}
+supply_decrease_2
+```
+]
+
+.less-right[
+**A:** .purple[原油是一种汽油投入品]
+<br> .purple[.mono[-->] 汽油的供应量减少]
+<br> .purple[.mono[-->] 汽油的均衡价格上涨，数量下降.]
+]
+
+---
+class: clear-slide
+
+**Q:** 原油价格的上涨如何影响美国的SUV市场?
+
+.more-left[
+```{r, echo = FALSE, fig.height = 4.75, fig.width = 5, dev = "svg"}
+base_3
+```
+]
+
+.less-right[
+**A:**
+]
+
+---
+count: false
+class: clear-slide
+
+**Q:** 原油价格的上涨如何影响美国的SUV市场？
+
+.more-left[
+```{r, echo = FALSE, fig.height = 4.75, fig.width = 5, dev = "svg"}
+x <- 0:10
+demand <- function(x) 10 - x
+demand_2 <- function(x) 8 - x
+supply <- function(x) 1 + x
+
+q_1 <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p_1 <- demand(q_1)
+
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+p_2 <- demand_2(q_2)
+
+demand_decrease_2 <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(q_2), labels = c(expression(Q^"*"))) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(p_2), labels = c(expression(P^"*"))) +
+  theme_market +
+  labs(x = "Q", y = "P") +
+  stat_function(fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  stat_function(fun = demand_2, color = red_pink, size = 1) +
+  stat_function(fun = supply, color = purple, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2, alpha = 0.5) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(aes(x = 6 - 0.2, y = 4, xend = 4 + 0.2, yend = 4), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1) + 
+  annotate("text", label = expression(D[1]), x = 10, y = 0.65, color = red_pink, family = "Fira Sans", size = 9, alpha = 0.5) +
+  annotate("text", label = expression(D[2]), x = 8, y = 0.65, color = red_pink, family = "Fira Sans", size = 9) +
+  annotate("text", label = expression(S[1]), x = 9.4, y = 9.65, color = purple, family = "Fira Sans", size = 9)
+
+demand_decrease_2
+```
+]
+
+.less-right[
+**A:** .pink[汽油价格上升]
+<br> .pink[.mono[-->] 汽油和SUV是互补品]
+<br> .pink[.mono[-->] 对SUV的需求减少]
+<br> .pink[.mono[-->] SUV的均衡价格和数量减少.]
+]
+
+---
+exclude: true
+
+```{R, generate pdfs, include = F, eval = F}
+
+pagedown::chrome_print("04_MicroeconBasics1.html", output = "04_MicroeconBasics1.pdf")
+```
