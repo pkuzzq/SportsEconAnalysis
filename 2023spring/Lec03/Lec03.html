@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>体育经济分析：原理与应用</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="周正卿" />
+    <meta name="date" content="2023-01-27" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# 体育经济分析：原理与应用
+]
+.subtitle[
+## 第⼀讲：概要与预备知识
+]
+.author[
+### 周正卿
+]
+.date[
+### 27 January 2023
+]
+
+---
+
+class: center, middle, inverse
+
+
+
+&lt;style type="text/css"&gt;
+@media print {
+  .has-continuation {
+    display: block !important;
+  }
+}
+&lt;/style&gt;
+
+# 供给：成本衍生的生产决策
+
+---
+## 大纲
+
+.hi[目标] 生产者理论的分析路线（高级）
+
+- 生产者如何决策？要素、技术、定价能力
+- 供给曲线从何而来？
+
+.hi[问题:] 为什么要深入厂商理论？
+
+.hi[答案:] 对理解职业球队决策、职业联盟市场结构与规制有帮助 
+
+
+---
+layout: false
+## 生产决策
+
+.less-right[生产决策是每个职业球队会应用的。职业联盟是由多球队构成，球队行为决定了联盟竞争程度。
+
+- .hi.orange[成本线：生产成本、生产技术、厂商决策]
+
+- 收入线：定价能力、市场结构
+]
+
+.more-left[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/atpI5Q.png  height="350" width="530"&gt;
+
+]
+
+---
+### 利润最大化目标
+
+- 长期内，所有球队都以利润最大化为目标，否则就会被市场淘汰。
+
+- 但短期呢？
+
+- 利润 .mono[=]总收入 .mono[-] 总成本
+
+- 在短期内，由于所有者(董事长)与经营者（总经理）分离，可能会在一定程度上偏离企业利润最大化的目标，而追求其他利益的目标（个人享受，政治特权，社会知名度等）。
+
+&lt;br&gt;
+**问：**体育领域是否所有产权主体都试图实现利润最大化？
+
+**答：** 未必。升降级制的联赛俱乐部(为生存，先求胜)；国际体育NGO(国际政治)。
+
+---
+### 利润最大化
+
+为了实现利润最大化，厂商必须回答的几个问题:
+
+- 应该生产多少？
+
+- 应该设定什么价格？
+
+- 应该投入多少生产要素。雇佣劳动力？购买资本？
+
+- 应该继续生产还是停产？
+
+---
+### 利润最大化
+
+对这些问题的回答取决于 
+
+1. 生产技术 .mono[--&gt;] 成本结构(资本密集、技术密集、劳动密集)
+
+2. 市场结构 .mono[--&gt;] 单个企业的定价能力
+
+3. 短期 *vs.* 长期
+
+---
+class: inverse, middle
+
+# 生产成本
+
+---
+### 成本
+
+- 稀缺性  .mono[-&gt;] 机会成本。生产成本应从机会成本来理解。
+
+- 总成本.mono[=] .purple[显成本] .mono[+] .pink[隐成本]
+
+### .purple[显成本]
+
+- *一般是* 工资、租金、原材料、维修费、缴纳税款, *等*
+
+### .pink[隐成本]
+
+- 丧失的次优投资品价值，例如，*等额的固定资产投入，在股票市场的回报*等等。
+
+---
+
+### 例子：给你100万去投资，该如何选？
+
+启动资金是100万，利息是5%。
+
+.pink[投资方案1：]借100万
+
+- 显成本 .mono[=] 5万
+
+.pink[投资方案2：]动用40万的储蓄，借60万
+
+- 显成本 .mono[=] 3万 .mono[&lt;--] 偿还5%的贷款利息
+
+- 隐成本 .mono[=] 2万 .mono[&lt;--] 从储蓄中拿出40万RMB，放弃5%的利息
+
+.pink[任一方案的总成本 .mono[=] 5万]
+
+---
+###  会计利润 *vs.* 经济利润 
+
+#### 会计利润 &lt;br&gt; `\(\quad\)` .mono[=] 总收入 .mono[-] .pink[显成本]
+
+#### 经济利润 &lt;br&gt; `\(\quad\)` .mono[=] 总收入 .mono[-] (.pink[显成本] .mono[+] .purple[隐成本])  &lt;br&gt; `\(\quad\)` .mono[=] 会计利润 .mono[-] .purple[隐成本]
+
+**重要** 
+
+.center[
+## 会计利润 .mono[&gt;] 经济利润
+]
+
+所以一家仍赚钱的公司，并不总是意味着一家公司做得很好
+
+---
+### 生产技术
+
+经济中的生产技术，是指的投入要素的组合方式。一般要素：土地、劳动力、资本、技术（有时候以人力资本的形式表达）、数据。
+
+数学上，用.hi.pink[生产函数]来反映：对企业生产过程中投入和产出之间关系的数学描述。
+
+.center[
+.hi.pink[要素投入 .mono[--&gt;]  生产技术 .mono[--&gt;] 产出方式]
+] 
+
+---
+### 总产量函数
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-2-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+#### 定义
+
+&gt; 一定数量的要素投入对应的产量
+
+假设生产函数 `\(TP=f(L, K)\)` ，其中在一定时期内 `\(K\)` 的数量固定，所以厂商要改变产量就只能改变 `\(L\)` 。这种单可变要素的生产函数称为**短期生产函数**
+`\(TP=f(L, \bar{K})\)` 
+]
+
+---
+count: false
+### 总产量的三个阶段
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-3-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+#### 定义
+
+&gt; 一定数量的要素投入对应的产量
+
+**例子：**假设生产函数 `\(TP=f(L, K)\)` ，其中在一定时期内 `\(K\)` 的数量固定，所以厂商要改变产量就只能改变 `\(L\)` 。这种单可变要素的生产函数称为**短期生产函数**
+`\(TP=f(L, \bar{K})\)` 
+]
+---
+### 边际产量
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-4-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+#### 定义
+
+&gt; 增加一单位可变要素劳动投入量所增加的产量
+
+**例子:** 保持技术水平不变,保持其他要素（资本）投入不变，只改变劳动力投入
+
+]
+
+---
+count: false
+### 边际产量
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-5-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+#### 定义
+
+&gt; 增加一单位可变要素劳动投入量所增加的产量
+
+**例子:** 保持技术水平不变,保持其他要素（资本）投入不变，只改变劳动力投入
+
+]
+
+---
+count: false
+### 边际产量
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-6-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+#### 定义
+
+&gt; 增加一单位可变要素劳动投入量所增加的产量
+
+**例子:** 保持技术水平不变,保持其他要素（资本）投入不变，只改变劳动力投入
+
+]
+
+---
+### 边际产量递减规律
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-7-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+#### 解释
+
+当在其他投入数量固定的情况下，只有一种要素投入时.purple[边际产品最终为负]。
+
+]
+---
+### 总产量、平均产量和边际产量的关系
+
+.more-left[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/oBpv6y.png  height="390" width="500" &gt;
+]
+
+.less-right[
+第一阶段，**边际产量始终大于平均产量**：
+- 投入量**在0到L1**之间，平均产量始终上升，达到最大值Max；
+- 边际产量上升，达到最大值后并开始下降
+- 这一阶段总产量始终是增加的。这说明：在这一阶段不变要素的投入量是相对过剩，生产者追加**可变要素（比如劳动）投入量**有利可图。
+]
+---
+count: false
+
+### 总产量、平均产量和边际产量的关系
+
+.more-left[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/oBpv6y.png  height="390" width="500" &gt;
+]
+
+.less-right[
+第二阶段，截止到**边际产量等于零**：
+- 继续追加要素在**L1到L2**
+- **平均产量曲线和边际产量曲线相交**，即平均产量达到最高点。
+]
+---
+count: false
+
+### 总产量、平均产量和边际产量的关系
+
+.more-left[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/oBpv6y.png  height="390" width="500" &gt;
+]
+
+.less-right[
+第三阶段，**总产量也呈现下降**：
+- 投入量**超过L2**，**平均产量下降**，**边际产量为负**。
+- 这一阶段减少可变要素投入是有利的。
+]
+
+---
+count: false
+
+### 生产阶段的决策
+
+.more-left[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/oBpv6y.png  height="390" width="500" &gt;
+]
+
+.less-right[
+- 理性的生产者既不会将生产停留在第一阶段，也不会将生产扩张到第三阶段。
+- 因此第二阶段是生产者进行短期生产的决策区间。
+**至于在第二阶段的哪一点才能达到利润最大化，需要结合成本、收入和利润进行深入分析**。
+]
+
+---
+### 自学时间：MP 对 AP 影响的数学表达
+
+设 `\(T P=Q=f(L) ; A P_{L}=T P / L\)`，
+`\(L\)` 的平均产量对 `\(L\)` 投入的变化率 :
+
+
+`\(\frac{d A P_{L}}{d L}=\frac{d(T P / L)}{d L}=\frac{d(Q / L)}{d L}=\frac{\frac{d Q}{d L} L-\frac{d L}{d L} Q}{L^{2}}\)`
+
+
+`\(=\frac{\frac{d Q}{d L} L-Q}{L^{2}}=\frac{1}{L}(\underbrace{\frac{d Q}{d L}}_{M P_{L}}-\underbrace{\frac{Q}{L}}_{A P_{L}})\)`
+
+
+- 当 `\(M P_{L}&gt;A P_{L}, A P_{L}\)` 处于递增阶段
+- 当 `\(M P_{L}&lt;A P_{L}, A P_{L}\)` 处于递减阶段
+- 当 `\(M P_{L}=A P_{L}, A P_{L}\)` 达到最大值
+
+---
+layout: false
+## 生产决策
+
+.less-right[即使我们知道企业会继续在第二阶段选择生产，那么什么决定了产量多少？
+
+- .hi.orange[成本线：生产成本、生产技术、厂商决策]
+
+- 收入线：定价能力、市场结构
+]
+
+.more-left[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/atpI5Q.png  height="350" width="530"&gt;
+
+]
+---
+### 理性人在边际处行动：边际收益与边际成本的比较
+
+- 利润角度 .mono[-&gt;] 只要能增加利润，就会生产
+- 利润只有收入和成本两部分
+- Max 利润 .mono[-&gt;] 边际收益MR=边际成本MC
+
+然而，边际收益（MR）就是边际产量*销售价格。
+
+已知：边际产量、平均产量和总产量的关系
+
+那么就差边际成本了？
+- 参照着总产量到边际产量的分析思路，接着看边际成本是怎样的？
+
+---
+class: clear-slide
+### 自学时间：一个例子理解总成本
+.pink.hi[投入：]土地.mono[--&gt;]必须每月支付1000元的租金，无论种植多少西瓜。
+
+.pink.hi[投入：]劳动力.mono[--&gt;] 市场工资为每月2000元。
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 工人 (L) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 西瓜 (Q) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 土地的成本 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 劳动力的成本 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Total Cost &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2400 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+count: false
+class: clear-slide
+### 自学时间：一个例子理解总成本
+.pink.hi[投入：]土地.mono[--&gt;]必须每月支付1000元的租金，无论种植多少西瓜。
+
+.pink.hi[投入：]劳动力.mono[--&gt;] 市场工资为每月2000元。
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 工人 (L) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 西瓜 (Q) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 土地的成本 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 劳动力的成本 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Total Cost &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2400 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+count: false
+class: clear-slide
+### 自学时间：一个例子理解总成本
+.pink.hi[投入：]土地.mono[--&gt;]必须每月支付1000元的租金，无论种植多少西瓜。
+
+.pink.hi[投入：]劳动力.mono[--&gt;] 市场工资为每月2000元。
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 工人 (L) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 西瓜 (Q) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 土地的成本 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 劳动力的成本 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Total Cost &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥2000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥4000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2400 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥6000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥8000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥10000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+count: false
+class: clear-slide
+### 自学时间：一个例子理解总成本
+.pink.hi[投入：]土地.mono[--&gt;]必须每月支付1000元的租金，无论种植多少西瓜。
+
+.pink.hi[投入：]劳动力.mono[--&gt;] 市场工资为每月2000元。
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 工人 (L) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 西瓜 (Q) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 土地的成本 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 劳动力的成本 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Total Cost &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥2000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥3000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥4000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥5000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2400 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥6000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥7000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥8000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥9000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥10000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥11000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+---
+class: clear-slide
+### 自学时间：一个例子理解总成本
+.pink.hi[投入：]土地.mono[--&gt;]必须每月支付1000元的租金，无论种植多少西瓜。
+
+.pink.hi[投入：]劳动力.mono[--&gt;] 市场工资为每月2000元。
+
+.center[.purple[**TC曲线**]]
+
+.pull-left[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 西瓜 (Q) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Total Cost &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥1000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥3000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥5000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2400 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥7000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥9000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; ￥11000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-13-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+### S型总成本曲线
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-14-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+
+TP函数 .mono[+] 投入要素价格 &lt;br&gt; .mono[--&gt;] .purple.hi[**TC曲线**] 。
+
+.pink[思考]为什么总成本曲线是S型？
+
+.purple.hi[边际产量递减先增后减。但产量其实企业的最终行为结果。既然边际产量一段时间会增加，意味着该时期内的边际成本很可能是降低的。] 
+
+---
+
+### 边际成本
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-15-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+
+#### 定义
+
+&gt; 产量增加一个单位所产生的总成本的变化。 
+
+
+基于深入理解边际成本，我们就要走进**成本世界**的内部看看了。
+
+---
+### 总成本的构成
+
+#### 总成本 .mono[=] .green[固定成本] .mono[+] .pink[可变成本]
+
+#### .green[固定成本]
+
+&gt; .green[成本不随产出数量的变化而变化]
+
+- 如租金、设备成本、贷款支付等
+- 对边际成本MC没有影响
+
+#### .pink[可变成本]
+
+&gt; .pink[成本随产出数量变化而变化]
+
+- 如工资, 原材料成本等
+- 对边际成本MC有影响
+
+---
+### 总成本的构成
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-16-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+#### .green[固定成本(FC)]
+
+
+#### .pink[可变成本 (VC)]
+
+]
+
+---
+### 平均固定成本AFC
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-17-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+#### 定义
+
+&gt; AFC .mono[=] FC &amp;divide; TP
+
+随着产量上升而减少 &lt;br&gt; .mono[--&gt;] 更多产出分摊FC
+
+]
+
+---
+### 平均可变成本AVC
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-18-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+#### 定义
+
+&gt; AVC .mono[=] VC &amp;divide; TP
+
+]
+
+---
+### 平均总成本 ATC
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-19-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+#### 定义
+
+&gt; ATC .mono[=] TC &amp;divide; TP &lt;br&gt; .mono[=] AFC .mono[+] AVC
+
+]
+
+---
+count: false
+### 有效规模
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-20-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+#### 定义
+
+使平均总成本最小化的生成规模
+]
+
+---
+### 边际成本与平均成本的关系
+
+.more-left[
+
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-21-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+类比MP与AP
+
+.hi.red_pink[MC] .mono[&lt;] .hi.purple[ATC] .mono[==&gt;] .hi.purple[ATC]下降
+
+.hi.red_pink[MC] .mono[&gt;] .hi.purple[ATC] .mono[==&gt;] .hi.purple[ATC]上升
+
+.hi.red_pink[MC] **在最小ATC处** 穿过
+
+]
+---
+### 短期成本分类
+
+![umcxI1](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/umcxI1.png)
+
+
+---
+### 短期决策与长期决策
+
+#### 短期决策
+
+某些要素投入是固定的，如土地、工厂、装配线机器人等资本要素投入固定
+- 固定成本不变
+
+#### 长期决策
+
+- 所有要素投入是可变的，如厂商可以建立新工厂或出售现有工厂
+- 厂商**必须而且可以**配给(rationing)最有效的要素组合
+- 达到**有效规模**
+
+---
+### 长期平均总成本
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-22-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+- 长期可以改变规模类型，但短期不能
+- 厂商可以选择从3个工厂规模: S、M、L，按照发展规模从小到大
+- 每种规模都有自己的SATC曲线
+]
+
+---
+### 长期平均总成本
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-23-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+
+
+
+]
+
+---
+### 长期平均总成本
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-24-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+经典的LATC曲线
+- "微笑曲线"
+- **规模报酬** 决定了企业的长期平均总成本在什么位置
+
+]
+
+---
+### 规模报酬 Returns to Scale
+
+- 规模经济，也叫内在经济(economies of scale)
+&gt; LATC 随着产出数量的增加而下降的阶段
+- 专业化程度变高、知识和技术的溢出效应。例如初创科技公司？
+
+- 规模报酬不变 (constant returns to scale)
+&gt; LATC 随着产出数量的增加而保持不变的阶段。例如连锁店?
+
+- 规模不经济，也叫内在经济(diseconomies of scale)
+&gt; LATC 随着产出数量的增加而上升的阶段
+- 大而慢。例如医院？
+
+---
+
+exclude: true
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": true,
+"ratio": "16:10.85"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
