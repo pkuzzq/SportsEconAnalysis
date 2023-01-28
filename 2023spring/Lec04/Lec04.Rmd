@@ -1,6 +1,6 @@
 ---
-title: "体育经济分析：原理与应用"
-subtitle: "第二讲：职业体育市场"
+title: "体育经济分析: 原理与应用"
+subtitle: "单元2: 职业体育"
 author: 
    - 周正卿
 date: "`r format(Sys.time(), '%d %B %Y')`"
@@ -35,26 +35,24 @@ knit: pagedown::chrome_print
 #     latex_engine: xelatex
 
 ---
-class: center, middle, inverse
 
 ```{R, setup, include = F}
 # devtools::install_github("dill/emoGG")
 library(pacman)
 p_load(
-  broom, tidyverse,
+  broom, tidyverse,rmarkdown,
   ggplot2, ggthemes, ggforce, ggridges,
   latex2exp, viridis, extrafont, gridExtra,
   kableExtra, snakecase, janitor,
   data.table, dplyr, estimatr,
   lubridate, knitr, parallel,
   lfe,dslabs,
-  here, magrittr, RcmdrPlugin.KMggplot2
-)
+  here, magrittr)
 
 options(htmltools.dir.version = FALSE)
 
 # Notes directory
-dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/SportsEconAnalysis_2023/Lec04/"
+dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/2023spring/Lec01"
 # Define pink color
 red_pink <- "#e64173"
 turquoise <- "#20B2AA"
@@ -221,7 +219,7 @@ step_demand2 <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(1
 step_supply <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 8, 8))
 step_supply_tax <- step_supply %>% 
   mutate(mv = mv + 2)
-# 
+
 data <- read_csv("/Users/zhouzhengqing/Desktop/SportsEconAnalysis/Activity_Pit_Market/Results.csv") %>% 
   dplyr::filter(!is.na(price))
 
@@ -257,14 +255,7 @@ tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", h
     row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
 }
 ```
-
-```{css, echo = F, eval = T}
-@media print {
-  .has-continuation {
-    display: block !important;
-  }
-}
-```
+class: center, middle, inverse
 
 # 供给：收入衍生的生产决策
 
@@ -325,6 +316,7 @@ layout: false
       - 全生命周期，追求更健康
     - 行业特点：辐射范围广 + 曝光度高
     - 国家层面：健康中国 + 体育强国
+    
 ---
 
 ### 球队产出

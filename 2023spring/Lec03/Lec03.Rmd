@@ -1,10 +1,9 @@
 ---
-title: "体育经济分析：原理与应用"
-subtitle: "第⼀讲：概要与预备知识"
+title: "体育经济分析: 原理与应用"
+subtitle: "单元1: 概要与预备知识"
 author: 
    - 周正卿
 date: "`r format(Sys.time(), '%d %B %Y')`"
-# xaringan模板
 output:
   xaringan::moon_reader:
     css: xaringan-themer.css
@@ -35,26 +34,24 @@ knit: pagedown::chrome_print
 #     latex_engine: xelatex
 
 ---
-class: center, middle, inverse
 
 ```{R, setup, include = F}
 # devtools::install_github("dill/emoGG")
 library(pacman)
 p_load(
-  broom, tidyverse,
+  broom, tidyverse,rmarkdown,
   ggplot2, ggthemes, ggforce, ggridges,
   latex2exp, viridis, extrafont, gridExtra,
   kableExtra, snakecase, janitor,
   data.table, dplyr, estimatr,
   lubridate, knitr, parallel,
   lfe,dslabs,
-  here, magrittr, RcmdrPlugin.KMggplot2
-)
+  here, magrittr)
 
 options(htmltools.dir.version = FALSE)
 
 # Notes directory
-dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/SportsEconAnalysis_2023/Lec03/"
+dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/2023spring/Lec01"
 # Define pink color
 red_pink <- "#e64173"
 turquoise <- "#20B2AA"
@@ -257,14 +254,8 @@ tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", h
     row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
 }
 ```
+class: center, middle, inverse
 
-```{css, echo = F, eval = T}
-@media print {
-  .has-continuation {
-    display: block !important;
-  }
-}
-```
 
 # 供给：成本衍生的生产决策
 

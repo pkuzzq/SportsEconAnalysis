@@ -268,7 +268,6 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
 /* Create a highlighted class called 'hi'  */
 .hi {
   font-weight: 600;
-  color: #e64173 !important;
 }
 .hi-pink {
   font-weight: 600;
@@ -310,8 +309,6 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
   font-weight: 600;
   color: #fb6107 !important;
 }
-
-
 
 /* Pink text */
 .pink {
@@ -419,7 +416,7 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
 }
 
 .tiny {
-  font-size: 50%;
+  font-size: 65%;
 }
 
 
@@ -484,9 +481,19 @@ hr,
   height: 0.03px;
 }
 
+.left {
+  float: left;
+  width: 50%;
+}
+
 .more-left {
   float: left;
   width: 63%;
+}
+
+.right {
+  float: right;
+  width: 50%;
 }
 .less-right {
   float: right;

@@ -1,6 +1,6 @@
 ---
-title: "体育经济分析：原理与应用"
-subtitle: "第⼀讲：概要与预备知识"
+title: "体育经济分析: 原理与应用"
+subtitle: "单元1: 概要与预备知识"
 author: 
    - 周正卿
 date: "`r format(Sys.time(), '%d %B %Y')`"
@@ -35,26 +35,24 @@ knit: pagedown::chrome_print
 #     latex_engine: xelatex
 
 ---
-class: center, middle, inverse
 
 ```{R, setup, include = F}
 # devtools::install_github("dill/emoGG")
 library(pacman)
 p_load(
-  broom, tidyverse,
+  broom, tidyverse,rmarkdown,
   ggplot2, ggthemes, ggforce, ggridges,
   latex2exp, viridis, extrafont, gridExtra,
   kableExtra, snakecase, janitor,
   data.table, dplyr, estimatr,
   lubridate, knitr, parallel,
   lfe,dslabs,
-  here, magrittr, RcmdrPlugin.KMggplot2
-)
+  here, magrittr,pammtools)
 
 options(htmltools.dir.version = FALSE)
 
 # Notes directory
-dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/SportsEconAnalysis_2023/Lec02/"
+dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/2023spring/Lec02"
 # Define pink color
 red_pink <- "#e64173"
 turquoise <- "#20B2AA"
@@ -170,6 +168,7 @@ theme_gif <- theme_bw() + theme(
   axis.text.y = element_text(size = 12),
   axis.ticks = element_blank()
 )
+
 theme_goods <- theme_bw() + theme(
   axis.line = element_line(),
   panel.grid = element_blank(),
@@ -221,7 +220,7 @@ step_demand2 <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(1
 step_supply <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 8, 8))
 step_supply_tax <- step_supply %>% 
   mutate(mv = mv + 2)
-# 
+
 data <- read_csv("/Users/zhouzhengqing/Desktop/SportsEconAnalysis/Activity_Pit_Market/Results.csv") %>% 
   dplyr::filter(!is.na(price))
 
@@ -257,19 +256,14 @@ tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", h
     row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
 }
 ```
-
-```{css, echo = F, eval = T}
-@media print {
-  .has-continuation {
-    display: block !important;
-  }
-}
-```
+class: center, middle, inverse
 
 # 供需概论
 
 ---
-### 架构
+
+### 微观经济学架构
+
 .more-left[
 <img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/9RXn3f.png  height="450" width="500">
 ]
@@ -280,11 +274,13 @@ tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", h
 ]
 
 ---
+
 class: title-slide-section, center, middle, inverse 
 # 消费者理论
+
 ---
 
-## 意愿支付
+### 意愿支付
 
 **意愿支付(willness to pay)** :也称为“心理价位”，是消费者为获得一单位产品所原意支付的最高价格。人们对所需要的产品都会有一个心理价位，它**因人而异**。
 
@@ -294,7 +290,8 @@ class: title-slide-section, center, middle, inverse
 .hi[A:] 商品价值对每个人不同
 
 ---
-## 商品价值
+
+### 商品价值
 
 一个商品的价值 .mono[=] 你愿意放弃什么来获得它(意愿支付可以看成是**商品消费行为给消费者带来的效用的货币度量**)。
 
@@ -313,7 +310,8 @@ class: title-slide-section, center, middle, inverse
 **重要假设: 边际价值递减**。对于所有商品和所有个人,其他条件相同的情况下,一种商品的边际价值随着你消费的增加而减少。
 
 ---
-## 边际价值递减规律
+
+### 边际价值递减规律
 
 .more-left[
 ```{r mv, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
@@ -327,7 +325,7 @@ ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
 ]
 
 .less-right[
-### .pink[边际价值表]
+#### .pink[边际价值表]
 
 MV .mono[=] 边际价值.
 
@@ -339,7 +337,8 @@ Q 增加 .mono[->] MV 下降
 ]
 
 ---
-## 最优购买
+
+### 最优购买
 
 .more-left[
 ```{r mv1b, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
@@ -365,7 +364,7 @@ ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
 
 ---
 
-## 最优购买
+### 最优购买
 
 .more-left[
 ```{r mv2b, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
@@ -388,7 +387,7 @@ ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
 
 ---
 
-## 最优购买
+### 最优购买
 
 .more-left[
 ```{r mv3, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
@@ -413,12 +412,14 @@ ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
 
 > 一个消费者选择的最优购买**Q.sup[*]**
 **s.t.** **MV** .mono[**=**] **P**。
-
-翻译成人话就是：当外生价格与商品边际价值相等时，消费者的购买数量始终是最优购买量 → 没有多买或者少买的欲望
 ]
 
+???
+翻译成人话就是：当外生价格P与商品边际价值MV相等时，消费者的购买数量始终是最优购买量 , 这也就是说没有多买或者少买的欲望
+
+讲了那么多价值.而我们平时都是讨论价格？这两者有什么关系？要先讲一个故事~
+
 ---
-讲了那么多价值，我们不都是看到的是价格么？两者什么关系？
 
 #### 钻石与水悖论
 
@@ -428,7 +429,7 @@ ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
 水非常有用，但在市场上价格很低；钻石几乎没什么用，但在市场上价格很高。该悖论也称作价值悖论。为什么会有这样的现象呢？
 
 ---
-### 钻石与水悖论
+#### 钻石与水悖论
 
 .less-right[
 .pink[TV.sub[水]] .mono[>] .purple[TV.sub[钻石]]
@@ -465,7 +466,8 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 ```
 ]
 ---
-## 消费者盈余 Consumer surplus
+
+### 消费者盈余 Consumer surplus
 
 .more-left[
 ```{r cs, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
@@ -484,7 +486,7 @@ ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
 ]
 
 .less-right[
-### .pink[消费者盈余]
+#### .pink[消费者盈余]
 
 消费者购买的**总价值** .hi.purple[超过] 购买**价格(成本)**的部分。
 
@@ -492,7 +494,8 @@ ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
 ]
 
 ---
-## MV .mono[->] 个体需求曲线
+
+### 边际价值与最优购买的对应关系反映了个体的需求曲线
 
 .more-left[
 ```{r ind_demand1, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
@@ -510,11 +513,14 @@ ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
 
 (个体)边际价值表 .mono[<=>] 个体需求函数
 
-两者都表明需求量是如何随着价格的变化而变化的，*在所有其他需求决定因素不变的情况下*。
-
+两者都表明需求量是如何随着价格的变化而变化的。
 ]
 
+???
+当然，前提是在所有其他需求决定因素不变的情况下
+
 ---
+
 ### 边际价值与最优购买的对应关系反映了个体的需求曲线
 
 .more-left[
@@ -549,7 +555,8 @@ ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
 3. 人同意所有的可以被其他**替代** 
 
 ---
-## 作业
+
+### 作业
 
 **Q:** 根据下面的表格，如果价格是59，消费者会购买多少个单位？购买这一数量的产品会有多大的好处？提示：购买行为是边际上的决策；消费福利是总体的。
 
@@ -566,13 +573,12 @@ data.frame(
 row_spec(1:7, color = met_slate) %>%
 row_spec(1:7, extra_css = "line-height: 110%;")
 ```
-
---
-
-**A:** .pink[ 购买3单位。消费盈余是235 .mono[-] 3 .mono[×] 59 .mono[=] 58.]
+???
+**答案是** .pink[ 购买3单位。消费盈余是235 .mono[-] 3 .mono[×] 59 .mono[=] 58.]
 
 ---
-## 总体需求曲线
+
+### 总体需求曲线
 
 - 课上对一次滑雪的门票的估价（标准场地）。
 - 若对每人的心理价位按照从高到低排序，就会呈现下面的分布。随着定价（红色方块）下降，产品价格会低于更多消费者的意愿支付值，产品的需求就会变多。
@@ -584,7 +590,7 @@ row_spec(1:7, extra_css = "line-height: 110%;")
 
 ---
 
-## 总体需求曲线
+### 总体需求曲线
 
 - 从高到低排好序、最大意愿支付值的连线，反映的就是对门票的需求。
 - 其拟合直线就是需求曲线。
@@ -603,7 +609,7 @@ row_spec(1:7, extra_css = "line-height: 110%;")
 定义：显示在特定的价格下，.pink[消费者]愿意并能够购买的商品数量(从纵轴价格开始看)。
 
 - .pink[向下倾斜：] P增加 .mono[->] Q.sub[D] 减少。
-- 数学公式写作：$Q = a -bP$ ,其中 $a>0,b>0$ 
+- 公式写作：Q=a-bP, 其中 a>0, b>0 
 - 反映的是**需求定律**，即需求量与价格之间的负向关系。
 ]
 
@@ -621,7 +627,7 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 
 ---
 
-## 需求法则
+### 需求法则
 
 - 法则 1 
 > *其他环境变量不变* <sup>.pink[†]</sup> ，商品的需求量随着价格的上升而下降。
@@ -676,6 +682,7 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 ```
 
 ---
+
 ### 需求量与需求
 
 #### .green[需求量 Quantity demanded]
@@ -965,12 +972,11 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 
 弹性（需求的价格弹性）.mono[->]
 
-- 需求的价格弹性
-- 需求的收入弹性
-- 需求的交叉价格弹性
+自己去发掘：需求的价格弹性、需求的收入弹性、需求的交叉价格弹性
 
 ---
-## 消费者理论的分析路线（高级）
+
+### 消费者理论的分析路线（高级）
 
 .less-right[有兴趣深入消费者行为理论的同学可以研习建立在效用论基础上的消费者行为模型
 ]
@@ -980,8 +986,10 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 ]
 
 ---
+
 class: title-slide-section,inverse, middle
 # 生产者理论
+
 ---
 
 ### 供给理论的分析路线（中级）
@@ -1034,9 +1042,13 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 ### .pink[供给定律]
 - .pink[向上倾斜：] 价格增加 .mono[->] Q.sub[S] 增
 - $Q=c+d P$ ,其中 $c>0,d>0$
-- 反映的是**供给定律**，在其他环境条件不变的情况下，某种商品的价格上升时，该商品的供给量也上升；当它的价格下降时，供给量也下降。这种价格与供给量之间的正向关系，称为供给定律。
-
+- 反映的是**供给定律**
 ]
+
+???
+在其他环境条件不变的情况下，某种商品的价格上升时，该商品的供给量也随之上升；
+
+当价格下降时，供给量也下降。这种价格与供给量之间的正向关系，称为供给定律。
 
 ---
 ### 供给的影响因素
