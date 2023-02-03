@@ -52,7 +52,7 @@ p_load(
 options(htmltools.dir.version = FALSE)
 
 # Notes directory
-dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/2023spring/Lec01"
+dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/2023spring/Lec04"
 # Define pink color
 red_pink <- "#e64173"
 turquoise <- "#20B2AA"
@@ -1510,26 +1510,20 @@ layout: true
 class: title-slide-section,inverse, middle
 ---
 layout: false
-## 市场失灵是“批判”的靶心
+### 市场失灵是“批判”的靶心
 
-寻租问题只是垄断的后果之一，是站在社会公平和正义角度
-
-经济学家最初的出发点是基于效率。
-
+寻租问题只是垄断的后果之一，是公平角度。经济学家最初的出发点是基于效率。
 垄断造成的**无谓损失**就是效率损失的表现之一。
 
-此外，当讨论市场机制下的效率损失时，通常被归结为**市场失灵**的结果
-
-市场失灵的六大原因：
+除了**垄断**造成**市场失灵**以外：
 - 外部性
-- 公共品
-- 信息不对称
-- 对市场绝对的支配地位
-- 生产要素的不流动
-- 收入不平等
+- 公共品 → 产权不清晰
+- 信息不对称（市场势力）
+- 生产要素的不流动（市场势力）
+- 收入不平等（市场势力）
 
 ---
-## 导致市场失灵的原因不仅有垄断
+### 导致市场失灵的原因不仅有垄断
 
 
 - 公共品。那些不能排他性消费的产品，如洁净的空气和路灯。由于私人无法收入，因此不能由市场有效的投资和生产。解决：政府购买私企服务来解决或减轻
