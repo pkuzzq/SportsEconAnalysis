@@ -1449,6 +1449,19 @@ ggplot() +
 
 提示：当论证一个“东西”是好的作用时，通过意味着它有正的外部性。单纯依靠私人市场生成，会出现实际产量小于**社会最优产量**的情况。这时政府就会采取补贴的方式修正市场失灵。
 
+.tiny[
+.left[
+![R3eSgN](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/R3eSgN.png)
+]
+.right[
+![c99mrr](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/c99mrr.png)
+]
+]
+
+???
+关于这一作业，大家看一看这边教材的第6章。
+教材我会通过班主任发给大家。
+
 ---
 
 exclude: true
