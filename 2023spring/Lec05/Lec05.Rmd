@@ -258,7 +258,34 @@ tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", h
 ```
 class: center, middle, inverse
 
-# 封闭与开放联赛
+# 职业体育是典型垄断市场
+---
+
+### 职业体育垄断来源
+
+MLB的国家联盟是美国最古老的职业体育联盟，成立于1876年，被后来联盟一直相仿的最初的2个基本原则是职业联盟垄断势力的最初来源：
+
+1. 成员俱乐部对其主场拥有专属权  →  "领地权"在赛事产品市场的卖方垄断；
+
+2. 储备系统(reserve system)将球员约束在成员俱乐部，不能随意转会 → 在劳动力市场中构成买方垄断
+
+结果是：
+
+职业联盟作为合资公司制定赛事规则，每支球队（特许经营权）被授权在一定地域内垄断于赛事和球员。
+
+---
+### 领地权
+
+.left[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/NBA_territory.jpg  >
+
+]
+
+.right[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/NHL%20terrtory.jpg  >
+]
+
+
 
 ---
 ### 相较于完全竞争市场的社会结果
@@ -323,11 +350,41 @@ ggplot() +
 ```
 ]
 
+???
+
+
+???
+
+.tiny[
+- 产品市场，垄断者是价格制定者。
+
+- 市场需求曲线就是球队的需求曲线。
+
+- 厂商依据MR=MC决策
+
+- MR如何描述？由 $P=a-b Q$ 得总收入:
+$$
+TR(Q)=P \times Q=a Q-b Q^2
+$$
+边际收入为:
+$$
+M R(Q)=a-2 b Q
+$$
+
+- 超额利润
+
+]
+
+
 ---
-layout: true
-# 门票的价格决定
----
+# 门票市场
 class: title-slide-section,inverse, middle
+---
+### 如何定价？
+
+
+
+
 ---
 layout: false
 ## 实际的例子
@@ -1145,24 +1202,9 @@ NFLP成立于1963年，专门负责NFL知识产权许可的实体。在此之前
 
 2. 在联盟产权结构方面，目前介绍的封闭联赛和开放联赛同属于**特许经营权模式（franchise model）**，而较新的联赛如MLS和WNBA属于另一种**单一实体联盟（single-entity）**。那么在这种产权结构下，各球队的收入成本表现出何种不同于前两种模式的差别？
 ---
-layout: true
-# 职业体育的治理：垄断与反垄断
----
 class: title-slide-section,inverse, middle
----
-layout: false
 
-## 职业体育垄断来源
-
-MLB的国家联盟是美国最古老的职业体育联盟，成立于1876年，被后来联盟一直相仿的最初的2个基本原则是职业联盟垄断势力的最初来源：
-
-1. 成员俱乐部对其主场拥有专属权；
-
-2. 储备系统(reserve system)将球员约束在成员俱乐部，不能随意转会
-
-"领土权"在比赛市场中构成了球队的卖方垄断；储备系统使得球队在劳动力市场中构成买方垄断
-
-回忆下垄断市场的弊病：
+# 职业体育的治理：垄断与反垄断
 
 ---
 ## 完全竞争  *vs.* 垄断
@@ -1430,10 +1472,8 @@ ggplot() +
     
     - **第二个条款攻击垄断本身，无论它们是如何形成的。它将"公司在某些相关市场上创造、保护或巩固主导地位的行为"列为非法。（通常对体育产业影响不大）**
 ---
-layout: true
 # 职业体育的治理：维持竞争均衡
----
-class: title-slide-section,inverse, middle
+
 ---
 
 - 这一部分已经交给同学们完成

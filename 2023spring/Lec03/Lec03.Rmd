@@ -253,6 +253,26 @@ tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", h
     row_spec(1:nrow(tidy(x)), background = "white") %>%
     row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
 }
+
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- seq(0, 9, 0.1)
+atc <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+atc_min <- 3
+p_zero_profit <- atc(atc_min)
+
+lr_conditions <- ggplot() +
+  scale_x_continuous(limits = c(0, 8.5), expand=c(0,0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_zero_profit), labels = c(expression(P["收支平衡"]))) +
+  theme_market +
+  labs(x = "TP", y = "￥")+
+  geom_hline(yintercept = p_zero_profit, size = 1, linetype = "dashed", color = met_slate) +
+  stat_function( fun = atc, color = purple, size = 1) +
+  annotate("text", label = "LATC", x = 6.9, y = 25, color = purple, family = cnfont, size = 7.7) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "MC", x = 3.5, y = 31, color = red_pink, family = cnfont, size = 7.7)
+lr_conditions 
+
 ```
 class: center, middle, inverse
 
@@ -425,7 +445,6 @@ class: inverse, middle
 
 ???
 
-这就
 
 ---
 ### 生产技术
@@ -754,6 +773,18 @@ $=\frac{\frac{d Q}{d L} L-Q}{L^{2}}=\frac{1}{L}(\underbrace{\frac{d Q}{d L}}_{M 
 - 当 $M P_{L}>A P_{L}, A P_{L}$ 处于递增阶段
 - 当 $M P_{L}<A P_{L}, A P_{L}$ 处于递减阶段
 - 当 $M P_{L}=A P_{L}, A P_{L}$ 达到最大值
+
+---
+###  作业与上节课回忆
+
+1.请用图示说明政府为什么对体育场馆补贴？
+
+提示：当论证一个“东西”是好的作用时，通过意味着它有正的外部性。单纯依靠私人市场生成，会出现实际产量小于**社会最优产量**的情况。这时政府就会采取补贴的方式修正市场失灵。
+
+2.边际产量有什么规律？为什么？
+
+3.判断：企业生产继续选择生产，当且仅当其劳动生产率为正的时候。
+
 
 ---
 layout: false
@@ -1192,7 +1223,10 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 
 ???
 .tiny[
-回一下边际产量和平均产量的关系 , 当边际成本低于平均总成本的时候，那么追加产出就意味着组成的会平均成本就会下降，那么这时候企业就会往更加有效的规模去发展 .  边际成本那么之后就会上升上升到高过平均总成本的时候，那么企业再追加铲除那个这时候企业的平均成本就会上升了 
+回想一下MP会从AP的最高点穿过
+当边际成本高于平均成本的时候，开始拉高平均成本
+
+
 ]
 
 ---
@@ -1202,24 +1236,22 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 
 
 ---
-### 短期决策与长期决策
+### 短期成本与长期成本
 
-#### 短期决策
+#### 短期
 
-某些要素投入是固定的，如土地、工厂、装配线机器人等资本要素投入固定
+某些要素投入是固定的，如训练馆、大量的康复设施等
 - 固定成本不变
 
-#### 长期决策
+#### 长期
 
-- 所有要素投入是可变的，如厂商可以建立新工厂或出售现有工厂
+- 所有要素投入是可变的，如球队可以离开联盟或者更新、扩建现有设施
 - 厂商**必须而且可以**配给(rationing)最有效的要素组合
 - 达到**有效规模**
 
 ???
 
-那么长期根据企业的盈利能力, 那么可以扩大规模，也可以压缩企业规模。
-
-
+那么长期根据企业的盈利能力, 那么可以扩大投入，也可以压缩投入。
 
 ---
 ### 长期平均总成本
@@ -1282,11 +1314,10 @@ cost_data %>%
 .less-right[
 
 
-
 ]
 
 ---
-### 长期平均总成本
+### 长期平均总成本与有效规模
 
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
@@ -1311,22 +1342,317 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 ]
 
 ---
-### 规模报酬 Returns to Scale
+class: inverse, middle
 
-- 规模经济，也叫内在经济(economies of scale)
-> LATC 随着产出数量的增加而下降的阶段
-- 专业化程度变高、知识和技术的溢出效应。例如初创科技公司？
+# 供给
 
-- 规模报酬不变 (constant returns to scale)
-> LATC 随着产出数量的增加而保持不变的阶段。例如连锁店?
+---
+### 单个厂商的短期供给曲线
 
-- 规模不经济，也叫内在经济(diseconomies of scale)
-> LATC 随着产出数量的增加而上升的阶段
-- 大而慢。例如医院？
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- seq(0, 9, 0.1)
+atc <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+avc <- function(x) (12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+atc_min <- 3
+avc_min <- 3/2
+p_shut_down <- avc(avc_min)
+p_zero_profit <- atc(atc_min)
+
+sr_conditions <- ggplot() +
+  scale_x_continuous(limits = c(0, 8.5), expand=c(0,0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_shut_down, p_zero_profit), labels = c(expression(P["停业"]), expression(P["收支平衡"]))) +
+  theme_market +
+  labs(x = "TP", y = "￥")+
+  geom_hline(yintercept = p_shut_down, size = 1, linetype = "dashed", color = met_slate) +
+  geom_hline(yintercept = p_zero_profit, size = 1, linetype = "dashed", color = met_slate) +
+  stat_function( fun = atc, color = purple, size = 1) +
+  annotate("text", label = "ATC", x = 5.75, y = 31, color = purple, family = cnfont, size = 7.7) +
+  stat_function( fun = avc, color = orange, size = 1) +
+  annotate("text", label = "AVC", x = 7.8, y = 31, color = orange, family = cnfont, size = 7.7) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "SMC", x = 3.5, y = 31, color = red_pink, family = cnfont, size = 7.7)
+sr_conditions 
+```
+]
+
+---
+count: false
+### 单个厂商的短期供给曲线
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+sr_conditions +
+  annotate("label", label = "停业", x = 8.35, y = p_shut_down - 3, color = orange, family = cnfont, size = 5, hjust = 1) +
+  geom_ribbon(aes(x = x, ymin = 0, ymax = p_shut_down), fill = orange, alpha = 0.2, linetype = "blank") +
+  annotate("label", label = "运营损失", x = 8.35, y = (p_shut_down + p_zero_profit)/2, color = red_pink, family = cnfont, size = 5, hjust = 1) +
+  geom_ribbon(aes(x = x, ymin = p_shut_down, ymax = p_zero_profit), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  annotate("label", label = "利润", x = 8.35, y = p_zero_profit + 3, color = green, family = cnfont, size = 5, hjust = 1) +
+  geom_ribbon(aes(x = x, ymin = p_zero_profit, ymax = 32.5), fill = green, alpha = 0.2, linetype = "blank")
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商何时运营？何时停业？
+
+.pink[A: ] 完全竞争市场，是否停业完全依赖市场价格
+
+1. .hi.purple[ATC] .mono[<] P <br> .mono[-->] .green[有利润]
+
+2. .hi.orange[AVC] .mono[<] P .mono[<] .hi.purple[ATC] <br> .mono[-->] .pink[存在运营损失]
+
+3. P .mono[<] .hi.orange[AVC] <br> .mono[-->] .orange[停业]
+
+]
+
+---
+### 单个厂商的短期供给曲线
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- seq(0, 9, 0.1)
+atc <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+avc <- function(x) (12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+atc_min <- 3
+avc_min <- 3/2
+p_shut_down <- avc(avc_min)
+p_zero_profit <- atc(atc_min)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 8.5), expand=c(0,0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_shut_down, p_zero_profit), labels = c(expression(P["停业"]), expression(P["收支平衡"]))) +
+  theme_market +
+  labs(x = "TP", y = "￥")+
+  geom_hline(yintercept = p_shut_down, size = 1, linetype = "dashed", color = met_slate) +
+  geom_hline(yintercept = p_zero_profit, size = 1, linetype = "dashed", color = met_slate) +
+  stat_function( fun = atc, color = purple, size = 1, alpha = 0.5) +
+  annotate("text", label = "ATC", x = 5.75, y = 31, color = purple, family = cnfont, size = 7.7, alpha = 0.5) +
+  stat_function( fun = avc, color = orange, size = 1, alpha = 0.5) +
+  annotate("text", label = "AVC", x = 7.8, y = 31, color = orange, family = cnfont, size = 7.7, alpha = 0.5) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1, alpha = 0.5) +
+  annotate("text", label = "SMC", x = 3.5, y = 31, color = red_pink, family = cnfont, size = 7.7, alpha = 0.5) +
+  stat_function( xlim = c(avc_min, 8.5), fun = marginal_cost, color = purple, size = 1.5, linetype = "longdash") +
+  geom_segment(aes(x = 0.05, xend = 0.05, y = 0, yend = p_shut_down), color = purple, linetype = "longdash", size = 1.5) +
+  annotate("text", label = "S", x = 3.5, y = 28, color = purple, family = cnfont, size = 7.7)
+```
+]
+
+.less-right[
+
+### .purple[短期供给曲线]
+
+P .mono[>] P.sub[停业] .mono[-->] 短期供给曲线 .mono[=] .hi.purple[SMC] 在.hi.orange[AVC]以上的部分
+
+P .mono[<] P.sub[停业] .mono[-->] 短期供给曲线 .mono[=] Y轴
+
+]
+
+---
+count: false
+### 单个厂商的短期供给曲线
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- seq(0, 9, 0.1)
+atc <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+avc <- function(x) (12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+atc_min <- 3
+avc_min <- 3/2
+p_shut_down <- avc(avc_min)
+p_zero_profit <- atc(atc_min)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 8.5), expand=c(0,0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_shut_down, p_zero_profit), labels = c(expression(P["停业"]), expression(P["收支平衡"]))) +
+  theme_market +
+  labs(x = "TP", y = "￥")+
+  geom_hline(yintercept = p_shut_down, size = 1, linetype = "dashed", color = met_slate) +
+  geom_hline(yintercept = p_zero_profit, size = 1, linetype = "dashed", color = met_slate) +
+  stat_function( xlim = c(avc_min, 8.5), fun = marginal_cost, color = purple, size = 1.5, linetype = "solid") +
+  geom_segment(aes(x = 0.05, xend = 0.05, y = 0, yend = p_shut_down), color = purple, linetype = "solid", size = 1.5) +
+  annotate("text", label = "S", x = 3.5, y = 28, color = purple, family = cnfont, size = 7.7)
+```
+]
+
+.less-right[
+
+#### .purple[短期供给曲线]
+
+P .mono[>] P.sub[停业] .mono[-->] 短期供给曲线 .mono[=] .hi.purple[SMC] 在.hi.orange[AVC]以上的部分
+
+P .mono[<] P.sub[停业] .mono[-->] 短期供给曲线 .mono[=] Y轴
+
+思考：那么市场的供给曲线呢？
+
+]
 
 ???
 
-在经济实体规模扩大时，产量的增加小于要素投入的增加比例，收益递减,那么就应该控制规模。
+**市场短期供给曲线是多个厂商的短期供给加总，因此市场短期供给曲线也是右上倾斜**,但是更平坦些。
+
+---
+### 单个厂商的长期供给曲线
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+lr_conditions 
+```
+]
+
+.less-right[
+
+.pink[Q: ] 何时运营？何时停业？
+
+.pink[A: ] 完全竞争市场，是否停业完全依赖市场价格
+
+]
+
+---
+count: false
+### 单个厂商的长期供给曲线
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+lr_conditions +
+  annotate("label", label = "利润", x = 8.35, y = p_zero_profit + 3, color = green, family = cnfont, size = 5, hjust = 1) +
+  geom_ribbon(aes(x = x, ymin = p_zero_profit, ymax = 32.5), fill = green, alpha = 0.2, linetype = "blank")
+```
+]
+
+.less-right[
+
+.pink[Q: ] 何时运营？何时停业？
+
+.pink[A: ] 完全竞争市场，是否停业完全依赖市场价格
+
+1. P .mono[>] .hi.purple[LATC] <br> .mono[-->] .green[有利润]
+
+]
+
+---
+count: false
+### 单个厂商的长期供给曲线
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+lr_conditions +
+  annotate("label", label = "退出", x = 8.35, y = p_zero_profit - 3, color = orange, family = cnfont, size = 5, hjust = 1) +
+  geom_ribbon(aes(x = x, ymin = 0, ymax = p_zero_profit), fill = orange, alpha = 0.2, linetype = "blank")
+```
+]
+
+.less-right[
+
+.pink[Q: ] 何时运营？何时停业？
+
+.pink[A: ] 完全竞争市场，是否停业完全依赖市场价格
+
+1. P .mono[>] .hi.purple[LATC] <br> .mono[-->] .green[有利润]
+
+2. .hi.purple[LATC] .mono[>] P <br> .mono[-->] .orange[退出市场]
+
+]
+
+---
+count: false
+### 单个厂商的长期供给曲线
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+lr_conditions +
+  annotate("label", label = "退出", x = 8.35, y = p_zero_profit - 3, color = orange, family = cnfont, size = 5, hjust = 1) +
+  geom_ribbon(aes(x = x, ymin = 0, ymax = p_zero_profit), fill = orange, alpha = 0.2, linetype = "blank") +
+  annotate("label", label = "利润", x = 8.35, y = p_zero_profit + 3, color = green, family = cnfont, size = 5, hjust = 1) +
+  geom_ribbon(aes(x = x, ymin = p_zero_profit, ymax = 32.5), fill = green, alpha = 0.2, linetype = "blank")
+```
+]
+
+.less-right[
+
+.pink[Q: ] 何时运营？何时停业？
+
+.pink[A: ] 完全竞争市场，是否停业完全依赖市场价格
+
+1. P .mono[>] .hi.purple[LATC] <br> .mono[-->] .green[有利润]
+
+2. .hi.purple[LATC] .mono[>] P <br> .mono[-->] .orange[退出市场]
+
+]
+
+---
+### 单个厂商的长期供给曲线
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- seq(0, 9, 0.1)
+atc <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+atc_min <- 3
+p_zero_profit <- atc(atc_min)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 8.5), expand=c(0,0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_zero_profit), labels = c(expression(P["收支平衡"]))) +
+  theme_market +
+  labs(x = "TP", y = "￥")+
+  geom_hline(yintercept = p_zero_profit, size = 1, linetype = "dashed", color = met_slate) +
+  stat_function( fun = atc, color = purple, size = 1, alpha = 0.5) +
+  annotate("text", label = "LATC", x = 6.9, y = 25, color = purple, family = cnfont, size = 7.7) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1, alpha = 0.5) +
+  annotate("text", label = "MC", x = 3.5, y = 31, color = red_pink, family = cnfont, size = 7.7, alpha = 0.5) +
+  stat_function( xlim = c(atc_min, 8.5), fun = marginal_cost, color = purple, size = 1.5, linetype = "longdash") +
+  geom_segment(aes(x = 0.05, xend = 0.05, y = 0, yend = p_zero_profit), color = purple, linetype = "longdash", size = 1.5) +
+  annotate("text", label = "S", x = 3.5, y = 28, color = purple, family = cnfont, size = 7.7)
+```
+]
+
+.less-right[
+
+### .purple[单个厂商的长期供给曲线]
+
+P .mono[>] P.sub[收支平衡] .mono[-->] 长期供给曲线 <br> .mono[=] .hi.red-pink[MC]高于最小.hi.purple[LATC]以上的部分
+
+
+P .mono[<] P.sub[收支平衡] .mono[-->] 长期供给曲线 <br> .mono[=]  Y轴
+
+]
+
+---
+### 单个厂商的长期供给曲线
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- seq(0, 9, 0.1)
+atc <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+atc_min <- 3
+p_zero_profit <- atc(atc_min)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 8.5), expand=c(0,0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_zero_profit), labels = c(expression(P["收支平衡"]))) +
+  theme_market +
+  labs(x = "TP", y = "￥")+
+  geom_hline(yintercept = p_zero_profit, size = 1, linetype = "dashed", color = met_slate) +
+  stat_function( xlim = c(atc_min, 8.5), fun = marginal_cost, color = purple, size = 1.5, linetype = "solid") +
+  geom_segment(aes(x = 0.05, xend = 0.05, y = 0, yend = p_zero_profit), color = purple, linetype = "solid", size = 1.5) +
+  annotate("text", label = "S", x = 3.5, y = 28, color = purple, family = cnfont, size = 7.7)
+```
+]
+
+.less-right[
+
+#### .purple[单个厂商的长期供给曲线]
+
+P .mono[>] P.sub[收支平衡] .mono[-->] 长期供给曲线 <br> .mono[=] .hi.red-pink[MC]高于最小.hi.purple[LATC]以上的部分
+
+P .mono[<] P.sub[收支平衡] .mono[-->] 长期供给曲线 <br> .mono[=]  Y轴
+
+]
 
 ---
 
