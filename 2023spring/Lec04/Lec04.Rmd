@@ -34,6 +34,7 @@ knit: pagedown::chrome_print
 #     df_print: tibble
 #     latex_engine: xelatex
 
+
 ---
 
 ```{R, setup, include = F}
@@ -257,1044 +258,48 @@ tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", h
 ```
 class: center, middle, inverse
 
-# 供给：收入衍生的生产决策
-
-
+# 职业体育是典型垄断市场
 ---
-layout: false
-### 收入线
-
-.less-right[生产者理论主要是指厂商经济行为模型。职业联盟因为是由多个厂商（俱乐部）构成，俱乐部行为决定了联盟结构，因此本讲中会稍作深入讲解。
-
-- 成本线：生产成本、生产技术、厂商决策
-
-- .hi.orange[收入线：市场结构决定了定价能力]
-
-]
-
-.more-left[
-<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/atpI5Q.png  height="350" width="500">
-
-]
-
----
-### 什么是市场？以及如何划分？
-
-- 市场是物品买卖双方相互作用并得以决定其交易价格和数量的一种**组织形式或制度**
-- 市场可以是有形场所，也可以是一个虚拟平台
-- 有多少种交易商品，就有多少个市场
-
-- 划分市场类型的5大要素： 
-    - 买卖方数目
-    - 产品差异度
-    - 行业壁垒性: 厂商进入/退出一个行业的难易程度
-    - 价格控制力: 单个厂商对价格的控制程度
-    - 信息完备性
-
----
-
-### 市场结构的分类
 
 .center[
-<img src="figure/markstruc.svg"  height="450" width="680" >
+![SportsTeamsWiththeLargestValueGrowthFrom1996to2021](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/Sports Teams With the Largest Value Growth From 1996 to 2021.png)
 ]
 
----
-layout: true
-# 职业体育市场
-class: title-slide-section,inverse, middle
----
-layout: false
-### 总体规模
+???
+如果说过去25年间最赚钱的行业，职业体育这个古老的行业可以说占有一席之地。
 
-- 在当地经济中的比重相对较小
-    - 2017年美国四大体育项目（Big4）的收入总额为320亿$（Forbes），但当年的经济19.45万亿$，占1.64‰。
-
-- 越来越重要?
-  - 人口结构与需求
-      - 中产阶级人群扩大，更休闲、更高品质的生活
-      - 全生命周期，追求更健康
-    - 行业特点：辐射范围广 + 曝光度高
-    - 国家层面：健康中国 + 体育强国
-    
----
-
-### 球队产出
-
-在体育市场，定义和衡量产出是复杂的.
-
-假设单厂商是联盟中的球队，那么衡量球队的产出TP可以如下：
-
-- 上座率(attendance) 或收视率(television viewership)：基于收入，直接与球队收入TR相关
-
-- 参赛数量：基于要素角度，球队投入要素（L或者K）越多，参赛数量就多
-
-- 胜率： 
-如果球队收入与球迷支持度连接，那么产出TP以胜率就是合理的，而不是参赛数量 .mono[->] 连接了要素和收入
-
-	- 这里潜在的假设是：**利润来自胜率**
+为什么？最重要的是它垄断的特点。
 
 ---
+### 职业体育垄断来源
 
-## 厂商行为：球队产出
+MLB的国家联盟是美国最古老的职业体育联盟，成立于1876年，被后来联盟一直相仿的最初的2个基本原则是职业联盟垄断势力的最初来源：
 
-体育产出的衡量问题类似于高等教育的产出问题。
+1. 成员俱乐部对其主场拥有专属权  →  "领地权"在赛事产品市场的卖方垄断；
 
-从要素投入角度看，大学可以将产出定义为注册学生的数量。
+2. 储备系统(reserve system)将球员约束在成员俱乐部，不能随意转会 → 在劳动力市场中构成买方垄断
 
-从收入相关角度看，可将产出定义为学生学习量，因为其与未来收入相关。
- 
-- 视研究具体问题而定，没有简单的解决办法
+结果是：
 
-- 强行给产出下一个普遍的定义会使问题变得模糊不清
-
-- 遵循一般研究习惯：球队产出定义为**每个赛季的胜率**
+职业联盟作为合资公司制定赛事规则，每支球队（特许经营权）被授权在一定地域内垄断于赛事和球员。
 
 ---
+### 领地权
 
-## 厂商行为：球队生产函数
-
-
-- 与产品市场相同的是，球队投入品同样包含资本K与劳动力L。
-	- 短期，一种生产要素是不变的
-	    - 一般假定是资本不变，如球场容量等
-
-	- 劳动力投入在职业球队表现为**球员天赋(talent)**
-
-- **边际产量MP下降**：表现为对天赋的不断投入，并不能获得不断上升的胜率
-
-	- 即便对于超级球星也是如此
-	
-	- 球星越多，每个球星获得的出手机会越小，对球队胜率贡献度就会越小
-
-
----
-
-### 短期：以球星作为投入反映边际产量下降
-
-.pull-left[
-.caption[.center[.smallest[NBA勇士11-19赛季胜率]]]
-.center[
-<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/dGWrsQ.png height="180" width="460">
+.left[
+.left[NBA]
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/NBA_territory.jpg  >
 ]
 
-- NBA、足球的胜率与冠军关系不同
-
-  - .hi.slate[NBA: ].purple[常规赛胜率高] .mono[!=] .orange[季后赛总冠军]
-
-  - .hi.slate[足 球: ] .purple[联赛胜率高] .mono[==] .orange[联赛冠军]
-]
-
-.pull-right[
-- 短期：看常规赛的胜率情况
-    
-    - 16-17赛季KD到来并未产生显著效果
-
-- 中长期（总冠军与常规赛战绩的权衡取舍）：吸取15-16赛未夺冠的教训，球队会平衡球星健康，适当放弃短期利益
-
-    - 16-17赛季KD延续了勇士的总冠军
-
-- 长期（双产出目标）：16-19赛季常规赛下滑，退出夺冠序列，考虑年龄、伤病和非主力球员的流动
-]
----
-layout: true
-# 职业体育市场结构的垄断属性
----
-class: title-slide-section,inverse, middle
----
-layout: false
-### 垄断形成的市场条件
-
-1. 单一的卖家：市场上只有唯一的一个厂商生产和销售商品
-2. 独特的产品：没有功能接近的替代品
-3. 进入壁垒高：极为困难，甚至不可能
-
-### 结果
-
-**市场力量：** 垄断者有能力影响市场价格
-
-- 垄断者是**价格制定者**
-
-- 垄断厂商需求曲线：就是**市场需求曲线**
-
----
-layout: false
-## 垄断产生的5大原因
-
-1. 控制了生产需要的全部资源或基本资源供给
-
-2. 资本融资困难
-
-3. 经济规模门槛
-
-4. 政府特许授权
-
-5. 专利和版权法保护
-
----
-## 垄断产生的5大原因
-
-### 1.控制了生产需要的全部资源或基本资源供给
-
-**例子**  
-
-- 20世纪初，美国铝业公司（Alcoa）拥有全球90%的铝土矿供应。
-
-- 戴比尔斯（De Beers）公司在2000年代中期之前拥有全球大部分的钻石原料。
-
-- 劳动力市场的垄断：球员工会作为球队劳动力获得的唯一渠道
-
----
-## 垄断产生的5大原因
-### 2.资本融资困难
-
-在位垄断者往往规模很大 .mono[-->] 新竞争者需要大量的资金才能有效竞争
-
-- 一般认为与老牌垄断者竞争，赢的机会很低 <br> .mono[-->] 投资方认为有风险，不会轻易发放贷款
-
-**例子：** PC操作系统
-
-- 取代Windows 10作为个人电脑的主要操作系统将需要大量的资金
-
-- 投资方会选择微软而不是你的创业公司来开发下一代大型操作系统
-
----
-## 垄断产生的5大原因
-### 3.经济规模门槛
-
-进入某行业前期需要巨大的固定资产，但进入后边际成本较低 <br> .mono[-->] 随着时间的推移，有"大吃小"的趋势。
-
-**例子：** 自然垄断
-
-- 电和水
-- 有线互联网和电视
-- 铁路
-- 大都会区球队所拥有的球场：一些球队为了获得垄断势力，会资助修建球场
-
----
-
-## 垄断产生的5大原因
-### 4.政府特许授权
-
-政府发放许可**要求**建立行业垄断
-
-- 许可证 .mono[=] 进入行业的法律障碍和从事某种职业的资质
-
-**理由：** 追求规模经济或减少竞争带来的负外部性
-
-**例子**
-
-- 垃圾收集
-- 出租车牌照
-- 医生、律师的从业许可证
-
----
-## 垄断产生的5大原因
-### 5.专利和版权法保护
-
-政府允许厂商在某段时间内独家销售某种特定商品或服务的权利
-
-- 独家专权 .mono[-->] 垄断
-
-**权衡取舍：** 牺牲市场机制带来的激励创新
-
-**例子**
-
-- 疫苗
-- 书籍和音乐
-- 赛事转播权
-
----
-
-.pink[Q: ]职业体育属于那种？
-
---
-
-.pink[A: ] 垄断大集合！
-
---
-
-  - 联盟整体行业垄断：新球队进入面临着其他成员障碍
-  
---
-
-  - 联盟整体行业垄断：法律上的反垄断豁免(MLB)
-
---
-
-  - 单球队垄断：地理区域排他
-
---
-
-  - 单球队垄断：使用或建造比赛设施需要大量资金
-
---
-
-  - 单球队垄断：某些球队建立的球迷忠诚，欧洲开放联赛曼联、皇马
-  
---
-
-  最终形成：**产品市场垄断 + 劳动力市场买卖双方垄断**
-
---
-
-  这两次课程：不特别说明，都是垄断产品市场的行为分析；垄断的劳动力市场会单独用两次课程完成。
----
-
-## 垄断市场的厂商分析思路
-
-市场需求曲线 .mono[=] 厂商需求曲线 .mono[->] 总收入TR=P(Q)*Q <br>
-
-.mono[->] AR=P(Q) 就是市场和厂商的需求曲线 .mono[->] MR <br>
-
-.mono[->] 根据MR=MC利润最大化，分析产量和价格的决策过程
-
-
-
-- 垄断厂商的供给曲线就是MC
-
-- 对于完全竞争厂商来说，价格是外生变量
-
-- 对于垄断企业来说，价格是**内生变量**，即它可以同时决定价格和产量
-
-- 厂商的利润最大化决策就是市场的价格和产量均衡过程
----
-## 垄断市场的厂商需求函数
-
-垄断市场中只有一个厂商，所以市场的需求曲线就是垄断厂商所面临的需求需求，它是一条向右下方倾斜的曲线。**它表示垄断厂商可以用减少销量的办法提高市场价格**，也可以用增加销量的办法来压低市场价格。定义为
-$P(Q)=a-b Q$ ,其中 $a>0，b>0$
-.pull-left[
-.center[**垄断市场厂商需求曲线**]
-```{r, echo = FALSE, fig.height = 3.35, fig.width = 3.35, dev = "svg"}
-demand <- function(x) 8 - 0.6*x
-inv_demand <- function(x) (5/3)*(8 - x)
-p_1 <- 7
-p_2 <- 6
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
-  theme_market +
-  labs(x = "Q", y = "P") +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  annotate("text", label = "D", x = 10, y = 2.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-.pull-right[
-.center[**完美竞争市场厂商需求曲线**]
-```{r, echo = FALSE, fig.height = 3.35, fig.width = 3.35,  dev = "svg"}
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
-  theme_market +
-  labs(x = "Q", y = "P") +
-  geom_hline(yintercept = 5, color = red_pink, size = 1) +
-  annotate("text", label = "D", x = 10, y = 5.5, color = red_pink, family = cnfont, size = 9)
-```
-]
-
----
-## 垄断市场厂商的降价抉择
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 7
-p_2 <- 9
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "Q", y = "P") +
-  # geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
-  geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  # geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  # geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  # geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-- $\pi =TR(P * Q)-TC$ ，但 $P$ 与 $Q$ 相反方向运动，那么乘积如何?
-
-.pink.hi[价格效应：] 随着价格的下降，现有顾客支付的更少，.green[TR]减少。
-
-.purple.hi[产出效应：] 随着价格的下降，客户购买更多商品，.green[TR]增加。
+.right[
+.left[NHL]
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/NHL%20terrtory.jpg  >
 
 ]
 
 ---
-count: false
-## 垄断市场厂商的降价抉择
+### 相较于完全竞争市场的社会结果
 
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 7
-p_2 <- 9
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "Q", y = "P") +
-  geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
-  # geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-- $\pi =TR(P * Q)-TC$ ，但 $P$ 与 $Q$ 相反方向运动，那么乘积如何?
-
-.pink.hi[价格效应：] 随着价格的下降，现有顾客支付的更少，.green[TR]减少。
-
-.purple.hi[产出效应：] 随着价格的下降，客户购买更多商品，.green[TR]增加。
-
-]
-
----
-count: false
-## 垄断市场厂商的降价抉择
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 7
-p_2 <- 9
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "Q", y = "P") +
-  geom_rect(aes(xmin = 0, xmax = q_2, ymin = p_1, ymax = p_2), alpha = 0.2, fill = red_pink) +
-  geom_rect(aes(xmin = q_1, xmax = q_2, ymin = 0, ymax = p_1), alpha = 0.2, fill = purple) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-- $\pi =TR(P * Q)-TC$ ，但 $P$ 与 $Q$ 相反方向运动，那么乘积如何?
-
-.pink.hi[价格效应：] 随着价格的下降，现有顾客支付的更少，.green[TR]减少。
-
-.purple.hi[产出效应：] 随着价格的下降，客户购买更多商品，.green[TR]增加。
-
-.purple[产出效应] <br> $\quad$ .mono[>] .pink[价格效应] .mono[==>] <br> 厂商降价导致 .green[总收入增加]
-
-]
-
----
-## 垄断市场厂商的降价抉择
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 4
-p_2 <- 6
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "Q", y = "P") +
-  # geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
-  geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  # geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  # geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  # geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-- $\pi =TR(P * Q)-TC$ ，但 $P$ 与 $Q$ 相反方向运动，那么乘积如何?
-
-.pink.hi[价格效应：] 随着价格的下降，现有顾客支付的更少，.green[TR]减少。
-
-.purple.hi[产出效应：] 随着价格的下降，客户购买更多商品，.green[TR]增加。
-
-]
-
----
-count: false
-## 垄断市场厂商的降价抉择
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 4
-p_2 <- 6
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "Q", y = "P") +
-  geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
-  # geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-- $\pi =TR(P * Q)-TC$ ，但 $P$ 与 $Q$ 相反方向运动，那么乘积如何?
-
-.pink.hi[价格效应：] 随着价格的下降，现有顾客支付的更少，.green[TR]减少。
-
-.purple.hi[产出效应：] 随着价格的下降，客户购买更多商品，.green[TR]增加。
-
-]
-
----
-count: false
-## 垄断市场厂商的降价抉择
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 4
-p_2 <- 6
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "Q", y = "P") +
-  geom_rect(aes(xmin = 0, xmax = q_2, ymin = p_1, ymax = p_2), alpha = 0.2, fill = red_pink) +
-  geom_rect(aes(xmin = q_1, xmax = q_2, ymin = 0, ymax = p_1), alpha = 0.2, fill = purple) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-- $\pi =TR(P * Q)-TC$ ，但 $P$ 与 $Q$ 相反方向运动，那么乘积如何?
-
-.pink.hi[价格效应：] 随着价格的下降，现有顾客支付的更少，.green[TR]减少。
-
-.purple.hi[产出效应：] 随着价格的下降，客户购买更多商品，.green[TR]增加。
-
-.purple[产出效应] <br> $\quad$ .mono[=] .pink[价格效应] .mono[==>] <br> 厂商降价导致 .green[总收入不变]
-
-]
-
----
-## 垄断市场厂商的降价抉择
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 1
-p_2 <- 3
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "Q", y = "P") +
-  # geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
-  geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  # geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  # geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  # geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-- $\pi =TR(P * Q)-TC$ ，但 $P$ 与 $Q$ 相反方向运动，那么乘积如何?
-
-.pink.hi[价格效应：] 随着价格的下降，现有顾客支付的更少，.green[TR]减少。
-
-.purple.hi[产出效应：] 随着价格的下降，客户购买更多商品，.green[TR]增加。
-
-]
-
----
-count: false
-## 垄断市场厂商的降价抉择
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 1
-p_2 <- 3
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "Q", y = "P") +
-  geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
-  # geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-- $\pi =TR(P * Q)-TC$ ，但 $P$ 与 $Q$ 相反方向运动，那么乘积如何?
-
-.pink.hi[价格效应：] 随着价格的下降，现有顾客支付的更少，.green[TR]减少。
-
-.purple.hi[产出效应：] 随着价格的下降，客户购买更多商品，.green[TR]增加。
-
-.purple[产出效应] <br> $\quad$ .mono[<] .pink[价格效应] .mono[==>] <br> 厂商降价导致 .green[总收入减少]
-
-]
-
----
-count: false
-## 垄断市场厂商的降价抉择
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 1
-p_2 <- 3
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "Q", y = "P") +
-  geom_rect(aes(xmin = 0, xmax = q_2, ymin = p_1, ymax = p_2), alpha = 0.2, fill = red_pink) +
-  geom_rect(aes(xmin = q_1, xmax = q_2, ymin = 0, ymax = p_1), alpha = 0.2, fill = purple) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-- $\pi =TR(P * Q)-TC$ ，但 $P$ 与 $Q$ 相反方向运动，那么乘积如何?
-
-.pink.hi[价格效应：] 随着价格的下降，现有顾客支付的更少，.green[TR]减少。
-
-.purple.hi[产出效应：] 随着价格的下降，客户购买更多商品，.green[TR]增加。
-
-.purple[产出效应] <br> $\quad$ .mono[<] .pink[价格效应] .mono[==>] <br> 厂商降价导致 .green[总收入减少]
-
-]
-
----
-## 垄断市场厂商的边际收入
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-marginal_revenue <- function(x) 10 - 2*x
-
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "Q", y = "P") +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  stat_function(fun = marginal_revenue, color = green, size = 1) +
-  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) +
-  annotate("text", label = "MR", x = 5.5, y = 0.65, color = green, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-
-- 定义：产出增加一个单位所产生的总收入的变化。
-
-由 $P=a-b Q$ 得总收入：
-$T R(Q)=P Q=a Q-b Q^{2}$ 
-
-边际收入为:
-$M R(Q)=a-2 b Q$
-
-]
-
----
-## 垄断市场厂商的边际收入
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-marginal_revenue <- function(x) 10 - 2*x
-
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "Q", y = "P") +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  stat_function(fun = marginal_revenue, color = green, size = 1) +
-  annotate("text", label = "D", x = 10, y = 0.65, color = red_pink, family = cnfont, size = 9) +
-  annotate("text", label = "MR", x = 5.5, y = 0.65, color = green, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-
-垄断者面临一个向下倾斜的MR曲线。
-
-- MR .mono[>] $0 .mono[-->] 总收入增加
-
-- MR .mono[=] $0 .mono[-->] 总收入最大
-
-- MR .mono[<] $0 .mono[-->] 总收入下降
-
-]
-
----
-## 垄断市场厂商的利润最大化
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-x <- seq(0, 8, 0.1)
-atc <- function(x) (20 + 12*x - 2*x^2 + (2/3)*x^3)/x
-marginal_cost <- function(x) 12 - 4*x + 2*x^2
-demand <- function(x) 37 - 5*x
-marginal_revenue <- function(x) 37 - 10*x
-q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
-not_p <- marginal_revenue(q)
-p <- demand(q)
-cost <- atc(q)
-z <- seq(0, q, 0.001)
-
-p_max_1 <- ggplot() +
-  scale_x_continuous(limits = c(0, 7.5), expand=c(0,0), breaks = c(q), labels = c(4)) +
-  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(cost, p), labels = c(10, 16)) +
-  theme_market +
-  labs(x = "Q", y = "￥") +
-  stat_function( fun = atc, color = orange, size = 1) +
-  annotate("text", label = "ATC", x = 6.5, y = 35, color = orange, family = cnfont, size = 9) +
-  stat_function( fun = marginal_cost, color = purple, size = 1) +
-  annotate("text", label = "MC", x = 1, y = 8, color = purple, family = cnfont, size = 9)
-p_max_1
-```
-]
-
-.less-right[
-
-.pink[Q: ] 垄断者如何实现利润最大化？（MC跟产品市场是否垄断无关）
-
-]
-
----
-count: false
-## 垄断市场厂商的利润最大化
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-p_max_1
-```
-]
-
-.less-right[
-
-.pink[Q: ] 垄断者如何实现利润最大化？（MC跟产品市场是否垄断无关）
-
-.pink[A: ] 2个步骤
-
-- **第1步:** .pink[在 MR .mono[=] MC 处将产量配给到 Q.sub[M].]
-
-]
-
----
-count: false
-## 垄断市场厂商的利润最大化
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-p_max_1 <- p_max_1 +
-  stat_function( fun = demand, color = red_pink, size = 1) +
-  stat_function( fun = marginal_revenue, color = green, size = 1) +
-  annotate("text", label = "D", x = 6.25, y = 8, color = red_pink, family = cnfont, size = 9) +
-  annotate("text", label = "MR", x = 3.5, y = 8, color = green, family = cnfont, size = 9)
-p_max_1
-```
-]
-
-.less-right[
-
-.pink[Q: ] 垄断者如何实现利润最大化？（MC跟产品市场是否垄断无关）
-
-.pink[A: ] 2个步骤
-
-- **第1步:** .pink[在 MR .mono[=] MC 处将产量配给到 Q.sub[M].]
-
-]
-
----
-count: false
-## 垄断市场厂商的利润最大化
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-p_max_1 <- p_max_1 +
-  geom_point(aes(x = q, y = not_p), color = met_slate, size = 2) +
-  geom_segment(aes(x = q, xend = q, y = 0, yend = not_p), color = met_slate, linetype = "dashed", size = 1)
-p_max_1
-```
-]
-
-.less-right[
-
-.pink[Q: ] 垄断者如何实现利润最大化？（MC跟产品市场是否垄断无关）
-
-.pink[A: ] 2个步骤
-
-- **第1步:** .pink[在 MR .mono[=] MC 处将产量配给到 Q.sub[M].]
-
-]
-
----
-count: false
-## 垄断市场厂商的利润最大化
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-p_max_1
-```
-]
-
-.less-right[
-
-.pink[Q: ] 垄断者如何实现利润最大化？（MC跟产品市场是否垄断无关）
-
-.pink[A: ] 2个步骤
-
-- **第1步:** .pink[在 MR .mono[=] MC 处将产量配给到 Q.sub[M]. ]
-
-- **第2步:** .pink[根据需求决定价格 P.sub[M] .]
-
-]
-
----
-count: false
-## 垄断市场厂商的利润最大化
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-p_max_1 <- p_max_1 +
-  geom_point(aes(x = q, y = p), color = met_slate, size = 2) +
-  geom_segment(aes(x = q, xend = q, y = not_p, yend = p), color = met_slate, linetype = "dashed", size = 1)
-p_max_1
-```
-]
-
-.less-right[
-
-.pink[Q: ] 垄断者如何实现利润最大化？（MC跟产品市场是否垄断无关）
-
-.pink[A: ] 2个步骤
-
-- **第1步:** .pink[在 MR .mono[=] MC 处将产量配给到 Q.sub[M]. ]
-
-- **第2步:** .pink[根据需求决定价格 P.sub[M] .]
-
-]
-
----
-count: false
-## 垄断市场厂商的利润最大化
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-p_max_1 <- p_max_1 +
-  geom_segment(aes(x = 0, xend = q, y = p, yend = p), color = met_slate, linetype = "dashed", size = 1)
-p_max_1
-```
-]
-
-.less-right[
-
-.pink[Q: ] 垄断者如何实现利润最大化？（MC跟产品市场是否垄断无关）
-
-.pink[A: ] 2个步骤
-
-- **第1步:** .pink[在 MR .mono[=] MC 处将产量配给到 Q.sub[M]. ]
-
-- **第2步:** .pink[根据需求决定价格 P.sub[M] .]
-
-]
-
----
-count: false
-## 垄断市场厂商的利润最大化
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-p_max_1
-```
-]
-
-.less-right[
-
-.pink[Q: ] 垄断者如何实现利润最大化？（MC跟产品市场是否垄断无关）
-
-.pink[A: ] 2个步骤
-
-- **第1步:** .pink[在 MR .mono[=] MC 处将产量配给到 Q.sub[M]. ]
-
-- **第2步:** .pink[根据需求决定价格 P.sub[M] .]
-
-长期利润 .mono[=] (P.sub[M] .mono[-] ATC) &times; Q.sub[M]
-]
-
----
-count: false
-## 垄断市场厂商的利润最大化
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-p_max_1 <- p_max_1 +
-  geom_point(aes(x = q, y = cost), color = met_slate, size = 2) +
-  geom_segment(aes(x = 0, xend = q, y = cost, yend = cost), color = met_slate, linetype = "dashed", size = 1)
-p_max_1
-```
-]
-
-.less-right[
-
-.pink[Q: ] 垄断者如何实现利润最大化？（MC跟产品市场是否垄断无关）
-
-.pink[A: ] 2个步骤
-
-- **第1步:** .pink[在 MR .mono[=] MC 处将产量配给到 Q.sub[M]. ]
-
-- **第2步:** .pink[根据需求决定价格 P.sub[M] .]
-
-长期利润 .mono[=] (P.sub[M] .mono[-] ATC) &times; Q.sub[M] <br> $\quad$ .mono[=] (￥16 .mono[-] ￥10) &times; 4
-]
-
----
-count: false
-## 垄断市场厂商的利润最大化
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-p_max_1 <- p_max_1 +
-  geom_ribbon(aes(x = z, ymin = cost, ymax = p), fill = green, alpha = 0.2, linetype = "blank") +
-  annotate("text", label = "利润", x = q/3, y = (p + cost)/2, color = green, family = cnfont, size = 6) 
-p_max_1
-```
-]
-
-.less-right[
-
-.pink[Q: ] 垄断者如何实现利润最大化？（MC跟产品市场是否垄断无关）
-
-.pink[A: ] 2个步骤
-
-- **第1步:** .pink[在 MR .mono[=] MC 处将产量配给到 Q.sub[M]. ]
-
-- **第2步:** .pink[根据需求决定价格 P.sub[M] .]
-
-长期利润 .mono[=] (P.sub[M] .mono[-] ATC) &times; Q.sub[M] <br> $\quad$ .mono[=] (￥16 .mono[-] ￥10) &times; 4 <br> $\quad$ .mono[=] ￥24.
-]
----
-## 完全竞争  *vs.* 垄断
-
-.pull-left[
-.center[**完全竞争市场**]
-```{r, echo = FALSE, fig.height = 4.75, fig.width = 3.75,  dev = "svg"}
-x <- 0:10
-demand <- function(x) 10 - x
-supply <- function(x) 1 + x
-
-q <- uniroot(function(x) demand(x) - supply(x), range(x))$root
-p <- demand(q)
-
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(q), labels = c(expression(Q[C]))) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(p), labels = c(expression(P[C]))) +
-  theme_market +
-  labs(x = "Q", y = "P") +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  stat_function(fun = supply, color = purple, size = 1) +
-  geom_point(x = q, y = p, color = met_slate, size = 2) +
-  geom_segment(x = 0, xend = q, y = p, yend = p, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q, xend = q, y = 0, yend = p, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D", x = 10.1, y = 0.65, color = red_pink, family = cnfont, size = 9) +
-  annotate("text", label = "S", x = 9.3, y = 9.65, color = purple, family = cnfont, size = 9)
-```
-]
-
----
-count: false
-## 完全竞争  *vs.* 垄断
 .pull-left[
 .center[**完全竞争市场**]
 ```{r, echo = FALSE, fig.height = 4.75, fig.width = 3.75,  dev = "svg"}
@@ -1355,8 +360,478 @@ ggplot() +
 ```
 ]
 
+???
+
+
+???
+
+.tiny[
+- 产品市场，垄断者是价格制定者。
+
+- 市场需求曲线就是球队的需求曲线。
+
+- 厂商依据MR=MC决策
+
+- MR如何描述？由 $P=a-b Q$ 得总收入:
+$$
+TR(Q)=P \times Q=a Q-b Q^2
+$$
+边际收入为:
+$$
+M R(Q)=a-2 b Q
+$$
+
+- 超额利润
+
+]
+
+
 ---
-## 相较于完全竞争市场的社会结果
+class: title-slide-section,inverse, middle
+# 球队行为因联赛而异
+
+---
+
+### 封闭与开放联赛
+
+- 封闭联赛常见于北美体育联盟，特点是
+
+- 参数球队一般不变，联盟划定垄断行政边界，一般不允许搬迁到其他城市
+  
+- 通常附属小联盟。附属小联盟与大联盟球队有明确合同关系。小联盟球队不能进入大联盟。两种常见所有权关系
+  
+    - 大联盟球队拥有小联盟球队的经营权
+    - 小联盟球队保持与大联盟球队间合作关系(赞助和业务指导)，但独立经营
+      
+- 小联盟球员合同通常由大联盟持有，可以在大小联盟间流动
+
+???
+
+另外，日本职业棒球和澳大利亚橄榄球联盟(AFL)也是封闭的，
+
+
+---
+
+### 封闭与开放联赛
+
+开放联赛几乎所有的足球联赛
+
+- 与封闭联赛一样类似的金字塔结构
+  
+- 升降级
+  
+- 没有行政区划带来的市场垄断势力
+  
+- 激励机制不同
+  
+    - 封闭联赛中会有"摆烂"的现象
+    - 开放联赛底部球队"竞争激烈"，但强弱队的财力差距巨大
+
+???
+同一城市可能有多支同级别联赛的球队，如伦敦，大大降低球队的垄断能力
+
+任何联赛，球队不仅是竞争关系，还是合作关系 → 由联盟统一制定比赛规则、赛程安排等
+---
+### 球队目标
+
+- 利润最大化 v.s. 胜利最大化
+
+- 对于一般厂商而言，可能目标就是实现利润最大化；但职业球队的目标可能没有那么简单，对于一些老板来说，即使赚得没那么多，赢得一场冠军赛可能更重要。
+
+???
+
+曼城、大巴黎都因为有了大财团支持才变强的
+
+---
+
+### MLB的例子
+
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/45NFRi.png >
+]
+
+- 2011-2016赛季的4支球队的出席人数、胜率、收入和营业收入(利润)的情况
+
+???
+
+.tiny[
+- 费城费城人为了主宰国家联盟(Nation League，国联)，而纽约扬基队为能领导美国联盟(American League，美联)，投入了大量的资金留住明星球员。
+
+- 结果，他们确实胜率最高，到场人数也最多，导致收入最多，但是利润却不如克利夫兰印第安人(已改名卫士)和堪萨斯城皇家队。
+
+- 后面的两个队伍是出了名的弱队。
+
+- Revenue是指一个公司在扣除任何费用之前，因销售其商品或服务而产生的收入总额。Operating Income(营业收益、营业利润)是Revenue减去直接成本和间接成本的利润总额，衡量了一个公司财务健康状况。
+
+]
+
+---
+
+### NBA的例子
+
+- 小牛和猛龙
+
+![UuNUJG](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/UuNUJG.png)
+
+
+---
+### 封闭与开放联赛
+
+- 封闭联赛：**“小市场+好利润”**与**“大市场+多胜利”**
+
+- 或者是“胜利+赔钱” 与 “输球 + 赚钱”
+
+- 那么在开放联赛呢？为什么更偏好胜利？
+
+--
+- 至少4个原因：
+
+1. 竞争球迷或者球迷所有
+
+2. 生存
+
+3. 老板偏好。追求胜利、追求荣耀、追求曝光
+
+4. 胜利带来金钱
+
+???
+
+.tiny[
+- **两个小市场球队的营业利润居然比两个大市场的球队要多**，反映出在封闭联赛中的特点，就是 利润与胜率的相机抉择
+
+- 优先是胜利偏好
+
+- 许多球队（如皇马是球迷所有制）的球迷比一般的投资者更偏好胜利，而非分红
+
+- 以“低投入+高利润”方式在顶级联赛中**生存**，是有很有风险的。在长期意味着降级、失去球迷、声望和收入。为避免降级，必须花费高额代价追求顶级球员。
+
+- “富豪”老板出于个人声誉、对比赛的热爱和对胜利的承诺，原意“金钱换冠军”, 切尔西前老板阿布、曼城阿布扎比联合集团。这些老板自掏腰包补足球队的为追求胜利带来投入不足。获得冠军同样能够带来金钱
+]
+
+---
+### 用模型刻画
+
+.more-left[
+- Humphreys(2016) 球队收入和成本均是球队质量的函数。换句话说，实力强的球队会吸引更多的球迷，但要花更多的钱来组建。
+
+$$
+\begin{equation}
+\pi_{i}=TR\left(w_{i}\right)-TC\left(w_{i}\right)
+\end{equation}
+$$
+
+进一步对收入函数和成本函数进行假设：
+1. 假设总收入随着胜率的增加而增加，但速度是递减的，不是单调的。因为球队赢得太多或输得太多都是被球迷埋怨。
+
+2. 假设球员边际成本为常数，即 $TC(w_i)=cw_i$。
+
+→ $MC$ 是一条平行于X轴的直线
+
+
+]
+
+
+.less-right[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/W81bO2.png height="500" width="430">
+]
+
+???
+
+- wi代表是胜率，是球队球员天赋的函数
+
+
+---
+### 用模型刻画
+
+.more-left[
+#### 利润最大化目标
+
+- 利润最大化条件为 $MR=MC$ 
+
+- $MC$ 与 $MR$ 相交处，此时胜率为 $w^*_1$ 
+
+#### 胜率最大化目标
+
+- 只要不赔钱就全买好球员
+- $(\pi = 0)$ → $TR = TC$ 或 $AR = ATC$ 。 $AR$ 和 $ATC$ 曲线在在 $w^*_2$ 处相交。
+
+- 结论：**在其他条件相同的情况下，胜率最大化球队比利润最大化球队更经常获胜（ $w^*_2 > w^*_1$ ），而利润最大化球队获得的利润更高。**
+]
+
+
+.less-right[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/W81bO2.png height="500" width="430">
+]
+
+---
+### Kesenne(2007)
+
+.pull-left[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/LYht0x.png height="400" >
+]
+
+.pull-left[
+- 将球队目标与劳动力市场，所横坐标为t
+
+- 利润最大化目标。虚线是成本函数的一阶导数，代表MC；与TR相切代表MR=MC；雇用t1天赋。
+
+- 胜率最大化目标。雇佣t4天赋。TR=TC保证收支平衡。
+
+- 收入最大化目标。雇佣t2天赋，MR=0。
+
+- 赢球至上目标。不在乎赔钱，雇佣t5天赋。
+
+- 完成某利润率目标.雇佣t3。
+
+]
+
+---
+#### 纪念Kesenne
+
+![9y7xcJ](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/9y7xcJ.png)
+![4y56Kx](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/4y56Kx.png)
+
+---
+
+class: title-slide-section,inverse, middle
+# 封闭联赛中球队的收入与成本基本情况
+
+---
+
+### 收入是球队赛事面临的需求决定的
+
+- 观众需求由6个基本因素驱动的。第1个要素影响需求量；其余5个影响需求。
+
+- 门票价格。
+
+- 替代品的价格。NBA与NCAA。
+
+- 互补品的价格。比如停车的价格。
+
+- 消费者可支配收入。
+
+- 市场中潜在消费者的数量。市场规模的增加，对门票的需求就会增加，需求曲线会向右移动。
+
+- 品味和偏好(Tastes and Preferences)。
+
+
+???
+.tiny[
+- 总收入=价格 .mono[&times;] 产品数量，其中产品数量以**到场观众**衡量。
+
+- 替代品的价格。对于NBA球队来说，可能是附近NCAA篮球队。若看NCAA比赛的成本增加，就会增加对NBA比赛的需求，NBA需求曲线右移。NBA关键场次是要错开NCAA的分区决赛的。
+
+- 互补品的价格。比如停车的价格。随着停车费和特许经营(concessions)价格增加，门票的需求会减少，需求曲线向左移动
+
+- 消费者可支配收入。通常收入的增加会导致门票需求的增加，门票的需求曲线右移。
+
+- 市场中潜在消费者的数量。市场规模的增加，对门票的需求就会增加，需求曲线会向右移动。所以球队所在的市场若大，占有优势。
+
+- 如比赛安排在周几、主队实力、客队实力、比赛重要性、球迷的预期（一场激烈的比赛）、**天气**、超级球星、**环境因素如空气污染、温室效应、流行病**。另外，运动普及和流行度（中国冰雪），地区偏好（US足球、CA冰球）等。
+
+]
+
+
+---
+
+### 球队成本
+
+- 固定成本：职业球队大部分是固定成本，包括广告费、差旅费、与场地有关的费用以及大部分行政管理费用。
+
+  - 普通厂商而言，劳动力工资视为可变成本
+  
+  - **职业球队而言，劳动力工资视为固定成本**
+
+.center[
+#### 人员类薪酬通常占50%-75%
+]
+  
+- 可变资本：比赛日工作人员有关的成本，如引座员或食品供应商。
+
+---
+### 例子：BIG5基本概况(2016)
+
+![OjhEVs](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/OjhEVs.png)
+
+.tiny[
+- **大市场 → 高收入**。不仅收入高，大市场球队的胜率也会很好。
+- **高收入 → 高利润**。除了MLB道奇队外，基本上符合该逻辑。这也是大多数经济学家同意北美职业体育球队以利润最大化目标的原因。
+- **工资规模**差别很大
+- **联赛间收入分享机制差异巨大 → 不同项目的球队收入差距很大**
+
+]
+
+???
+.tiny[
+- **工资规模**差别很大。NFL、NHL和NBA各队相似。在MLB中，没有硬工资帽限制，支出最高的球队的Dodge成本超过了其他项目大部分球队的总收入。
+- **联赛间收入分享机制差异巨大 → 不同项目的球队收入差距很大**。通常有收入分享制度的联赛，小球队可以从总资金池中获取收入，球队间的差距没有没有那么大。
+]
+
+---
+### BIG5 基本概况(2016)
+
+![OjhEVs](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/OjhEVs.png)
+
+.tiny[
+- **消费者品味和偏好很重要**。
+- **冠军"长青树"球队经济状况一般很好**。NFL新英格兰爱国者、MLB旧金山巨人都是如此。
+- **一些联赛显然更有利可图，如NFL**。NFL球队营业收益的中位数为7600万美元，几乎是MLB中位数（约2100万美元）的3倍半。盈利能力最差的NFL球队比NBA、NHL或MLB球队营业收益的中位数还高。
+- **个别球队短期会有严重亏损**。其中，道奇队的巨额亏损是所有球队中是独一无二的：2015年的工资总额有史以来第一个超过3亿美元的，其中包括付给一些不在名册的球员约9500万美元（比一些球队的工资总额还多）
+]
+
+???
+.tiny[
+- **消费者品味和偏好很重要**。在北美，足球显然无法跟其他项目媲美。加拿大球迷更喜欢冰球；德州人地处温暖地带，会偏爱橄榄球，西海岸的西雅图人喜好足球。
+- **冠军"长青树"球队经济状况一般很好**。NFL新英格兰爱国者、MLB旧金山巨人都是如此。
+- **NFL更有利可图**。NFL球队营业收益的中位数为7600万美元，几乎是MLB中位数（约2100万美元）的3倍半。盈利能力最差的NFL球队比NBA、NHL或MLB球队营业收益的中位数还高。
+- **个别球队短期会有严重亏损**。其中，道奇队的巨额亏损是所有球队中是独一无二的：2015年的工资总额有史以来第一个超过3亿美元的，其中包括付给一些不在名册的球员约9500万美元（比一些球队的工资总额还多）
+]
+
+---
+### 收入6大来源
+
+
+1. 门票收入 （ticket sales & gate receipt）。$R_G$ 
+
+2. 传统播权权。 $R_B$ 
+
+3. 前沿媒体。如流媒体直播 $R_M$ 
+
+4. 许可收入。如官方商品、球队纪念品、涉及商标和知识产权的收入： $R_L$ 
+
+5. 场地和赞助收入。如豪华包厢、特许经营权、命名权： $R_V$ 
+
+6. 联盟转移收入。 $R_T$ 
+
+$$ R =  R_G + R_B + R_M + R_L + R_V + R_T $$
+
+---
+### 收入6大来源
+#### 1 门票收入 
+
+.more-left[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/3vLYRG.png height="400" width="550">
+]
+
+.less-ritgt[
+- 门票是重要收入来源。
+
+- MLB球队因为赛事多、主场多，产生了最多门票收入。常规赛有81/162个主场比赛。但MLB波动最大。为什么？
+- NFL因为比赛少，所以收入也很多？而且NFL波动最小。为什么？
+]
+
+???
+NFL常规赛有8/16个主场，但平均而言比NHL和NBA要高。大多数NFL比赛都能吸引到接近饱和的观众。
+
+
+---
+#### 2 转播收入与收入分享
+
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/to0dlS.png height="240" width="490">
+]
+
+- **全国性电视转播收入差异大**。倒数MLS<NHL<MLB<NBA<NFL; 前三名每年都是10亿美元以上的年收入(15-68.5)
+
+???
+
+联盟整体收入负面的影响是如何分蛋糕？分不好就会造成球队财力失衡。
+所以收入分享机制非常重要。
+
+---
+
+##### 分享机制
+
+
+- **NFL电视合同结构确保所有球队利益均享**
+
+- **MLB全国转播收入比不上NFL，地方转播收入是主要来源**
+
+- **NBA收入差距大部分来自地方电视收入的差异**
+
+- **NHL就没有收入分享机制** → **更依赖门票收入**
+
+???
+
+.tiny[
+- **NFL电视合同结构确保所有球队利益均享**。NFL的转播收入是全国转播的，所以采取的利益均享。因此一支非常有名的绿湾包装工队Green Bay Packers虽然在威斯康星州的格林贝，非常小，但是财力跟纽约的NFL队相当。而且成绩非常好。
+
+- **MLB全国转播收入比不上NFL，地方转播收入是主要来源**。像洛杉矶道奇从全联盟获得5000万，但从地方广播公司获得2.04亿。相比下，小市场球队，像洛基队的地方台收入只有2000万。
+
+- **NBA收入差距大部分来自地方电视收入的差异**。NBA是因为场次主场场次非常多，所以地方收入多，会拉大球队间财力差距。
+
+- **NHL没有转播收入的分享机制** → 小球队难与大市场球队竞争 
+
+]
+
+---
+#### 3 高级媒体
+
+- 由于流媒体平台的兴起，这部分**收入变化最快**，成为所有大联盟的重要在线业务。
+
+- 超过3/4千禧一代会考虑在线上观看比赛 (Fobes)。
+
+- 案例: BAMTech 是 MLBAM 的重要分支。 
+  
+  - 占联盟总收入10%
+  - 股东：NHL + Disney + MLB
+  - 所有球队共享
+
+---
+### 成本控制
+
+工资帽的规定使得所有球队在球员薪资部分基本是固定而且是均衡的，只在一个狭小范围内可变。只有**MLB没有工资帽，通过奢侈税**限制球队恶意竞争球星。
+
+- 可变成本: 有差旅费、广告费、管理费（球队层面和联赛层面）以及场地费
+  
+  - 场地费用每个球队情况不同。有些球队有拥有自己的球场（每年从政府获取补贴）；而一些球队要租赁场地。
+
+- MLB，NBA和NHL会下拨一些资金给小联盟的球队；这些小联盟球队能够产生一些大联盟球员，每人花费在上百万美元；一些小联盟球队就所归属于大联盟球队
+
+???
+
+NBA是软帽（允许特例情况下签订球员超过工资帽，缴纳奢侈税。但奢侈税也设置上限），NFL和NHL则是硬帽
+
+
+---
+### 讨论: 封闭联盟为什么会限制规模?
+#### 以合作的方式进入
+
+垄断带来超额利润，导致很企业愿意进入联盟。但联盟有一致行动原则，即所有球队都同意才能进入联盟。这样的后果是?
+
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/wwJsUY.png height=330>
+]
+
+
+???
+
+
+---
+### 联盟规模控制
+
+.center[
+
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/QLHE12.png height=334>
+
+]
+
+.tiny[
+- 联盟决定了球队所能去城市
+- 封闭联盟严格限制球队数量
+  - 新球队加入要缴纳"入场费"，因为联盟的共享收入会分给更多成员
+  - 降低现有成员与所在城市的谈判权（威胁搬迁作为谈判筹码）。
+- 十个最大的都市区中的每一个都有几家职业特许经营公司
+- NY,11 .hi.mono[>] LA,9 .hi.mono[>] CHI,7
+
+
+]
+
+???
+- Neal（1964）：职业联盟是一种多厂商的垄断，每个厂商在行政区域内是垄断的、可以单独出售的(联盟是可分割的)；但联盟在国家范围内也是联合的、垄断的，毕竟球迷看的每场比赛的兴趣点来自于不确定的比赛结果、球队实力，这些都与球队的联赛排名相关，而联赛排名是联盟内所有球队"集体行动的结果"
+
+---
+### 垄断的社会结果
 
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
@@ -1403,16 +878,16 @@ ggplot() +
 
 .less-right[
 
-### 无效率
+#### 无效率
 
-垄断厂商未能实现市场总盈余的最大化
+垄断厂商未能实现市场总盈余的最大化。
 
-- Q.sub[M] .mono[<] Q.sub[C] .mono[==>] <br> .orange[无谓损失 (deadweight loss)]
+- Q.sub[M] .mono[<] Q.sub[C] .mono[==>] <br> .orange[无谓损失 (deadweight loss)].
 
 ]
 
 ---
-## 相较于完全竞争市场的社会结果
+### 垄断的社会结果
 
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
@@ -1455,167 +930,203 @@ ggplot() +
 
 .less-right[
 
-### 无效率
+#### 无效率
 
 垄断厂商未能实现市场总盈余的最大化。
 
 - Q.sub[M] .mono[<] Q.sub[C] .mono[==>] <br> .orange[无谓损失 (deadweight loss)].
 
-垄断厂商.purple[减少了]消费者盈余.
+- 紫色部分代表消费者盈余的减少，这意味着消费者支付所获得的东西数量或者选择变少了
 
 ]
 
+???
+
+那么这部分在现实中代表什么呢?
+
+- **如果紫色部分从消费者手中转移到球队，就变成了超额利润**。虽然可能会伤害支付这些费用的消费者，但这部分利益会使接受它们的球队的股东、雇员和其他利益相关者受益。由于社会整体福利没有变化，所以从经济效率角度看这部分对社会是**无害的**。
+
+- 垄断的弊端是**额外损失或叫无谓损失**，因为减少社会的整体福利。
 
 ---
-## 相较于完全竞争市场的社会结果
+### 例子：通过周边商品变向抬高票价
 
-### 消费者可选择的变少了
+- David Berri 和 Anthony Krautmann（2016）等研究发现，若是以球迷成本指数（Fan Cost Index，FCI）来计算门票价格，要远远高出实际门票价格。
 
-垄断者没有激励去竞争客户
+- FCI包括四张平均价格的门票，两瓶小啤酒，四瓶小软饮料，四个热狗，停车位和两顶帽子。
 
-- **结果:** 产品线更少 .mono[+] 产品质量较低
+- 以2016年为例，NFL的平均票价约为93美元，但FCI高于500美元
 
-- **例子:** 奥运产品特许经营
+- 2021年，NFL平均票价107.5美元，+2.5 pct /较2020年；FCI高达568.18美元，+2.8 pct /较2020年
 
---
+- 球队牺牲了一些上座率的收入，但它从特许经营中获得的利润足以弥补这一损失。
 
-### 寻租
-
-垄断者可以利用政治手段阻止竞争者进入或确保新的垄断。
-
-- 虽然这也是一种竞争形式，但不是好的那种。
 
 ---
-## 如何解决垄断带来弊端?
-
-1. 反垄断法
-
-    - 例如，打破垄断，阻止兼并等
-
-2. 管制
-
-    - 例如限价
-
-3. 用劳工组织对抗劳动力市场的买方垄断？
-    
-    - 产量低，意味着对劳动力需求更低；对劳动者权益保护差
-
-4. 加快新技术对旧技术的替代
-
-    - 例如，MAC崛起减少了Microsoft的市场份额
----
-layout: true
-# 对垄断的“批判”
----
-class: title-slide-section,inverse, middle
----
-layout: false
-### 市场失灵是“批判”的靶心
-
-寻租问题只是垄断的后果之一，是公平角度。经济学家最初的出发点是基于效率。
-垄断造成的**无谓损失**就是效率损失的表现之一。
-
-除了**垄断**造成**市场失灵**以外：
-- 外部性
-- 公共品 → 产权不清晰
-- 信息不对称（市场势力）
-- 生产要素的不流动（市场势力）
-- 收入不平等（市场势力）
-
----
-### 导致市场失灵的原因不仅有垄断
-
-
-- 公共品。那些不能排他性消费的产品，如洁净的空气和路灯。由于私人无法收入，因此不能由市场有效的投资和生产。解决：政府购买私企服务来解决或减轻
-
-- 外部性。指一方行动对他人的影响，如污染是对别人的负的外部性，而知识则是对他人正的外部性；由于外部性影响的不是自己，故施加外部性的一方就不会主动增加（正的）或控制（负的）外部性。在交易费用不大时可由当事人自愿协商，合约解决（科斯定理）。
-
-- 信息不对称。参与交易各方所拥有、可影响交易的信息不同，买卖双方中一方拥有比另一方有更多信息。不对称信息可能导致逆向选择，或是形成经济租，引发寻租行为，导致信息较缺乏的那一方受损。
-
-  - .purple[卖方] .mono[>] .pink[买方]，二手车; .pink[买方] .mono[>] .purple[卖方]，医疗保险、小额贷款
-
-  - 解决：讯息揭露、认证制度、信誉与评价制度、提供商品的保固维修、售后服务、制订规范等。
-
----
-## 多说两句
-
-新自由主义经济学反对的不是垄断，而是市场失灵。
-
-新自由主义经济学（主流经济学） .mono[=>] 市场好
-
-- 优越性之一，是“激励相容”，即通过市场竞争迫使自利性主体通过利他实现利己；
-
-- 优越性之二，是“有效信息与协调”，即通过价格机制对市场中无数分散的信息进行集成，指引无数分散主体自发决策以达至有效的资源配置；
-
-- 优越性之三，是推动技术进步，即企业家内在的利润追求和外在的市场竞争压力驱使企业进行创新，使市场经济充满发展潜力。
-
----
-## 完全竞争  *vs.* 垄断
-
-.pull-left[
-### .purple[完全竞争市场]
-
-1. .purple[许多]厂商
-
-2. .purple[没有]厂商能够赚取.purple[长期**经济利润**].
-
-3. 每个厂商都是.purple.hi[价格接受者] <br> .mono[-->] 没有市场势力!
-
-4. 每个厂商都生产.purple[有效率的]产量 <br> .mono[-->] P .mono[=] MC 时
-]
-
---
-
-.pull-right[
-### .pink[垄断市场]
-
-1. .pink[唯一]厂商.
-
-2. 垄断厂商能够赚取.pink[长期**经济利润**].
-
-3. 垄断厂商.purple.hi[价格制定者] <br> .mono[-->] 显著的市场势力!
-
-4. 垄断厂商生产.pink[无效率的]产量 <br> .mono[-->]  P .mono[>] MC
-]
-
----
-## 继续深入职业体育的垄断与其他特性
-
-- 《the Peculiar Economics of Sports》（Neale，1964）认为职业体育是"对体育管理自负盈亏的多工厂垄断厂商"(multi-plant monopolies being singly responsible for the administration of sports )。
-
-- 单球队不能决定自己的产出（以w或wp）。球队的产出 $Q_i$ 水平取决于联盟接纳了多少支球队 $N$，也取决于联盟规定球队在赛季中相互比赛的次数 。
-
-- 联盟出现垄断的核心原因是"路易斯-施梅林的悖论"（视频）。如果路易斯没有竞争对手，他“将没有人可打，因此也就没有收入”。
-
-- Neale认为“职业球队的收入最大化需要密切竞争”，这是因为“如果观众能够预测比赛的结果，那么对比赛的需求就会减少。”
-
----
-## 继续深入职业体育的垄断属性
-
-- 谁来维持竞争均衡？ .mono[->] 必须由联盟组织
-
-- 早期联盟组织面临生存危机：球员不稳定和球队财务能力不足
-
-- 当经济学家研究职业体育时：几乎所有第一级别球队都是垄断组织成员
-  
-    - 联盟严格限制球队对球员的竞争：理由是，球队间需要平衡，这是留住球迷的必要条件
-    
-    - 新自由主义席卷西方政府，反垄断成为主流
-
-.mono[----] Roger Noll, "Sports Economics at Fifty" ,2006
+### 寻租行为(rent seeking)
 
 .center[
-#### 职业联盟发展史是就是反对垄断和垄断合理的论证史
+<img src="figure/FusionCharts.svg">
+]
+
+
+???
+
+.tiny[
+- 公共选择的经济学家认为，垄断带来的社会成本**超过了**DWL。垄断的球队为获得和保护其垄断势力，会有**寻租行为(rent seeking)** .mono[——] 非生产性支出，增加了额外损失。
+- 上图显示2021年NFL花了超过120万美元游说国会
 ]
 
 ---
+### 经济学家的反击
+#### 对联盟的约束 ：American Needle 诉 NFL
 
+NFLP成立于1963年，专门负责NFL知识产权许可的实体。在此之前，NFL团队分别销售其知识产权。
+
+在1963年至2000年之间，NFLP向多家供应商提供了非排他性许可，以销售和制造带有团队标志的服装。美国针公司是其中的许可持有者之一。
+
+2000年12月起，联盟投票授权NFLP授予排他性许可。但随后，**NFLP向Reebok授予了为期10年的独家许可**，以制造和销售所有32队的商标帽服徽章。之后，NFLP拒绝续签American Needle的非排他性许可。
+
+2008年，American Needle开始上诉。前期，都是判NFL胜诉，但American Needle一再上诉。
+
+2009年胜诉的NFL要求最高法院重新考虑它所赢得的裁决。
+
+???
+- 背景
+
+
+---
+### 经济学家的反击
+#### 对联盟的约束 ：American Needle 诉 NFL
+
+- 高法的裁决 → NFL败诉：
+
+1) 就反垄断法而言，NFL是一个单一实体吗？
+
+.hi.pink[答案： ] **不是** .mono[-->] 意味着承认联盟是独立实体，每个球队也都是独立实体。
+
+2) NFL球队与锐步的协议是否受《谢尔曼反垄断法》第1条的约束?当球队拥有并控制着各自标志和商标使用时，即便与NFL的协议不允许这么做，球队可以在产品的许可和销售方面与其他球队竞争么？
+
+.hi.pink[答案： ] **是** .mono[-->] 球队与联盟间的联合或共谋仍将视为违反《谢尔曼反垄断法》；但允许球队和联盟在各自市场中垄断地位；实际操作中，允许联盟在转播收入和许可收入以单一实体签署合同
+
+???
+2) NFL球队与锐步的协议是否受《谢尔曼反垄断法》第1条的约束?当球队拥有并控制着各自标志和商标使用时，即便与NFL的协议不允许这么做，球队可以在产品的许可和销售方面与其他球队竞争么？
+
+意味着NFL存在垄断行为。
+
+
+---
+### 经济学家的反击
+
+- 经济学家的联合 → 《法庭之友简报》：
+
+1) 要务实的看待体育联盟，是**不同实体之间的合资企业(joint venture)**，这些实体某些时候相互竞争，有时却不是。
+
+2) 若是进入一个**没有竞争对手的领域**，将联盟视为单一实体是无害的，因为合作没有反竞争效果。
+
+3) 若是存在**反竞争效果或合谋带来的效率利益增加**。在这些情况下，只有在充分考虑证据后，才能将联盟指定为单一实体 → 没有证据时，就视为合资企业
+
+???
+
+作为单一实体，相当于承认是一个集团。
+那么，球队间、球队与联盟间的合谋行为是不违反垄断法的。
+
+---
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/qcqtNa.png height="620">
+
+]
+
+---
+### 开放联赛
+
+.pull-left[
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/K1jUqB.png height=480 >
+]
+]
+
+.pull-right[
+<br><br>
+- 足球是世界经济影响力最广泛的运动
+
+- 英格兰足球具有代表性
+
+- 2016年40亿美元市值以上的非北美市场球队都是足球俱乐部
+
+]
+
+---
+### 开放联赛
+
+.center[
+![oj9sro](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/oj9sro.png)
+]
+
+- 等级管理的，层次分明，底层开放
+
+- 各分区的球队数量固定的，通过升级和降级打通联赛
+
+- 每一层联赛会建立收入分享制度
+
+---
+### 开放联赛的球队行为
+
+
+- 升降级 → 球队更加关注成绩，并且进入到顶级赛事(欧冠和欧联杯)的球队能够取得的巨大收入，这就促使联赛的头部球队投入更多财力在保持竞争力上
+
+头部球队：
+
+- 吸引"超级球星" → 他们的加入增加了球队的实力，巩固了胜率，提升了媒体曝光度
+ 
+- 头部球队竞争力提升，确保从顶级赛事中持续赚取高额的奖金
+
+- 头部球队的高回报、高曝光会吸引"超级投资人"，对于他们而言，球队的利润最大化只是目标之一，他们往往不那么投资回报率，促使球队可以放心投入到争夺运动天赋的"战役"中
+
+---
+### 开放联赛的球队行为
+
+中部球队：
+
+- 多是中小市场，财力限制了追求运动天赋的能力
+
+- 目标是远离降级区，在胜率与利润的目标中更偏向前者
+
+- 中部球队会从次级别联赛（南美或者东欧）发掘天赋，将一部分天赋出售给头部球队获得收入
+
+---
+### 薪资竞争
+
+- **薪资不均衡**。英超前5名球队的工资总额超过了其余15支球队中14支的总收入（2016）。
+
+.tiny[
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/TheUnevenPremierLeagueWageBurden.jpg height=450>
+薪资收入比
+]
+]
+
+???
+
+.tiny[
+- 头部球队的门票收入一般是客观的。是可观的，他们大部分在大市场，拥有高胜率、超级球星和参加重要赛事。欧冠和欧联的奖金拉大了头部球队和其他球队的收入差距。
+- 导致球队一旦降级就很可能遭遇
+
+- 富勒姆这一次拼命想留在顶级联赛，上个赛季他们在英超联赛中的工资账单高达他们收入的 98%。 在过去的几年里，埃弗顿在他们的足球问题上投入了大量资金，他们的工资/收入数字反映出这笔支出与他们在球场上未能取得的成功有多么不成比例。
+
+]
+
+---
+### 思考
+
+1. "财政公平法案"的初衷和措施是什么？是否有效促进了公平？是否有效改善小市场球队的财务困难？各国联赛还推出了那些收入分享制度？
+
+2. 在联盟产权结构方面，目前介绍的封闭联赛和开放联赛同属于**特许经营权模式（franchise model）**，而较新的联赛如MLS和WNBA属于另一种**单一实体联盟（single-entity）**。那么在这种产权结构下，各球队的收入成本表现出何种不同于前两种模式的差别？
+
+---
 exclude: true
 
 ```{R, generate pdfs, include = F, eval = F}
 
 pagedown::chrome_print("Lec04.html", output = "Lec04.pdf")
-
 ```
-
-
