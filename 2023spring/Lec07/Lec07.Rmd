@@ -1,0 +1,556 @@
+---
+title: "体育经济分析: 原理与应用"
+subtitle: "单元4: 体育与计量经济学"
+author: 
+   - 周正卿
+date: "`r format(Sys.time(), '%d %B %Y')`"
+# xaringan模板
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: yes
+      countIncrementalSlides: yes
+      ratio: '16:10.85'
+    seal: true
+    lib_dir: libs
+  html_document:
+    keep_md: yes
+
+knit: pagedown::chrome_print
+
+# beamer模板
+
+# mainfont: Times New Roman
+# fontsize: 10pt
+# output: 
+#   beamer_presentation: 
+#     fonttheme: structurebold
+#     theme: Madrid
+#     colortheme: lily
+#     includes:
+#         in_header: "../beamer_header.tex"
+#     df_print: tibble
+#     latex_engine: xelatex
+
+
+---
+
+```{R, setup, include = F}
+# devtools::install_github("dill/emoGG")
+library(pacman)
+p_load(
+  broom, tidyverse,rmarkdown,
+  ggplot2, ggthemes, ggforce, ggridges,
+  latex2exp, viridis, extrafont, gridExtra,
+  kableExtra, snakecase, janitor,
+  data.table, dplyr, estimatr,
+  lubridate, knitr, parallel,
+  lfe,dslabs,
+  here, magrittr,pammtools)
+
+options(htmltools.dir.version = FALSE)
+
+# Notes directory
+dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/2023spring/Lec07"
+# Define pink color
+red_pink <- "#e64173"
+turquoise <- "#20B2AA"
+orange <- "#FFA500"
+red <- "#fb6107"
+blue <- "#3b3b9a"
+green <- "#8bb174"
+grey_light <- "grey70"
+grey_mid <- "grey50"
+grey_dark <- "grey20"
+purple <- "#6A5ACD"
+slate <- "#314f4f"
+met_slate <- "#272822" # metropolis font color 
+
+# Dark slate grey: #314f4f
+
+# Knitr options
+opts_chunk$set(
+  comment = "#>",
+  fig.align = "center",
+  fig.height = 7,
+  fig.width = 10.5,
+  warning = F,
+  message = F
+)
+opts_chunk$set(dev = "svg")
+options(device = function(file, width, height) {
+  svg(tempfile(), width = width, height = height)
+})
+options(crayon.enabled = F)
+options(knitr.table.format = "html")
+# A blank theme for ggplot
+theme_empty <- theme_bw() + theme(
+  line = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  axis.text = element_blank(),
+  plot.title = element_blank(),
+  axis.title = element_blank(),
+  plot.margin = structure(c(0, 0, -0.5, -1), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_simple <- theme_bw() + theme(
+  line = element_blank(),
+  panel.grid = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  axis.text.x = element_text(size = 18, family = "STIXGeneral"),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank(),
+  plot.title = element_blank(),
+  axis.title = element_blank(),
+  # plot.margin = structure(c(0, 0, -1, -1), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes_math <- theme_void() + theme(
+  text = element_text(family = "MathJax_Math"),
+  axis.title = element_text(size = 22),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = "grey70",
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+  )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes_serif <- theme_void() + theme(
+  text = element_text(family = "MathJax_Main"),
+  axis.title = element_text(size = 22),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = "grey70",
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+  )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes <- theme_void() + theme(
+  text = element_text(family = "Fira Sans Book"),
+  axis.title = element_text(size = 18),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = grey_light,
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+  )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_market <- theme_bw() + theme(
+  axis.line = element_line(color = met_slate),
+  panel.grid = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  text = element_text(family = cnfont, color = met_slate, size = 17),
+  axis.title.x = element_text(hjust = 1, size = 17),
+  axis.title.y = element_text(hjust = 1, angle = 0, size = 17),
+  # axis.text.x = element_text(size = 12),
+  # axis.text.y = element_text(size = 12),
+  axis.ticks = element_blank()
+)
+theme_gif <- theme_bw() + theme(
+  axis.line = element_line(color = met_slate),
+  panel.grid = element_blank(),
+  rect = element_blank(),
+  text = element_text(family = cnfont, color = met_slate, size = 17),
+  axis.text.x = element_text(size = 12),
+  axis.text.y = element_text(size = 12),
+  axis.ticks = element_blank()
+)
+
+theme_goods <- theme_bw() + theme(
+  axis.line = element_line(),
+  panel.grid = element_blank(),
+  rect = element_rect(size = 1),
+  strip.text = element_blank(),
+  text = element_text(size = 17, family = cnfont), 
+  axis.text.x = element_text(size = 17),
+  axis.text.y = element_text(size = 17, angle = 90, hjust = 0.5),
+  axis.title.x = element_text(color = purple, size = 19),
+  axis.title.y = element_text(color = red_pink, size = 19),
+  axis.ticks = element_blank(),
+  plot.title = element_blank(),
+  legend.position = "none"
+)
+theme_game <- theme_bw() + theme(
+  axis.line = element_line(),
+  panel.grid = element_blank(),
+  rect = element_rect(size = 1),
+  strip.text = element_blank(),
+  text = element_text(size = 20, family = cnfont), 
+  axis.text.x = element_text(size = 20, color = met_slate),
+  axis.text.y = element_text(size = 20, angle = 90, color = met_slate, hjust = 0.5),
+  axis.title.x = element_text(color = met_slate, size = 20),
+  axis.title.y = element_text(color = met_slate, size = 20),
+  axis.ticks = element_blank(),
+  plot.title = element_blank(),
+  legend.position = "none"
+)
+shift_axis <- function(p, y=0){
+  g <- ggplotGrob(p)
+  dummy <- data.frame(y=y)
+  ax <- g[["grobs"]][g$layout$name == "axis-b"][[1]]
+  p + annotation_custom(grid::grobTree(ax, vp = grid::viewport(y=1, height=sum(ax$height))), 
+                        ymax=y, ymin=y) +
+    geom_hline(aes(yintercept=y), data = dummy, size = 0.5, color = met_slate) +
+    theme(axis.text.x = element_blank(), 
+          axis.ticks.x = element_blank())
+}
+wrapper <- function(x, ...) paste(strwrap(x, ...), collapse = "\n")
+# functions
+demand <- function(x) 10 - x
+demand_2 <- function(x) 9 - x
+demand_3 <- function(x) 8 - x
+demand_inc <- function(x) 11 - x
+demand_dec <- function(x) 5 - x
+supply <- function(x) 1 + (4/5)*x
+step_demand <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8), mv = c(8, 7, 6, 5, 4, 3, 2, 1, 0))
+step_demand2 <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(10, 10, 9, 9, 8, 8, 7, 7, 6, 6, 5, 4, 4))
+step_supply <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 8, 8))
+step_supply_tax <- step_supply %>% 
+  mutate(mv = mv + 2)
+
+# data <- read_csv("/Users/zhouzhengqing/Desktop/SportsEconAnalysis/Activity_Pit_Market/Results.csv") %>% 
+#   dplyr::filter(!is.na(price))
+
+theme_set(theme_gray(base_size = 20))
+# Column names for regression results
+reg_columns <- c("Term", "Est.", "S.E.", "t stat.", "p-Value")
+# Function for formatting p values
+format_pvi <- function(pv) {
+  return(ifelse(
+    pv < 0.0001,
+    "<0.0001",
+    round(pv, 4) %>% format(scientific = F)
+  ))
+}
+format_pv <- function(pvs) lapply(X = pvs, FUN = format_pvi) %>% unlist()
+# Tidy regression results table
+tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", highlight_bold = T, digits = c(NA, 3, 3, 2, 5), title = NULL) {
+  x %>%
+    tidy() %>%
+    select(1:5) %>%
+    mutate(
+      term = terms,
+      p.value = p.value %>% format_pv()
+    ) %>%
+    kable(
+      col.names = reg_columns,
+      escape = F,
+      digits = digits,
+      caption = title
+    ) %>%
+    kable_styling(font_size = 20) %>%
+    row_spec(1:nrow(tidy(x)), background = "white") %>%
+    row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
+}
+```
+class: title-slide-section,center, middle, inverse
+
+# 大纲
+
+---
+### 大纲
+
+- 什么是计量
+- 
+
+---
+### 什么是计量经济学
+
+- Econometrics
+- 计量经济学只是统计学的经济学版本吗？
+
+  - 经济学 .mono[+] 统计学技巧 .mono[=] 计量经济学
+  - 使用统计学的技巧（工具包），并将其应用于与经济学中的问题和现象有关的问题。
+
+- 相关性足够有趣，为什么更偏好因果？
+  - 预知某项干预/政策对感兴趣变量的影响结果。
+  - 资源是有限的，而干预措施是要花钱的。
+
+---
+### 基本概念
+
+假设联盟经理想知道哪些因素对决定MLB的上座率最重要。
+
+- 一个方法是用平均观众人数反映上座率，但是它无法反映变量间的关系
+
+- 通常我们期望球队获胜越多，观众就越多。用上座率ATT作为因变量，获胜率WPCT作自变量。之所以ATT是因变量，因为它取决于胜率。WPCT作自变量，因为它不依赖于等式 ATT中的其他变量： $ATT=f(WPCT)$ 
+
+- 最直观的方法是**散点图**。但这样无法指导当胜率从0.5提高到0.51时，上座率会增加多少。提高胜率通常意味着要花钱买球员。
+
+$Y_i=\boldsymbol{X}\beta + \delta Cleanup_i+\phi_i+\varepsilon_i$
+
+
+---
+class: title-slide-section, center, middle,inverse 
+# 条件期望回顾
+
+---
+### 概率分布函数与概率密度函数
+
+- 感兴趣的变量是工资
+  - 它是个随机变量
+  - 假设总体有确定的分布
+  
+**.qa[Q]: **要想了解总体特征，该如何实现？
+
+- 可以抽样获得一个样本，用样本特征描述总体特征
+
+    - 用样本分布估计总体分布，但两者之间是有“距离”的。之后解决。
+    
+    - 数学上的结论：概率分布函数（probability distribution function）可微，那么它的概率密度函数（probability density function）就能够反映概率分布函数的特点。
+    
+    - 可以制作频率直方图代表样本分布，来反映总体特征。（想象：将总体工资分成小区间，将抽到的值放入对应的区间，工资在每个区间内出现的次数）. 数学上 $f(w)=\frac{d}{d w} F(w)$ , $w$ 表示 $wage$ .
+    
+
+---
+### 条件分布 (Conditional Distribution)
+
+- 可以捕捉两个变量的关系。
+- 假设 $Y$ 与 $X$ 是随机变项（量）.
+    - $Y$ 是因变量（被解释变量|结果变量）; $X$ 是自变量（解释变量|干预变量）. 
+    - 随机变量（r.v.），具有概率分布
+
+
+- 可以建立联合概率分布函数（joint probability distribution function）和联合密度函数 ( joint density function) 来捕捉两个变量的关系。
+
+---
+### 条件期望（Conditional Expectation ）
+
+- 概述
+
+    - 更关心 $X$ 和 $Y$ 间的关系
+    
+    - 条件期望是描述这种关系的一种方法
+    
+---
+### 工资（Y）和性别（X）差异的关系？
+
+- 《E》p16:
+
+工资对数的条件均值可以写成如下形式：
+
+$$ E[ log(wage) \mid gender = man ] = 3.05 $$
+
+$$ E[ log(wage) \mid gender = woman ] = 2.81 $$
+<br/><br/>
+关注条件均值的好处：将复杂分布的特点描述简单（均值），方便组间比较。 条件均值是经济分析和回归分析的主要关注点。还可以增加其他的条件，种族，后的工资比较。
+$$ E[\log (wage ) \mid gender =\operatorname{man}, race = white]=3.07 $$
+$$ E [\log ( wage ) \mid gender = woman, race = black ]=2.73 $$
+
+    
+---
+### 条件期望函数（Conditional Expectation Function ）
+
+当涉及多个“条件”时，可以写作：
+
+$$E\left[Y \mid X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{k}=x_{k}\right]=m\left(x_{1}, x_{2}, \ldots, x_{k}\right)$$
+
+向量形式：
+
+$$E[ Y \mid X=x]=m(x)$$
+所以 CEF $m(x)=E[Y \mid X=x]$ 就是 $x \in \mathbb{R}^{k}$的函数 ，意味着“ 当 $X$ 取值 $x$ 时, $Y$ 的平均值为 $m(x)$ ”,由于 $X$ 可以取值任意的 $x$ , 因此将CEF视为随机变量 $X$ 的函数。
+
+**.qa[Key]:  深刻理解条件期望函数是 $x$ 的函数 **  
+
+例：三个种族， $x =$ (黑，白，其他) , $y =log(wage)$ ，每个种族都有一个工资的均值，均值与种族取值( $x$ )一一对应关系。
+
+
+---
+
+## 边缘密度函数与条件密度函数
+
+给定联合密度函数 $f(y, x)$, 变量 $x$ 的边缘密度函数为:
+$$f_{X}(x)=\int_{-\infty}^{\infty} f(y, x) d y$$
+
+对于任意 $x$ 的 $f_{X}(x)>0$, 给定 $X$ , $Y$ 的条件密度函数为: 
+$$f_{Y \mid X}(y \mid x)=\frac{f(y, x)}{f_{X}(x)}$$
+
+条件密度相当于联合密度 $f(y, x)$ 在保持x不变情况下的随机化“切片”.
+
+---
+##条件密度函数
+- 离散形式： $$P(y|x)=\frac{P(y,x)}{P(x)}$$ 其中 $P(x)=\sum_{i=1}^{N}P(y_{i},x)$
+
+
+---
+
+
+## 边缘密度函数与条件密度函数
+
+ **.qa[Q]: **想象一下?
+
+.middle[
+.center[
+<img src="figs/logWage_Exp.png" height="450">
+]
+]
+
+---
+## 条件期望值函数的性质
+
+- **性质1** (期望迭代法则,law of iterated expectation)
+$$
+E[E[Y \mid X]]=E[Y]
+$$
+
+ $E[Y|X]$ 的期望值是 $[Y]$ 的无条件期望值。
+ <br/><br/>
+例如：
+![Fx16GT](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/Fx16GT.png)
+---
+- **性质1**推论
+$$E\left[E[Y|X_{1},X_{2}]|X_{1}\right]=E[Y|X_{1}]$$
+    - 内部期望值以X1和X2同时为条件,外部期望值只以X1为条件。迭代后的期望值可以得到简单的答案E[Y|X1],即只以X1为条件的期望值。《E》表述为"较小的信息集获胜"  .mono[-->] 以小谋大
+    
+<br/><br/>
+例：
+![Q65T2b](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/Q65T2b.png)
+---
+- **性质2** (线性) $$E[a(X)Y+b(X)|X]=a(X)E[Y|X]+b(X)$$ 对于函数 $a(\cdot)$ and $b(\cdot)$. 
+ <br/><br/>
+ <br/><br/>
+
+- **性质3**（独立意味着均值独立）
+ <br/><br/>
+若 $X$ 与 $Y$ 独立, 则 $E[Y|X]=E[Y]$
+
+---
+- 性质3证明 (以离散变量为例): 
+
+\begin{eqnarray}
+E[Y|X]&=&\sum_{i=1}^{N}y_{i}P(Y=y_{i}|X) \\
+	  &=&\sum_{i=1}^{N}y_{i}\frac{P(Y=y_{i},X)}{P(X)} \\
+	  &=&\sum_{i=1}^{N}y_{i}\frac{P(Y=y_{i})\times P(X)}{P(X)} 
+	  &=&E[Y].
+\end{eqnarray}
+
+用到 $P(Y=y,X=x)=P(X=x)P(Y=y)$ .
+
+---
+    
+- **性质4** （均值独立意味着不相干）
+<br/><br/>
+若 $E[Y|X]=E[Y]$, 则 $Cov(X,Y)=0$.
+    -  $E[Y|X]=E[Y]$ is 均值独立(**mean independence**)
+    - 记住: 均值独立意味着不相干，反过来不一定成立.
+
+<br/><br/>
+- **性质5** （条件期望值是最小均值平方误差）
+
+假设对于任意函数 $g$ 有 $E[Y^{2}]<\infty$ 并 $E[g(X)]<\infty$ , 那么 $$E[(Y-\mu(X))^{2}]\leq E[(Y-g(X))^{2}]$$ 其中 $\mu(X)=E[Y|X]$.
+
+- 解读:
+    - 假设使用某种函数形式 $g$ 和数据 $X$ 来解释 $Y$
+    -  那么 $g$ 的最小均方误（ **the mean squared error** ）就是条件期望。
+
+
+---
+
+- **性质5** 证明(自行推导):
+
+\begin{eqnarray}
+E[(Y-g(X))^{2}]	&=&E[\left\{ \left(Y-\mu(X)\right)+\left(\mu(X)-g(X)\right)\right\} ^{2}]\\
+	&=&E\left[\left(Y-\mu(X)\right)^{2}\right]+E\left[\left(\mu(X)-g(X)\right)^{2}\right]\\
+	&+& 2E\left[\left(Y-\mu(X)\right)\left(\mu(X)-g(X)\right)\right].
+\end{eqnarray}
+
+使用期望迭代法则
+\begin{eqnarray}
+E\left[\left(Y-\mu(X)\right)\left(\mu(X)-g(X)\right)\right]	&=&E\left\{E\left[\left(Y-\mu(X)\right)\left(\mu(X)-g(X)\right)|X\right]\right\} \\
+	&=&E\left\{ \left(\mu(X)-g(X)\right)\left(E[Y|X]-\mu(X)\right)\right\} \\
+	&=&0
+\end{eqnarray}
+
+所有,
+$$E[(Y-g(X))^{2}]=E\left[\left(Y-\mu(X)\right)^{2}\right]+E\left[\left(\mu(X)-g(X)\right)^{2}\right],$$ which can take its minimum when $g(X)=\mu(X)$.
+
+
+
+---
+## 其他有用的性质
+
+- **概率迭代法则**
+$$P(Y)=\sum_{i=1}^{N}P(Y|x_{i})P(x_{i})$$   
+$X$是离散随机变量
+<br/><br/>
+- **方差加法法则**
+$$Var(Y)=E[V(Y|X)]+V[E(Y|X)]$$
+
+---
+class: title-slide-section, center, middle,inverse 
+name: logistics
+
+# 误差与模型构建
+
+---
+
+## 条件期望函数误差
+
+.pull-left[
+- Conditional Expectation Function Error （CEFE）
+$$ e = Y - E(Y|X) = Y - m(x) $$
+    - $X$ 是RVs, $E(Y|X)$ 也是RVs.对于二元变量 $D_i$ , CEF有两个值 $E[Yi|Di = 1]$和 $E[Y_i|D_i = 0]$
+
+    - $e$ 是RVs，具有概率分布
+]
+
+.pull-right[
+- CEFE性质
+
+    1. $E(e|X)=0$
+    
+    1. $E(e)=0$
+    
+    1. 对于任意形式 $h(x)$ , $E(h(X)·e)=0$
+
+]
+
+---
+
+## 条件期望函数误差（图示）
+
+ **.qa[Key]: **注意条件分布的形状是随着工作经验如何变化？
+ 
+.middle[
+.center[
+<img src="https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/Nm5Uti.png" height="450" width="600">
+]
+]
+
+---
+
+## 总结：模型构建（by Hansen）
+
+
+step1: 定义条件期望函数 $m(x) = E(Y|X)$
+
+step2: 定义条件期望函数误差 $e = Y - m(x)$
+
+推导出：$$Y = m(x) + e$$
+
+因此模型类别由 $m(x)$ 形式决定。
+
+如截距模型，线性模型，Logit模型等。
+
+---
+exclude: true
+
+```{R, generate pdfs, include = F, eval = F}
+
+pagedown::chrome_print("Lec07.html", output = "Lec07.pdf")
+
+```
