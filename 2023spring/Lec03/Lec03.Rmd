@@ -253,14 +253,6 @@ tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", h
     row_spec(1:nrow(tidy(x)), background = "white") %>%
     row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
 }
-
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-x <- seq(0, 9, 0.1)
-atc <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
-marginal_cost <- function(x) 12 - 4*x + 2*x^2
-atc_min <- 3
-p_zero_profit <- atc(atc_min)
-
 lr_conditions <- ggplot() +
   scale_x_continuous(limits = c(0, 8.5), expand=c(0,0), breaks = NULL) +
   scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_zero_profit), labels = c(expression(P["收支平衡"]))) +
@@ -271,12 +263,10 @@ lr_conditions <- ggplot() +
   annotate("text", label = "LATC", x = 6.9, y = 25, color = purple, family = cnfont, size = 7.7) +
   stat_function( fun = marginal_cost, color = red_pink, size = 1) +
   annotate("text", label = "MC", x = 3.5, y = 31, color = red_pink, family = cnfont, size = 7.7)
-lr_conditions 
-
+ 
 ```
+
 class: center, middle, inverse
-
-
 # 供给：成本衍生的生产决策
 
 ---
@@ -485,7 +475,9 @@ $TP=f(L, \bar{K})$
 
 ???
 
-为了简单，我们把生成函数中的两个变量先固定一个。
+- 长期的时候，厂商是可以变换规模；为了简单，我们先分析短期、厂商生产行为，将资本视为固定生产要素，劳动力视为变动生产要素
+
+，我们把生成函数中的两个变量先固定一个。
 
 总产量通常可以分为3个阶段，你想象一下有10台电脑的科技公司
 
@@ -775,16 +767,20 @@ $=\frac{\frac{d Q}{d L} L-Q}{L^{2}}=\frac{1}{L}(\underbrace{\frac{d Q}{d L}}_{M 
 - 当 $M P_{L}=A P_{L}, A P_{L}$ 达到最大值
 
 ---
-###  作业与上节课回忆
+###  上节课回忆
 
-1.请用图示说明政府为什么对体育场馆补贴？
+1.需求法则是什么？
 
-提示：当论证一个“东西”是好的作用时，通过意味着它有正的外部性。单纯依靠私人市场生成，会出现实际产量小于**社会最优产量**的情况。这时政府就会采取补贴的方式修正市场失灵。
+2.为什么建立弹性的概念？
 
-2.边际产量有什么规律？为什么？
+3.边际产量什么规律？前提是什么？为什么？
 
-3.判断：企业生产继续选择生产，当且仅当其劳动生产率为正的时候。
+4.判断：企业生产继续选择生产，当且仅当其劳动生产率为正的时候。
 
+???
+前提是短期，当资本为固定生产要素时。建立在经验法则基础上的规律。
+
+长期决策：K与L都是可变生产要素，用等产量曲线下的边际技术替代率（劳动替换资本的边际技术替代率）。MRTS是L与K的函数，也是产量的函数。
 
 ---
 layout: false
