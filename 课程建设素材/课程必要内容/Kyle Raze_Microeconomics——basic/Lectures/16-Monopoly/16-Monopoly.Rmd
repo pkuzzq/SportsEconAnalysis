@@ -29,18 +29,8 @@ orange <- "#FD5F00"
 turquoise <- "#44C1C4"
 red <- "#b92e34"
 # Notes directory
-dir_slides <- "~/GitHub/Intro_Microeconomics_W20/Lectures/03-Consumer_Theory/"
+dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/2023spring/Lec04"
 # Knitr options
-opts_chunk$set(
-  comment = "#>",
-  fig.align = "center",
-  fig.height = 7,
-  fig.width = 10.5,
-  #dpi = 300,
-  #cache = T,
-  warning = F,
-  message = F
-)  
 theme_simple <- theme_bw() + theme(
   axis.line = element_line(color = met_slate),
   panel.grid = element_blank(),
@@ -1272,8 +1262,7 @@ Monopolists can use political processes to preempt competition or secure new mon
 
 ---
 # Monopoly
-
-## Solutions?
+### 反垄断措施
 
 1. Antitrust law.
 
@@ -1337,6 +1326,7 @@ Eventually, federal courts adopted the .pink[Consumer Welfare Standard].
 - Still governs antitrust law today.
 
 
+
 ---
 # Mergers
 
@@ -1360,50 +1350,7 @@ Eventually, federal courts adopted the .pink[Consumer Welfare Standard].
 
 - Smaller markets make mergers look worse.
 
----
-# Mergers
 
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-x <- 0:10
-marginal_cost <- function(x) 3 + x
-demand <- function(x) 10 - x
-marginal_revenue <- function(x) 10 - 2*x
-q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
-not_p <- marginal_revenue(q)
-p <- demand(q)
-q_c <- uniroot(function(x) demand(x) - marginal_cost(x), range(x))$root
-p_c <- demand(q_c)
-w <- seq(0, q, 0.01)
-w_2 <- seq(q, q_c, 0.01)
-
-ggplot() +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(q, q_c), labels = c(expression(Q[M]), expression(Q[C]))) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = c(p_c, p), labels = c(expression(P[C]), expression(P[M]))) +
-  theme_market +
-  labs(x = "Q", y = "P") +
-  stat_function(aes(x), fun = marginal_cost, color = purple, size = 1) +
-  annotate("text", label = expression(MC[1]), x = 7.75, y = 9.65, color = purple, family = "Fira Sans", size = 9) +
-  stat_function(aes(x), fun = demand, color = red_pink, size = 1) +
-  stat_function(aes(x), fun = marginal_revenue, color = green, size = 1) +
-  annotate("text", label = "D", x = 10.1, y = 0.65, color = red_pink, family = "Fira Sans", size = 9) +
-  annotate("text", label = "MR", x = 5.75, y = 0.65, color = green, family = "Fira Sans", size = 9) +
-  geom_point(aes(x = q_c, y = p_c), color = met_slate, size = 2) +
-  geom_segment(aes(x = 0, xend = q_c, y = p_c, yend = p_c), color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(aes(x = q_c, xend = q_c, y = 0, yend = p_c), color = met_slate, linetype = "dashed", size = 1) +
-  geom_point(aes(x = q, y = p), color = met_slate, size = 2) +
-  geom_segment(aes(x = q, xend = q, y = 0, yend = p), color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(aes(x = 0, xend = q, y = p, yend = p), color = met_slate, linetype = "dashed", size = 1) +
-  geom_ribbon(aes(x = w_2, ymin = marginal_cost(w_2), ymax = p_c), fill = orange, alpha = 0.2, linetype = "blank") +
-  geom_ribbon(aes(x = w_2, ymin = p_c, ymax = demand(w_2)), fill = orange, alpha = 0.2, linetype = "blank")
-```
-]
-
-.less-right[
-
-All else being equal, industry consolidation creates .orange[deadweight loss].
-
-]
 
 ---
 count: false

@@ -253,20 +253,8 @@ tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", h
     row_spec(1:nrow(tidy(x)), background = "white") %>%
     row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
 }
-lr_conditions <- ggplot() +
-  scale_x_continuous(limits = c(0, 8.5), expand=c(0,0), breaks = NULL) +
-  scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_zero_profit), labels = c(expression(P["收支平衡"]))) +
-  theme_market +
-  labs(x = "TP", y = "￥")+
-  geom_hline(yintercept = p_zero_profit, size = 1, linetype = "dashed", color = met_slate) +
-  stat_function( fun = atc, color = purple, size = 1) +
-  annotate("text", label = "LATC", x = 6.9, y = 25, color = purple, family = cnfont, size = 7.7) +
-  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
-  annotate("text", label = "MC", x = 3.5, y = 31, color = red_pink, family = cnfont, size = 7.7)
- 
 ```
-
-class: center, middle, inverse
+class: title-slide-section,center, middle, inverse
 # 供给：成本衍生的生产决策
 
 ---
@@ -289,8 +277,8 @@ class: center, middle, inverse
 为的是能够对理解职业球队决策、职业联盟市场结构与规制有帮助 
 
 ---
-layout: false
-## 生产决策
+
+### 生产决策
 
 .less-right[生产决策是理解球队雇佣球员的关键；球队行为决定了联盟竞争程度。
 
@@ -316,7 +304,7 @@ layout: false
 
 - 但短期呢？？？
 
-- 利润 .mono[=]总收入 .mono[-] 总成本
+- 利润 .mono[=]总收益 .mono[-] 总成本
 
 
 <br><br><br>
@@ -370,8 +358,7 @@ layout: false
 3. 短期 *vs.* 长期
 
 ---
-class: inverse, middle
-
+class: title-slide-section,center, middle, inverse
 # 生产成本
 
 ---
@@ -421,9 +408,9 @@ class: inverse, middle
 
 ###  会计利润  v.s.  经济利润 
 
-#### 会计利润 <br> $\quad$ .mono[=] 总收入 .mono[-] .pink[显成本]
+#### 会计利润 <br> $\quad$ .mono[=] 总收益 .mono[-] .pink[显成本]
 
-#### 经济利润 <br> $\quad$ .mono[=] 总收入 .mono[-] (.pink[显成本] .mono[+] .purple[隐成本])  <br> $\quad$ .mono[=] 会计利润 .mono[-] .purple[隐成本]
+#### 经济利润 <br> $\quad$ .mono[=] 总收益 .mono[-] (.pink[显成本] .mono[+] .purple[隐成本])  <br> $\quad$ .mono[=] 会计利润 .mono[-] .purple[隐成本]
 
 **重要** 
 
@@ -522,6 +509,8 @@ ggplot() +
 **例子：**假设生产函数 $TP=f(L, K)$ ，其中在一定时期内 $K$ 的数量固定，所以厂商要改变产量就只能改变 $L$ 。这种单可变要素的生产函数称为**短期生产函数**
 $TP=f(L, \bar{K})$ 
 ]
+
+
 ---
 ### 边际产量
 
@@ -594,7 +583,6 @@ shift_axis(mp1)
 
 ???
 
-用边际产量来刻画时就是这个样子。呈倒U形
 
 ---
 count: false
@@ -637,7 +625,7 @@ shift_axis(mp1)
 ]
 
 ---
-### 边际产量递减规律
+### 劳动的边际报酬
 
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
@@ -654,8 +642,8 @@ mp1 <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
   theme(axis.line.x = element_blank(),
         axis.title.x = element_text(hjust = 1, vjust = 21, size = 17)) +
   geom_vline(xintercept = 2.67, color = met_slate, size = 1, linetype = "dashed") +
-  annotate("label", label = wrapper("边际产量上升", 18), x = 2.67/2 - 0.0, y = 14.85, color = purple, family = cnfont, size = 4) +
-  annotate("label", label = wrapper("边际产量下降", 18), x = (2.67 + 7.5)/2 + 0.0, y = 14.85, color = purple, family = cnfont, size = 4)
+  annotate("label", label = wrapper("边际报酬递增", 18), x = 2.67/2 - 0.0, y = 14.85, color = purple, family = cnfont, size = 4) +
+  annotate("label", label = wrapper("边际报酬递减", 18), x = (2.67 + 7.5)/2 + 0.0, y = 14.85, color = purple, family = cnfont, size = 4)
 
 shift_axis(mp1)
 ```
@@ -664,16 +652,14 @@ shift_axis(mp1)
 .less-right[
 #### 解释
 
-当在其他投入数量固定的情况下，只有一种要素投入时.purple[边际产品最终为负]。
-
+当在其他要素是固定情况下，只增加一种要素投入时.purple[其边际产量最终为负] →（劳动）的边际报酬递减（diminishing marginal returns） ← 经验法则
+(the law of diminishing marginal returns)
 ]
 
 ???
 
 实际上企业家对边际产量会更敏感些，
 我们看下边际产量与总产量、和平均产量的关系。
-
-
 
 ---
 ### 总产量、平均产量和边际产量的关系
@@ -778,12 +764,22 @@ $=\frac{\frac{d Q}{d L} L-Q}{L^{2}}=\frac{1}{L}(\underbrace{\frac{d Q}{d L}}_{M 
 4.判断：企业生产继续选择生产，当且仅当其劳动生产率为正的时候。
 
 ???
-前提是短期，当资本为固定生产要素时。建立在经验法则基础上的规律。
+.tiny[
+- 极短期：要素不会发生变化；短期，将资本视为固定要素投入，厂商规模不会变动；长期，资本和劳动都是可变要素投入。
+- 在短期，产量会随着L增加而增加，但资本随着L投入增加而相对减少后，再增加劳动投入所能提升产量的能力就会下降。更具体而言，我们用 $MP_L$ 表示劳动的边际生产实物生产(marginal physical product of labor)
+- 当MP_L 随着L增加而递增时候，就说是 **劳动的边际报酬递增(increasing marginal returns)** ← 经验法则
+-长期决策：K与L都是可变生产要素，用等产量曲线下的边际技术替代率（劳动替换资本的边际技术替代率）。MRTS是L与K的函数，也是产量的函数。
+]
 
-长期决策：K与L都是可变生产要素，用等产量曲线下的边际技术替代率（劳动替换资本的边际技术替代率）。MRTS是L与K的函数，也是产量的函数。
+
 
 ---
-layout: false
+
+class: title-slide-section,center, middle, inverse
+# 供给：成本衍生的生产决策
+
+---
+
 ## 生产决策
 
 .less-right[即使我们知道企业会继续在第二阶段选择生产，那么什么决定了产量多少？
@@ -798,8 +794,9 @@ layout: false
 
 ]
 ---
-### 理性人在边际处行动：边际收益与边际成本
+### 理性人在边际决策：如何刻画边际成本
 
+- 成本线与企业的生产技术紧密相关，而收入线与企业的销售部门紧密相关。
 - 利润角度 .mono[->] 只要能增加利润，就会生产
 - 利润只有收入和成本两部分
 - Max 利润 .mono[->] 边际收益MR=边际成本MC
@@ -813,14 +810,23 @@ layout: false
 
 ???
 
-回忆一下上一节的图像描述的私人部门和公共部门决策过程。
+
+
+---
+### 球队像企业一样决策
+
+- 企业：经理在考量市场需求以及生产制造成本后，进行定价、行销和产量的决策；厂长一方面负责提供各个产量的生产成本资料给经理，另一方面根据经理给的产量目标进行决策，以专业知识在考量人员工资、原材料和零部件价格后，安排制造成本最低的生产线。
+
+- 球队：管理层与教练团队
 
 ---
 class: clear-slide
-### 自学时间：此经验出发理解总成本
-.pink.hi[投入：]土地.mono[-->]必须每月支付1000元的租金，无论种植多少西瓜。
+### 从经验出发理解短期总成本
+瓜农种瓜的例子：短期成本，已知总产量函数
 
-.pink.hi[投入：]劳动力.mono[-->] 市场工资为每月2000元。
+.pink.hi[固定成本] 土地.mono[-->]必须每月支付1000元的租金，无论种植多少西瓜
+
+.pink.hi[可变成本] 劳动力.mono[-->] 市场工资为每月2000元
 
 ```{R, echo = F, escape = F}
 data.frame(
@@ -831,7 +837,7 @@ data.frame(
   v5 = c("", "", "", "", "", "")
 ) %>% kable(
   escape = F,
-  col.names = c("工人 (L)", "西瓜 (Q)", "土地的成本", "劳动力的成本", "Total Cost"),
+  col.names = c("工人 (L)", "西瓜 (Q)", "土地的成本", "劳动力的成本", "总成本"),
   align = c("c", "c", "c", "c", "c")#,
 ) %>%
 row_spec(1:6, color = met_slate) %>%
@@ -842,21 +848,23 @@ row_spec(1:6, extra_css = "line-height: 110%;")
 ---
 count: false
 class: clear-slide
-### 自学时间：一个例子理解总成本
-.pink.hi[投入：]土地.mono[-->]必须每月支付1000元的租金，无论种植多少西瓜。
+### 从经验出发理解短期总成本
+瓜农种瓜的例子：短期成本
 
-.pink.hi[投入：]劳动力.mono[-->] 市场工资为每月2000元。
+.pink.hi[固定成本] 土地.mono[-->]必须每月支付1000元的租金，无论种植多少西瓜
+
+.pink.hi[可变成本] 劳动力.mono[-->] 市场工资为每月2000元
 
 ```{R, echo = F, escape = F}
 data.frame(
   v1 = c(0, 1, 2, 3, 4, 5),
   v2 = c(0, 1000, 1800, 2400, 2800, 3000),
-  v3 = c("￥1000", "￥1000", "￥1000", "￥1000", "￥1000", "￥1000"),
+  v3 = c("$1000", "$1000", "$1000", "$1000", "$1000", "$1000"),
   v4 = c("", "", "", "", "", ""),
   v5 = c("", "", "", "", "", "")
 ) %>% kable(
   escape = F,
-  col.names = c("工人 (L)", "西瓜 (Q)", "土地的成本", "劳动力的成本", "Total Cost"),
+  col.names = c("工人 (L)", "西瓜 (Q)", "土地的成本", "劳动力的成本", "总成本"),
   align = c("c", "c", "c", "c", "c")#,
 ) %>%
 row_spec(1:6, color = met_slate) %>%
@@ -866,21 +874,23 @@ row_spec(1:6, extra_css = "line-height: 110%;")
 ---
 count: false
 class: clear-slide
-### 自学时间：一个例子理解总成本
-.pink.hi[投入：]土地.mono[-->]必须每月支付1000元的租金，无论种植多少西瓜。
+### 从经验出发理解短期总成本
+瓜农种瓜的例子：短期成本
 
-.pink.hi[投入：]劳动力.mono[-->] 市场工资为每月2000元。
+.pink.hi[固定成本] 土地.mono[-->]必须每月支付1000元的租金，无论种植多少西瓜
+
+.pink.hi[可变成本] 劳动力.mono[-->] 市场工资为每月2000元
 
 ```{R, echo = F, escape = F}
 data.frame(
   v1 = c(0, 1, 2, 3, 4, 5),
   v2 = c(0, 1000, 1800, 2400, 2800, 3000),
-  v3 = c("￥1000", "￥1000", "￥1000", "￥1000", "￥1000", "￥1000"),
-  v4 = c("￥0", "￥2000", "￥4000", "￥6000", "￥8000", "￥10000"),
+  v3 = c("$1000", "$1000", "$1000", "$1000", "$1000", "$1000"),
+  v4 = c("$0", "$2000", "$4000", "$6000", "$8000", "$10000"),
   v5 = c("", "", "", "", "", "")
 ) %>% kable(
   escape = F,
-  col.names = c("工人 (L)", "西瓜 (Q)", "土地的成本", "劳动力的成本", "Total Cost"),
+  col.names = c("工人 (L)", "西瓜 (Q)", "土地的成本", "劳动力的成本", "总成本"),
   align = c("c", "c", "c", "c", "c")#,
 ) %>%
 row_spec(1:6, color = met_slate) %>%
@@ -890,21 +900,23 @@ row_spec(1:6, extra_css = "line-height: 110%;")
 ---
 count: false
 class: clear-slide
-### 自学时间：此经验出发理解总成本
-.pink.hi[投入：]土地.mono[-->]必须每月支付1000元的租金，无论种植多少西瓜。
+### 从经验出发理解短期总成本
+瓜农种瓜的例子：短期成本
 
-.pink.hi[投入：]劳动力.mono[-->] 市场工资为每月2000元。
+.pink.hi[固定成本] 土地.mono[-->]必须每月支付1000元的租金，无论种植多少西瓜
+
+.pink.hi[可变成本] 劳动力.mono[-->] 市场工资为每月2000元
 
 ```{R, echo = F, escape = F}
 data.frame(
   v1 = c(0, 1, 2, 3, 4, 5),
   v2 = c(0, 1000, 1800, 2400, 2800, 3000),
-  v3 = c("￥1000", "￥1000", "￥1000", "￥1000", "￥1000", "￥1000"),
-  v4 = c("￥0", "￥2000", "￥4000", "￥6000", "￥8000", "￥10000"),
-  v5 = c("￥1000", "￥3000", "￥5000", "￥7000", "￥9000", "￥11000")
+  v3 = c("$1000", "$1000", "$1000", "$1000", "$1000", "$1000"),
+  v4 = c("$0", "$2000", "$4000", "$6000", "$8000", "$10000"),
+  v5 = c("$1000", "$3000", "$5000", "$7000", "$9000", "$11000")
 ) %>% kable(
   escape = F,
-  col.names = c("工人 (L)", "西瓜 (Q)", "土地的成本", "劳动力的成本", "Total Cost"),
+  col.names = c("工人 (L)", "西瓜 (Q)", "土地的成本", "劳动力的成本", "总成本"),
   align = c("c", "c", "c", "c", "c")#,
 ) %>%
 row_spec(1:6, color = met_slate) %>%
@@ -912,23 +924,25 @@ row_spec(1:6, extra_css = "line-height: 110%;")
 ```
 ---
 class: clear-slide
-### 自学时间：此经验出发理解总成本
-.pink.hi[投入：]土地.mono[-->]必须每月支付1000元的租金，无论种植多少西瓜。
+### 从经验出发理解短期总成本
+瓜农种瓜的例子：短期成本
 
-.pink.hi[投入：]劳动力.mono[-->] 市场工资为每月2000元。
+.pink.hi[固定成本] 土地.mono[-->]必须每月支付1000元的租金，无论种植多少西瓜
 
-.center[.purple[**TC曲线**]]
+.pink.hi[可变成本] 劳动力.mono[-->] 市场工资为每月2000元
+
+.center[.purple[**SRTC曲线**]]
 
 .pull-left[
 ```{R, echo = F, escape = F}
 cost_data <- data.frame(
   q = c(0, 1000, 1800, 2400, 2800, 3000),
-  tc = c("￥1000", "￥3000", "￥5000", "￥7000", "￥9000", "￥11000")
+  tc = c("$1000", "$3000", "$5000", "$7000", "$9000", "$11000")
 ) 
 cost_data %>% 
   kable(
   escape = F,
-  col.names = c("西瓜 (Q)", "Total Cost"),
+  col.names = c("西瓜 (Q)", "总成本"),
   align = c("c", "c")#,
 ) %>%
 row_spec(1:6, color = met_slate) %>%
@@ -947,14 +961,14 @@ cost_data %>%
   scale_x_continuous(limits = c(0, 3500)) +
   scale_y_continuous(limits = c(0, 12000), expand=c(0, 0), breaks = scales::pretty_breaks()) +
   theme_market +
-  labs(x = "TP", y = "TC") +
+  labs(x = "总产量", y = "$") +
   geom_point(size = 2, color = purple) +
   geom_line(size = 1, color = purple)
 ```
 ]
 
 ---
-### S型总成本曲线
+### 短期总成本曲线
 
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
@@ -965,13 +979,13 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
   scale_x_continuous(limits = c(0, 5.5), expand=c(0,0), breaks = scales::pretty_breaks()) +
   scale_y_continuous(limits = c(0, 65), expand=c(0,0), breaks = scales::pretty_breaks()) +
   theme_market +
-  labs(x = "TP", y = "TC") +
+  labs(x = "总产量", y = "$") +
   stat_function(fun = total_cost, color = purple, size = 1) 
 ```
 ]
 
 
-TP函数 .mono[+] 投入要素价格 <br> .mono[-->] .purple.hi[**TC曲线**] 。
+#### .purple.hi[**SRTC曲线**]
 
 .hi[思考]为什么总成本曲线是S型？
 
@@ -981,7 +995,7 @@ TP函数 .mono[+] 投入要素价格 <br> .mono[-->] .purple.hi[**TC曲线**] �
 
 ---
 
-### 边际成本
+### 短期边际成本SRMC
 
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
@@ -992,7 +1006,7 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
   scale_x_continuous(limits = c(0, 5.5), expand=c(0,0), breaks = scales::pretty_breaks()) +
   scale_y_continuous(limits = c(0, 65), expand=c(0,0), breaks = scales::pretty_breaks()) +
   theme_market +
-  labs(x = "TP", y = "SMC") +
+  labs(x = "总产量", y = "$") +
   stat_function(fun = marginal_cost, color = purple, size = 1) 
 ```
 ]
@@ -1008,7 +1022,7 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 
 .purple.hi[边际产量递减先增后减。但产量其实企业的最终行为结果。既然边际产量一段时间会增加，意味着该时期内的边际成本很可能是降低的。] 
 
-哎？刚才不是已经说到了显成本和隐成本么？这里为什么深入分析呢？
+哎？上节课谈到显成本和隐成本，这里为什么区分固定成本和可变成本？
 
 这是因为，之前我们是站在利润的角度来看成本；而这里我们是站在生成的角度来看成本，因此你仔细看横坐标，已经换成了**总产量**
 
@@ -1016,20 +1030,14 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 ### 总成本的构成
 
 #### 总成本 .mono[=] .green[固定成本] .mono[+] .pink[可变成本]
-
+- SRTC(x)=TFC + TVC(x)
 #### .green[固定成本]
-
 > .green[成本不随产出数量的变化而变化]
-
-- 如租金、设备成本、贷款支付等
-- 对边际成本MC没有影响
+- 如租金、设备成本、贷款支付等；对短期边际成本SRMC没有影响
 
 #### .pink[可变成本]
-
 > .pink[成本随产出数量变化而变化]
-
-- 如工资, 原材料成本等
-- 对边际成本MC有影响
+- 如工资, 原材料成本等；对短期边际成本SRMC有影响
 
 ---
 ### 总成本的构成
@@ -1045,22 +1053,22 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
   scale_x_continuous(limits = c(0, 5.5), expand=c(0,0), breaks = scales::pretty_breaks()) +
   scale_y_continuous(limits = c(0, 65), expand=c(0,0), breaks = scales::pretty_breaks()) +
   theme_market +
-  labs(x = "TP", y = "￥")+
+  labs(x = "总产量", y = "$")+
   stat_function(fun = fc, color = green, size = 1) +
   stat_function(fun = total_cost, color = purple, size = 1) +
   stat_function(fun = vc, color = red_pink, size = 1) +
-  annotate("text", label = "TC", x = 3.6, y = 50, color = purple, family = cnfont, size = 7.7) +
-  annotate("text", label = "VC", x = 4.75, y = 50, color = red_pink, family = cnfont, size = 7.7) +
-  annotate("text", label = "FC", x = 4.75, y = 13, color = green, family = cnfont, size = 7.7)
+  annotate("text", label = "SRTC", x = 3.6, y = 50, color = purple, family = cnfont, size = 7.7) +
+  annotate("text", label = "TVC", x = 4.75, y = 50, color = red_pink, family = cnfont, size = 7.7) +
+  annotate("text", label = "TFC", x = 4.75, y = 13, color = green, family = cnfont, size = 7.7)
 
 ```
 ]
 
 .less-right[
-#### .green[固定成本(FC)]
+#### .green[总固定成本(TFC)]
 
 
-#### .pink[可变成本 (VC)]
+#### .pink[总可变成本 (TVC)]
 
 ]
 
@@ -1077,7 +1085,7 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
   scale_x_continuous(limits = c(0, 5.5), expand=c(0,0), breaks = scales::pretty_breaks()) +
   scale_y_continuous(limits = c(0, 65), expand=c(0,0), breaks = scales::pretty_breaks()) +
   theme_market +
-  labs(x = "TP", y = "￥")+
+  labs(x = "总产量", y = "$")+
   stat_function(fun = afc, color = green, size = 1) +
   annotate("text", label = "AFC", x = 4.75, y = 5.5, color = green, family = cnfont, size = 7.7)
 
@@ -1087,9 +1095,9 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 .less-right[
 #### 定义
 
-> AFC .mono[=] FC &divide; TP
+> AFC .mono[=] TFC &divide; 总产量
 
-随着产量上升而减少 <br> .mono[-->] 更多产出分摊FC
+随着产量上升而减少 <br> .mono[-->] 更多产出分摊TFC
 
 ]
 
@@ -1106,7 +1114,7 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
   scale_x_continuous(limits = c(0, 5.5), expand=c(0,0), breaks = scales::pretty_breaks()) +
   scale_y_continuous(limits = c(0, 65), expand=c(0,0), breaks = scales::pretty_breaks()) +
   theme_market +
-  labs(x = "TP", y = "￥")+
+  labs(x = "总产量", y = "$")+
   stat_function(fun = avc, color = red_pink, size = 1) +
   annotate("text", label = "AVC", x = 4.75, y = 18, color = red_pink, family = cnfont, size = 7.7)
 
@@ -1116,59 +1124,54 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 .less-right[
 #### 定义
 
-> AVC .mono[=] VC &divide; TP
+> AVC .mono[=] TVC &divide; 总产量
 
 ]
 
 ---
-### 平均总成本 ATC
+### 短期平均成本 SRAC
 
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
 x <- seq(0, 6, 0.1)
 total_cost <- function(x) 10 + 10*x - 4*x^2 + x^3
-atc <- function(x) (10 + 10*x - 4*x^2 + x^3)/x
+SRAC <- function(x) (10 + 10*x - 4*x^2 + x^3)/x
 
 ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
   scale_x_continuous(limits = c(0, 5.5), expand=c(0,0), breaks = scales::pretty_breaks()) +
   scale_y_continuous(limits = c(0, 65), expand=c(0,0), breaks = scales::pretty_breaks()) +
   theme_market +
-  labs(x = "TP", y = "￥")+
-  stat_function(fun = atc, color = purple, size = 1) +
-  annotate("text", label = "ATC", x = 0.7, y = 50, color = purple, family = cnfont, size = 7.7)
+  labs(x = "总产量", y = "$")+
+  stat_function(fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "SRAC", x = 1.3, y = 50, color = purple, family = cnfont, size = 7.7)
 ```
 ]
 
 .less-right[
 #### 定义
 
-> ATC .mono[=] TC &divide; TP <br> .mono[=] AFC .mono[+] AVC
+> SRAC .mono[=] SRTC &divide; 总产量 <br> .mono[=] AFC .mono[+] AVC
 
 ]
-
-???
-
-为什么要考虑 平均成本？
-社会平均总成本的降低就意味着企业的规模是有效的， 在图表上反映，就是平均成本平均成本曲线的最低点，就是企业达到有效规模的是 
 
 
 ---
 count: false
-### 有效规模
+### 短期平均成本与有效规模
 
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
 x <- seq(0, 6, 0.1)
 total_cost <- function(x) 10 + 10*x - 4*x^2 + x^3
-atc <- function(x) (10 + 10*x - 4*x^2 + x^3)/x
+SRAC <- function(x) (10 + 10*x - 4*x^2 + x^3)/x
 
 ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
   scale_x_continuous(limits = c(0, 5.5), expand=c(0,0), breaks = scales::pretty_breaks()) +
   scale_y_continuous(limits = c(0, 65), expand=c(0,0), breaks = scales::pretty_breaks()) +
   theme_market +
-  labs(x = "TP", y = "￥")+
-  stat_function(fun = atc, color = purple, size = 1) +
-  annotate("text", label = "ATC", x = 0.7, y = 50, color = purple, family = cnfont, size = 7.7) +
+  labs(x = "总产量", y = "$")+
+  stat_function(fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "SRAC", x = 1.3, y = 50, color = purple, family = cnfont, size = 7.7) +
   geom_vline(xintercept = 2.69, color = met_slate, size = 1, linetype = "dashed") +
   annotate("label", label = "有效规模", x = 2.69, y = 60, color = met_slate, family = cnfont, size = 4)
 ```
@@ -1177,18 +1180,23 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 .less-right[
 #### 定义
 
-使平均总成本最小化的生成规模
+使短期平均总成本最小化的生成规模
 ]
 
+???
+
+为什么要考虑短期平均成本？
+平均总成本的降低就意味着企业的规模是有效的， 在图上反映，就是平均成本平均成本曲线的最低点，企业达到有效规模的是 
+
 ---
-### 边际成本与平均成本的关系
+### SRMC与AVC和SRAC的关系
 
 .more-left[
 
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
 x <- seq(0, 6, 0.1)
 total_cost <- function(x) 10 + 10*x - 4*x^2 + x^3
-atc <- function(x) (10 + 10*x - 4*x^2 + x^3)/x
+SRAC <- function(x) (10 + 10*x - 4*x^2 + x^3)/x
 marginal_cost <- function(x) 10 - 8*x + 3*x^2
 avc <- function(x) (10*x - 4*x^2 + x^3)/x
 
@@ -1196,11 +1204,11 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
   scale_x_continuous(limits = c(0, 5.5), expand=c(0,0), breaks = scales::pretty_breaks()) +
   scale_y_continuous(limits = c(0, 65), expand=c(0,0), breaks = scales::pretty_breaks()) +
   theme_market +
-  labs(x = "TP", y = "￥")+
-  stat_function(fun = atc, color = purple, size = 1) +
-  annotate("text", label = "ATC", x = 0.7, y = 50, color = purple, family = cnfont, size = 7.7) +
+  labs(x = "总产量", y = "$")+
+  stat_function(fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "SRAC(AVC)", x = 1.3, y = 50, color = purple, family = cnfont, size = 7.7) +
   stat_function(fun = marginal_cost, color = red_pink, size = 1) +
-  annotate("text", label = "MC", x = 4.8, y = 50, color = red_pink, family = cnfont, size = 7.7) +
+  annotate("text", label = "SRMC", x = 4.8, y = 50, color = red_pink, family = cnfont, size = 7.7) +
   geom_vline(xintercept = 2.69, color = met_slate, size = 1, linetype = "dashed") +
   annotate("label", label = "有效规模", x = 2.69, y = 60, color = met_slate, family = cnfont, size = 4)
 ```
@@ -1209,12 +1217,15 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 .less-right[
 类比MP与AP
 
-.hi.red_pink[MC] .mono[<] .hi.purple[ATC] .mono[==>] .hi.purple[ATC]下降
+.hi.red_pink[MC] .mono[<] .hi.purple[SRAC(AVC)] .mono[==>] .hi.purple[SRAC]下降
 
-.hi.red_pink[MC] .mono[>] .hi.purple[ATC] .mono[==>] .hi.purple[ATC]上升
+.hi.red_pink[MC] .mono[>] .hi.purple[SRAC(AVC)] .mono[==>] .hi.purple[SRAC]上升
 
-.hi.red_pink[MC] **在最小ATC处** 穿过
+.hi.red_pink[MC] **在最小SRAC(AVC)处** 穿过
 
+**所以SRAC与AVC是标记SRMC的位置方式**
+
+SRAC的位置比AVC要高
 ]
 
 ???
@@ -1230,16 +1241,31 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 
 ![umcxI1](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/umcxI1.png)
 
+---
+### 短期成本与短期生产函数的关系
+
+$$SRTC=TFC+TVC(x)=rK_0+wL$$
+$$L=f^{-1}(x)$$
+$$SRTC(x)=TFC+TVC(x)=rK_0+wf^{-1}(x)$$
+$$SRMC(x)=w \frac{df^{-1}(x)}{dx}$$
+$$\frac{df^{-1}(x)}{dx}=\frac{dL}{dx}=\frac{1}{\frac{dx}{dL}}=\frac{1}{\frac{df(L)}{dL}}=\frac{1}{f\prime(L)} = \frac{1}{MP_L}$$
+$$SRMC=\frac {w}{MP_L}$$
+同理：
+$$AVC=\frac {w}{AP_L}$$
+???
+AVC和TVC没有加上SR或者LR是因为它们只有在短期的时候才有区分
 
 ---
-### 短期成本与长期成本
+### 短期成本与短期生产函数的关系
 
-#### 短期
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/odx2EC.png height="550">
+]
 
-某些要素投入是固定的，如训练馆、大量的康复设施等
-- 固定成本不变
 
-#### 长期
+---
+### 长期成本
+
 
 - 所有要素投入是可变的，如球队可以离开联盟或者更新、扩建现有设施
 - 厂商**必须而且可以**配给(rationing)最有效的要素组合
@@ -1250,43 +1276,43 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 那么长期根据企业的盈利能力, 那么可以扩大投入，也可以压缩投入。
 
 ---
-### 长期平均总成本
+### 长期成本、短期成本与生产规模调整
 
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
 cost_data <- tibble(
   q = seq(0, 6, 0.01),
-  atc_s = 18 - 8*q + 3*q^2,
-  atc_m = 30- 16*q + 3*q^2,
-  atc_l = 60 - 24*q + 3*q^2
+  SRAC_s = 18 - 8*q + 3*q^2,
+  SRAC_m = 30- 16*q + 3*q^2,
+  SRAC_l = 60 - 24*q + 3*q^2
 ) %>% 
-  mutate(atc = case_when(atc_s <= atc_m & atc_s <= atc_l ~ atc_s,
-                         atc_m <= atc_s & atc_m <= atc_l ~ atc_m,
-                         atc_l <= atc_s & atc_l <= atc_m ~ atc_l))
+  mutate(SRAC = case_when(SRAC_s <= SRAC_m & SRAC_s <= SRAC_l ~ SRAC_s,
+                         SRAC_m <= SRAC_s & SRAC_m <= SRAC_l ~ SRAC_m,
+                         SRAC_l <= SRAC_s & SRAC_l <= SRAC_m ~ SRAC_l))
 
 cost_data %>% 
   ggplot() +
   scale_x_continuous(limits = c(0, 5.5), expand=c(0,0), breaks = scales::pretty_breaks()) +
   scale_y_continuous(limits = c(0, 27), expand=c(0,0), breaks = scales::pretty_breaks()) +
-  geom_line(aes(x = q, y = atc_s), color = red_pink, size = 1, linetype = "solid") +
-  geom_line(aes(x = q, y = atc_m), color = green, size = 1, linetype = "solid") +
-  geom_line(aes(x = q, y = atc_l), color = orange, size = 1, linetype = "solid") +
+  geom_line(aes(x = q, y = SRAC_s), color = red_pink, size = 1, linetype = "solid") +
+  geom_line(aes(x = q, y = SRAC_m), color = green, size = 1, linetype = "solid") +
+  geom_line(aes(x = q, y = SRAC_l), color = orange, size = 1, linetype = "solid") +
   theme_market +
-  annotate("text", label = expression(SATC[S]), x = 0.7, y = 16, color = red_pink, family = cnfont, size = 4.5) +
-  annotate("text", label = expression(SATC[M]), x = 2.7, y = 10, color = green, family = cnfont, size = 4.5) +
-  annotate("text", label = expression(SATC[L]), x = 4.95, y = 18, color = orange, family = cnfont, size = 4.5) +
-  labs(x = "TP", y = "￥")
+  annotate("text", label = expression(SRAC[S]), x = 0.7, y = 16, color = red_pink, family = cnfont, size = 4.5) +
+  annotate("text", label = expression(SRAC[M]), x = 2.7, y = 10, color = green, family = cnfont, size = 4.5) +
+  annotate("text", label = expression(SRAC[L]), x = 4.95, y = 18, color = orange, family = cnfont, size = 4.5) +
+  labs(x = "总产量", y = "$")
 ```
 ]
 
 .less-right[
+- S、M、L，按照发展规模从小到大
+- 每种规模下（K固定）都有自己的SRTC和SRAC曲线，企业都会在SRTC和SRAC最小处决策
 - 长期可以改变规模类型，但短期不能
-- 厂商可以选择从3个工厂规模: S、M、L，按照发展规模从小到大
-- 每种规模都有自己的SATC曲线
 ]
 
 ---
-### 长期平均总成本
+### 长期成本、短期成本与生产规模调整
 
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
@@ -1294,16 +1320,16 @@ cost_data %>%
   ggplot() +
   scale_x_continuous(limits = c(0, 5.5), expand=c(0,0), breaks = scales::pretty_breaks()) +
   scale_y_continuous(limits = c(0, 27), expand=c(0,0), breaks = scales::pretty_breaks()) +
-  geom_line(aes(x = q, y = atc_s), color = red_pink, size = 1, linetype = "solid") +
-  geom_line(aes(x = q, y = atc_m), color = green, size = 1, linetype = "solid") +
-  geom_line(aes(x = q, y = atc_l), color = orange, size = 1, linetype = "solid") +
-  geom_line(aes(x = q, y = atc), color = purple, size = 1.5, linetype = "solid") +
+  geom_line(aes(x = q, y = SRAC_s), color = red_pink, size = 1, linetype = "solid") +
+  geom_line(aes(x = q, y = SRAC_m), color = green, size = 1, linetype = "solid") +
+  geom_line(aes(x = q, y = SRAC_l), color = orange, size = 1, linetype = "solid") +
+  geom_line(aes(x = q, y = SRAC), color = purple, size = 1.5, linetype = "solid") +
   theme_market +
-  annotate("text", label = expression(SATC[S]), x = 0.7, y = 16, color = red_pink, family = cnfont, size = 4.5) +
-  annotate("text", label = expression(SATC[M]), x = 2.7, y = 10, color = green, family = cnfont, size = 4.5) +
-  annotate("text", label = expression(LATC), x = 4, y = 8.5, color = purple, family = cnfont, size = 7.7) +
-  annotate("text", label = expression(SATC[L]), x = 4.95, y = 18, color = orange, family = cnfont, size = 4.5) +
-  labs(x = "TP", y = "￥")
+  annotate("text", label = expression(SRAC[S]), x = 0.7, y = 16, color = red_pink, family = cnfont, size = 4.5) +
+  annotate("text", label = expression(SRAC[M]), x = 2.7, y = 10, color = green, family = cnfont, size = 4.5) +
+  annotate("text", label = expression(LRAC), x = 4, y = 8.5, color = purple, family = cnfont, size = 7.7) +
+  annotate("text", label = expression(SRAC[L]), x = 4.95, y = 18, color = orange, family = cnfont, size = 4.5) +
+  labs(x = "总产量", y = "$")
 ```
 ]
 
@@ -1318,69 +1344,809 @@ cost_data %>%
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
 x <- seq(0, 6, 0.1)
-atc <- function(x) 10 - 2.75*x + 0.5*x^2
+SRAC <- function(x) 10 - 2.75*x + 0.5*x^2
 
 ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
   scale_x_continuous(limits = c(0, 5.5), expand=c(0,0), breaks = scales::pretty_breaks()) +
   scale_y_continuous(limits = c(0, 11), expand=c(0,0), breaks = scales::pretty_breaks()) +
   theme_market +
-  labs(x = "TP", y = "￥")+
-  stat_function(fun = atc, color = purple, size = 1) +
-  annotate("text", label = "LATC", x = 4.5, y = 6.4, color = purple, family = cnfont, size = 7.7)
+  labs(x = "总产量", y = "$")+
+  stat_function(fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "LRAC", x = 4.5, y = 6.4, color = purple, family = cnfont, size = 7.7)
 ```
 ]
 
 .less-right[
-经典的LATC曲线
+经典的LRAC曲线
 - "微笑曲线"
-- **规模报酬** 反映了长期中，企业所处在的阶段
+- economies/diseconomies of scale
+- **规模经济与规模不经济** 反映了长期中，企业所处在的阶段
 
 ]
 
 ---
-class: inverse, middle
-
-# 供给
+class: title-slide-section,center, middle, inverse
+# 供给：收入衍生的生产决策
 
 ---
-### 单个厂商的短期供给曲线
+### 收入线
+
+.less-right[生产者理论主要是指厂商经济行为模型。职业联盟因为是由多个厂商（俱乐部）构成，俱乐部行为决定了联盟结构，因此本讲中会稍作深入讲解。
+
+- 成本线：生产成本、生产技术、厂商决策
+
+- .hi.orange[收入线：市场结构决定了定价能力]
+
+]
+
+.more-left[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/atpI5Q.png  height="350" width="500">
+
+]
+
+---
+class: title-slide-section,center, middle, inverse
+
+# 价格接受厂商
+
+---
+#### 条件
+
+1. 买卖方数目: 许多买家和卖家
+
+2. 产品差异度: 相同的、无差异的产品 
+
+3. 行业壁垒性: 自由进入和退出
+
+4. 信息完备的: 消费者和厂商可根据完备信息作出最优决策
+
+
+#### 结果
+
+**没有市场势力: ** 厂商无法操控价格
+
+- 每家企业都是 **价格接受者**
+
+---
+### 完全竞争市场
+
+**问：**现实中，几乎没有完全竞争市场，为什么费力地建立一个模型？
+
+**答.sub[1]:** 为建立更现实的情景模型奠定基础
+
+- 简单，但是可以解释更多原因
+
+- 对其他市场结构的启示
+
+**答.sub[2]：** 建立一个基准，与 "现实世界 "进行比较
+
+- 通过比较现实世界的市场条件和完全竞争市场的基准条件，可以回答"我们怎样做得更好？"的问题
+
+
+---
+### 总收益TR、平均收益AR和边际收益MR
+
+.center[
+#### 总收益.mono[=] 销售数量 .mono[*] .pink[销售价格]
+]
+
+完全竞争厂商的销售数量等于它所面临的需求量，销售价格就是产品的市场价格。
+- **总收益** 是厂商按一定价格出售一定量产品时所获得的全部收入<br> $T R(TP)=P \cdot TP=\bar{P} \cdot TP$
+
+- **平均收益** 是厂商在平均每单位产品销售上所获得的收入<br> $AR(TP)=\frac{T R(TP)}{TP}=\frac{\bar{P} \cdot TP}{TP}=\bar{P}$ 
+
+- **边际收益** 是厂商增加一单位产品销售所获得的总收益的增量 $M R(TP)=\frac{\Delta T R(TP)}{\Delta TP}=\frac{d T R(TP)}{d TP}=\frac{d(\bar{P} \cdot TP)}{d TP}=\bar{P}$
+
+- 完全竞争厂商的平均收益 $AR$ ，边际收益 $MR$ 和需求曲线 $D$ **三者重叠**的
+
+- 总收益曲线是从原点出发斜率为 $\bar{P}$ 的射线
+
+???
+
+
+
+---
+### 实现利润最大化的条件（FOC与SOC）
+
+边际收益 $M R$ 等于边际成本 $M C$ 是厂商实现利润最大化的均衡条件。
+<br></br>
+厂商利润为 $\pi(TP)=T R(TP)-T C(TP)$
+
+利润最大化要满足一阶导数为零
+
+$\frac{d \pi(TP)}{d(TP)}=\frac{d T R(TP)}{d TP}-\frac{d T C(TP)}{d TP}=0$
+
+由此得出 $M R(TP)-M C(TP)=0$, 即 $M R(TP)=M C(TP)$
+<br></br>
+以上条件是必要条件，并非充分条件。即要实现利润最大化，必须有 $M R(TP)=M C(TP)$ 。但反过来，如果 $M R(TP)=M C(TP)$ 则不一 定实现利润最大化，因为还可能是利润最小化的点。这时需要结合利润函数的二阶导数 $\frac{d^{2} \pi(TP)}{d TP^{2}}=M R^{\prime}(TP)-M C^{\prime}(TP)<0$ 来判断。
+---
+### 边际收益
+
+.less-right[
+- 定义
+
+> **产出**增加一个单位所产生的总收益的变化
+
+]
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5,  dev = "svg"}
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  theme_market +
+  labs(x = "TP", y = "P") +
+  geom_hline(yintercept = 7, color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 10, y = 7.6, color = red_pink, family = cnfont, size = 9) +
+  annotate("text", label = expression(Delta*"TR"=="MR"), x = 4, y = 4, color = green, family = cnfont, size = 4) +
+  annotate("text", label = expression(Delta*"TP"==1), x = 4, y = 1.5, color = met_slate, family = cnfont, size = 4) +
+  geom_point(aes(x = 3, y = 7), color = met_slate, size = 2) +
+  geom_point(aes(x = 5, y = 7), color = met_slate, size = 2) +
+  geom_segment(aes(x = 3, y = 0, xend = 3, yend = 7), linetype  = "dashed", color = met_slate, size = 1) +
+  geom_segment(aes(x = 5, y = 0, xend = 5, yend = 7), linetype  = "dashed", color = met_slate, size = 1) +
+  geom_segment(aes(x = 3 + 0.1, y = 1, xend = 5 - 0.1, yend = 1), arrow = arrow(angle = 20, length = unit(0.4,"cm"), type = "closed"), color = met_slate, size = 1) +
+  geom_rect(aes(xmin = 3, xmax = 5, ymin = 0, ymax = 7), alpha = 0.2, fill = green)
+```
+]
+
+---
+### 边际收益
+
+.less-right[
+企业在完全竞争市场中
+
+- MR .mono[<=>] D需求
+
+- MR .mono[=] P
+
+- 注意与边际报酬(marginal returns)的区别：边际报酬用来解释要素的边际产量的经济含义 → 区分生产的三个阶段 
+
+]
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5,  dev = "svg"}
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  theme_market +
+  labs(x = "TP", y = "P") +
+  geom_hline(yintercept = 7, color = green, size = 1) +
+  annotate("text", label = expression(MR==P), x = 8, y = 7.6, color = green, family = cnfont, size = 9)
+```
+]
+
+---
+### 完全竞争市场厂商的利润最大化(短期)
+
+- 厂商面对的价格是给定的
+
+- 短期内厂商无法调整生产规模(固定成本给定、其他要素投入给定，如资本)
+
+- 给定的生产规模下，厂商通过调整产量来实现 MR = MC 以满足利润最大化的均衡条件。
+---
+### 完全竞争市场厂商的利润最大化(短期)
 
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-x <- seq(0, 9, 0.1)
-atc <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
-avc <- function(x) (12*x - 2*x^2 + (2/3)*x^3)/x
+x <- seq(0, 8, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
 marginal_cost <- function(x) 12 - 4*x + 2*x^2
-atc_min <- 3
-avc_min <- 3/2
-p_shut_down <- avc(avc_min)
-p_zero_profit <- atc(atc_min)
+marginal_revenue <- function(x) 30
+q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
+p <- marginal_revenue(1)
+cost <- SRAC(q)
+z <- seq(0, q, 0.001)
 
-sr_conditions <- ggplot() +
-  scale_x_continuous(limits = c(0, 8.5), expand=c(0,0), breaks = NULL) +
-  scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_shut_down, p_zero_profit), labels = c(expression(P["停业"]), expression(P["收支平衡"]))) +
+p_max_1 <- ggplot() +
+  scale_x_continuous(limits = c(0, 7.5), expand=c(0,0), breaks = c(q), labels = c(8)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(cost, p), labels = c(8, 12)) +
   theme_market +
-  labs(x = "TP", y = "￥")+
-  geom_hline(yintercept = p_shut_down, size = 1, linetype = "dashed", color = met_slate) +
-  geom_hline(yintercept = p_zero_profit, size = 1, linetype = "dashed", color = met_slate) +
-  stat_function( fun = atc, color = purple, size = 1) +
-  annotate("text", label = "ATC", x = 5.75, y = 31, color = purple, family = cnfont, size = 7.7) +
-  stat_function( fun = avc, color = orange, size = 1) +
-  annotate("text", label = "AVC", x = 7.8, y = 31, color = orange, family = cnfont, size = 7.7) +
-  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
-  annotate("text", label = "SMC", x = 3.5, y = 31, color = red_pink, family = cnfont, size = 7.7)
-sr_conditions 
+  labs(x = "总产量", y = "$")+
+  stat_function( fun = SRAC, color = purple, size = 1) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1)+
+  annotate("text", label = "SRMC", x = 1, y = 8, color = red_pink, family = cnfont, size = 7.7) +
+    annotate("text", label = "SRAC", x = 6.5, y = 35, color = purple, family = cnfont, size = 7.7) +
+  stat_function( fun = marginal_revenue, color = green, size = 1) +
+  annotate("text", label = "MR", x = 7, y = p - 2, color = green, family = cnfont, size = 7.7) 
+p_max_1
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商如何最大化利润?
+
+.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= $\bar{P}$）
+
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("TP", "TR = P &times; TP", "SRAC", "TC = SRAC &times; TP", "利润"),
+  v2 = c("", "", "", "", "")
+) %>% kable(
+  escape = F,
+  col.names = c("产品价格(P)", "$12.00"),
+  align = c("l", "c")
+) %>%
+  kable_styling(full_width = T) %>% 
+  row_spec(1:3, extra_css = "line-height: 110%;")
+tab 
 ```
 ]
 
 ---
 count: false
-### 单个厂商的短期供给曲线
+### 完全竞争市场厂商的利润最大化(短期)
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- seq(0, 8, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+marginal_revenue <- function(x) 30
+q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
+p <- marginal_revenue(1)
+cost <- SRAC(q)
+z <- seq(0, q, 0.001)
+
+p_max_1 <- p_max_1 +
+  geom_point(aes(x = q, y = p), color = met_slate, size = 2) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = p), color = met_slate, linetype = "dashed", size = 1)
+p_max_1
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商如何最大化利润?
+
+.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= $\bar{P}$）
+
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("TP", "TR = P &times; TP", "SRAC", "TC = SRAC &times; TP", "利润"),
+  v2 = c("8", "$96.00", "", "", "")
+) %>% kable(
+  escape = F,
+  col.names = c("产品价格(P)", "$12.00"),
+  align = c("l", "c")
+) %>%
+  kable_styling(full_width = T) %>% 
+  row_spec(1:3, extra_css = "line-height: 110%;")
+tab 
+```
+]
+
+---
+count: false
+### 完全竞争市场厂商的利润最大化(短期)
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+p_max_1 <- p_max_1 +
+  geom_point(aes(x = q, y = cost), color = met_slate, size = 2) +
+  geom_segment(aes(x = 0, xend = q, y = cost, yend = cost), color = met_slate, linetype = "dashed", size = 1) 
+p_max_1
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商如何最大化利润?
+
+.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= $\bar{P}$）
+
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("TP", "TR = P &times; TP", "SRAC", "TC = SRAC &times; TP", "利润"),
+  v2 = c("8", "$96.00", "$8.00", "$64.00", "")
+) %>% kable(
+  escape = F,
+  col.names = c("产品价格(P)", "$12.00"),
+  align = c("l", "c")
+) %>%
+  kable_styling(full_width = T) %>% 
+  row_spec(1:3, extra_css = "line-height: 110%;")
+tab 
+```
+]
+
+---
+count: false
+### 完全竞争市场厂商的利润最大化(短期)
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+p_max_1 <- p_max_1 +
+  geom_ribbon(aes(x = z, ymin = cost, ymax = p), fill = green, alpha = 0.2, linetype = "blank") +
+  annotate("text", label = "利润", x = q/2, y = (p + cost)/2, color = green, family = cnfont, size = 4.5) 
+p_max_1
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商如何最大化利润?
+
+.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= $\bar{P}$）
+
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("TP", "TR = P &times; TP", "SRAC", "TC = SRAC &times; TP", "利润"),
+  v2 = c("8", "$96.00", "$8.00", "$64.00", "$32.00")
+) %>% kable(
+  escape = F,
+  col.names = c("产品价格(P)", "$12.00"),
+  align = c("l", "c")
+) %>%
+  kable_styling(full_width = T) %>% 
+  row_spec(1:3, extra_css = "line-height: 110%;")
+tab 
+```
+]
+
+---
+### 完全竞争市场厂商的利润最大化(短期)
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- seq(0, 8, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+marginal_revenue <- function(x) 18
+q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
+p <- marginal_revenue(1)
+cost <- SRAC(q)
+z <- seq(0, q, 0.001)
+
+p_max_2 <- ggplot() +
+  scale_x_continuous(limits = c(0, 7.5), expand=c(0,0), breaks = c(q), labels = c(6)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(cost), labels = c(7)) +
+  theme_market +
+  labs(x = "总产量", y = "$")+
+  stat_function( fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "SRAC", x = 6.5, y = 35, color = purple, family = cnfont, size = 7.7) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "SRMC", x = 1, y = 8, color = red_pink, family = cnfont, size = 7.7) +
+  stat_function( fun = marginal_revenue, color = green, size = 1) +
+  annotate("text", label = "MR", x = 7, y = p - 2, color = green, family = cnfont, size = 7.7) 
+p_max_2
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商如何最大化利润?
+
+.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= $\bar{P}$）
+
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("TP", "TR = P &times; TP", "SRAC", "TC = SRAC &times; TP", "利润"),
+  v2 = c("", "\\( \\qquad \\ \\ \\ \\)", "", "", "")
+) %>% kable(
+  escape = F,
+  col.names = c("产品价格(P)", "$7.00"),
+  align = c("l", "c")
+) %>%
+  kable_styling(full_width = T) %>% 
+  row_spec(1:3, extra_css = "line-height: 110%;")
+tab 
+```
+]
+
+---
+count: false
+### 完全竞争市场厂商的利润最大化(短期)
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+p_max_2 <- p_max_2 +
+  geom_point(aes(x = q, y = p), color = met_slate, size = 2) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = p), color = met_slate, linetype = "dashed", size = 1) 
+p_max_2
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商如何最大化利润?
+
+.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= $\bar{P}$）
+
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("TP", "TR = P &times; TP", "SRAC", "TC = SRAC &times; TP", "利润"),
+  v2 = c("6", "$42.00", "", "", "")
+) %>% kable(
+  escape = F,
+  col.names = c("产品价格(P)", "$7.00"),
+  align = c("l", "c")
+) %>%
+  kable_styling(full_width = T) %>% 
+  row_spec(1:3, extra_css = "line-height: 110%;")
+tab 
+```
+]
+
+---
+count: false
+### 完全竞争市场厂商的利润最大化(短期)
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+p_max_2
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商如何最大化利润?
+
+.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= $\bar{P}$）
+
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("TP", "TR = P &times; TP", "SRAC", "TC = SRAC &times; TP", "利润"),
+  v2 = c("6", "$42.00", "$7.00", "$42.00", "")
+) %>% kable(
+  escape = F,
+  col.names = c("产品价格(P)", "$7.00"),
+  align = c("l", "c")
+) %>%
+  kable_styling(full_width = T) %>% 
+  row_spec(1:3, extra_css = "line-height: 110%;")
+tab 
+```
+]
+
+---
+count: false
+### 完全竞争市场厂商的利润最大化(短期)
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+p_max_2
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商如何最大化利润?
+
+.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= $\bar{P}$）
+
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("TP", "TR = P &times; TP", "SRAC", "TC = SRAC &times; TP", "利润"),
+  v2 = c("6", "$42.00", "$7.00", "$42.00", "$0.00")
+) %>% kable(
+  escape = F,
+  col.names = c("产品价格(P)", "$7.00"),
+  align = c("l", "c")
+) %>%
+  kable_styling(full_width = T) %>% 
+  row_spec(1:3, extra_css = "line-height: 110%;")
+tab 
+```
+]
+
+---
+### 完全竞争市场厂商的利润最大化(短期)
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- seq(0, 8, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+marginal_revenue <- function(x) 13
+q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
+p <- marginal_revenue(1)
+cost <- SRAC(q)
+z <- seq(0, q, 0.001)
+
+p_max_3 <- ggplot() +
+  scale_x_continuous(limits = c(0, 7.5), expand=c(0,0), breaks = c(q), labels = c(4)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(p, cost), labels = c(5, 8)) +
+  theme_market +
+  labs(x = "总产量", y = "$")+
+  stat_function( fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "SRAC", x = 6.5, y = 35, color = purple, family = cnfont, size = 7.7) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "SRMC", x = 1, y = 8, color = red_pink, family = cnfont, size = 7.7) +
+  stat_function( fun = marginal_revenue, color = green, size = 1) +
+  annotate("text", label = "MR", x = 7, y = p - 2, color = green, family = cnfont, size = 7.7) 
+p_max_3
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商如何最大化利润?
+
+.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= $\bar{P}$）
+
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("TP", "TR = P &times; TP", "SRAC", "TC = SRAC &times; TP", "利润"),
+  v2 = c("", "", "", "", "\\( \\qquad \\: \\ \\ \\ \\)")
+) %>% kable(
+  escape = F,
+  col.names = c("产品价格(P)", "$5.00"),
+  align = c("l", "c")
+) %>%
+  kable_styling(full_width = T) %>% 
+  row_spec(1:3, extra_css = "line-height: 110%;")
+tab 
+```
+]
+
+---
+count: false
+### 完全竞争市场厂商的利润最大化(短期)
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+p_max_3 <- p_max_3 +
+  geom_point(aes(x = q, y = p), color = met_slate, size = 2) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = p), color = met_slate, linetype = "dashed", size = 1)
+p_max_3
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商如何最大化利润?
+
+.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= $\bar{P}$）
+
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("TP", "TR = P &times; TP", "SRAC", "TC = SRAC &times; TP", "利润"),
+  v2 = c("4", "$20.00", "", "", "\\( \\qquad \\: \\ \\ \\ \\)")
+) %>% kable(
+  escape = F,
+  col.names = c("产品价格(P)", "$5.00"),
+  align = c("l", "c")
+) %>%
+  kable_styling(full_width = T) %>% 
+  row_spec(1:3, extra_css = "line-height: 110%;")
+tab 
+```
+]
+
+---
+count: false
+### 完全竞争市场厂商的利润最大化(短期)
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+p_max_3 <- p_max_3 +
+  geom_point(aes(x = q, y = cost), color = met_slate, size = 2) +
+  geom_segment(aes(x = 0, xend = q, y = cost, yend = cost), color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(aes(x = q, xend = q, y = p, yend = cost), color = met_slate, linetype = "dashed", size = 1) 
+p_max_3
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商如何最大化利润?
+
+.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= $\bar{P}$）
+
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("TP", "TR = P &times; TP", "SRAC", "TC = SRAC &times; TP", "利润"),
+  v2 = c("4", "$20.00", "$8.00", "$32.00", "\\( \\qquad \\: \\ \\ \\ \\)")
+) %>% kable(
+  escape = F,
+  col.names = c("产品价格(P)", "$5.00"),
+  align = c("l", "c")
+) %>%
+  kable_styling(full_width = T) %>% 
+  row_spec(1:3, extra_css = "line-height: 110%;")
+tab 
+```
+]
+
+---
+count: false
+### 完全竞争市场厂商的利润最大化(短期)
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+p_max_3 <- p_max_3 +
+  geom_ribbon(aes(x = z, ymin = p, ymax = cost), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  annotate("text", label = "损失", x = q/2, y = (p + cost)/2, color = red_pink, family = cnfont, size = 6) 
+p_max_3
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商如何最大化利润?
+
+.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= $\bar{P}$）
+
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("TP", "TR = P &times; TP", "SRAC", "TC = SRAC &times; TP", "利润"),
+  v2 = c("4", "$20.00", "$8.00", "$32.00", "-$12.00")
+) %>% kable(
+  escape = F,
+  col.names = c("产品价格(P)", "$5.00"),
+  align = c("l", "c")
+) %>%
+  kable_styling(full_width = T) %>% 
+  row_spec(1:3, extra_css = "line-height: 110%;")
+tab 
+```
+]
+
+---
+### 短期决策 .mono[vs.] 长期决策
+
+#### 短期
+
+- .green[固定成本]给定 .mono[-->] 但是不影响生产决策
+  - 因为无论企业是否开业，都必须支付设备租金(固定成本)
+
+- 可以调整支付.pink[可变成本]
+
+  - 例如为工人安排更短工时、购买更少原材料等
+  
+- **只要厂商能支付可变成本(比赛日当天的工资)** .mono[-->] **继续营业**
+
+  - 可以支付.pink[可变成本]时 .mono[-->] 允许亏本经营，延期支付固定成本
+  - 无法支付.pink[可变成本]时 .mono[-->] 最好的办法就是歇业，以减少损失
+
+---
+### 短期决策 .mono[vs.] 长期决策
+
+#### 长期
+
+- 所有成本都是可变的
+
+- 因为允许自由进退 .mono[-->] 厂商可以离开这个行业
+
+    - 如通过不续租的方式或者出售设备
+
+- 因为允许自由进退 .mono[-->] 新厂商可以加入这个行业
+
+
+---
+### 短期决策
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- seq(0, 9, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+avc <- function(x) (12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+SRAC_min <- 3
+avc_min <- 3/2
+p_shut_down <- avc(avc_min)
+p_zero_profit <- SRAC(SRAC_min)
+
+sr_conditions <- ggplot() +
+  scale_x_continuous(limits = c(0, 8.5), expand=c(0,0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_shut_down, p_zero_profit), labels = c(expression(P["歇业"]), expression(P["收支平衡"]))) +
+  theme_market +
+  labs(x = "总产量", y = "$")+
+  geom_hline(yintercept = p_shut_down, size = 1, linetype = "dashed", color = met_slate) +
+  geom_hline(yintercept = p_zero_profit, size = 1, linetype = "dashed", color = met_slate) +
+  stat_function( fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "SRAC", x = 5.75, y = 31, color = purple, family = cnfont, size = 7.7) +
+  stat_function( fun = avc, color = orange, size = 1) +
+  annotate("text", label = "AVC", x = 7.8, y = 31, color = orange, family = cnfont, size = 7.7) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "SRMC", x = 3.5, y = 31, color = red_pink, family = cnfont, size = 7.7)
+sr_conditions 
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商何时运营？何时歇业？
+
+]
+
+---
+count: false
+### 短期决策
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+sr_conditions
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商何时运营？何时歇业？
+
+.pink[A: ] 价格接受厂商，是否歇业完全依赖市场价格
+
+]
+
+---
+count: false
+### 短期决策
 
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
 sr_conditions +
-  annotate("label", label = "停业", x = 8.35, y = p_shut_down - 3, color = orange, family = cnfont, size = 5, hjust = 1) +
+  annotate("label", label = "利润", x = 8.35, y = p_zero_profit + 3, color = green, family = cnfont, size = 5, hjust = 1) +
+  geom_ribbon(aes(x = x, ymin = p_zero_profit, ymax = 32.5), fill = green, alpha = 0.2, linetype = "blank")
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商何时运营？何时歇业？
+
+.pink[A: ] 价格接受厂商，是否歇业完全依赖市场价格
+
+1. .hi.purple[SRAC] .mono[<] P <br> .mono[-->] .green[有利润]
+
+]
+
+---
+count: false
+### 短期决策
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+sr_conditions +
+  annotate("label", label = "运营损失", x = 8.35, y = (p_shut_down + p_zero_profit)/2, color = red_pink, family = cnfont, size = 5, hjust = 1) +
+  geom_ribbon(aes(x = x, ymin = p_shut_down, ymax = p_zero_profit), fill = red_pink, alpha = 0.2, linetype = "blank")
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商何时运营？何时歇业？
+
+.pink[A: ] 价格接受厂商，是否歇业完全依赖市场价格
+
+1. .hi.purple[SRAC] .mono[<] P <br> .mono[-->] .green[有利润]
+
+2. .hi.orange[AVC] .mono[<] P .mono[<] .hi.purple[SRAC] <br> .mono[-->] .pink[存在运营损失]
+
+]
+
+---
+count: false
+### 短期决策
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+sr_conditions +
+  annotate("label", label = "歇业", x = 8.35, y = p_shut_down - 3, color = orange, family = cnfont, size = 5, hjust = 1) +
+  geom_ribbon(aes(x = x, ymin = 0, ymax = p_shut_down), fill = orange, alpha = 0.2, linetype = "blank")
+```
+]
+
+.less-right[
+
+.pink[Q: ] 厂商何时运营？何时歇业？
+
+.pink[A: ] 价格接受厂商，是否歇业完全依赖市场价格
+
+1. .hi.purple[SRAC] .mono[<] P <br> .mono[-->] .green[有利润]
+
+2. .hi.orange[AVC] .mono[<] P .mono[<] .hi.purple[SRAC] <br> .mono[-->] .pink[存在运营损失]
+
+3. P .mono[<] .hi.orange[AVC] <br> .mono[-->] .orange[歇业]
+
+]
+
+---
+count: false
+### 短期决策
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+sr_conditions +
+  annotate("label", label = "歇业", x = 8.35, y = p_shut_down - 3, color = orange, family = cnfont, size = 5, hjust = 1) +
   geom_ribbon(aes(x = x, ymin = 0, ymax = p_shut_down), fill = orange, alpha = 0.2, linetype = "blank") +
   annotate("label", label = "运营损失", x = 8.35, y = (p_shut_down + p_zero_profit)/2, color = red_pink, family = cnfont, size = 5, hjust = 1) +
   geom_ribbon(aes(x = x, ymin = p_shut_down, ymax = p_zero_profit), fill = red_pink, alpha = 0.2, linetype = "blank") +
@@ -1391,45 +2157,45 @@ sr_conditions +
 
 .less-right[
 
-.pink[Q: ] 厂商何时运营？何时停业？
+.pink[Q: ] 厂商何时运营？何时歇业？
 
-.pink[A: ] 完全竞争市场，是否停业完全依赖市场价格
+.pink[A: ] 价格接受厂商，是否歇业完全依赖市场价格
 
-1. .hi.purple[ATC] .mono[<] P <br> .mono[-->] .green[有利润]
+1. .hi.purple[SRAC] .mono[<] P <br> .mono[-->] .green[有利润]
 
-2. .hi.orange[AVC] .mono[<] P .mono[<] .hi.purple[ATC] <br> .mono[-->] .pink[存在运营损失]
+2. .hi.orange[AVC] .mono[<] P .mono[<] .hi.purple[SRAC] <br> .mono[-->] .pink[存在运营损失]
 
-3. P .mono[<] .hi.orange[AVC] <br> .mono[-->] .orange[停业]
+3. P .mono[<] .hi.orange[AVC] <br> .mono[-->] .orange[歇业]
 
 ]
 
 ---
-### 单个厂商的短期供给曲线
+### 短期决策
 
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
 x <- seq(0, 9, 0.1)
-atc <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
 avc <- function(x) (12*x - 2*x^2 + (2/3)*x^3)/x
 marginal_cost <- function(x) 12 - 4*x + 2*x^2
-atc_min <- 3
+SRAC_min <- 3
 avc_min <- 3/2
 p_shut_down <- avc(avc_min)
-p_zero_profit <- atc(atc_min)
+p_zero_profit <- SRAC(SRAC_min)
 
 ggplot() +
   scale_x_continuous(limits = c(0, 8.5), expand=c(0,0), breaks = NULL) +
-  scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_shut_down, p_zero_profit), labels = c(expression(P["停业"]), expression(P["收支平衡"]))) +
+  scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_shut_down, p_zero_profit), labels = c(expression(P["歇业"]), expression(P["收支平衡"]))) +
   theme_market +
-  labs(x = "TP", y = "￥")+
+  labs(x = "总产量", y = "$")+
   geom_hline(yintercept = p_shut_down, size = 1, linetype = "dashed", color = met_slate) +
   geom_hline(yintercept = p_zero_profit, size = 1, linetype = "dashed", color = met_slate) +
-  stat_function( fun = atc, color = purple, size = 1, alpha = 0.5) +
-  annotate("text", label = "ATC", x = 5.75, y = 31, color = purple, family = cnfont, size = 7.7, alpha = 0.5) +
+  stat_function( fun = SRAC, color = purple, size = 1, alpha = 0.5) +
+  annotate("text", label = "SRAC", x = 5.75, y = 31, color = purple, family = cnfont, size = 7.7, alpha = 0.5) +
   stat_function( fun = avc, color = orange, size = 1, alpha = 0.5) +
   annotate("text", label = "AVC", x = 7.8, y = 31, color = orange, family = cnfont, size = 7.7, alpha = 0.5) +
   stat_function( fun = marginal_cost, color = red_pink, size = 1, alpha = 0.5) +
-  annotate("text", label = "SMC", x = 3.5, y = 31, color = red_pink, family = cnfont, size = 7.7, alpha = 0.5) +
+  annotate("text", label = "SRMC", x = 3.5, y = 31, color = red_pink, family = cnfont, size = 7.7, alpha = 0.5) +
   stat_function( xlim = c(avc_min, 8.5), fun = marginal_cost, color = purple, size = 1.5, linetype = "longdash") +
   geom_segment(aes(x = 0.05, xend = 0.05, y = 0, yend = p_shut_down), color = purple, linetype = "longdash", size = 1.5) +
   annotate("text", label = "S", x = 3.5, y = 28, color = purple, family = cnfont, size = 7.7)
@@ -1438,34 +2204,34 @@ ggplot() +
 
 .less-right[
 
-### .purple[短期供给曲线]
+#### .purple[短期供给曲线]
 
-P .mono[>] P.sub[停业] .mono[-->] 短期供给曲线 .mono[=] .hi.purple[SMC] 在.hi.orange[AVC]以上的部分
+P .mono[>] P.sub[歇业] .mono[-->] 短期供给曲线 .mono[=] .hi.purple[SRMC] 在.hi.orange[AVC]以上的部分
 
-P .mono[<] P.sub[停业] .mono[-->] 短期供给曲线 .mono[=] Y轴
+P .mono[<] P.sub[歇业] .mono[-->] 短期供给曲线 .mono[=] Y轴
 
 ]
 
 ---
 count: false
-### 单个厂商的短期供给曲线
+### 短期决策
 
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
 x <- seq(0, 9, 0.1)
-atc <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
 avc <- function(x) (12*x - 2*x^2 + (2/3)*x^3)/x
 marginal_cost <- function(x) 12 - 4*x + 2*x^2
-atc_min <- 3
+SRAC_min <- 3
 avc_min <- 3/2
 p_shut_down <- avc(avc_min)
-p_zero_profit <- atc(atc_min)
+p_zero_profit <- SRAC(SRAC_min)
 
 ggplot() +
   scale_x_continuous(limits = c(0, 8.5), expand=c(0,0), breaks = NULL) +
-  scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_shut_down, p_zero_profit), labels = c(expression(P["停业"]), expression(P["收支平衡"]))) +
+  scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_shut_down, p_zero_profit), labels = c(expression(P["歇业"]), expression(P["收支平衡"]))) +
   theme_market +
-  labs(x = "TP", y = "￥")+
+  labs(x = "总产量", y = "$")+
   geom_hline(yintercept = p_shut_down, size = 1, linetype = "dashed", color = met_slate) +
   geom_hline(yintercept = p_zero_profit, size = 1, linetype = "dashed", color = met_slate) +
   stat_function( xlim = c(avc_min, 8.5), fun = marginal_cost, color = purple, size = 1.5, linetype = "solid") +
@@ -1478,19 +2244,67 @@ ggplot() +
 
 #### .purple[短期供给曲线]
 
-P .mono[>] P.sub[停业] .mono[-->] 短期供给曲线 .mono[=] .hi.purple[SMC] 在.hi.orange[AVC]以上的部分
+P .mono[>] P.sub[歇业] .mono[-->] 短期供给曲线 .mono[=] .hi.purple[SRMC] 在.hi.orange[AVC]以上的部分
 
-P .mono[<] P.sub[停业] .mono[-->] 短期供给曲线 .mono[=] Y轴
+P .mono[<] P.sub[歇业] .mono[-->] 短期供给曲线 .mono[=] Y轴
 
-思考：那么市场的供给曲线呢？
+**市场短期供给曲线是多个厂商的短期供给加总，因此市场短期供给曲线也是右上倾斜**
 
 ]
 
-???
+---
+### 沉没成本 sunk costs
 
-**市场短期供给曲线是多个厂商的短期供给加总，因此市场短期供给曲线也是右上倾斜**,但是更平坦些。
+- 定义
+
+> 由于以前的决定而产生的无法收回的成本
+
+- 那些已经投入使用人力、物力、财力和时间，无论是否开业都无法收回
 
 ---
+### 长期决策
+
+.pink[Q：]长期来看，厂商何时退出还是进入市场？
+
+- 退出市场的好处.mono[=]节约成本.mono[=]TC
+
+- 退出市场的成本.mono[=]收入损失.mono[=]TR
+    
+.pink[A: ] 如果TC .mono[>] TR就退出，如果TC.mono[<] TR就进入
+
+---
+### 单个厂商的长期供给曲线
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+x <- seq(0, 9, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+SRAC_min <- 3
+p_zero_profit <- SRAC(SRAC_min)
+
+lr_conditions <- ggplot() +
+  scale_x_continuous(limits = c(0, 8.5), expand=c(0,0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_zero_profit), labels = c(expression(P["收支平衡"]))) +
+  theme_market +
+  labs(x = "总产量", y = "$")+
+  geom_hline(yintercept = p_zero_profit, size = 1, linetype = "dashed", color = met_slate) +
+  stat_function( fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "LRAC", x = 6.9, y = 25, color = purple, family = cnfont, size = 7.7) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "LRMC", x = 3.5, y = 31, color = red_pink, family = cnfont, size = 7.7)
+lr_conditions 
+```
+]
+
+.less-right[
+
+.pink[Q: ] 何时运营？何时歇业？
+
+]
+
+---
+count: false
 ### 单个厂商的长期供给曲线
 
 .more-left[
@@ -1501,9 +2315,9 @@ lr_conditions
 
 .less-right[
 
-.pink[Q: ] 何时运营？何时停业？
+.pink[Q: ] 何时运营？何时歇业？
 
-.pink[A: ] 完全竞争市场，是否停业完全依赖市场价格
+.pink[A: ] 价格接受厂商，是否歇业完全依赖市场价格
 
 ]
 
@@ -1521,11 +2335,11 @@ lr_conditions +
 
 .less-right[
 
-.pink[Q: ] 何时运营？何时停业？
+.pink[Q: ] 何时运营？何时歇业？
 
-.pink[A: ] 完全竞争市场，是否停业完全依赖市场价格
+.pink[A: ] 价格接受厂商，是否歇业完全依赖市场价格
 
-1. P .mono[>] .hi.purple[LATC] <br> .mono[-->] .green[有利润]
+1. P .mono[>] .hi.purple[LRAC] <br> .mono[-->] .green[有利润]
 
 ]
 
@@ -1543,13 +2357,13 @@ lr_conditions +
 
 .less-right[
 
-.pink[Q: ] 何时运营？何时停业？
+.pink[Q: ] 何时运营？何时歇业？
 
-.pink[A: ] 完全竞争市场，是否停业完全依赖市场价格
+.pink[A: ] 价格接受厂商，是否歇业完全依赖市场价格
 
-1. P .mono[>] .hi.purple[LATC] <br> .mono[-->] .green[有利润]
+1. P .mono[>] .hi.purple[LRAC] <br> .mono[-->] .green[有利润]
 
-2. .hi.purple[LATC] .mono[>] P <br> .mono[-->] .orange[退出市场]
+2. .hi.purple[LRAC] .mono[>] P <br> .mono[-->] .orange[退出市场]
 
 ]
 
@@ -1569,13 +2383,13 @@ lr_conditions +
 
 .less-right[
 
-.pink[Q: ] 何时运营？何时停业？
+.pink[Q: ] 何时运营？何时歇业？
 
-.pink[A: ] 完全竞争市场，是否停业完全依赖市场价格
+.pink[A: ] 价格接受厂商，是否歇业完全依赖市场价格
 
-1. P .mono[>] .hi.purple[LATC] <br> .mono[-->] .green[有利润]
+1. P .mono[>] .hi.purple[LRAC] <br> .mono[-->] .green[有利润]
 
-2. .hi.purple[LATC] .mono[>] P <br> .mono[-->] .orange[退出市场]
+2. .hi.purple[LRAC] .mono[>] P <br> .mono[-->] .orange[退出市场]
 
 ]
 
@@ -1585,22 +2399,22 @@ lr_conditions +
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
 x <- seq(0, 9, 0.1)
-atc <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
 marginal_cost <- function(x) 12 - 4*x + 2*x^2
-atc_min <- 3
-p_zero_profit <- atc(atc_min)
+SRAC_min <- 3
+p_zero_profit <- SRAC(SRAC_min)
 
 ggplot() +
   scale_x_continuous(limits = c(0, 8.5), expand=c(0,0), breaks = NULL) +
   scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_zero_profit), labels = c(expression(P["收支平衡"]))) +
   theme_market +
-  labs(x = "TP", y = "￥")+
+  labs(x = "总产量", y = "$")+
   geom_hline(yintercept = p_zero_profit, size = 1, linetype = "dashed", color = met_slate) +
-  stat_function( fun = atc, color = purple, size = 1, alpha = 0.5) +
-  annotate("text", label = "LATC", x = 6.9, y = 25, color = purple, family = cnfont, size = 7.7) +
+  stat_function( fun = SRAC, color = purple, size = 1, alpha = 0.5) +
+  annotate("text", label = "LRAC", x = 6.9, y = 25, color = purple, family = cnfont, size = 7.7) +
   stat_function( fun = marginal_cost, color = red_pink, size = 1, alpha = 0.5) +
-  annotate("text", label = "MC", x = 3.5, y = 31, color = red_pink, family = cnfont, size = 7.7, alpha = 0.5) +
-  stat_function( xlim = c(atc_min, 8.5), fun = marginal_cost, color = purple, size = 1.5, linetype = "longdash") +
+  annotate("text", label = "LRMC", x = 3.5, y = 31, color = red_pink, family = cnfont, size = 7.7, alpha = 0.5) +
+  stat_function( xlim = c(SRAC_min, 8.5), fun = marginal_cost, color = purple, size = 1.5, linetype = "longdash") +
   geom_segment(aes(x = 0.05, xend = 0.05, y = 0, yend = p_zero_profit), color = purple, linetype = "longdash", size = 1.5) +
   annotate("text", label = "S", x = 3.5, y = 28, color = purple, family = cnfont, size = 7.7)
 ```
@@ -1610,7 +2424,7 @@ ggplot() +
 
 ### .purple[单个厂商的长期供给曲线]
 
-P .mono[>] P.sub[收支平衡] .mono[-->] 长期供给曲线 <br> .mono[=] .hi.red-pink[MC]高于最小.hi.purple[LATC]以上的部分
+P .mono[>] P.sub[收支平衡] .mono[-->] 长期供给曲线 <br> .mono[=] .hi.red-pink[MC]高于最小.hi.purple[LRAC]以上的部分
 
 
 P .mono[<] P.sub[收支平衡] .mono[-->] 长期供给曲线 <br> .mono[=]  Y轴
@@ -1623,18 +2437,18 @@ P .mono[<] P.sub[收支平衡] .mono[-->] 长期供给曲线 <br> .mono[=]  Y轴
 .more-left[
 ```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
 x <- seq(0, 9, 0.1)
-atc <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
 marginal_cost <- function(x) 12 - 4*x + 2*x^2
-atc_min <- 3
-p_zero_profit <- atc(atc_min)
+SRAC_min <- 3
+p_zero_profit <- SRAC(SRAC_min)
 
 ggplot() +
   scale_x_continuous(limits = c(0, 8.5), expand=c(0,0), breaks = NULL) +
   scale_y_continuous(limits = c(0, 32.5), expand=c(0,0), breaks = c(p_zero_profit), labels = c(expression(P["收支平衡"]))) +
   theme_market +
-  labs(x = "TP", y = "￥")+
+  labs(x = "总产量", y = "$")+
   geom_hline(yintercept = p_zero_profit, size = 1, linetype = "dashed", color = met_slate) +
-  stat_function( xlim = c(atc_min, 8.5), fun = marginal_cost, color = purple, size = 1.5, linetype = "solid") +
+  stat_function( xlim = c(SRAC_min, 8.5), fun = marginal_cost, color = purple, size = 1.5, linetype = "solid") +
   geom_segment(aes(x = 0.05, xend = 0.05, y = 0, yend = p_zero_profit), color = purple, linetype = "solid", size = 1.5) +
   annotate("text", label = "S", x = 3.5, y = 28, color = purple, family = cnfont, size = 7.7)
 ```
@@ -1644,11 +2458,996 @@ ggplot() +
 
 #### .purple[单个厂商的长期供给曲线]
 
-P .mono[>] P.sub[收支平衡] .mono[-->] 长期供给曲线 <br> .mono[=] .hi.red-pink[MC]高于最小.hi.purple[LATC]以上的部分
+P .mono[>] P.sub[收支平衡] .mono[-->] 长期供给曲线 <br> .mono[=] .hi.red-pink[MC]高于最小.hi.purple[LRAC]以上的部分
 
 P .mono[<] P.sub[收支平衡] .mono[-->] 长期供给曲线 <br> .mono[=]  Y轴
 
 ]
+
+---
+class: title-slide-section,inverse, middle
+# 完全竞争市场的市场结果
+
+---
+
+### 完全竞争市场
+
+.pink[问题] 诸多厂商决定对完全竞争产品市场结果的影响是怎样的？
+
+.pink[答案] 需要构建产品市场供给曲线
+
+- 产品市场供给曲线是所有单厂商供给曲线的加总
+
+- 产品的市场供给曲线和市场需求曲线（向右下倾斜）共同决定了市场均衡时价格和数量
+
+.hi-pink[回忆 ]在完全竞争市场条件下
+
+- 单厂商的需求曲线是一条水平线
+- 单厂商厂商的长期利润为零（会计利润可能为正）
+- 长期，单厂商的水平需求曲线相切于LRAC曲线的最低点
+- 长期，产品的均衡价格最低，等于最低LRAC
+
+---
+### 完全竞争市场的短期均衡
+
+**Case 1:** 市场短期价格 .mono[>] 市场长期价格(minLRAC)
+
+- 单厂商赚取利润 <br> .mono[-->] 其他企业家看到市场有利可图 <br> .mono[-->] 厂商数量增加 <br> .mono[-->] 市场短期供给曲线右移 <br> .mono[-->] 市场短期价格下降
+
+---
+### 完全竞争市场的短期均衡
+
+
+**Case 2:** 市场短期价格 .mono[<] 市场长期价格(minLRAC)
+
+- 单厂商亏损经营（或歇业） <br> .mono[-->] 离开市场 <br> .mono[-->] 市场上此类产品供应厂商数量减少 <br> .mono[-->] 市场短期供给曲线左移 <br> .mono[-->] 市场短期价格上升
+
+---
+### 完全竞争市场的长期均衡(企业的生产规模报酬不变)
+
+.pull-left[
+.center[**单个厂商**]
+```{r, echo = FALSE, fig.height = 3.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 8, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+marginal_revenue <- function(x) 18
+q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
+p <- marginal_revenue(1)
+cost <- SRAC(q)
+z <- seq(0, q, 0.001)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 7.5), expand=c(0,0), breaks = c(q), labels = c(expression(Q[厂商]))) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(cost), labels = c(expression(P[LR]))) +
+  theme_market +
+  labs(x = "总产量", y = "$")+
+  stat_function( fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "LRAC", x = 6.5, y = 35, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "SRMC", x = 1, y = 8, color = red_pink, family = cnfont, size = 6) +
+  stat_function( fun = marginal_revenue, color = green, size = 1) +
+  annotate("text", label = "MR", x = 7, y = p - 2, color = green, family = cnfont, size = 4.5) +
+  geom_point(aes(x = q, y = p), color = met_slate, size = 2) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = p), color = met_slate, linetype = "dashed", size = 1) 
+```
+]
+.pull-right[
+.center[**市场**]
+```{r, echo = FALSE, fig.height = 3.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 7, 0.1)
+demand <- function(x) 36 - 6*x
+supply <- function(x) 6 + 4*x
+lr_supply <- function(x) 18
+q <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p <- supply(q)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 6.5), expand=c(0,0), breaks = c(q), labels = c(expression(Q[市场]))) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(lr_supply(q)), labels = c(expression(P[LR]))) +
+  theme_market +
+  labs(x = "TP", y = "P") +
+  stat_function( fun = supply, color = purple, size = 1) +
+  annotate("text", label = "S", x = 6, y = 32, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = lr_supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[LR]), x = 6, y = lr_supply(q) - 2, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = demand, color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 6, y = 3, color = red_pink, family = cnfont, size = 6) +
+  geom_point(aes(x = q, y = lr_supply(q)), color = met_slate, size = 2) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = lr_supply(q)), color = met_slate, linetype = "dashed", size = 1) 
+```
+]
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("LRAC的最低点"),
+  v2 = c("LRAC的最低点处的产量"),
+  v3 = c("Q.sub[厂商] &times; N.sub[多厂商]"),
+  v4 = c("Q.sub[市场] &divide; Q.sub[厂商]")
+) %>% kable(
+  escape = F,
+  col.names = c("P.sub[LR]", "Q.sub[厂商]", "Q.sub[市场]", "N.sub[厂商数量]"),
+  align = c("c", "c", "c", "c")
+) %>%
+  kable_styling(full_width = T) 
+tab 
+```
+
+---
+### 完全竞争市场的长期均衡(企业的生产规模报酬不变)
+.pull-left[
+.center[**单个厂商**]
+```{r, echo = FALSE, fig.height = 3.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 8, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+marginal_revenue <- function(x) 18
+q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
+p <- marginal_revenue(1)
+cost <- SRAC(q)
+z <- seq(0, q, 0.001)
+
+firm_1 <- ggplot() +
+  scale_x_continuous(limits = c(0, 7.5), expand=c(0,0), breaks = c(q), labels = c(4)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(cost), labels = c(5)) +
+  theme_market +
+  labs(x = "总产量", y = "$")+
+  stat_function( fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "LRAC", x = 6.5, y = 35, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "SRMC", x = 1, y = 8, color = red_pink, family = cnfont, size = 6) +
+  stat_function( fun = marginal_revenue, color = green, size = 1) +
+  annotate("text", label = "MR", x = 7, y = p - 2, color = green, family = cnfont, size = 4.5) +
+  geom_point(aes(x = q, y = p), color = met_slate, size = 2) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = p), color = met_slate, linetype = "dashed", size = 1) 
+firm_1
+```
+]
+.pull-right[
+.center[**市场**]
+```{r, echo = FALSE, fig.height = 3.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 7, 0.1)
+demand <- function(x) 36 - 6*x
+supply <- function(x) 6 + 4*x
+lr_supply <- function(x) 18
+q <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+p <- supply(q)
+
+market_1 <- ggplot() +
+  scale_x_continuous(limits = c(0, 6.5), expand=c(0,0), breaks = c(q), labels = c(3000)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(lr_supply(q)), labels = c(5)) +
+  theme_market +
+  labs(x = "TP", y = "P") +
+  stat_function( fun = supply, color = purple, size = 1) +
+  annotate("text", label = "S", x = 6, y = 32, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = lr_supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[LR]), x = 6, y = lr_supply(q) - 2, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = demand, color = red_pink, size = 1) +
+  annotate("text", label = "D", x = 6, y = 3, color = red_pink, family = cnfont, size = 6) +
+  geom_point(aes(x = q, y = lr_supply(q)), color = met_slate, size = 2) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = lr_supply(q)), color = met_slate, linetype = "dashed", size = 1) 
+market_1
+```
+]
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("$5.00"),
+  v2 = c(4),
+  v3 = c(3000),
+  v4 = c("")
+) %>% kable(
+  escape = F,
+  col.names = c("P.sub[LR]", "Q.sub[厂商]", "Q.sub[市场]", "N.sub[厂商数量]"),
+  align = c("c", "c", "c", "c", "c", "c")
+) %>%
+  kable_styling(full_width = T) 
+tab 
+```
+
+---
+count: false
+### 完全竞争市场的长期均衡(企业的生产规模报酬不变)
+.pull-left[
+.center[**单个厂商**]
+```{r, echo = FALSE, fig.height = 3.5, fig.width = 3.75, dev = "svg"}
+firm_1
+```
+]
+.pull-right[
+.center[**市场**]
+```{r, echo = FALSE, fig.height = 3.5, fig.width = 3.75, dev = "svg"}
+market_1
+```
+]
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("$5.00"),
+  v2 = c(4),
+  v3 = c(3000),
+  v4 = c(750)
+) %>% kable(
+  escape = F,
+  col.names = c("P.sub[LR]", "Q.sub[厂商]", "Q.sub[市场]", "N.sub[厂商数量]"),
+  align = c("c", "c", "c", "c", "c", "c")
+) %>%
+  kable_styling(full_width = T) 
+tab 
+```
+
+---
+class: clear-slide
+.pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么短期原厂商如何调整产量?
+
+.pull-left[
+.center[**单个厂商**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 8, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+marginal_revenue <- function(x) 18
+marginal_revenue_2 <- function(x) 12.04
+q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
+q_2 <- uniroot(function(x) marginal_revenue_2(x) - marginal_cost(x), range(x))$root
+p <- marginal_revenue(1)
+p_2 <- marginal_revenue_2(1)
+cost <- SRAC(q)
+cost_2 <- SRAC(q_2)
+z <- seq(0, q_2, 0.001)
+
+ggplot() +
+  # scale_x_continuous(limits = c(0, 7.5), expand=c(0,0), breaks = c(q_2, q), labels = c(3, 4)) +
+  # scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(12.04, cost, cost_2), labels = c("3.00", "5.00", "5.25")) +
+  scale_x_continuous(limits = c(0, 7.5), expand=c(0,0), breaks = c(q), labels = c(4)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(cost), labels = c("5.00")) +
+  theme_market +
+  labs(x = "总产量", y = "$")+
+  stat_function( fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "LRAC", x = 6.5, y = 35, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "SRMC", x = 1, y = 8, color = red_pink, family = cnfont, size = 6) +
+  stat_function( fun = marginal_revenue, color = green, size = 1) +
+  annotate("text", label = expression(MR[1]), x = 7, y = p + 2, color = green, family = cnfont, size = 4.5) +
+  geom_point(aes(x = q, y = p), color = met_slate, size = 2) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = p), color = met_slate, linetype = "dashed", size = 1) #+
+  
+  # stat_function( fun = marginal_revenue_2, color = green, size = 1) +
+  # annotate("text", label = expression(MR[2]), x = 7, y = p_2 - 2, color = green, family = cnfont, size = 4.5) +
+  # geom_point(aes(x = q_2, y = p_2), color = met_slate, size = 2) +
+  # geom_segment(aes(x = q_2, xend = q_2, y = 0, yend = p_2), color = met_slate, linetype = "dashed", size = 1) +
+  # geom_point(aes(x = q_2, y = cost_2), color = met_slate, size = 2) +
+  # geom_segment(aes(x = q_2, xend = q_2, y = p_2, yend = cost_2), color = met_slate, linetype = "dashed", size = 1) +
+  # geom_segment(aes(x = 0, xend = q_2, y = cost_2, yend = cost_2), color = met_slate, linetype = "dashed", size = 1) +
+  # 
+  # geom_ribbon(aes(x = z, ymin = p_2, ymax = cost_2), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  # annotate("text", label = "损失", x = q_2/2, y = (p_2 + cost_2)/2, color = red_pink, family = cnfont, size = 5) 
+```
+]
+.pull-right[
+.center[**市场**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 7, 0.1)
+demand <- function(x) 36 - 6*x
+demand_2 <- function(x) 21.1 - 6*x
+supply <- function(x) 6 + 4*x
+lr_supply <- function(x) 18
+q <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+p <- supply(q)
+p_2 <- supply(q_2)
+
+ggplot() +
+  # scale_x_continuous(limits = c(0, 6.5), expand=c(0,0), breaks = c(q_2, q), labels = c(2250, 3000)) +
+  # scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(p_2, lr_supply(q)), labels = c("3.00", "5.00")) +
+  scale_x_continuous(limits = c(0, 6.5), expand=c(0,0), breaks = c(q), labels = c(3000)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(lr_supply(q)), labels = c("5.00")) +
+  theme_market +
+  labs(x = "TP", y = "P") +
+  stat_function( fun = supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[1]), x = 6, y = 32.5, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = lr_supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[LR]), x = 6, y = lr_supply(q) - 2, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = demand, color = red_pink, size = 1) +
+  annotate("text", label = expression(D[1]), x = 6, y = 3, color = red_pink, family = cnfont, size = 6) +
+  geom_point(aes(x = q, y = lr_supply(q)), color = met_slate, size = 2) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = lr_supply(q)), color = met_slate, linetype = "dashed", size = 1) #+
+  
+  # stat_function( fun = demand_2, color = red_pink, size = 1) +
+  # annotate("text", label = expression(D[2]), x = 3.5, y = 3, color = red_pink, family = cnfont, size = 6) +
+  # geom_point(aes(x = q_2, y = p_2), color = met_slate, size = 2) +
+  # geom_segment(aes(x = q_2, xend = q_2, y = 0, yend = p_2), color = met_slate, linetype = "dashed", size = 1) +
+  # geom_segment(aes(x = 0, xend = q_2, y = p_2, yend = p_2), color = met_slate, linetype = "dashed", size = 1)
+
+```
+]
+
+---
+class: clear-slide
+.pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么短期原厂商如何调整产量?
+
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("P", "Q.sub[厂商]", "Q.sub[市场]", "N.sub[厂商数量]"),
+  v2 = c("$5.00", 4, 3000, 750),
+  v3 = c("", "", "", ""),
+  v4 = c("", "", "", "")
+) %>% kable(
+  escape = F,
+  col.names = c("均衡", "最初", "新短期", "新长期"),
+  align = c("l", "c", "c", "c")
+) %>%
+  kable_styling(full_width = T) %>% 
+  row_spec(1:3, extra_css = "line-height: 110%;")
+tab 
+```
+
+---
+class: clear-slide
+.pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么短期原厂商如何调整产量?
+.pull-left[
+.center[**单个厂商**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 8, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+marginal_revenue <- function(x) 18
+marginal_revenue_2 <- function(x) 12.04
+q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
+q_2 <- uniroot(function(x) marginal_revenue_2(x) - marginal_cost(x), range(x))$root
+p <- marginal_revenue(1)
+p_2 <- marginal_revenue_2(1)
+cost <- SRAC(q)
+cost_2 <- SRAC(q_2)
+z <- seq(0, q_2, 0.001)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 7.5), expand=c(0,0), breaks = c(q), labels = c(4)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(cost), labels = c("5.00")) +
+  theme_market +
+  labs(x = "总产量", y = "$")+
+  stat_function( fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "LRAC", x = 6.5, y = 35, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "SRMC", x = 1, y = 8, color = red_pink, family = cnfont, size = 6) +
+  stat_function( fun = marginal_revenue, color = green, size = 1) +
+  annotate("text", label = expression(MR[1]), x = 7, y = p + 2, color = green, family = cnfont, size = 4.5) +
+  geom_point(aes(x = q, y = p), color = met_slate, size = 2) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = p), color = met_slate, linetype = "dashed", size = 1) 
+```
+]
+.pull-right[
+.center[**市场**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 7, 0.1)
+demand <- function(x) 36 - 6*x
+demand_2 <- function(x) 21.1 - 6*x
+supply <- function(x) 6 + 4*x
+lr_supply <- function(x) 18
+q <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+p <- supply(q)
+p_2 <- supply(q_2)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 6.5), expand=c(0,0), breaks = c(q), labels = c(3000)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(lr_supply(q)), labels = c("5.00")) +
+  theme_market +
+  labs(x = "TP", y = "P") +
+  stat_function( fun = supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[1]), x = 6, y = 32.5, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = lr_supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[LR]), x = 6, y = lr_supply(q) - 2, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = demand, color = red_pink, size = 1) +
+  annotate("text", label = expression(D[1]), x = 6, y = 3, color = red_pink, family = cnfont, size = 6) +
+  geom_point(aes(x = q, y = lr_supply(q)), color = met_slate, size = 2) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = lr_supply(q)), color = met_slate, linetype = "dashed", size = 1) 
+```
+]
+
+---
+count: false
+class: clear-slide
+.pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么短期原厂商如何调整产量?
+.pull-left[
+.center[**单个厂商**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 8, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+marginal_revenue <- function(x) 18
+marginal_revenue_2 <- function(x) 12.04
+q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
+q_2 <- uniroot(function(x) marginal_revenue_2(x) - marginal_cost(x), range(x))$root
+p <- marginal_revenue(1)
+p_2 <- marginal_revenue_2(1)
+cost <- SRAC(q)
+cost_2 <- SRAC(q_2)
+z <- seq(0, q_2, 0.001)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 7.5), expand=c(0,0), breaks = c(q), labels = c(4)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(cost), labels = c("5.00")) +
+  theme_market +
+  labs(x = "总产量", y = "$")+
+  stat_function( fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "LRAC", x = 6.5, y = 35, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "SRMC", x = 1, y = 8, color = red_pink, family = cnfont, size = 6) +
+  stat_function( fun = marginal_revenue, color = green, size = 1) +
+  annotate("text", label = expression(MR[1]), x = 7, y = p + 2, color = green, family = cnfont, size = 4.5) +
+  geom_point(aes(x = q, y = p), color = met_slate, size = 2) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = p), color = met_slate, linetype = "dashed", size = 1)
+```
+]
+.pull-right[
+.center[**市场**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 7, 0.1)
+demand <- function(x) 36 - 6*x
+demand_2 <- function(x) 21.1 - 6*x
+supply <- function(x) 6 + 4*x
+lr_supply <- function(x) 18
+q <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+p <- supply(q)
+p_2 <- supply(q_2)
+
+ggplot() +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(p_2, lr_supply(q)), labels = c("3.00", "5.00")) +
+  scale_x_continuous(limits = c(0, 6.5), expand=c(0,0), breaks = c(q), labels = c(3000)) +
+  theme_market +
+  labs(x = "TP", y = "P") +
+  stat_function( fun = supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[1]), x = 6, y = 32.5, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = lr_supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[LR]), x = 6, y = lr_supply(q) - 2, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  annotate("text", label = expression(D[1]), x = 6, y = 3, color = red_pink, family = cnfont, size = 6, alpha = 0.5) +
+  geom_point(aes(x = q, y = lr_supply(q)), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = lr_supply(q)), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  stat_function( fun = demand_2, color = red_pink, size = 1) +
+  annotate("text", label = expression(D[2]), x = 3.5, y = 3, color = red_pink, family = cnfont, size = 6) +
+  geom_point(aes(x = q_2, y = p_2), color = met_slate, size = 2) +
+  geom_segment(aes(x = 0, xend = q_2, y = p_2, yend = p_2), color = met_slate, linetype = "dashed", size = 1)
+```
+]
+
+---
+count: false
+class: clear-slide
+.pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么短期原厂商如何调整产量?
+.pull-left[
+.center[**单个厂商**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 8, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+marginal_revenue <- function(x) 18
+marginal_revenue_2 <- function(x) 12.04
+q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
+q_2 <- uniroot(function(x) marginal_revenue_2(x) - marginal_cost(x), range(x))$root
+p <- marginal_revenue(1)
+p_2 <- marginal_revenue_2(1)
+cost <- SRAC(q)
+cost_2 <- SRAC(q_2)
+z <- seq(0, q_2, 0.001)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 7.5), expand=c(0,0), breaks = c(q_2, q), labels = c(3, 4)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(12.04, cost), labels = c("3.00", "5.00")) +
+  theme_market +
+  labs(x = "总产量", y = "$")+
+  stat_function( fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "LRAC", x = 6.5, y = 35, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "SRMC", x = 1, y = 8, color = red_pink, family = cnfont, size = 6) +
+  stat_function( fun = marginal_revenue, color = green, size = 1, alpha = 0.5) +
+  annotate("text", label = expression(MR[1]), x = 7, y = p + 2, color = green, family = cnfont, size = 4.5, alpha = 0.5) +
+  geom_point(aes(x = q, y = p), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = p), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  stat_function( fun = marginal_revenue_2, color = green, size = 1) +
+  annotate("text", label = expression(MR[2]), x = 7, y = p_2 - 2, color = green, family = cnfont, size = 4.5) +
+  geom_point(aes(x = q_2, y = p_2), color = met_slate, size = 2) +
+  geom_segment(aes(x = q_2, xend = q_2, y = 0, yend = p_2), color = met_slate, linetype = "dashed", size = 1)
+```
+]
+.pull-right[
+.center[**市场**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 7, 0.1)
+demand <- function(x) 36 - 6*x
+demand_2 <- function(x) 21.1 - 6*x
+supply <- function(x) 6 + 4*x
+lr_supply <- function(x) 18
+q <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+p <- supply(q)
+p_2 <- supply(q_2)
+
+ggplot() +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(p_2, lr_supply(q)), labels = c("3.00", "5.00")) +
+  scale_x_continuous(limits = c(0, 6.5), expand=c(0,0), breaks = c(q), labels = c(3000)) +
+  theme_market +
+  labs(x = "TP", y = "P") +
+  stat_function( fun = supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[1]), x = 6, y = 32.5, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = lr_supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[LR]), x = 6, y = lr_supply(q) - 2, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  annotate("text", label = expression(D[1]), x = 6, y = 3, color = red_pink, family = cnfont, size = 6, alpha = 0.5) +
+  geom_point(aes(x = q, y = lr_supply(q)), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = lr_supply(q)), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  stat_function( fun = demand_2, color = red_pink, size = 1) +
+  annotate("text", label = expression(D[2]), x = 3.5, y = 3, color = red_pink, family = cnfont, size = 6) +
+  geom_point(aes(x = q_2, y = p_2), color = met_slate, size = 2) +
+  geom_segment(aes(x = 0, xend = q_2, y = p_2, yend = p_2), color = met_slate, linetype = "dashed", size = 1)
+```
+]
+
+---
+count: false
+class: clear-slide
+.pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么短期原厂商如何调整产量?
+.pull-left[
+.center[**单个厂商**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 8, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+marginal_revenue <- function(x) 18
+marginal_revenue_2 <- function(x) 12.04
+q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
+q_2 <- uniroot(function(x) marginal_revenue_2(x) - marginal_cost(x), range(x))$root
+p <- marginal_revenue(1)
+p_2 <- marginal_revenue_2(1)
+cost <- SRAC(q)
+cost_2 <- SRAC(q_2)
+z <- seq(0, q_2, 0.001)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 7.5), expand=c(0,0), breaks = c(q_2, q), labels = c(3, 4)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(12.04, cost), labels = c("3.00", "5.00")) +
+  theme_market +
+  labs(x = "总产量", y = "$")+
+  stat_function( fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "LRAC", x = 6.5, y = 35, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "SRMC", x = 1, y = 8, color = red_pink, family = cnfont, size = 6) +
+  stat_function( fun = marginal_revenue, color = green, size = 1, alpha = 0.5) +
+  annotate("text", label = expression(MR[1]), x = 7, y = p + 2, color = green, family = cnfont, size = 4.5, alpha = 0.5) +
+  geom_point(aes(x = q, y = p), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = p), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  stat_function( fun = marginal_revenue_2, color = green, size = 1) +
+  annotate("text", label = expression(MR[2]), x = 7, y = p_2 - 2, color = green, family = cnfont, size = 4.5) +
+  geom_point(aes(x = q_2, y = p_2), color = met_slate, size = 2) +
+  geom_segment(aes(x = q_2, xend = q_2, y = 0, yend = p_2), color = met_slate, linetype = "dashed", size = 1)
+```
+]
+.pull-right[
+.center[**市场**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 7, 0.1)
+demand <- function(x) 36 - 6*x
+demand_2 <- function(x) 21.1 - 6*x
+supply <- function(x) 6 + 4*x
+lr_supply <- function(x) 18
+q <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+p <- supply(q)
+p_2 <- supply(q_2)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 6.5), expand=c(0,0), breaks = c(q_2, q), labels = c(2250, 3000)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(p_2, lr_supply(q)), labels = c("3.00", "5.00")) +
+  theme_market +
+  labs(x = "TP", y = "P") +
+  stat_function( fun = supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[1]), x = 6, y = 32.5, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = lr_supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[LR]), x = 6, y = lr_supply(q) - 2, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  annotate("text", label = expression(D[1]), x = 6, y = 3, color = red_pink, family = cnfont, size = 6, alpha = 0.5) +
+  geom_point(aes(x = q, y = lr_supply(q)), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = lr_supply(q)), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  
+  stat_function( fun = demand_2, color = red_pink, size = 1) +
+  annotate("text", label = expression(D[2]), x = 3.5, y = 3, color = red_pink, family = cnfont, size = 6) +
+  geom_point(aes(x = q_2, y = p_2), color = met_slate, size = 2) +
+  geom_segment(aes(x = q_2, xend = q_2, y = 0, yend = p_2), color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(aes(x = 0, xend = q_2, y = p_2, yend = p_2), color = met_slate, linetype = "dashed", size = 1)
+
+```
+]
+
+---
+count: false
+class: clear-slide
+.pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么短期原厂商如何调整产量?
+.pull-left[
+.center[**单个厂商**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 8, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+marginal_revenue <- function(x) 18
+marginal_revenue_2 <- function(x) 12.04
+q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
+q_2 <- uniroot(function(x) marginal_revenue_2(x) - marginal_cost(x), range(x))$root
+p <- marginal_revenue(1)
+p_2 <- marginal_revenue_2(1)
+cost <- SRAC(q)
+cost_2 <- SRAC(q_2)
+z <- seq(0, q_2, 0.001)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 7.5), expand=c(0,0), breaks = c(q_2, q), labels = c(3, 4)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(12.04, cost, cost_2), labels = c("3.00", "5.00", "5.25")) +
+  theme_market +
+  labs(x = "总产量", y = "$")+
+  stat_function( fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "LRAC", x = 6.5, y = 35, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "SRMC", x = 1, y = 8, color = red_pink, family = cnfont, size = 6) +
+  stat_function( fun = marginal_revenue, color = green, size = 1, alpha = 0.5) +
+  annotate("text", label = expression(MR[1]), x = 7, y = p + 2, color = green, family = cnfont, size = 4.5, alpha = 0.5) +
+  geom_point(aes(x = q, y = p), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = p), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  
+  stat_function( fun = marginal_revenue_2, color = green, size = 1) +
+  annotate("text", label = expression(MR[2]), x = 7, y = p_2 - 2, color = green, family = cnfont, size = 4.5) +
+  geom_point(aes(x = q_2, y = p_2), color = met_slate, size = 2) +
+  geom_segment(aes(x = q_2, xend = q_2, y = 0, yend = p_2), color = met_slate, linetype = "dashed", size = 1) +
+  geom_point(aes(x = q_2, y = cost_2), color = met_slate, size = 2) +
+  geom_segment(aes(x = q_2, xend = q_2, y = p_2, yend = cost_2), color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(aes(x = 0, xend = q_2, y = cost_2, yend = cost_2), color = met_slate, linetype = "dashed", size = 1) +
+
+  geom_ribbon(aes(x = z, ymin = p_2, ymax = cost_2), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  annotate("text", label = "损失", x = q_2/2, y = (p_2 + cost_2)/2, color = red_pink, family = cnfont, size = 5)
+```
+]
+.pull-right[
+.center[**市场**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 7, 0.1)
+demand <- function(x) 36 - 6*x
+demand_2 <- function(x) 21.1 - 6*x
+supply <- function(x) 6 + 4*x
+lr_supply <- function(x) 18
+q <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+p <- supply(q)
+p_2 <- supply(q_2)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 6.5), expand=c(0,0), breaks = c(q_2, q), labels = c(2250, 3000)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(p_2, lr_supply(q)), labels = c("3.00", "5.00")) +
+  # scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(lr_supply(q)), labels = c("5.00")) +
+  theme_market +
+  labs(x = "TP", y = "P") +
+  stat_function( fun = supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[1]), x = 6, y = 32.5, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = lr_supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[LR]), x = 6, y = lr_supply(q) - 2, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  annotate("text", label = expression(D[1]), x = 6, y = 3, color = red_pink, family = cnfont, size = 6, alpha = 0.5) +
+  geom_point(aes(x = q, y = lr_supply(q)), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = lr_supply(q)), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  
+  stat_function( fun = demand_2, color = red_pink, size = 1) +
+  annotate("text", label = expression(D[2]), x = 3.5, y = 3, color = red_pink, family = cnfont, size = 6) +
+  geom_point(aes(x = q_2, y = p_2), color = met_slate, size = 2) +
+  geom_segment(aes(x = q_2, xend = q_2, y = 0, yend = p_2), color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(aes(x = 0, xend = q_2, y = p_2, yend = p_2), color = met_slate, linetype = "dashed", size = 1)
+
+```
+]
+
+---
+class: clear-slide
+.pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么短期原厂商如何调整产量?
+
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("P", "Q.sub[厂商]", "Q.sub[市场]", "N.sub[厂商数量]"),
+  v2 = c("$5.00", 4, 3000, 750),
+  v3 = c("$3.00", 3, 2250, 750),
+  v4 = c("", "", "", "")
+) %>% kable(
+  escape = F,
+  col.names = c("均衡", "最初", "新短期", "新长期"),
+  align = c("l", "c", "c", "c")
+) %>%
+  kable_styling(full_width = T) %>% 
+  row_spec(1:3, extra_css = "line-height: 110%;")
+tab 
+```
+
+**A.sub[1]:** .pink[厂商减少原产品生产 .mono[-->] 市场总供给数量下降]
+
+**A.sub[2]:** .pink[短期厂商将会以亏损状态运营]
+
+---
+class: clear-slide
+.pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么短期原厂商如何调整产量?
+
+.pull-left[
+.center[**单个厂商**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 8, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+marginal_revenue <- function(x) 18
+marginal_revenue_2 <- function(x) 12.04
+q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
+q_2 <- uniroot(function(x) marginal_revenue_2(x) - marginal_cost(x), range(x))$root
+p <- marginal_revenue(1)
+p_2 <- marginal_revenue_2(1)
+cost <- SRAC(q)
+cost_2 <- SRAC(q_2)
+z <- seq(0, q_2, 0.001)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 7.5), expand=c(0,0), breaks = c(q_2, q), labels = c(3, 4)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(12.04, cost, cost_2), labels = c("3.00", "5.00", "5.25")) +
+  theme_market +
+  labs(x = "总产量", y = "$")+
+  stat_function( fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "LRAC", x = 6.5, y = 35, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "SRMC", x = 1, y = 8, color = red_pink, family = cnfont, size = 6) +
+  stat_function( fun = marginal_revenue, color = green, size = 1, alpha = 0.5) +
+  annotate("text", label = expression(MR[1]), x = 7, y = p + 2, color = green, family = cnfont, size = 4.5, alpha = 0.5) +
+  geom_point(aes(x = q, y = p), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = p), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  
+  stat_function( fun = marginal_revenue_2, color = green, size = 1) +
+  annotate("text", label = expression(MR[2]), x = 7, y = p_2 - 2, color = green, family = cnfont, size = 4.5) +
+  geom_point(aes(x = q_2, y = p_2), color = met_slate, size = 2) +
+  geom_segment(aes(x = q_2, xend = q_2, y = 0, yend = p_2), color = met_slate, linetype = "dashed", size = 1) +
+  geom_point(aes(x = q_2, y = cost_2), color = met_slate, size = 2) +
+  geom_segment(aes(x = q_2, xend = q_2, y = p_2, yend = cost_2), color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(aes(x = 0, xend = q_2, y = cost_2, yend = cost_2), color = met_slate, linetype = "dashed", size = 1) +
+
+  geom_ribbon(aes(x = z, ymin = p_2, ymax = cost_2), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  annotate("text", label = "损失", x = q_2/2, y = (p_2 + cost_2)/2, color = red_pink, family = cnfont, size = 5)
+```
+]
+.pull-right[
+.center[**市场**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 7, 0.1)
+demand <- function(x) 36 - 6*x
+demand_2 <- function(x) 21.1 - 6*x
+supply <- function(x) 6 + 4*x
+supply_2 <- function(x) 15 + (14/15) + 4*x
+lr_supply <- function(x) 18
+q <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+q_3 <- uniroot(function(x) demand_2(x) - supply_2(x), range(x))$root
+p <- supply(q)
+p_2 <- supply(q_2)
+p_3 <- supply_2(q_3)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 6.5), expand=c(0,0), breaks = c(q_2, q), labels = c(2250, 3000)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(p_2, lr_supply(q)), labels = c("3.00", "5.00")) +
+  # scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(lr_supply(q)), labels = c("5.00")) +
+  theme_market +
+  labs(x = "TP", y = "P") +
+  stat_function( fun = supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[1]), x = 6, y = 32.5, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = lr_supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[LR]), x = 6, y = lr_supply(q) - 2, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  annotate("text", label = expression(D[1]), x = 6, y = 3, color = red_pink, family = cnfont, size = 6, alpha = 0.5) +
+  geom_point(aes(x = q, y = lr_supply(q)), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = lr_supply(q)), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  stat_function( fun = demand_2, color = red_pink, size = 1) +
+  annotate("text", label = expression(D[2]), x = 3.5, y = 3, color = red_pink, family = cnfont, size = 6) +
+  geom_point(aes(x = q_2, y = p_2), color = met_slate, size = 2) +
+  geom_segment(aes(x = q_2, xend = q_2, y = 0, yend = p_2), color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(aes(x = 0, xend = q_2, y = p_2, yend = p_2), color = met_slate, linetype = "dashed", size = 1) #+
+  
+  # stat_function( fun = supply_2, color = purple, size = 1) +
+  # annotate("text", label = expression(S[2]), x = 3.5, y = 32.5, color = purple, family = cnfont, size = 6) +
+  # geom_point(aes(x = q_3, y = p_3), color = met_slate, size = 2) +
+  # geom_segment(aes(x = q_3, xend = q_3, y = 0, yend = p_3), color = met_slate, linetype = "dashed", size = 1) 
+```
+]
+
+---
+count: false
+class: clear-slide
+.pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么长期原厂商如何调整产量?
+.pull-left[
+.center[**单个厂商**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 8, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+marginal_revenue <- function(x) 18
+marginal_revenue_2 <- function(x) 12.04
+q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
+q_2 <- uniroot(function(x) marginal_revenue_2(x) - marginal_cost(x), range(x))$root
+p <- marginal_revenue(1)
+p_2 <- marginal_revenue_2(1)
+cost <- SRAC(q)
+cost_2 <- SRAC(q_2)
+z <- seq(0, q_2, 0.001)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 7.5), expand=c(0,0), breaks = c(q_2, q), labels = c(3, 4)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(12.04, cost, cost_2), labels = c("3.00", "5.00", "5.25")) +
+  theme_market +
+  labs(x = "总产量", y = "$")+
+  stat_function( fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "LRAC", x = 6.5, y = 35, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "SRMC", x = 1, y = 8, color = red_pink, family = cnfont, size = 6) +
+  stat_function( fun = marginal_revenue, color = green, size = 1, alpha = 0.5) +
+  annotate("text", label = expression(MR[1]), x = 7, y = p + 2, color = green, family = cnfont, size = 4.5, alpha = 0.5) +
+  geom_point(aes(x = q, y = p), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = p), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  
+  stat_function( fun = marginal_revenue_2, color = green, size = 1) +
+  annotate("text", label = expression(MR[2]), x = 7, y = p_2 - 2, color = green, family = cnfont, size = 4.5) +
+  geom_point(aes(x = q_2, y = p_2), color = met_slate, size = 2) +
+  geom_segment(aes(x = q_2, xend = q_2, y = 0, yend = p_2), color = met_slate, linetype = "dashed", size = 1) +
+  geom_point(aes(x = q_2, y = cost_2), color = met_slate, size = 2) +
+  geom_segment(aes(x = q_2, xend = q_2, y = p_2, yend = cost_2), color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(aes(x = 0, xend = q_2, y = cost_2, yend = cost_2), color = met_slate, linetype = "dashed", size = 1) +
+
+  geom_ribbon(aes(x = z, ymin = p_2, ymax = cost_2), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  annotate("text", label = "损失", x = q_2/2, y = (p_2 + cost_2)/2, color = red_pink, family = cnfont, size = 5)
+```
+]
+.pull-right[
+.center[**市场**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 7, 0.1)
+demand <- function(x) 36 - 6*x
+demand_2 <- function(x) 21.1 - 6*x
+supply <- function(x) 6 + 4*x
+supply_2 <- function(x) 15 + (14/15) + 4*x
+lr_supply <- function(x) 18
+q <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+q_3 <- uniroot(function(x) demand_2(x) - supply_2(x), range(x))$root
+p <- supply(q)
+p_2 <- supply(q_2)
+p_3 <- supply_2(q_3)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 6.5), expand=c(0,0), breaks = c(q_3, q_2, q), labels = c(500, 2250, 3000)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(p_2, lr_supply(q)), labels = c("3.00", "5.00")) +
+  # scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(lr_supply(q)), labels = c("5.00")) +
+  theme_market +
+  labs(x = "TP", y = "P") +
+  stat_function( fun = supply, color = purple, size = 1, alpha = 0.5) +
+  annotate("text", label = expression(S[1]), x = 6, y = 32.5, color = purple, family = cnfont, size = 6, alpha = 0.5) +
+  stat_function( fun = lr_supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[LR]), x = 6, y = lr_supply(q) - 2, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  annotate("text", label = expression(D[1]), x = 6, y = 3, color = red_pink, family = cnfont, size = 6, alpha = 0.5) +
+  geom_point(aes(x = q, y = lr_supply(q)), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = lr_supply(q)), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  stat_function( fun = demand_2, color = red_pink, size = 1) +
+  annotate("text", label = expression(D[2]), x = 3.5, y = 3, color = red_pink, family = cnfont, size = 6) +
+  geom_point(aes(x = q_2, y = p_2), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = q_2, xend = q_2, y = 0, yend = p_2), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(aes(x = 0, xend = q_2, y = p_2, yend = p_2), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  stat_function( fun = supply_2, color = purple, size = 1) +
+  annotate("text", label = expression(S[2]), x = 3.5, y = 32.5, color = purple, family = cnfont, size = 6) +
+  geom_point(aes(x = q_3, y = p_3), color = met_slate, size = 2) +
+  geom_segment(aes(x = q_3, xend = q_3, y = 0, yend = p_3), color = met_slate, linetype = "dashed", size = 1)
+```
+]
+
+---
+count: false
+class: clear-slide
+.pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么短期原厂商如何调整产量?
+.pull-left[
+.center[**单个厂商**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 8, 0.1)
+SRAC <- function(x) (18 + 12*x - 2*x^2 + (2/3)*x^3)/x
+marginal_cost <- function(x) 12 - 4*x + 2*x^2
+marginal_revenue <- function(x) 18
+marginal_revenue_2 <- function(x) 12.04
+q <- uniroot(function(x) marginal_revenue(x) - marginal_cost(x), range(x))$root
+q_2 <- uniroot(function(x) marginal_revenue_2(x) - marginal_cost(x), range(x))$root
+p <- marginal_revenue(1)
+p_2 <- marginal_revenue_2(1)
+cost <- SRAC(q)
+cost_2 <- SRAC(q_2)
+z <- seq(0, q_2, 0.001)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 7.5), expand=c(0,0), breaks = c(q_2, q), labels = c(3, 4)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(12.04, cost, cost_2), labels = c("3.00", "5.00", "5.25")) +
+  theme_market +
+  labs(x = "总产量", y = "$")+
+  stat_function( fun = SRAC, color = purple, size = 1) +
+  annotate("text", label = "LRAC", x = 6.5, y = 35, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = marginal_cost, color = red_pink, size = 1) +
+  annotate("text", label = "SRMC", x = 1, y = 8, color = red_pink, family = cnfont, size = 6) +
+  stat_function( fun = marginal_revenue, color = green, size = 1) +
+  annotate("text", label = expression(MR[1]==MR[3]), x = 6.1, y = p + 2, color = green, family = cnfont, size = 4.5) +
+  geom_point(aes(x = q, y = p), color = met_slate, size = 2) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = p), color = met_slate, linetype = "dashed", size = 1) +
+  
+  stat_function( fun = marginal_revenue_2, color = green, size = 1, alpha = 0.5) +
+  annotate("text", label = expression(MR[2]), x = 7, y = p_2 - 2, color = green, family = cnfont, size = 4.5, alpha = 0.5) +
+  geom_point(aes(x = q_2, y = p_2), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = q_2, xend = q_2, y = 0, yend = p_2), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_point(aes(x = q_2, y = cost_2), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = q_2, xend = q_2, y = p_2, yend = cost_2), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(aes(x = 0, xend = q_2, y = cost_2, yend = cost_2), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5)
+```
+]
+.pull-right[
+.center[**市场**]
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 3.75, dev = "svg"}
+x <- seq(0, 7, 0.1)
+demand <- function(x) 36 - 6*x
+demand_2 <- function(x) 21.1 - 6*x
+supply <- function(x) 6 + 4*x
+supply_2 <- function(x) 15 + (14/15) + 4*x
+lr_supply <- function(x) 18
+q <- uniroot(function(x) demand(x) - supply(x), range(x))$root
+q_2 <- uniroot(function(x) demand_2(x) - supply(x), range(x))$root
+q_3 <- uniroot(function(x) demand_2(x) - supply_2(x), range(x))$root
+p <- supply(q)
+p_2 <- supply(q_2)
+p_3 <- supply_2(q_3)
+
+ggplot() +
+  scale_x_continuous(limits = c(0, 6.5), expand=c(0,0), breaks = c(q_3, q_2, q), labels = c(500, 2250, 3000)) +
+  scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(p_2, lr_supply(q)), labels = c("3.00", "5.00")) +
+  # scale_y_continuous(limits = c(0, 37.5), expand=c(0,0), breaks = c(lr_supply(q)), labels = c("5.00")) +
+  theme_market +
+  labs(x = "TP", y = "P") +
+  stat_function( fun = supply, color = purple, size = 1, alpha = 0.5) +
+  annotate("text", label = expression(S[1]), x = 6, y = 32.5, color = purple, family = cnfont, size = 6, alpha = 0.5) +
+  stat_function( fun = lr_supply, color = purple, size = 1) +
+  annotate("text", label = expression(S[LR]), x = 6, y = lr_supply(q) - 2, color = purple, family = cnfont, size = 6) +
+  stat_function( fun = demand, color = red_pink, size = 1, alpha = 0.5) +
+  annotate("text", label = expression(D[1]), x = 6, y = 3, color = red_pink, family = cnfont, size = 6, alpha = 0.5) +
+  geom_point(aes(x = q, y = lr_supply(q)), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = q, xend = q, y = 0, yend = lr_supply(q)), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  stat_function( fun = demand_2, color = red_pink, size = 1) +
+  annotate("text", label = expression(D[2]), x = 3.5, y = 3, color = red_pink, family = cnfont, size = 6) +
+  geom_point(aes(x = q_2, y = p_2), color = met_slate, size = 2, alpha = 0.5) +
+  geom_segment(aes(x = q_2, xend = q_2, y = 0, yend = p_2), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  geom_segment(aes(x = 0, xend = q_2, y = p_2, yend = p_2), color = met_slate, linetype = "dashed", size = 1, alpha = 0.5) +
+  stat_function( fun = supply_2, color = purple, size = 1) +
+  annotate("text", label = expression(S[2]), x = 3.5, y = 32.5, color = purple, family = cnfont, size = 6) +
+  geom_point(aes(x = q_3, y = p_3), color = met_slate, size = 2) +
+  geom_segment(aes(x = q_3, xend = q_3, y = 0, yend = p_3), color = met_slate, linetype = "dashed", size = 1)
+```
+]
+
+---
+class: clear-slide
+.pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么长期原厂商如何调整产量?
+
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("P", "Q.sub[厂商]", "Q.sub[市场]", "N.sub[厂商数量]"),
+  v2 = c("$5.00", 4, 3000, 750),
+  v3 = c("$3.00", 3, 2250, 750),
+  v4 = c("$5.00", 4, 500, 125)
+) %>% kable(
+  escape = F,
+  col.names = c("均衡", "最初", "新短期", "新长期"),
+  align = c("l", "c", "c", "c")
+) %>%
+  kable_styling(full_width = T) %>% 
+  row_spec(1:3, extra_css = "line-height: 110%;")
+tab 
+```
+
+.pink[A: ] .pink[厂商不断退出市场，直到经济利润恢复到0 .mono[-->] 市场供应下降]
+
 
 ---
 
