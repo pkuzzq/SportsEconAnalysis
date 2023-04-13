@@ -1,0 +1,999 @@
+---
+title: "体育经济分析: 原理与应用"
+subtitle: "单元2: 职业体育联盟2"
+author: 
+   - 周正卿
+date: "`r format(Sys.time(), '%d %B %Y')`"
+# xaringan模板
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: yes
+      countIncrementalSlides: yes
+      ratio: '16:10.85'
+    seal: true
+    lib_dir: libs
+  html_document:
+    keep_md: yes
+
+knit: pagedown::chrome_print
+
+# beamer模板
+
+# mainfont: Times New Roman
+# fontsize: 10pt
+# output: 
+#   beamer_presentation: 
+#     fonttheme: structurebold
+#     theme: Madrid
+#     colortheme: lily
+#     includes:
+#         in_header: "../beamer_header.tex"
+#     df_print: tibble
+#     latex_engine: xelatex
+
+---
+
+```{R, setup, include = F}
+# devtools::install_github("dill/emoGG")
+library(pacman)
+p_load(
+  broom, tidyverse,rmarkdown,
+  ggplot2, ggthemes, ggforce, ggridges,
+  latex2exp, viridis, extrafont, gridExtra,
+  kableExtra, snakecase, janitor,
+  data.table, dplyr, estimatr,
+  lubridate, knitr, parallel,
+  lfe,dslabs,
+  here, magrittr,readxl, gapminder, Ecdat, wooldridge)
+
+options(htmltools.dir.version = FALSE)
+
+# Notes directory
+dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/2023spring/Lec04+2"
+# Define pink color
+red_pink <- "#e64173"
+turquoise <- "#20B2AA"
+orange <- "#FFA500"
+red <- "#fb6107"
+blue <- "#3b3b9a"
+green <- "#8bb174"
+grey_light <- "grey70"
+grey_mid <- "grey50"
+grey_dark <- "grey20"
+purple <- "#6A5ACD"
+slate <- "#314f4f"
+met_slate <- "#272822" 
+
+# Dark slate grey: #314f4f
+
+# Knitr options
+opts_chunk$set(
+  comment = "#>",
+  fig.align = "center",
+  fig.height = 7,
+  fig.width = 10.5,
+  #dpi = 300,
+  #cache = T,
+  warning = F,
+  message = F
+)  
+opts_chunk$set(dev = "svg")
+options(device = function(file, width, height) {
+  svg(tempfile(), width = width, height = height)
+})
+options(crayon.enabled = F)
+options(knitr.table.format = "html")
+# A blank theme for ggplot
+theme_empty <- theme_bw() + theme(
+  line = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  axis.text = element_blank(),
+  plot.title = element_blank(),
+  axis.title = element_blank(),
+  plot.margin = structure(c(0, 0, -0.5, -1), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_simple <- theme_bw() + theme(
+  line = element_blank(),
+  panel.grid = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  axis.text.x = element_text(size = 18, family = "STIXGeneral"),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank(),
+  plot.title = element_blank(),
+  axis.title = element_blank(),
+  # plot.margin = structure(c(0, 0, -1, -1), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes_math <- theme_void() + theme(
+  text = element_text(family = "MathJax_Math"),
+  axis.title = element_text(size = 22),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = "grey70",
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+  )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes_serif <- theme_void() + theme(
+  text = element_text(family = "MathJax_Main"),
+  axis.title = element_text(size = 22),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = "grey70",
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+  )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes <- theme_void() + theme(
+  text = element_text(family = "Fira Sans Book"),
+  axis.title = element_text(size = 18),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = grey_light,
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+  )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_market <- theme_bw() + theme(
+  axis.line = element_line(color = met_slate),
+  panel.grid = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  text = element_text(family = cnfont, color = met_slate, size = 17),
+  axis.title.x = element_text(hjust = 1, size = 17),
+  axis.title.y = element_text(hjust = 1, angle = 0, size = 17),
+  # axis.text.x = element_text(size = 12),
+  # axis.text.y = element_text(size = 12),
+  axis.ticks = element_blank()
+)
+theme_gif <- theme_bw() + theme(
+  axis.line = element_line(color = met_slate),
+  panel.grid = element_blank(),
+  rect = element_blank(),
+  text = element_text(family = cnfont, color = met_slate, size = 17),
+  axis.text.x = element_text(size = 12),
+  axis.text.y = element_text(size = 12),
+  axis.ticks = element_blank()
+)
+theme_goods <- theme_bw() + theme(
+  axis.line = element_line(),
+  panel.grid = element_blank(),
+  rect = element_rect(size = 1),
+  strip.text = element_blank(),
+  text = element_text(size = 17, family = cnfont), 
+  axis.text.x = element_text(size = 17),
+  axis.text.y = element_text(size = 17, angle = 90, hjust = 0.5),
+  axis.title.x = element_text(color = purple, size = 19),
+  axis.title.y = element_text(color = red_pink, size = 19),
+  axis.ticks = element_blank(),
+  plot.title = element_blank(),
+  legend.position = "none"
+)
+theme_game <- theme_bw() + theme(
+  axis.line = element_line(),
+  panel.grid = element_blank(),
+  rect = element_rect(size = 1),
+  strip.text = element_blank(),
+  text = element_text(size = 20, family = cnfont), 
+  axis.text.x = element_text(size = 20, color = met_slate),
+  axis.text.y = element_text(size = 20, angle = 90, color = met_slate, hjust = 0.5),
+  axis.title.x = element_text(color = met_slate, size = 20),
+  axis.title.y = element_text(color = met_slate, size = 20),
+  axis.ticks = element_blank(),
+  plot.title = element_blank(),
+  legend.position = "none"
+)
+shift_axis <- function(p, y=0){
+  g <- ggplotGrob(p)
+  dummy <- data.frame(y=y)
+  ax <- g[["grobs"]][g$layout$name == "axis-b"][[1]]
+  p + annotation_custom(grid::grobTree(ax, vp = grid::viewport(y=1, height=sum(ax$height))), 
+                        ymax=y, ymin=y) +
+    geom_hline(aes(yintercept=y), data = dummy, size = 0.5, color = met_slate) +
+    theme(axis.text.x = element_blank(), 
+          axis.ticks.x = element_blank())
+}
+wrapper <- function(x, ...) paste(strwrap(x, ...), collapse = "\n")
+# functions
+demand <- function(x) 10 - x
+demand_2 <- function(x) 9 - x
+demand_3 <- function(x) 8 - x
+demand_inc <- function(x) 11 - x
+demand_dec <- function(x) 5 - x
+supply <- function(x) 1 + (4/5)*x
+step_demand <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8), mv = c(8, 7, 6, 5, 4, 3, 2, 1, 0))
+step_demand2 <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(10, 10, 9, 9, 8, 8, 7, 7, 6, 6, 5, 4, 4))
+step_supply <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 8, 8))
+step_supply_tax <- step_supply %>% 
+  mutate(mv = mv + 2)
+
+data <- read_csv("/Users/zhouzhengqing/Desktop/SportsEconAnalysis/Activity_Pit_Market/Results.csv") %>% 
+  dplyr::filter(!is.na(price))
+
+theme_set(theme_gray(base_size = 20))
+# Column names for regression results
+reg_columns <- c("Term", "Est.", "S.E.", "t stat.", "p-Value")
+# Function for formatting p values
+format_pvi <- function(pv) {
+  return(ifelse(
+    pv < 0.0001,
+    "<0.0001",
+    round(pv, 4) %>% format(scientific = F)
+  ))
+}
+format_pv <- function(pvs) lapply(X = pvs, FUN = format_pvi) %>% unlist()
+# Tidy regression results table
+tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", highlight_bold = T, digits = c(NA, 3, 3, 2, 5), title = NULL) {
+  x %>%
+    tidy() %>%
+    select(1:5) %>%
+    mutate(
+      term = terms,
+      p.value = p.value %>% format_pv()
+    ) %>%
+    kable(
+      col.names = reg_columns,
+      escape = F,
+      digits = digits,
+      caption = title
+    ) %>%
+    kable_styling(font_size = 20) %>%
+    row_spec(1:nrow(tidy(x)), background = "white") %>%
+    row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
+}
+```
+class: title-slide-section,inverse, middle
+
+# 引言
+---
+### 课程进度
+- 对独占的管制
+- 联盟中的球队状况
+
+---
+class: title-slide-section,inverse, middle
+
+# 反垄断
+
+---
+### 例子：American Needle 诉 NFL
+
+NFLP成立于1963年，专门负责NFL知识产权许可的实体。在此之前，NFL团队分别销售其知识产权。
+
+在1963年至2000年之间，NFLP向多家供应商提供了非排他性许可，以销售和制造带有团队标志的服装。美国针公司是其中的许可持有者之一。
+
+2000年12月起，联盟投票授权NFLP授予排他性许可。但随后，**NFLP向Reebok授予了为期10年的独家许可**，以制造和销售所有球队的帽服徽章。之后，NFLP拒绝续签American Needle的非排他性许可。
+
+2008年，American Needle开始上诉。前期，都是判NFL胜诉，但American Needle一再上诉。
+
+2009年胜诉的NFL要求最高法院重新考虑它所赢得的裁决。
+
+???
+- 背景
+
+---
+### 例子：American Needle 诉 NFL
+
+- 高法的裁决 → NFL败诉，给出理由是：
+
+1) 就反垄断法而言，NFL是一个单一实体吗？
+
+.hi.pink[答案： ] **不是** .mono[-->] 反垄断法管制的对象是实体单位 .mono[-->] 该结果意味联盟行为是各球队**联合决策**的结果，有不受反垄断法制约的理由
+
+2) 联盟中单个球队是否受反垄断法约束?
+
+.hi.pink[答案： ] **是** .mono[-->] 当球队拥有各自球队商标的使用权，在与NFL有利益冲突时，单支球队仍然可以与其他球队进行商业竞争 .mono[-->] 由于**共谋**行为受反垄断法管制 .mono[-->] 在损害消费者权益或者是市场竞争主体的弱势方时，球队与联盟达成的协议才是不违法的
+
+- 实际中，联盟在转播收入和许可收入以单一实体形式签署合同
+---
+### 例子：American Needle 诉 NFL
+
+
+- 经济学家的贡献 → 《法庭之友简报》
+
+1) 要务实的看待体育联盟，是**不同经济单位间的合营企业(joint venture)**，这些实体某些时候相互竞争，有时却不是
+
+2) 在一个**没有竞争对手的领域**，将联盟视为**单一实体**才是无害的，即便是共谋也不损害市场福利
+
+3) 若存在**反竞争效果**或**因合谋带来利益增加** 就要接受反垄断法的制约
+
+
+---
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/qcqtNa.png height="620">
+
+]
+
+---
+### 术语解读(10')
+
+在联盟产权结构方面，随后介绍的封闭联赛和开放联赛同属于**特许经营权模式（franchise model）**，而较新的联赛如MLS和WNBA属于另一种**单一实体联盟（single-entity）**
+
+- franchise
+- joint venture
+- single-entity
+- 请举例说明
+
+---
+### 反垄断措施
+
+1. **反托拉斯法**(antitrust law) → 打破已有的垄断、阻止**合并**等
+2. **等待技术革新** → 移动支付降低了传统银行的份额
+3. **直接接管**独占厂商 → 将产业变为事业 → 不总是有效的
+4. **价格管制**
+
+---
+### 反垄断历史
+
+19世纪的技术革新创造了规模经济 → 政府开始关注由于规模扩大带来的排斥竞争的行为
+- 1890年的《谢尔曼反托拉斯法案》使得反竞争商业行为非法化
+- 随着时间推移，法院开始做出有利于**老牌小型化**公司的裁决，而不是行业新进者 ← 通常“老、小”公司拥有**地方垄断**势力！
+- 当前商业法院基本采用**消费者福利标准**
+  - 如果合并或串谋会增加消费者剩余吗？就让合并发生；否则就阻止合并
+
+---
+### 价格管制
+
+- 独占厂商之所以带来无谓损失，就是因其**生产太少，价格太高**
+- 减少无谓损失的一个最直接的方法就是将独占厂商所订的价格加以限制，使其不致太高
+- 虽然完全竞争市场中政府管制价格会产生无谓损失，但是独占市场中的价格管制理论上存在消除因垄断带来的无谓损失
+---
+### 价格管制
+
+.left[
+- 管制前价格是 $p_m$ 和 $x_m$ ，无谓损失是?
+- 管制后独占厂商MR曲线变为 $p_1dfMR$ 。因为 $x_1$ 这单位的边际收益 $p_1$ 大于边际成本，再多生产1单位就有  $MR<MC$ 。因此管制厂商的最适产量为 $x_1$ 价格为 $p_1$
+- 所以只要管制价格 $p_2<p_{reg}<p_m$ 时，无谓损失都是减少
+- 当政府将**管制最高价格**设为 $p_c，(MC=AR=p_x(x))$ 时，厂商就会生产完全竞争的产量 $x_c$ → 无谓损失全部消除
+- **边际成本定价法**(marginal cost pricing)
+]
+.right[
+![idIEWz](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/idIEWz.png)
+
+]
+
+---
+### 边际成本定价法的困难
+
+- 困难1：估计市场需求函数和厂商的边际成本没那么容易。MC依赖对市场中唯一一家厂商提供的生产成本资料。厂商知道提供生产资料就意味着会被价格管制；另外，厂商可能会进行寻租
+- 困难2：在面临**自然独占**时候，边际成本定价法会发生问题。为此我们正式说明下什么是**自然独占**：在相关产出范围内，一家厂商单独生产该产业全部产品的成本较几家厂商共同生产来更低的现象
+  -  $TC(x_1)+TC(x_2)>TC(x),其中x_1+x_2=x$ →  $\frac{x_1}{x} \frac{T C(x_1)}{x_1}+\frac{x_2}{x} \frac{T C(x_2)}{x_2}>\frac{T C(x)}{x}$  →  $\lambda_1 A C(x_1)+\lambda_2 A C(x_2)>A C(x)$ ，其中 $\lambda_i=x_i / x$ 代表 $x_i$ 产业所占比重
+  - 在图形上反映为平均成本递减的状态（只是充分条件） ←  AC递减与厂商生产技术具有**规模经济**相关，或者反应出**生产成本中包含大量的固定成本，而且边际成本足够小**
+  - **自然垄断**通常是前期固定资本投入足够大的行业，如通讯、电力、有限电视、交通运输等，这也是为什么这些行业是政府强管制对象或者有政府直接经营的原因
+  
+???
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/tTtyLL.png height=350>
+
+---
+class:middle
+### 自然垄断行业采用平均成本定价法
+.left[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/tTtyLL.png height=450>
+]
+
+.right[
+
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/fVpZlX.png height=470>
+]
+
+???
+- 已经知道AC的形状后，MC在其下方（为什么？）
+- 没有管制的时候xm和Pm，超额利润是A
+- 按照边际成本法定价时( $MC=AR=px$ )是 $p_c$ ，此时可能存在损失。长期而言，唯一厂商将会市场这个唯一出路
+- 按照平均成本定价法 
+$AC=AR=p_x$ 的价格是 $p_a$ ，此时产量是 $x_a$，小于Xc，因而仍然存在无谓损失
+
+---
+### 两难选择
+
+- 无论是边际成本定价法还是平均成本定价法，成本函数与需求函数的估计都极为重要的 →  事实上很难
+
+
+- 即便能够估计出来，使用MC定价法，再辅之以补贴的方式，仍旧比较困难
+  - 对独占厂商的补贴往往受到质疑
+  - “父爱主义”带来的是独占厂商的生产低效率 → 恶性循环
+
+---
+### 讨论：收税能够减少无谓损失么?
+
+独占厂商获得超额利润，对其收税再补贴消费者看似是一个选择
+
+
+--
+
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/gGNMz0.png height=500>
+]
+---
+### 讨论：收税能够减少无谓损失么?
+独占厂商获得超额利润，对其收税再补贴消费者看似是一个选择
+
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/3NKfM4.png height=500>
+]
+
+---
+class: title-slide-section,inverse, middle
+
+# 职业联盟中球队行为
+
+---
+### 以厂商视角衡量球队产出与投入
+
+在职业体育市场中，定义和衡量产出是复杂的（属性多重）。假设单厂商是联盟中的球队，那么衡量球队的产出可以使用如下**变量**：
+- **上座率**(attendance) 或收视率(television viewership)：基于门票收入，直接与球队收入TR相关
+- **参赛数量**(game played)：基于要素投入，球队投入要素（L或者K）越多，参赛数量就多 
+- **胜利或者胜率**（wins or winning percentage)： 如果球队实力和球迷关注正相关，那么产出以胜利w或胜率wp就是合理的，而不是参赛数量 .mono[->] 连接了要素和收益
+	- 一般假设是：**利润来自胜率(profit from win percentage)**
+
+---
+### 以厂商视角衡量球队产出与投入
+
+- 与产品市场相同的是，球队投入品同样包含资本K与劳动力L。
+	- 短期，一种生产要素是不变的
+	    - 一般假定是资本不变，如球场容量等
+
+	- 劳动力投入在职业球队表现为**球员天赋(talent)**
+
+- **边际产量MP下降**：表现为对天赋的不断投入，并不能获得不断上升的胜率
+
+	- 即便对于超级球星也是如此
+	- 球星越多，每个球星获得的出手机会越小，对球队胜率贡献度就会越小
+
+
+---
+
+### 例子：球员天赋反映边际产量下降及其解释的有限性
+
+.pull-left[
+.caption[.center[.smallest[NBA勇士11-19赛季胜率]]]
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/dGWrsQ.png height="180" width="460">
+]
+
+- NBA、足球的胜率与冠军关系不同
+
+  - .hi.slate[NBA: ].purple[常规赛胜率高] .mono[!=] .orange[季后赛总冠军]
+
+  - .hi.slate[足 球: ] .purple[联赛胜率高] .mono[==] .orange[联赛冠军]
+]
+
+.pull-right[
+- 短期：看常规赛的胜率情况
+    
+    - 16-17赛季KD到来并未产生显著效果
+
+- 中长期（总冠军与常规赛战绩的权衡取舍）：吸取15-16赛未夺冠的教训，球队会平衡球星健康，适当放弃短期利益
+
+    - 16-17赛季KD延续了勇士的总冠军
+
+- 长期（双产出目标）：16-19赛季常规赛下滑，退出夺冠序列，考虑年龄、伤病和非主力球员的流动
+]
+
+
+---
+class: title-slide-section,inverse, middle
+# 球队行为因联赛而异
+
+---
+### 封闭与开放联赛
+
+- 封闭联赛常见于北美体育联盟，特点：
+  - 参赛球队一般不变
+  - 联盟划定垄断行政边界
+  - 一般不允许搬迁到其他城市
+  - 通常附属小联盟。附属小联盟与大联盟球队有明确合同关系。小联盟球队不能进入大联盟。
+  - 两种常见所有权关系
+      - 大联盟球队拥有小联盟球队的经营权
+      - 小联盟球队保持与大联盟球队间合作关系(赞助和业务指导)，但独立经营
+  - 小联盟球员合同通常由大联盟持有，可以在大小联盟间流动
+  - 强大的球员工会
+
+???
+
+另外，日本职业棒球和澳大利亚橄榄球联盟(AFL)也是封闭的，
+
+
+---
+
+### 封闭与开放联赛
+
+开放联赛几乎所有的足球联赛
+- 与封闭联赛一样类似的金字塔结构
+- 升降级
+- 没有行政区划带来的市场垄断势力。开放联赛中，球队独占势力会下降，但是考虑到球迷忠诚和消费的**习惯性**，球队仍有定价能力
+- 激励机制不同
+    - 封闭联赛中会有"摆烂"的现象
+    - 开放联赛底部球队"竞争激烈"，但强弱队的财力差距巨大
+
+#### .hi.pink[相同点]
+
+- 市场势力
+- 限制规模：球队数量、球员数量
+- 既有竞争，又有合作：商议比赛规则、赛程安排
+
+
+???
+
+任何联赛，球队不仅是竞争关系，还是合作关系 → 
+
+---
+### 球队目标
+
+- 利润最大化 v.s. 胜利最大化
+
+- 对于一般厂商而言，可能目标就是实现利润最大化；但职业球队的目标可能没有那么简单，对于一些老板来说，即使赚得没那么多，赢得一场冠军赛可能更重要。
+
+???
+
+曼城、大巴黎都因为有了大财团支持才变强的
+
+---
+
+### MLB的例子
+
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/45NFRi.png >
+]
+
+- 2011-2016赛季的4支球队的出席人数、胜率、收益和营业收入(利润)的情况
+
+???
+
+.tiny[
+- 费城费城人为了主宰国家联盟(Nation League，国联)，而纽约扬基队为能领导美国联盟(American League，美联)，投入了大量的资金留住明星球员。
+
+- 结果，他们确实胜率最高，到场人数也最多，导致收入最多，但是利润却不如克利夫兰印第安人(已改名卫士)和堪萨斯城皇家队。
+
+- 后面的两个队伍是出了名的弱队。
+
+- Revenue是指一个公司在扣除任何费用之前，因销售其商品或服务而产生的收益总额。Operating Income(营业收益、营业利润)是Revenue减去直接成本和间接成本的利润总额，衡量了一个公司财务健康状况。
+
+]
+
+---
+
+### NBA的例子
+
+- 小牛和猛龙
+
+![UuNUJG](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/UuNUJG.png)
+
+
+---
+### 封闭与开放联赛
+
+- 封闭联赛：**“小市场+好利润”**与**“大市场+多胜利”**
+
+- 或者是“胜利+赔钱” 与 “输球 + 赚钱”
+
+- 那么在开放联赛呢？为什么更偏好胜利？
+
+--
+- 至少4个原因：
+
+1. 竞争球迷或者球迷所有
+
+2. 生存
+
+3. 老板偏好。追求胜利、追求荣耀、追求曝光
+
+4. 胜利带来金钱
+
+???
+
+.tiny[
+- **两个小市场球队的营业利润居然比两个大市场的球队要多**，反映出在封闭联赛中的特点，就是 利润与胜率的相机抉择
+
+- 优先是胜利偏好
+
+- 许多球队（如皇马是球迷所有制）的球迷比一般的投资者更偏好胜利，而非分红
+
+- 以“低投入+高利润”方式在顶级联赛中**生存**，是有很有风险的。在长期意味着降级、失去球迷、声望和收入。为避免降级，必须花费高额代价追求顶级球员。
+
+- “富豪”老板出于个人声誉、对比赛的热爱和对胜利的承诺，原意“金钱换冠军”, 切尔西前老板阿布、曼城阿布扎比联合集团。这些老板自掏腰包补足球队的为追求胜利带来投入不足。获得冠军同样能够带来金钱
+]
+
+---
+### 球队模型的刻画
+
+.more-left[
+- Humphreys(2016) 球队收益和成本均是球队质量的函数。换句话说，实力强的球队会吸引更多的球迷，但要花更多的钱来组建。
+
+$$
+\begin{equation}
+\pi_{i}=TR(w_{i})-TC(w_{i})
+\end{equation}
+$$
+
+进一步对收入函数和成本函数进行假设：
+1. 假设总收益随着胜率的增加而增加，但速度是递减的，不是单调的。因为球队赢得太多或输得太多都是被球迷埋怨。
+
+2. 假设球员边际成本为常数，即 $TC(w_i)=cw_i$。
+
+→ $MC$ 是一条平行于X轴的直线
+
+
+]
+
+
+.less-right[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/W81bO2.png height="500" width="430">
+]
+
+???
+
+- wi代表是胜率，是球队球员天赋的函数
+
+
+---
+### 用模型刻画
+
+.more-left[
+#### 利润最大化目标
+
+- 利润最大化条件为 $MR=MC$ 
+
+- $MC$ 与 $MR$ 相交处，此时胜率为 $w^*_1$ 
+
+#### 胜率最大化目标
+
+- 只要不赔钱就全买好球员
+- $(\pi = 0)$ → $TR = TC$ 或 $AR = ATC$ 。 $AR$ 和 $ATC$ 曲线在在 $w^*_2$ 处相交。
+
+- 结论：**在其他条件相同的情况下，胜率最大化球队比利润最大化球队更经常获胜（ $w^*_2 > w^*_1$ ），而利润最大化球队获得的利润更高。**
+]
+
+
+.less-right[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/W81bO2.png height="500" width="430">
+]
+
+---
+### Kesenne(2007)
+
+.pull-left[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/LYht0x.png height="400" >
+]
+
+.pull-left[
+- 将球队目标与劳动力市场，所横坐标为t
+
+- 利润最大化目标。虚线是成本函数的一阶导数，代表MC；与TR相切代表MR=MC；雇用t1天赋。
+
+- 胜率最大化目标。雇佣t4天赋。TR=TC保证收支平衡。
+
+- 收益最大化目标。雇佣t2天赋，MR=0。
+
+- 赢球至上目标。不在乎赔钱，雇佣t5天赋。
+
+- 完成某利润率目标.雇佣t3。
+
+]
+
+---
+#### 纪念Kesenne
+
+![9y7xcJ](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/9y7xcJ.png)
+![4y56Kx](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/4y56Kx.png)
+
+---
+
+class: title-slide-section,inverse, middle
+# 封闭联赛中球队的收益与成本基本情况
+
+---
+
+### 收益是球队赛事面临的需求决定的
+
+- 观众需求由6个基本因素驱动的。第1个要素影响需求量；其余5个影响需求。
+
+- 门票价格。
+
+- 替代品的价格。NBA与NCAA。
+
+- 互补品的价格。比如停车的价格。
+
+- 消费者可支配收入。
+
+- 市场中潜在消费者的数量。市场规模的增加，对门票的需求就会增加，需求曲线会向右移动。
+
+- 品味和偏好(Tastes and Preferences)。
+
+
+???
+.tiny[
+- 总收入=价格 .mono[&times;] 产品数量，其中产品数量以**到场观众**衡量。
+
+- 替代品的价格。对于NBA球队来说，可能是附近NCAA篮球队。若看NCAA比赛的成本增加，就会增加对NBA比赛的需求，NBA需求曲线右移。NBA关键场次是要错开NCAA的分区决赛的。
+
+- 互补品的价格。比如停车的价格。随着停车费和特许经营(concessions)价格增加，门票的需求会减少，需求曲线向左移动
+
+- 消费者可支配收入。通常收入的增加会导致门票需求的增加，门票的需求曲线右移。
+
+- 市场中潜在消费者的数量。市场规模的增加，对门票的需求就会增加，需求曲线会向右移动。所以球队所在的市场若大，占有优势。
+
+- 如比赛安排在周几、主队实力、客队实力、比赛重要性、球迷的预期（一场激烈的比赛）、**天气**、超级球星、**环境因素如空气污染、温室效应、流行病**。另外，运动普及和流行度（中国冰雪），地区偏好（US足球、CA冰球）等。
+
+]
+
+
+---
+
+### 球队成本
+
+- 固定成本：职业球队大部分是固定成本，包括广告费、差旅费、与场地有关的费用以及大部分行政管理费用。
+
+  - 普通厂商而言，劳动力工资视为可变成本
+  
+  - **职业球队而言，劳动力工资视为固定成本**
+
+.center[
+#### 人员类薪酬通常占50%-75%
+]
+  
+- 可变资本：比赛日工作人员有关的成本，如引座员或食品供应商。
+
+---
+### 例子：BIG5基本概况(2016)
+
+![OjhEVs](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/OjhEVs.png)
+
+.tiny[
+- **大市场 → 高收入**。不仅收入高，大市场球队的胜率也会很好。
+- **高收入 → 高利润**。除了MLB道奇队外，基本上符合该逻辑。这也是大多数经济学家同意北美职业体育联盟球队以利润最大化目标的原因。
+- **工资规模**差别很大
+- **联赛间收入分享机制差异巨大 → 不同项目的球队收入差距很大**
+
+]
+
+???
+.tiny[
+- **工资规模**差别很大。NFL、NHL和NBA各队相似。在MLB中，没有硬工资帽限制，支出最高的球队的Dodge成本超过了其他项目大部分球队的总收入。
+- **联赛间收入分享机制差异巨大 → 不同项目的球队收入差距很大**。通常有收入分享制度的联赛，小球队可以从总资金池中获取收入，球队间的差距没有没有那么大。
+]
+
+---
+### BIG5 基本概况(2016)
+
+![OjhEVs](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/OjhEVs.png)
+
+.tiny[
+- **消费者品味和偏好很重要**。
+- **冠军"长青树"球队经济状况一般很好**。NFL新英格兰爱国者、MLB旧金山巨人都是如此。
+- **一些联赛显然更有利可图，如NFL**。NFL球队营业收益的中位数为7600万美元，几乎是MLB中位数（约2100万美元）的3倍半。盈利能力最差的NFL球队比NBA、NHL或MLB球队营业收益的中位数还高。
+- **个别球队短期会有严重亏损**。其中，道奇队的巨额亏损是所有球队中是独一无二的：2015年的工资总额有史以来第一个超过3亿美元的，其中包括付给一些不在名册的球员约9500万美元（比一些球队的工资总额还多）
+]
+
+???
+.tiny[
+- **消费者品味和偏好很重要**。在北美，足球显然无法跟其他项目媲美。加拿大球迷更喜欢冰球；德州人地处温暖地带，会偏爱橄榄球，西海岸的西雅图人喜好足球。
+- **冠军"长青树"球队经济状况一般很好**。NFL新英格兰爱国者、MLB旧金山巨人都是如此。
+- **NFL更有利可图**。NFL球队营业收益的中位数为7600万美元，几乎是MLB中位数（约2100万美元）的3倍半。盈利能力最差的NFL球队比NBA、NHL或MLB球队营业收益的中位数还高。
+- **个别球队短期会有严重亏损**。其中，道奇队的巨额亏损是所有球队中是独一无二的：2015年的工资总额有史以来第一个超过3亿美元的，其中包括付给一些不在名册的球员约9500万美元（比一些球队的工资总额还多）
+]
+
+---
+### 收入6大来源
+
+
+1. 门票收入(ticket sales & gate receipt) $R_G$ 
+
+2. 传统播权权，电视电台转播 $R_B$ 
+
+3. 高级媒体,如流媒体直播 $R_M$ 
+
+4. 许可收入,如官方商品、球队纪念品、涉及商标和知识产权的收入： $R_L$ 
+
+5. 场地和赞助收入,如豪华包厢、特许经营权、命名权： $R_V$ 
+
+6. 联盟转移收入 $R_T$ 
+
+$$ R =  R_G + R_B + R_M + R_L + R_V + R_T $$
+
+---
+### 收入6大来源
+#### 1 门票收入 
+
+.more-left[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/3vLYRG.png height="400" width="550">
+]
+
+.less-ritgt[
+- 门票是最重要的收入来源之一
+
+- **MLB球队因为赛事多、主场多，产生了最多门票收入。**常规赛有81/162个主场比赛。但MLB波动最大。为什么？
+- NFL因为比赛少，所以收入也很多？而且NFL波动最小。为什么？
+]
+
+???
+NFL常规赛有8/16个主场，但平均而言比NHL和NBA要高。大多数NFL比赛都能吸引到接近饱和的观众。
+
+
+---
+#### 2 转播收入与收入分享
+
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/to0dlS.png height="240" width="490">
+]
+
+- **全国性电视转播收入差异大**
+- .bb[MLS < NHL < MLB < NBA < NFL]
+- 前三名每年都是10亿美元以上的年度联盟总收入(15亿/year - 68.5亿/year)
+
+???
+
+联盟整体收入负面的影响是如何分蛋糕？分不好就会造成球队财力失衡。
+所以收入分享机制非常重要。
+
+---
+
+##### 分享机制
+
+
+- **NFL电视合同结构确保所有球队利益均享**
+
+- **MLB全国转播收入比不上NFL，地方转播收入是主要来源**
+
+- **NBA收入差距大部分来自地方电视收入的差异**
+
+- **NHL就没有收入分享机制** → **更依赖门票收入**
+
+???
+
+.tiny[
+- **NFL电视合同结构确保所有球队利益均享**。NFL的转播收入是全国转播的，所以采取的利益均享。因此一支非常有名的绿湾包装工队Green Bay Packers虽然在威斯康星州的格林贝，非常小，但是财力跟纽约的NFL队相当。而且成绩非常好。
+
+- **MLB全国转播收入比不上NFL，地方转播收入是主要来源**。像洛杉矶道奇从全联盟获得5000万，但从地方广播公司获得2.04亿。相比下，小市场球队，像洛基队的地方台收入只有2000万。
+
+- **NBA收入差距大部分来自地方电视收入的差异**。NBA是因为场次主场场次非常多，所以地方收入多，会拉大球队间财力差距。
+
+- **NHL没有转播收入的分享机制** → 小球队难与大市场球队竞争 
+
+]
+
+---
+#### 3 高级媒体
+
+- 由于流媒体平台的兴起，这部分**收入变化最快**，成为所有大联盟的重要在线业务。
+
+- 超过3/4千禧一代会考虑在线上观看比赛 (Fobes)。
+
+- 案例: BAMTech 是 MLBAM 的重要分支。 
+  
+  - 占联盟总收入10%
+  - 股东：NHL + Disney + MLB
+  - 所有球队共享
+
+---
+### 成本控制
+
+工资帽的规定使得所有球队在球员薪资部分基本是固定而且是均衡的，只在一个狭小范围内可变。只有**MLB没有工资帽，通过奢侈税**限制球队恶意竞争球星。
+
+- 可变成本: 有差旅费、广告费、管理费（球队层面和联赛层面）以及场地费
+  
+  - 场地费用每个球队情况不同。有些球队有拥有自己的球场（每年从政府获取补贴）；而一些球队要租赁场地。
+
+- MLB，NBA和NHL会下拨一些资金给小联盟的球队；这些小联盟球队能够产生一些大联盟球员，每人花费在上百万美元；一些小联盟球队就所归属于大联盟球队
+
+???
+
+NBA是软帽（允许特例情况下签订球员超过工资帽，缴纳奢侈税。但奢侈税也设置上限），NFL和NHL则是硬帽
+
+
+---
+### 开放联赛
+
+.pull-left[
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/K1jUqB.png height=480 >
+]
+]
+
+.pull-right[
+<br><br>
+- 足球是世界经济影响力最广泛的运动
+
+- 英格兰足球具有代表性
+
+- 2016年40亿美元市值以上的非北美市场球队都是足球俱乐部
+
+]
+
+---
+### 开放联赛
+
+.center[
+![oj9sro](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/oj9sro.png)
+]
+
+- 等级管理的，层次分明，底层开放
+
+- 各分区的球队数量固定的，通过升级和降级打通联赛
+
+- 每一层联赛会建立收入分享制度
+
+---
+### 开放联赛的球队行为
+
+
+- 升降级 → 球队更加关注成绩，并且进入到顶级赛事(欧冠和欧联杯)的球队能够取得的巨大收入，这就促使联赛的头部球队投入更多财力在保持竞争力上
+
+头部球队：
+
+- 吸引"超级球星" → 他们的加入增加了球队的实力，巩固了胜率，提升了媒体曝光度
+ 
+- 头部球队竞争力提升，确保从顶级赛事中持续赚取高额的奖金
+
+- 头部球队的高回报、高曝光会吸引"超级投资人"，对于他们而言，球队的利润最大化只是目标之一，他们往往不那么投资回报率，促使球队可以放心投入到争夺运动天赋的"战役"中
+
+---
+### 开放联赛的球队行为
+
+中部球队：
+
+- 多是中小市场，财力限制了追求运动天赋的能力
+
+- 目标是远离降级区，在胜率与利润的目标中更偏向前者
+
+- 中部球队会从次级别联赛（南美或者东欧）发掘天赋，将一部分天赋出售给头部球队获得收入
+
+---
+### 练习：从数字中能解读什么?(10')
+
+
+.tiny[
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/TheUnevenPremierLeagueWageBurden.jpg height=500>
+薪资收入比
+]
+]
+
+???
+
+.tiny[
+- 头部球队的门票收入一般是客观的。是可观的，他们大部分在大市场，拥有高胜率、超级球星和参加重要赛事。欧冠和欧联的奖金拉大了头部球队和其他球队的收入差距。
+- 导致球队一旦降级就很可能遭遇
+
+- 富勒姆这一次拼命想留在顶级联赛，上个赛季他们在英超联赛中的工资账单高达他们收入的 98%。 在过去的几年里，埃弗顿在他们的足球问题上投入了大量资金，他们的工资/收入数字反映出这笔支出与他们在球场上未能取得的成功有多么不成比例。
+
+- **薪资不均衡**。英超前5名球队的工资总额超过了其余15支球队中14支的总收入
+
+]
+
+---
+### 练习：数说NFL电视转播权收入情况（5'）
+
+--
+
+- 2020-2021赛季（不包括超级碗LV）的广告收入为34亿美元，同比增长3%。在17周的常规赛季中，2020年的广告收入为28亿美元，同比增长3%
+- 根据NFL的电视合约，所有球队都平等地分配电视收入，不考虑表现。截至2019年2月，每支球队每年从联盟的电视合约中获得2.55亿美元，这比2010年的9,990万美元增长了150%
+- 2023年之前，NFL与CBS、Fox、NBC、ESPN/ABC和亚马逊达成了新的媒体协议，总价值为1130亿美元
+- 2019年，所有32支NFL球队的总收入不断增长，从2001年的约40亿美元增长到2019年的超过150亿美元，是历史最高水平
+- 2020年，NFL常规赛的门票收入占联盟总收入的约1.25％，而NFL联盟和球队的赞助收入为14.7亿美元
+- 2021年，NFL的全国收入达到110亿美元。每支球队平均可获得3.4375亿美元。三年前，该联盟的总收入为150亿美元 
+- 最近的数据显示，NFL的年度电视转播收入约为110亿美元
+
+
+---
+exclude: true
+
+```{R, generate pdfs, include = F, eval = F}
+
+pagedown::chrome_print("Lec04+2.html", output = "Lec04+2.pdf")
+```

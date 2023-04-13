@@ -1,6 +1,6 @@
 ---
 title: "体育经济分析: 原理与应用"
-subtitle: "单元3: 体育与公共财政2"
+subtitle: "单元3: 体育与公共财"
 author: 
    - 周正卿
 date: "`r format(Sys.time(), '%d %B %Y')`"
@@ -12,6 +12,7 @@ output:
       highlightStyle: github
       highlightLines: yes
       countIncrementalSlides: yes
+      beforeInit: "https://platform.twitter.com/widgets.js"
       ratio: '16:10.85'
     seal: true
     lib_dir: libs

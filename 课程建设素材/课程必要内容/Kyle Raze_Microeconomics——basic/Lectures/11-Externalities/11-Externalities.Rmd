@@ -114,7 +114,6 @@ class: clear-slide
 1. Absence of property rights.
 
     - Externalities (today).
-    
     - Public goods (next week).
 
 2. Market power.

@@ -1,6 +1,6 @@
 ---
 title: "体育经济分析: 原理与应用"
-subtitle: "实证专题：休闲体育与旅行成本模型"
+subtitle: "单元5: 体育与行为经济"
 author: 
    - 周正卿
 date: "`r format(Sys.time(), '%d %B %Y')`"
@@ -12,6 +12,7 @@ output:
       highlightStyle: github
       highlightLines: yes
       countIncrementalSlides: yes
+      beforeInit: "https://platform.twitter.com/widgets.js"
       ratio: '16:10.85'
     seal: true
     lib_dir: libs
@@ -85,198 +86,25 @@ options(device = function(file, width, height) {
 })
 options(crayon.enabled = F)
 options(knitr.table.format = "html")
-# A blank theme for ggplot
-theme_empty <- theme_bw() + theme(
-  line = element_blank(),
-  rect = element_blank(),
-  strip.text = element_blank(),
-  axis.text = element_blank(),
-  plot.title = element_blank(),
-  axis.title = element_blank(),
-  plot.margin = structure(c(0, 0, -0.5, -1), unit = "lines", valid.unit = 3L, class = "unit"),
-  legend.position = "none"
-)
-theme_simple <- theme_bw() + theme(
-  line = element_blank(),
-  panel.grid = element_blank(),
-  rect = element_blank(),
-  strip.text = element_blank(),
-  axis.text.x = element_text(size = 18, family = "STIXGeneral"),
-  axis.text.y = element_blank(),
-  axis.ticks = element_blank(),
-  plot.title = element_blank(),
-  axis.title = element_blank(),
-  # plot.margin = structure(c(0, 0, -1, -1), unit = "lines", valid.unit = 3L, class = "unit"),
-  legend.position = "none"
-)
-theme_axes_math <- theme_void() + theme(
-  text = element_text(family = "MathJax_Math"),
-  axis.title = element_text(size = 22),
-  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
-  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
-  axis.line = element_line(
-    color = "grey70",
-    size = 0.25,
-    arrow = arrow(angle = 30, length = unit(0.15, "inches")
-  )),
-  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
-  legend.position = "none"
-)
-theme_axes_serif <- theme_void() + theme(
-  text = element_text(family = "MathJax_Main"),
-  axis.title = element_text(size = 22),
-  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
-  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
-  axis.line = element_line(
-    color = "grey70",
-    size = 0.25,
-    arrow = arrow(angle = 30, length = unit(0.15, "inches")
-  )),
-  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
-  legend.position = "none"
-)
-theme_axes <- theme_void() + theme(
-  text = element_text(family = "Fira Sans Book"),
-  axis.title = element_text(size = 18),
-  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
-  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
-  axis.line = element_line(
-    color = grey_light,
-    size = 0.25,
-    arrow = arrow(angle = 30, length = unit(0.15, "inches")
-  )),
-  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
-  legend.position = "none"
-)
-theme_market <- theme_bw() + theme(
-  axis.line = element_line(color = met_slate),
-  panel.grid = element_blank(),
-  rect = element_blank(),
-  strip.text = element_blank(),
-  text = element_text(family = cnfont, color = met_slate, size = 17),
-  axis.title.x = element_text(hjust = 1, size = 17),
-  axis.title.y = element_text(hjust = 1, angle = 0, size = 17),
-  # axis.text.x = element_text(size = 12),
-  # axis.text.y = element_text(size = 12),
-  axis.ticks = element_blank()
-)
-theme_gif <- theme_bw() + theme(
-  axis.line = element_line(color = met_slate),
-  panel.grid = element_blank(),
-  rect = element_blank(),
-  text = element_text(family = cnfont, color = met_slate, size = 17),
-  axis.text.x = element_text(size = 12),
-  axis.text.y = element_text(size = 12),
-  axis.ticks = element_blank()
-)
-
-theme_goods <- theme_bw() + theme(
-  axis.line = element_line(),
-  panel.grid = element_blank(),
-  rect = element_rect(size = 1),
-  strip.text = element_blank(),
-  text = element_text(size = 17, family = cnfont), 
-  axis.text.x = element_text(size = 17),
-  axis.text.y = element_text(size = 17, angle = 90, hjust = 0.5),
-  axis.title.x = element_text(color = purple, size = 19),
-  axis.title.y = element_text(color = red_pink, size = 19),
-  axis.ticks = element_blank(),
-  plot.title = element_blank(),
-  legend.position = "none"
-)
-theme_game <- theme_bw() + theme(
-  axis.line = element_line(),
-  panel.grid = element_blank(),
-  rect = element_rect(size = 1),
-  strip.text = element_blank(),
-  text = element_text(size = 20, family = cnfont), 
-  axis.text.x = element_text(size = 20, color = met_slate),
-  axis.text.y = element_text(size = 20, angle = 90, color = met_slate, hjust = 0.5),
-  axis.title.x = element_text(color = met_slate, size = 20),
-  axis.title.y = element_text(color = met_slate, size = 20),
-  axis.ticks = element_blank(),
-  plot.title = element_blank(),
-  legend.position = "none"
-)
-shift_axis <- function(p, y=0){
-  g <- ggplotGrob(p)
-  dummy <- data.frame(y=y)
-  ax <- g[["grobs"]][g$layout$name == "axis-b"][[1]]
-  p + annotation_custom(grid::grobTree(ax, vp = grid::viewport(y=1, height=sum(ax$height))), 
-                        ymax=y, ymin=y) +
-    geom_hline(aes(yintercept=y), data = dummy, size = 0.5, color = met_slate) +
-    theme(axis.text.x = element_blank(), 
-          axis.ticks.x = element_blank())
-}
-wrapper <- function(x, ...) paste(strwrap(x, ...), collapse = "\n")
-# functions
-demand <- function(x) 10 - x
-demand_2 <- function(x) 9 - x
-demand_3 <- function(x) 8 - x
-demand_inc <- function(x) 11 - x
-demand_dec <- function(x) 5 - x
-supply <- function(x) 1 + (4/5)*x
-step_demand <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8), mv = c(8, 7, 6, 5, 4, 3, 2, 1, 0))
-step_demand2 <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(10, 10, 9, 9, 8, 8, 7, 7, 6, 6, 5, 4, 4))
-step_supply <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 8, 8))
-step_supply_tax <- step_supply %>% 
-  mutate(mv = mv + 2)
-
-# data <- read_csv("/Users/zhouzhengqing/Desktop/SportsEconAnalysis/Activity_Pit_Market/Results.csv") %>% 
-#   dplyr::filter(!is.na(price))
-
-theme_set(theme_gray(base_size = 20))
-# Column names for regression results
-reg_columns <- c("Term", "Est.", "S.E.", "t stat.", "p-Value")
-# Function for formatting p values
-format_pvi <- function(pv) {
-  return(ifelse(
-    pv < 0.0001,
-    "<0.0001",
-    round(pv, 4) %>% format(scientific = F)
-  ))
-}
-format_pv <- function(pvs) lapply(X = pvs, FUN = format_pvi) %>% unlist()
-# Tidy regression results table
-tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", highlight_bold = T, digits = c(NA, 3, 3, 2, 5), title = NULL) {
-  x %>%
-    tidy() %>%
-    select(1:5) %>%
-    mutate(
-      term = terms,
-      p.value = p.value %>% format_pv()
-    ) %>%
-    kable(
-      col.names = reg_columns,
-      escape = F,
-      digits = digits,
-      caption = title
-    ) %>%
-    kable_styling(font_size = 20) %>%
-    row_spec(1:nrow(tidy(x)), background = "white") %>%
-    row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
-}
 ```
-class: title-slide-section,center, middle, inverse
+class: title-slide-section, middle, inverse
 
 # 大纲
 
 ---
+class: animated slideInRight fadeOutLeft
+
 ### 大纲
-- Estimating Demand Functions with Travel Cost Models
-- Hedonics, Voting with Your Feet, and Why it’s Not That Simple
-- Stated Preferences and Hypothetical Markets
-- Defensive Behavior and Self Protection
+
+- 职业体育场地设施的发展历史
+- 如何评估场地设施经济影响?
+- 场地与利益相关者
+  - 俱乐部收入来源?
+  - 使球迷变得更好?
+  - 为当地经济做出贡献?
 
 ---
-class: title-slide-section,inverse,center,middle
-# 使用TCM估计需求函数
-  
----
-
-### 旅行成本模型
-
-为了用旅行成本模型估计需求函数，有必要收集不同家庭或个人前往特定目的地的旅行次数的数据。然后，这些数据必须与每个家庭或个人的交通成本数据相结合，如距离、道路通行费和燃料成本。然后得出的模型可以用来根据与旅行有关的各种成本的变化来预测前往目的地的需求。此外，该模型还可用于评估政策变化的潜在影响，如新的税收或补贴，对出行次数的影响。
+class: title-slide-section, middle, inverse
 
 ---
 exclude: true
