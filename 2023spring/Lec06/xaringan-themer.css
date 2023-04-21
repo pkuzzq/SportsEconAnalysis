@@ -399,7 +399,7 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
 }
 
 .bigger {
-  font-size: 125%;
+  font-size: 120%;
 }
 .huge{
   font-size: 150%;
@@ -507,3 +507,10 @@ hr,
 .pad-left {
   margin-left: 5%;
 }
+
+.bb{
+  font-weight: 600;
+  color: #B94048 !important;
+  font-size: 120%;
+}
+  
