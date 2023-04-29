@@ -1,6 +1,6 @@
 ---
 title: "体育经济分析: 原理与应用"
-subtitle: "单元4: 经验关系在体育中的使用"
+subtitle: "单元4: 在体育中从相关到因果"
 author: 
    - 周正卿
 date: "`r format(Sys.time(), '%d %B %Y')`"
@@ -338,7 +338,7 @@ class: title-slide-section,center, middle, inverse
 
 
 ---
-class: title-slide-section,center, middle, inverse
+class: title-slide-section, middle, inverse
 # 遗漏变量偏误与控制变量
 ---
 
@@ -405,7 +405,7 @@ column_spec(1, bold = T, italic = F)
 tab321
 ```
 
-- 在这里，我们有四种增加控制变量的方式，关于工资对上学年限的回归（来自NLSY，美国青年纵向调查）。
+- 在这里，我们有四种增加控制变量的方式，关于工资对上学年限的回归（来自NLSY，美国青年纵向调查）
 ---
 ### 例子(MHE)
 
@@ -676,13 +676,13 @@ $$
 - 所以模型 (2) 存在内生性问题（对简化式2进行回归）, 模型 (1) 同理可证
 
 ---
-class: title-slide-section,inverse,center,middle
+class: title-slide-section,inverse,middle
 # 如何去找“真相”
 
 ---
 - 大部分时候我们存着立场、偏见、固念和坐标。可是我们还能不能用别人的观点帮助自己了解这个世界?
-- 看见为了相信 to see is to believe
-- 真实世界，绝大多少只是看到我们相信。but you see what you believe
+- 看见为了相信。to see is to believe
+- 在真实世界中，绝大多少只是看到我们相信。but you see what you believe
 - 而且你只相信你希望的得到的真相 and you believe what you hope to be true
 
 - p → q == -q → -p
@@ -691,6 +691,14 @@ class: title-slide-section,inverse,center,middle
 - 怎么办？→ 去猜
 - 直接猜 P(A) 很困难，所以去猜 P(A|B)=P(A&B)/P(B) 
 - 这时候就需要看案例的背景资料和文献，去寻找更多信息，来发现潜在B的可能性，去减少犯错的可能性
+
+---
+### 理论、分布与样本
+
+<br>
+![BigPicture](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/BigPicture.png)
+
+- Data .mono[-->] Facts .mono[-->] Model .mono[-->] Knowledge
 
 ---
 ### 条件分布 (Conditional Distribution)

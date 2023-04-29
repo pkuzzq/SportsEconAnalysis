@@ -1,6 +1,6 @@
 ---
 title: "体育经济分析: 原理与应用"
-subtitle: "单元4: 体育与计量经济"
+subtitle: "单元4: 在体育中从相关到因果"
 author: 
    - 周正卿
 date: "`r format(Sys.time(), '%d %B %Y')`"

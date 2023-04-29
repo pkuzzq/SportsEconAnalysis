@@ -4,7 +4,7 @@
     <title>体育经济分析: 原理与应用</title>
     <meta charset="utf-8" />
     <meta name="author" content="周正卿" />
-    <meta name="date" content="2023-02-27" />
+    <meta name="date" content="2023-04-26" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
@@ -18,13 +18,13 @@ class: center, middle, inverse, title-slide
 # 体育经济分析: 原理与应用
 ]
 .subtitle[
-## 单元4: 体育与计量经济学
+## 单元4: 在体育中从相关到因果
 ]
 .author[
 ### 周正卿
 ]
 .date[
-### 27 February 2023
+### 26 April 2023
 ]
 
 ---
@@ -111,7 +111,7 @@ class: title-slide-section,center, middle, inverse
 
 
 ---
-class: title-slide-section,center, middle, inverse
+class: title-slide-section, middle, inverse
 # 遗漏变量偏误与控制变量
 ---
 
@@ -193,7 +193,7 @@ $$
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-- 在这里，我们有四种增加控制变量的方式，关于工资对上学年限的回归（来自NLSY，美国青年纵向调查）。
+- 在这里，我们有四种增加控制变量的方式，关于工资对上学年限的回归（来自NLSY，美国青年纵向调查）
 ---
 ### 例子(MHE)
 
@@ -642,13 +642,13 @@ $$
 - 所以模型 (2) 存在内生性问题（对简化式2进行回归）, 模型 (1) 同理可证
 
 ---
-class: title-slide-section,inverse,center,middle
+class: title-slide-section,inverse,middle
 # 如何去找“真相”
 
 ---
 - 大部分时候我们存着立场、偏见、固念和坐标。可是我们还能不能用别人的观点帮助自己了解这个世界?
-- 看见为了相信 to see is to believe
-- 真实世界，绝大多少只是看到我们相信。but you see what you believe
+- 看见为了相信。to see is to believe
+- 在真实世界中，绝大多少只是看到我们相信。but you see what you believe
 - 而且你只相信你希望的得到的真相 and you believe what you hope to be true
 
 - p → q == -q → -p
@@ -657,6 +657,14 @@ class: title-slide-section,inverse,center,middle
 - 怎么办？→ 去猜
 - 直接猜 P(A) 很困难，所以去猜 P(A|B)=P(A&amp;B)/P(B) 
 - 这时候就需要看案例的背景资料和文献，去寻找更多信息，来发现潜在B的可能性，去减少犯错的可能性
+
+---
+### 理论、分布与样本
+
+&lt;br&gt;
+![BigPicture](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/BigPicture.png)
+
+- Data .mono[--&gt;] Facts .mono[--&gt;] Model .mono[--&gt;] Knowledge
 
 ---
 ### 条件分布 (Conditional Distribution)
@@ -1078,7 +1086,7 @@ $$
 - **残差项** `\(\varepsilon\)` 是最小二乘法计算出来的， 总是与X正交。
 $$
 {E}\left[\boldsymbol{X}\left(Y-\boldsymbol{X}^{\prime} \hat{\boldsymbol{\beta}}\right)\right]={E}[\boldsymbol{X} {\varepsilon}]=0
-$$
+`$$e 
 - 最小二乘只是估计方法.super[.pink[†]]，常见的估计方法还有矩方法、最大似然估计等 
 - 总体
 `\(\hat{\boldsymbol{\beta}}_{ols}={E}\left[\boldsymbol{X} \boldsymbol{X}^{\prime}\right]^{-1} {E}[\boldsymbol{X} Y]\)` 
@@ -1123,6 +1131,7 @@ exclude: true
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
 "highlightLines": true,
