@@ -4,8 +4,10 @@
     <title>体育经济分析: 原理与应用</title>
     <meta charset="utf-8" />
     <meta name="author" content="周正卿" />
-    <meta name="date" content="2023-03-26" />
+    <meta name="date" content="2023-05-07" />
     <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -16,13 +18,13 @@ class: center, middle, inverse, title-slide
 # 体育经济分析: 原理与应用
 ]
 .subtitle[
-## 单元5: 体育与行为经济
+## 单元5: 体育中的行为决策
 ]
 .author[
 ### 周正卿
 ]
 .date[
-### 26 March 2023
+### 07 May 2023
 ]
 
 ---
@@ -39,14 +41,685 @@ class: animated slideInRight fadeOutLeft
 ### 大纲
 
 - 职业体育场地设施的发展历史
-- 如何评估场地设施经济影响?
-- 场地与利益相关者
-  - 俱乐部收入来源?
-  - 使球迷变得更好?
-  - 为当地经济做出贡献?
 
 ---
 class: title-slide-section, middle, inverse
+
+# 行为分析的经济学缘起
+
+---
+### 从经济人转向理性人的行为分析
+- "无论人是多么自私，在他的本性中显然存在着一些原则。他的天性中显然有一些原则，这些原则使他对他人的财富感兴趣，并使他人的幸福对他来说是必要的，尽管他除了看到别人的快乐之外，并没有从中得到任何好处。幸福对他来说是必要的，尽管他没有从中得到任何东西，除了看到它的快乐之外"（亚当-斯密，《道德情操论》，1760）
+- "经济学的第一条原则是，每个人都只受自我利益的驱动"(Edgeworth, Mathematical Psychics, 1881)
+
+---
+### 从标准经济选择模型到基于行为选择模型
+
+.pull-left[
+#### 新古典经济理论认为.bb[人]是：
+1. 总是理性的
+2. 纯粹关心个人利益(self-regarding)
+3. 在时间和不确定性上是行为一致的
+4. 对预期范围内的激励会有所反应
+]
+
+.pull-right[
+#### 行为经济理论认为.bb[人]是：
+1. 并.bb[不总是]理性的
+2. 会关心.bb[其他人]
+3. 在时间和不确定性上行为.bb[并不一致]
+4. 对预期范围内的激励.bb[不一定]会有反应
+]
+
+- [大脑认知的偏差](https://upload.wikimedia.org/wikipedia/commons/6/65/Cognitive_bias_codex_en.svg)
+- https://zhuanlan.zhihu.com/p/27451663
+
+---
+### 市场机制的有限性
+
+按照新古典理论：
+
+- 市场机制为人们决策提供最佳方式：允许个人偏好与约束同时成立
+- 在真空状态下人们可能成为奇怪的决策者，因此我需要建立一套市场或者贴近市场的机制
+
+按照行为经济理论：
+
+- 市场不是万能的
+- 即使市场能够提供准确的信息，但人们不一定会对激励做出反应
+- 通过迎合真实消费者的偏见进行激励，比试图建立市场纠正这些偏见要容易得多(Richard Thaler)
+
+例如：如果你选择了错误的职业、选择了错误的投注、对球队发展战略有错误的判断，市场不会纠正这些错误
+
+---
+### 技术上的说明
+
+- 长期以来，经济理论建立在简单的效用函数基础上
+- 数学上的单调、凸性等条件限制，让这些函数描述了 &lt;br&gt; .bb[一个具有无限认知的理性、自私的个体]
+&lt;br&gt;
+- BE对标准效用函数进行修改，来捕捉人类的错误和偏见
+  - 从这个角度看，BE并没有取代经济学，它只是基于新证据的自然延伸
+  - 新古典主义和BE是互补的，而不是替代的
+
+---
+class: title-slide-section, middle, inverse
+
+# 一个例子
+---
+### 高尔夫与行为经济
+#### 研究背景(Backgound)
+- 高尔夫球员在比赛时原本应该只关心自己的得分成绩
+- 然而，在尝试推杆时，球手可能会受到球洞标准杆等级的影响
+  - 每个球洞的标准杆等级作为一个独立的**参考点**
+  - 高于标准杆的痛苦可能大于低于标准杆1杆的喜悦
+- .bb[损失厌恶]是一种框架性偏见，即：一个人使用一个参考点，在这个参考点周围，损失的痛苦比获得的收益要大 → 会造成不理性的决策
+
+#### 潜在的可能(Implicaitions)
+
+- 为了避免损失(失去一杆到Par或Bogey），导致球手在推杆时格外努力
+- 面对潜在的损失，高尔夫球员可能会采取更积极的行动
+---
+#### 高尔夫球术语
+  - **标准杆**数是指在单一球场或者单一球洞范畴内，从开球区击到球洞内所预先估计的所需击球次数
+  - 单一球场的标准杆数一般为该球场的所有球洞标准杆数之总和
+  - 每个洞的标准杆数由该洞场地大小决定。一般球场设4个3杆洞，4个5杆洞和10个4杆洞。一般球场为18洞，标准杆72杆
+.tiny[
+- **Condor**(三鹰球)。单一洞低于标准杆4杆。在正式比赛中极少发生，只有在五杆长洞一杆进洞才有可能出现。据报1995年曾经于一个马蹄型球道上出现
+- **Double eagle**。总杆数低于标准杆数3杆。通常发生于五杆洞以两杆完成，第一杆落于球道较前位置，可能距离果岭还有百多码，第二杆以挖起杆或短铁杆将球打进洞
+- **Eagle**。总杆数低于标准杆数2杆。三杆洞一杆进洞或四杆洞第一杆上果岭然后加推一杆进洞
+- **Birdie**。总杆数低于标准杆数1杆
+- **Par**。平标准杆
+- **Bogey**。总杆数高于标准杆数1杆
+- **Double Bogey**。总杆数高于标准杆数2杆
+- **Triple Bogey**。总杆数高于标准杆数3杆
+  ]
+  
+---
+
+- "Pope and Schweitzer(“Is Tiger Woods Loss Averse? Persistent Bias in the Face of Experience, Competition, and High Stakes"
+- 他们研究了，通过用激光控制推杆的X、Y和Z坐标来测量推杆的成功率（精度测量在1英寸之内，2.54厘米）
+
+- 研究人员分析了2004-2009年PGA巡回赛上，超过1200名职业选手的超过250万个推杆的数据，其中包括伍兹。
+
+有趣的是，研究人员发现，即使赌注很高，高尔夫球手之间在竞争中，失落规避也会持续存在。换句话说，即使潜在的损失很大，有压力表现良好，高尔夫球手仍然更受到害怕失败的影响，而不是获胜的可能性。
+
+---
+#### 研究发现(Findings)
+
+- 平均来说，高尔夫球手在球场上做出决策时表现出了损失厌恶
+  - 在保持距离和角度恒定的情况下，推Birdie比推Par的成功率要低，低大约2-4百分点
+  - 没有成功的Birdie通常会停在接近洞口附近，而没有成功的Par则通常会滚过洞口 → Birdie比较放松；为了保Par，发力过猛 → 反映了为了避免损失，通常会更努力、更积极 → **符合损失厌恶的逻辑**
+  - 这种损失厌恶可能会导致球手平均每推72个洞就损失1杆，造成每年损失约100万美元的奖金
+- 该发现印证了老虎伍兹曾说过话：“每当你推入一个重要的Par时，我认为比推入Birdie更重要，因为你不想掉一杆。因此，相比推Birdie，推Par更加难”
+
+---
+### 模型(Model)
+#### 推杆成功的概率
+$$
+{Pr}(\text { make putt })=f(e, z)+\varepsilon
+$$
+-  `\(e\)` 代表所努力程度
+-  `\(z\)` 代表其他推杆特征向量（如推杆距离）  
+-  `\(\varepsilon\)` 代表果岭上可以影响高尔夫球手表现的其他因素，比如球印或草钉印、观众的噪声
+- `\(\frac{\partial f}{\partial e}&gt;0\)` 表示努力对成功推杆有正的影响， `\(\frac{\partial^2 f}{\partial e^2}&lt;0\)` 表示这种影响是边际递减 
+- 公式反应了这样一个可能性，即：高尔夫球手在每一次推杆时并不一定会发挥出最大的努力。事实上，整个比赛中球手可能会为每个推杆分配不同的努力程度。这种概念与之前的研究一致的，之前的研究也发现高尔夫球手的表现并不在每个洞上都是一致的，而是根据他们所面临的激励因素而变化的
+
+---
+### 模型(Model)
+#### 球手的效用函数
+$$
+`\begin{align}
+U &amp;= {Pr}(\text { make putt }) V(\Delta x) + (1-{Pr}(\text { make putt })) V(\Delta x-1)-{cost}(e) \\
+ &amp;= (f(e, z)+\varepsilon) V(\Delta x)+(1-f(e, z)-\varepsilon) V(\Delta x-1)-{cost}(e) \\
+ &amp;= (f(e, z)+\varepsilon) V(\text { make })+(1-(f(e, z)+\varepsilon)) V(\text { miss })-{cost}(e)
+\end{align}`
+$$
+- 每个球手的效用是由**推杆得分**和**未进洞得分**的价值加权概率之差减去投入努力的成本来衡量的
+- 假设努力成本是严格递增的，且递增的速度是减慢的
+- 借鉴了Kahneman和Tversky(1979)的价值函数(Value Function) `\(V(\cdot)\)`
+-  `\(V(\Delta x)= \begin{cases}\Delta x &amp; \text { if } \Delta x \geq 0 \\ \lambda \Delta x &amp; \text { if } \Delta x&lt;0\end{cases}\)`
+- 其中 `\(\lambda \geq 1\)`是损失厌恶的程度
+---
+class: middle
+### 模型(Model)
+#### 高尔夫球的前景理论
+
+.pull-left[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/VwiuNl.png &gt;
+]
+
+.pull-right[
+- 得一个birdie和得一个par之间的价值差异**小于**par和bogey之间的价值差异
+- 注意：定义这个价值函数是针对单个球洞的
+- 在这种表述中，隐含地假设球员在每个球洞内都是**狭隘的聚焦**（即只关注当前的球洞而不考虑整个球场）
+]
+
+---
+### 模型(Model)
+#### 球手的效用函数
+$$
+`\begin{align}
+U &amp;= {Pr}(\text { make putt }) V(\Delta x) + (1-{Pr}(\text { make putt })) V(\Delta x-1)-{cost}(e) \\
+ &amp;= (f(e, z)+\varepsilon) V(\Delta x)+(1-f(e, z)-\varepsilon) V(\Delta x-1)-{cost}(e) \\
+ &amp;= (f(e, z)+\varepsilon) V(\text { make })+(1-(f(e, z)+\varepsilon)) V(\text { miss })-{cost}(e)
+\end{align}`
+$$
+
+.pull-left[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/VwiuNl.png &gt;
+]
+
+.pull-right[
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 推杆尝试 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; V(make) &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; V(miss) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Par &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -1λ &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Birdie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Eagle &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Bogey &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -1λ &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -2λ &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+### 模型(Model)
+#### 效用函数对努力程度最大化
+- `\(\begin{aligned} &amp; \frac{\partial U}{\partial e}=\frac{\partial f}{\partial e} V(\text { make })-\frac{\partial f}{\partial e} V(\text { miss })-\frac{\partial \cos t}{\partial e}=0 \\ &amp; \frac{\partial f}{\partial e}(V(\text { make })-V(\text { miss }))=\frac{\partial c o s t}{\partial e}\end{aligned}\)`  
+- → 最大效用时，努力的**边际收益**=努力的边际成本
+- `\(\begin{cases}\frac{{{cost}^{\prime}(e)}}{\frac{\partial c o s t}{\partial e}}=1 &amp; \text { if } \Delta x \geq 0 \\ \frac{{{cost}^{\prime}(e)}}{\frac{\partial c o s t}{\partial e}}= \lambda &amp; \text { if } \Delta x&lt;0\end{cases}\)`
+- 一阶条件表明，球队在**损失领域**（如，保par，bogey或双bogey）中选择**更高**的努力水平，而在**收益领域**（如，推杆以争取birdie或eagle）中选择的努力水平较低
+
+---
+
+### 结果(Results)
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.pull-left[&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/ekSEsI.png height=300&gt;]
+
+.pull-right[&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/lRuD5Q.png height=300&gt;]
+
+---
+
+`$$\frac{\partial f}{\partial e}(V(m a k e)-V(m i s s))=\frac{\partial cost}{\partial e}$$`
+.more-left[
+I. 尝试推birdie: V(make) `\(=1\)` 和 V(miss) `\(=0\)`
+$$
+`\begin{aligned}
+&amp; \frac{\partial f}{\partial e}(1-0)=\frac{\partial cost}{\partial e} \\
+&amp; \frac{\partial f}{\partial e}=\frac{\partial cost}{\partial e}
+\end{aligned}`
+$$
+II. 尝试保par: V(make) `\(=0\)` 和 V(miss) `\(=-1 \lambda\)`
+$$
+`\begin{aligned}
+&amp; \frac{\partial f}{\partial e}(0-(-1 \lambda))=\frac{\partial cost}{\partial e} \\
+&amp; \frac{\partial f}{\partial e} \lambda=\frac{\partial cost}{\partial e}
+\end{aligned}`
+$$
+
+表明，球队在**损失领域**（如，争取保par，bogey或双bogey）中选择**更高**的努力水平，而在**收益领域**（如，推杆以争取birdie或eagle）中选择的努力水平较低
+]
+.less-right[
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 推杆尝试 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; V(make) &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; V(miss) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Par &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -1λ &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Birdie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Eagle &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Bogey &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -1λ &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -2λ &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+---
+class: title-slide-section, middle, inverse
+# 行为经济的基本框架
+
+---
+### 经济学家如何思考人类行为
+#### 新古典经济学以目标为驱动：受限制的优化  → 边际成本(内在努力)与边际收益(货币化效用)的**外部动机**(extrinsic motivation)；&lt;br&gt; 行为经济学通过人的心理的**内部机制**(intrinsic motivation)对各个组成部分重新理解
+
+- **效用函数**：什么会使人们快乐? → 享乐主义假设
+  - 在某一时刻（瞬时效用函数）？
+  - 当时间、风险或他人参与时（时间、风险和社会偏好）？
+- **信念**：对所在环境的看法如何？→ 完美的贝叶斯主义
+  - 客观环境、备选方案或他人行为形成 → **先验经验**
+  - 通过信息来更新已有的信念 → **后验经验**
+- **选择/决策**：人们如何利用以上因素做出决策？
+  - **显性偏好理论**强调对选择行为的观察结果，而不是其心理基础 → **公理化体系**（Samuelson）可以从选择中推断**不可观测**的偏好性质
+  - 框架、默认设置、启发式
+
+
+---
+### 一些有趣的现象与研究
+#### 年初的减肥计划
+.center[![iHsf43](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/iHsf43.png)]
+---
+### 一些有趣的现象与研究
+#### 默认设置的差别：加入与退出
+
+.center[![AKxryN](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/AKxryN.png)]
+---
+### 一些有趣的现象与研究
+#### 注意力
+.center[
+<video type="video/mp4" width="840" height="460" controls="TRUE">
+<source src="./video/selective_attention_test.mp4" type="video/mp4"/>
+</video>
+]
+
+---
+class: title-slide-section, middle, inverse
+# 风险、不确定性和模糊性下的行为决策
+
+---
+### 决策理论的基本原理
+
+- 决策者的所有可能得行动会面临一个概率分布：可以是**客观的**，也可以是**主观的**
+  - .green[客观的 → 风险 risk → 使用期望效用 EU]
+  - .purple[主观的 → 不确定性 uncertainty → 使用主观期望效用 SEU]
+  - .orange[没有客观概率且没有合理的主观概率 → 决策者主观概率**依赖信息来源**而进行混合（视情况而定） →  模糊性 ambiguity]
+      - 将模糊性下决策模型简化为EU（模糊性的新古典模型）
+      - 与上面相反，简化为行为模型（模糊性的行为模型）
+
+- 新古典经济学家在考虑风险和不确定性状况下的行为时，大概发展出了3套分析方法：
+  - **期望效应法**EU（expected utility approach）
+  - 状态偏好法（state-preference approach）
+  - 平均变异数法（mean-variance approach）
+
+---
+### EMV → EU 的相关定义
+
+- 简单彩票lottery或者简单赌局gamble定义为 `\(L=(x_1, p_1 ; x_2, p_2 ; \ldots ; x_n, p_n)\)` ; `\(X=\{x_1, x_2, \ldots, x_n\}\)` 是有限实数集合，可以排序，且代表决策者所有可能获得的财富水平集合;复合彩票定义为 `\((L_1, p ; L_2, 1-p)\)` 
+- **期望货币价值**EMV： `\(EMV(L)=\sum_{i=1}^n p_i x_i\)`
+- **期望效用**EU（为什么走向效用表达?）： `\(EU(L)=\sum_{i=1}^n p_i u(x_i)\)`
+  - 若**效用函数是线性的**，那么EU=EMV
+- 从风险角度看，所有**状态项**是**随机过程**，如何比较不同风险下的随机分布呢？
+  - 一阶随机占优：分布A在所有取值上的概率都**大于等于于**分布B
+  - 二阶随机占优：期望值上分布A**大于或等于**分布B，且方差上A分布**小于或等于**B分布
+
+---
+class:middle,center
+### 一阶随机占优
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/GgbGIM.png height=500&gt;
+
+---
+class:middle,center
+### 二阶随机占优
+
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/aWbD9B.png height=550&gt;
+
+---
+### EU中U能表达偏好的条件
+
+- 彩票的**理性公里系统** axioms of rationality ： 满足**理性次序关系**的彩票 → VNM（冯·诺依曼-摩根斯坦）期望函数 → VNM效用函数可以表达偏好
+- .purple[公理1(次序)] 同时满足以下两个条件
+  - 完备性Completeness：所有 `\(L_1, L_2\)`， 要么 `\(L_2 \succeq L_1\)` 要么 `\(L_2 \preceq L_1\)` 
+  - 传递性Transitivity：所有 `\(L_1, L_2, L_3\)`， 如果 `\(L_3 \succeq L_2\)` 且 `\(L_2 \succeq L_1 \Rightarrow L_3 \succeq L_1\)`.
+- .purple[公理2(最好与最差)]： `\(x_n \succ x_1\)` (即， `\((x_n, 1) \succ (x_1, 1))\)`
+- .purple[公理3(连续性)]：对每个 `\(L\)`，均有一个使 `\(L \sim\left(x_1, 1-p ; x_n, p\right)\)` 成立的 `\(p \in[0,1]\)` 
+- .purple[公理4(独立性)]：对于所有 `\(L_1, L_2, L\)` 以及所有的 `\(p \in[0,1]\)`，&lt;br&gt;有 `\(L_2 \succeq L_1 \Leftrightarrow\)` `\(\left(L_2, p ; L, 1-p\right) \succeq\left(L_1, p ; L, 1-p\right)\)`
+- .purple[公理5(约简，或复合彩票定律)]： 令 `\(p_1, p_2, p \in[0,1]\)` ，令 `\(L_1 \sim (x_i, 1-p_1 ; x_j, p_1)\)`  以及 `\(L_2 \sim\left(x_i, 1-p_2 ; x_j, p_2\right)\)` 。那么有：
+
+$$
+`\begin{aligned}
+\left(L_1, p ; L_2, 1-p\right) &amp; \sim\left(\left(x_i, 1-p_1 ; x_j, p_1\right), p ;\left(x_i, 1-p_2 ; x_j, p_2\right), 1-p\right) \\
+&amp; \sim\left(x_i,\left(1-p_1\right) p+\left(1-p_2\right)(1-p) ; x_j, p p_1+(1-p) p_2\right)
+\end{aligned}`
+$$
+???
+
+- 公理2确定性获得最好结果与确定性活动最差结果间，严格偏好前者
+- 公理3连续性：每个彩票都能与随机混合的最高和最低结果的彩票等价
+- 公里4彩票L2偏好于L1，两个彩票各自与相同的第3个彩票混合，不会改变偏好顺序
+- 公理5复合的彩票中：是相同结果的概率的复合
+
+---
+### EMV → EU 
+
+- 为什么经济学家很少使用EMV？
+  - 瑞典数学家伯努利(Bernoulli) —— 1713年，**圣彼得堡悖论**(St Petersburg paradox)
+  - `\(EMV(X) = 1/2 \cdot 1 + 1/4 \cdot 2 + 1/8 \cdot 4 + \cdots = \infty\)` ；但事实上，很少人愿意出100元玩，甚至50块都很少
+  - 丹麦经济学家克拉默(Camer)20世纪早期就提出来要用**货币带来的效用来评价** → 20实际40年代，VNM系统完善了EU
+- EU的两个**要点**
+  - 1.彩票的结果间是状态彼此独立的(independent states)
+  - 2.根据**偏好**(不是彩票)的公理系统，**线性递增变换**后的EU与原EU表达的偏好相同
+
+
+???
+规则如下：每次玩**支付固定的入场费**，然后进行一次抛硬币的游戏。如果硬币正面朝上，你赢得1美元，并且游戏结束；如果硬币反面朝上，则进行第二轮游戏。在第二轮游戏中，如果硬币正面朝上，你赢得2美元，并结束游戏；如果硬币反面朝上，则进行第三轮游戏。在第三轮游戏中，如果硬币正面朝上，你赢得4美元，并结束游戏；如果硬币反面朝上，则进行第四轮游戏，以此类推。每次游戏所赢得的金额是前一轮游戏的金额的两倍。这个游戏可以无限进行下去，直到硬币正面朝上为止。
+---
+### 对风险的态度
+#### 1.通常人们是风险厌恶的
+
+- 购买保险。保险业的存在是为了帮助人们降低（或分散）风险。
+- 参加社保
+- 加入某些机构
+
+#### 2.降低风险需要付出代价
+- 如果回报足够高，人们愿意承担风险
+- 金融行业的作用之一：风险中介
+- 风险和（预期）回报之间的权衡取舍
+
+#### 3.有时候人们愿意承受风险
+
+- 股票或者博彩
+---
+### 风险厌恶
+
+- **什么是风险厌恶(risk aversion)？**
+  - 为了避免一个具有不确定回报的彩票或赌局，宁愿接受小于该彩票期望值的一个确定值
+  
+- **为什么人们会规避风险？**
+  - 风险使计划更加困难
+  - 人们对风险和不确定性感到担忧和压力
+  - 人们对错过的机会感到遗憾
+  - 如果没有达到预期，人们会感到失望
+  - **财富的边际效用递减**（为什么？）
+
+---
+### 赌局性质与风险态度
+
+- 定义一个赌局 `\(L(x_b,p;x_g;1-p)=L(x_0+g,p;x_0-l,1-p)\)`
+  - `\(p·x_b+(1-p)·x_b = x_0\)` 视为公平赌局(fair gamble)
+  - `\(p·x_b+(1-p)·x_b &gt; x_0\)` 视为有利赌局(favorable gamble)
+  - `\(p·x_b+(1-p)·x_b &lt; x_0\)` 视为不利赌局(unfavorable gamble)
+
+- 确定性等价与风险态度
+  - 定义一个可以反映彩票偏好的效用函数 `\(\bar U\)` ，假设有彩票 `\((C_L,1)\)` ，如果 `\(\bar{U}(C_L)=\bar{U}(L)\)` 有解，那么 `\(C_L\)` 就是彩票 `\(L\)` 的确定性等价
+  -  `\(C_L &lt; EMV(L)\)` → 风险规避； `\(C_L &gt; EMV(L)\)` → 风险爱好 ；$C_L=EMV(L)$ → 风险中立
+
+- 赌局性质与风险态度
+  - 拒绝了公平赌局 → 风险规避；接受公平赌局 → 风险偏好； 可接受、可拒绝公平赌局 → 风险中立
+
+---
+### EMV 与 EU 的例子
+
+- 给一个有1w块的人，提供一个赌局：
+  - 有50%概率获得500，而50%损失400，那么会他接受该赌局么？
+
+- 根据期望货币价值EMV计算，
+  - EMV(接受赌局) = 0.5·9600 +0.5·10500 = 10050
+  - EMV(拒绝赌局) = 10000
+- 一个风险中立的决策者将接受赌博（无论初始财富如何）。
+Expected utility (EU):
+• EU(accept lottery) = 0.5• u(9.600)+0.5 •u(10,500)
+• EU(reject lottery) = u(10.000)
+• Will an expected-utility maximizer accept the gamble? Depends on concavity of tf
+
+
+---
+### 主观期望效用函数 SEU
+在EU框架下导出效用函数
+违背期望期望肖永利
+
+概率加权与等级依赖效用函数
+前景理论
+
+---
+### 应用1
+禀赋效用与交换非对称性
+体育领域
+
+---
+### 应用2
+道德风险、损失厌恶和最优契约
+重新谈判、长期合同和损失厌恶
+体育领域
+
+---
+行为经济学最初侧重于消费者和生产者选择的替代模型，但直到最近，对最优契约的影响并没有得到强调。
+
+最优契约是一个成熟的文献，很大程度上基于标准的理性选择框架中的决策。
+
+最近的研究开始将行为经济学概念纳入标准最优契约模型中，包括与体育经济学相关的健身房/健身中心合同的研究。
+
+这个日益增长的文献特别关注那些旨在利用行为因素驱动的系统性错误的剥削性合同。
+
+---
+是的，这是对的。习惯的形成、天真、过度自信和投射偏见都是决定锻炼的重要因素，而健身房经常提供合同，利用个人高估未来的自己会如何表现的倾向。例如，健身房可能提供长期合同，锁定个人支付一年或更长时间的会员费，尽管许多人知道他们不太可能在这么长的时间里持续使用健身房。这是行为经济学概念如何被纳入标准最优合同模型的一个例子。
+---
+是的，合同问题在职业和校际体育中普遍存在。关于长期雇佣合同中的推卸责任的文献不多，但这方面的额外研究很少。然而，关于体育界雇佣合同的详细信息是可以得到的，这些信息可以在行为契约模型的背景下加以利用。
+
+体育合同中的一个重要因素是递延报酬与前期奖金的支付。此外，预测偏差也可能起作用，因为个人倾向于高估自己的未来生产力。球队可能会系统地利用这一点，提供更大的绩效奖金和更少的保证工资。
+
+球队提供的季票和小季包也可能与剥削性合同文献的预测一致。其他方面的偏好，如为成功的球队打球的工资折扣，也可能是体育合同中的一个因素。
+---
+是的，这是对的。虽然体育经济学家主要关注传统的新古典主义经济模型，但最近的研究表明，行为经济学概念在解释体育经济学的重要现象方面具有潜力。行为学概念，如UOH、球迷投资和健身房合同，可以用来更好地理解体育环境中的决策过程。此外，行为学概念对于理解在不确定情况下做出的决策特别有用，而这在体育环境中是很常见的。
+
+---
+Reference Dependence是指人们在做出决策时，通常会将其结果与某个参考点进行比较，并对结果的变化产生不同程度的反应。在体育经济学领域，这种行为概念也被广泛研究。
+
+研究发现，参考依赖可以解释一系列体育经济学中的现象，如球员合同中的奖金结构、球迷对球队表现的反应、赌徒对赛事结果的反应等。例如，在足球比赛中，球员和球队管理者可能会根据某个参考点，如球队在联赛排名中的位置或球员在联赛射手榜中的排名，来决定奖金的结构和分配。同时，球迷也可能会将某个比赛结果与某个参考点进行比较，并对结果的变化产生不同程度的反应。
+
+研究结果表明，了解参考依赖的存在和机制可以帮助各种利益相关者更好地制定策略，以更好地应对人们的参考依赖行为。例如，球队管理者可以根据球员的参考依赖行为来制定更有效的奖金结构和分配策略，赌博业者可以根据赌徒的参考依赖行为来制定更有效的赌博策略。
+---
+Reference Dependent Preferences (RDP)是指人们的效用取决于两个方面，即标准消费效用和“盈亏”效用。盈亏效用与某个参考点相关联，它衡量的是实际经验与参考点之间的偏差。这种效用理论已经被应用于许多领域，包括经济学、心理学和神经科学等。
+
+在体育经济学领域，RDP的理论也被广泛研究。例如，在足球比赛中，球迷的效用可能不仅仅取决于自己所支持的球队是否赢得比赛，还取决于这场比赛对于球队在联赛中的排名产生的影响。球迷可能会将球队排名作为参考点，根据球队在排名中的变化来评估自己的效用。
+
+另外，参考依赖行为也可以解释一些有趣的体育经济学现象。例如，为什么在网球比赛中，球员更容易在第一个发球局中失误，而在第二个发球局中则表现更好。这可能是因为第一个发球局是比赛的开始，而此时球员可能会将自己的发球效果与之前的参考点进行比较。如果前面的发球不好，球员可能会变得更加紧张，导致发球失误。相比之下，第二个发球局中，球员可能已经适应了比赛的节奏，并且参考点已经改变，因此他们表现得更好。
+
+研究RDP可以帮助我们更好地理解人们在做出决策时所考虑的因素，并且能够帮助利益相关者更好地制定策略，以更好地应对人们的参考依赖行为。
+---
+Endowment Effect是指人们会因为拥有某物而赋予其更高的价值。这种现象与参考依赖行为和损失厌恶有关。在经济学和心理学中，Endowment Effect是一种常见的行为偏差，人们往往高估了自己所拥有物品的价值，并对失去这些物品感到不舒服。
+
+在体育经济学中，Endowment Effect也是一个重要的概念。例如，球迷可能会因为自己拥有球队的球衣或球票而更加喜欢自己支持的球队，并且更愿意为其花费更多的钱。同样的，运动员可能会因为自己已经获得了某些成就，如赢得比赛或得到奖牌，而高估这些成就的价值，从而影响他们做出未来的决策。
+
+Endowment Effect可以通过许多方式来体现。例如，研究发现，在拥有物品和没有拥有物品的情况下，人们对于相同的物品所付出的价格是不同的。这表明人们更愿意为他们已经拥有的物品支付更高的价格，而不是为他们没有的物品支付同样的价格。
+
+总之，Endowment Effect是参考依赖行为和损失厌恶的体现，它在体育经济学中也具有广泛的应用。理解这种行为偏差可以帮助我们更好地预测人们的决策，并且可以帮助利益相关者更好地制定策略，以更好地应对这种行为偏差。
+---
+《关注已失去的：价值对于买家和卖家可能出现巨大差异的原因》这篇论文由Carmon和Ariely在2000年发表于《消费者研究杂志》，在NCAA Final Four篮球比赛的门票背景下呈现了关于所有权效应的典型例子。研究发现，该门票的售价是买家的愿意支付价格（WTP）的14倍，而卖家的愿意接受价格（WTA）为2400美元。
+
+尽管存在这个典型的例子，但在体育场次的二级市场上，普遍忽视了所有权效应在定价中的影响。这篇论文强调了二级票务市场的日益增长的文献，以及在制定定价决策时需要考虑心理因素，例如所有权效应。
+
+---
+Coates, Humphreys and Zhou在2014年发表的研究表明，经典的UOH并不能描述出观众的出席情况。球迷的决策表明他们倾向于支持主场胜利并喜欢意外的比赛结果。这种情况只会在存在统治性球队和相对较大的球队实力差距时才会发生。
+
+标准联赛模型使用经典的UOH来明确推动收入函数，在获胜百分比/天赋上是凹的。然而，球迷的风险规避/损失厌恶可能会暗示非凹的收入函数，具体取决于联盟的构成情况。
+
+---
+Stigler and Becker(1977)在他们的开创性文章中提出，消费者能够从当前消费某些商品中获得的效用取决于该行为者通过之前对这些商品的“消费”积累的“消费资本”。
+
+真正的足球迷在他们的生活中跟随“他们”的俱乐部的比赛和活动，可能是这种有益的成瘾理论的完美体现。假定一个真正的球迷，拥有所有积累的上下文知识，比一个偶然走过来的偶尔观众更能享受他俱乐部的出色表现。此外，同一俱乐部的球迷喜欢在一个志同道合的人群中互动，例如通过分享一个伟大表演的喜悦。
+
+---
+在《清晰的行为基础（成瘾是否“理性”？理论和证据，QJE 2001）》一文中，Humphreys和Zhou通过使用RDP/损失规避来形式化这个想法。
+
+该研究专注于球迷对其所支持的团队的持久投资，以及这种投资如何导致了“拖延问题”（hold-up problem）。这种方法对于理解球迷行为、团队所有权和联盟治理有许多含义。
+
+---
+class: title-slide-section, middle, inverse
+# 行为时间贴现与自我控制问题
+---
+在体育经济学中存在的“现在偏见”（present bias）指的是倾向于高估与未来事件相比较即刻事件的趋势。这种现象也被称为“双曲线贴现”（hyperbolic discounting）或“时间不一致性”（time inconsistency）。在体育领域，这可能表现为球迷更愿意购买即将到来的比赛门票，而不是购买未来几个月或一整个赛季的门票，即使后者在长远来看更具价值。这种现象可能会影响球迷、球队和联盟的决策，包括票价定价、营销策略和投资决策。
+---
+现在的偏见指的是优先考虑眼前的满足而不是未来的满足的倾向，这在体育方面是很常见的。例如，球迷可能会优先考虑观看现场比赛的乐趣，而不是为未来的活动攒钱。
+
+这种偏见也适用于成本是即时的，而收益是延迟的情况，如锻炼或参与体育活动。人们可能会选择在当下跳过锻炼，以避免体力消耗的即时成本，即使锻炼的长期好处已被充分证实。
+
+这种方法受到了批评，理由是一个以现在为中心的人知道他们未来的自己也会以现在为中心并相应地采取行动。这个问题由天真模型来解决，它允许在 "β-德尔塔 "模型中对β的不同预测。
+
+
+---
+class: title-slide-section, middle, inverse
+# 有限理性下的行为决策
+---
+### 理论基础
+
+ - 新古典经济学假设决策者是完全理性、贝叶斯式的、主观期望效用最大化的，且具有无限认知能力，并且遵循经典的统计学法则
+ - BE学家认为人类是有限理性(bounded rationality)
+ - K&amp;T（1971,1974）提出了启发式与偏差研究纲领(heuristics and biases program)，即个体决策不是建立在完全理性的贝叶斯式决策者，且行为不是完全随机；事实上，个体往往会忽略很大一部分可用信息，或者有选择地使用可用信息，从而实现**拇指法则**或**启发式**(heuristic)
+ &lt;br&gt; → 这些启发式使用**快速fast**（就时间而言）且**俭省frugal**（就所需信息而言）的决策规则 &lt;br&gt; → 大量经验证据表明，人们确实会采取简单的启发式，且人们行为往往会系统性地偏离统计学经典法则 &lt;br&gt; → 由于无法最后话，所以造成偏差，但偏误不是错误，是相对于规范基准而言的
+ - 依据启发式与偏差方法，与风险、不确定性和模糊性下的行为决策理论是截然不同的，因为不必依赖明确的最优化方法
+
+---
+### 理论基础
+- 人们会按照**大样本的统计特性**来预估判断，但事实上大部分遇到的情况是小样本情况，这就导致了**小数定律**(law of small numbers)
+- 代表性启发式(representativeness heuristic)：对象A属于种类B的概率是多少？事件A源于过程B的概率是多少？A多大程度上能代表B？用A和B的相似程度来评估概率。以下是一些例子
+
+&gt;白大褂、戴着眼镜，手里拿着书 → 医生
+
+&gt;Reaves → 下一个 Caruso、“乡村曼巴”
+
+---
+### 应用1：赌徒谬误与"偏爱(热门)-冷门偏差"
+- 赌徒谬误(gambler's fallacy)是代表性启发式的一个典型例子，决策者依据**已知的大样本特性**，根据**小样本特性**.bb[假想]了一个带有**负自相关**的随机序列
+&gt;假设某人在掷硬币，掷了10次，每次都是正面朝上。赌徒谬误会导致这个人认为，下一次掷硬币出现反面的概率更高，因为之前已经连续掷出了10次正面。判断的依据是大样本特性“50-50”
+
+- 背景：博彩市场的研究中，学者观察到一些明显的现象
+  - Metzger(1984)如果当天早些时候一批冷门马获胜，那么人们会对之后的冷门马下注较低的金额(两批冷门马可能是不同吗)
+  - Terrell和Farmer(1996)以及Terrell(1998)研究发现在赛狗比赛中，对前一轮获胜的号码投注会下降，尽管两场比赛参赛的狗并不一样
+  
+---
+### 应用1：赌徒谬误与"偏爱(热门)-冷门偏差"
+- 如果“冷门”没有获胜过呢？→
+- **偏爱(热门)-冷门偏差**(favorite-longshot bias)是典型**赌徒谬误**的一种，即：
+&lt;br&gt; 赌徒过度高估“冷门”(longshot)的胜率(赔率高的赌注)，并低估“热门”(favorite)的胜率(赔率低的赌注)
+- 多种假说来解释这种现象
+  - 人们的风险偏好是**非对称**的，即他们更愿意承担小概率事件的风险，而不是大概率事件的风险
+  - 人们对冷门的投注也可能受到**娱乐因素的驱动**，他们喜欢在看起来不可能实现的赔率下投注，这可以增加赌博的乐趣和刺激性
+  - **代表性启发式——赌徒谬误**
+- 投注策略
+  - 考虑存在“偏好-冷门偏误”的市场，热门的真实胜率会**高于**市场赔率，因此投注热门会产生更稳定的回报。但是，对于那些对冷门投注有着明显偏好的人，这些策略可能无效
+
+---
+### 应用2：热手谬误与热手现象
+
+- 与赌徒谬误相反，**热手谬误**指：随着一系列事件在**小样本**中连续发生，决策者倾向于改变对原有**大样本特性**的认知，认为原本的随机过程中存在**正相关**
+&gt;当篮球球员连续命中，人们倾向于认为他/她下一次更有可能命中
+
+- 一个相关的概念是**热手效应**
+- 通常认为：**统计上热手效应存在的话，热手谬误很可能就不是偏差**。因此研究时围绕着热手效应和热手谬误展开的
+- 早期的研究认为，在篮球和棒球中热手效应不存在(Gilovich et al. ,1985；Tversky和Gilovich，1989a，1989b)，而是由于随机事件的影响造成了看似连续的命中；只存在于的个人赌博行为中（Camerer，1989）
+- 然而，近年来的研究表明，在某些情况下，运动员确实存在微弱的**热手效应**
+  - Bocskoscky等（2014）研究发现，手热的球员投篮成功的概率要出1.2%-2.4%
+  - Miller和Sanjurjo（2015）指出在7%左右
+  
+---
+### 应用2：热手谬误与热手现象
+
+- 随着研究深入，现在认为**统计上的热手现象，也不一定意味着会否定热手谬误**
+  - 产生热手现象可能是**混淆因素**造成的，但现有的研究还没能展现出控制这些因素的有效手段，因此不能轻易否定热手谬误
+
+- 强有力的证据显示：热手现象不存在（存在热手谬误）
+
+.center[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/kJwigi.png height=360&gt;
+]
+
+---
+### 为什么会产生这些谬误？
+
+- 当人们观察到一个现象，并更倾向于认为它就是**总体**的代表时（即便与另一现象发生概率一样），假如这时候人们观察到了另一个现象，自然会认为是一个不正常的现象，并倾向于产生**自我纠正**。事实上，随着这个现象的展开，人们的偏差没有被“纠正”，而只是被稀释了，事件更趋于大样本的特性 → 赌徒谬误
+- 当连续出现相同信号，观察到信号序列看似具有正相关；受到热手谬误影响的观察者，会根据**潜在随机过程**的错误判断，进行预测
+- Ayton和Fisher（2004）认为
+  - 热手谬误更可能出现在人类活动中，如篮球、网球、棒球等，原因是对观察者来说，连续命中或者获胜可能体现出参赛者的**不可观测的变量**，如信心水平、疲劳程度、赛前训练质量和竞技状态等
+  - 赌徒谬误更可能发生在没有生命过程的活动中，如掷骰子或赌博，原因是无生命的活动中不可观察的变量无法作用其中，因而决策者在小样本中频繁切换判断，以保持总体特征
+  
+---
+### 为什么会产生这些谬误？
+
+.center[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/jeir85.png height=360&gt;
+]
+
+- 向被试展示具有不同程度正或负相关的**转换率**(alternation rate)的序列，判断人类技巧性活动还是无生命活动
+- 转换率是序列中相邻两个元素方向改变次数除以10
+- 每个序列由21个二元结果组成
+
+---
+### 常见的判断启发式与偏差
+
+- 可得性启发式(availability heuristic)指人们根据自己头脑中信息的可得性来评估某个事件的发生概率 → 人们在评估概率和频率时会倾向于使用那些**最容易记忆**的信息，而不是基于事实或逻辑的推理 → 导致人们过分估计那些新闻媒体频繁报道(身边朋友发生过)的事件的发生概率，而低估那些不太引人注目或不那么容易记忆的事件的发生概率
+- 情感启发式(affect heuristic)：个人当前情绪状态会影响他们的判断和决定 → 这里的情感是由事件、信号或刺激的表达所**诱发(induced)**的**情感(affect)** 或者积极或消极感觉会赋予物品或事件**标签** →  形成标签的**情感池(affect pool)**以供判断 →对李宁品牌有积极情绪，会多购买
+
+- 锚定与调整(anchoring and adjustment)的启发式:根据一个已知的数字或事实来评估信息，而调整则对锚定的信息进行修正以适应具体情境 → 锚定会对比较判断和绝对判断产生影响，产生**锚定偏误** →奥运会中，选手成绩通常是按照前三名、前五名等发布的。这些前几名的成绩就成为了观众、媒体和参赛选手的锚点，影响参赛行为或民众关注度
+- 后见之明（我早就知道）偏差 hindsight bias &lt;br&gt;
+- 确认偏差 confirmation bias
+
+---
+### 其他类型的判断启发式
+
+- 向均值回归
+- 错误公式效应
+- 必要条件和充分条件的混淆
+- 属性替代
+
+---
+### 承认有限理性
+
+- 人没有无限认知能力，也没有无限时间去解决问题 &lt;br&gt;→ 接受有限理性（Simmon），关注**程序理性**（procedural rationality） &lt;br&gt;→ 经济认为的**理性**是个体行为可以被解释为某个最优化问题的解决方案
+
+#### 建立快速且俭省启发式的重要性 → SOP
+.pull-left[
+![ZkWwJb](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/ZkWwJb.png)
+]
+.pull-right[
+![aP7uid](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/aP7uid.png)
+]
+---
+### 承认有限理性
+
+---
+背景： 投资者情绪指的是资产价格与未来现金流/收益的PDV不同的情况。
+与未来现金流/收益的PDV不同，并且这种差异不能被套利。
+被套利掉。
+对此的一种解释是投资者决策中的行为偏差。
+(Hirshleifer "Investor Psychology and Asset Pricing" J. Finance 2000)
+经济学家利用体育博彩市场的数据来检验这一观点
+几乎在第一时间，目前有大量的、正在进行的文献
+---
+Sentiment Bias是指球迷、媒体和其他利益相关者对特定球队或球员的情感偏好，这种情感偏好可能会影响他们对比赛结果的预期和对赌注的下注。在体育经济学领域，这种情感偏差也被广泛研究。
+
+研究表明，情感偏差对于赌博、营销和运动员契约等方面都具有重要影响。例如，在足球比赛中，球迷的情感偏好可能会影响他们对比赛结果的预期，从而影响他们的下注行为。同时，球队和赞助商可能会利用情感偏差来推销特定球员或球队的产品。
+
+研究结果表明，了解情感偏差的存在和机制可以帮助各种利益相关者更好地制定营销、推广和赌博策略，并制定更有效的运动员契约。
+
 
 ---
 exclude: true

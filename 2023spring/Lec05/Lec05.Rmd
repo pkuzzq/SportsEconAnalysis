@@ -370,7 +370,23 @@ class: title-slide-section, middle, inverse
 
 - 作为城市景点：最早的职业体育场地中有一些仍在使用，如波士顿红袜的分公园（Fenway Park），它于1912年建成，是美国最古老的职业体育场地之一，仍然是波士顿红袜队的主场。为现今大联盟所使用中的最古老场地。 
 - Yankee 的 无人机视角
+---
+### 职业体育场地设施的发展历史
+#### **芬威球场(Fenway Park)**
+.center[
+```{R echo=FALSE}
+library(htmltools)
+library(shiny)
 
+tags$video(
+  tags$source(src ="./video/YankeeStadium!.mp4", type = "video/mp4"),
+  type = "video/mp4",
+  width = "840",
+  height = "460",
+  controls = TRUE
+)
+```
+]
 ---
 ### 应用：蜜月期效应
 #### 现实背景与理论背景
