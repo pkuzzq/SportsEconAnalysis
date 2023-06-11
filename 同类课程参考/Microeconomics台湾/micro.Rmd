@@ -1,0 +1,11 @@
+---
+title: "個體經濟學"
+---
+
+**by 田弘華 Hung-Hua Tien**
+
+[課程綱要](./Handouts/Syllabus/MicroSyllabus.pdf)
+
+在學習如何做選擇的旅程中，個體經濟學這門課將從「資源有限、慾望無窮」的觀點出發，透過經濟模型、挑戰案例，以及做中學的計算練習，讓同學明白「受限下最適化」的邏輯，瞭解「理性選擇」分析的思維模式。
+
+![](./pictures/microeconomics.png)

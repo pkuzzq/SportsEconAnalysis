@@ -1,0 +1,9 @@
+---
+title: "課程公告"
+---
+
+**by 田弘華 Hung-Hua Tien**
+
+**資料科學之專業知識：個體經濟學**
+
+![](./pictures/skills.png)
