@@ -1,0 +1,76 @@
+---
+title: "檔案下載"
+---
+
+**by 田弘華 Hung-Hua Tien**
+
+**課程說明**
+
+- Unit 0-1: 學術技能 - 閱讀
+[pdf](./Handouts/Introduction/Summary-Reading.pdf)
+
+- Unit 0-2: 理性選擇
+[Handouts](./Handouts/Introduction/Handout-Introduction.pdf)
+
+
+**主題：從經濟觀點看選擇行為**
+
+![](./pictures/outline.png)
+
+
+**I.買方行為**
+
+
+- Unit I-1：消費者選擇
+[Handouts](./Handouts/Choice/Handout-Choice.pdf)
+[Homework](./Handouts/Choice/Homework-Choice.pdf)
+
+- Unit I-2：需求與選擇
+[Handouts](./Handouts/Demand/Handout-Demand.pdf)
+[Homework](./Handouts/Demand/Homework-Demand.pdf)
+
+- Unit I-3：不確定性
+
+
+**II. 行為經濟**
+
+- Unit II-1：賽局理論
+[case](./Handouts/Game/Case-Game.pdf)
+[Homework](./Handouts/Game/Homework-Game.pdf)
+[Handouts-pdf](./Handouts/Game/Handout-Game.pdf)
+
+- Unit II-2：資訊經濟
+[Handouts](./Handouts/Information/Handout-Information.pdf)
+[Homework](./Handouts/Information/Homework-Information.pdf)
+
+- Unit II-3：行為經濟
+
+
+
+**III. 賣方行為**
+
+- Unit III-1：生產理論
+[Handouts](./Handouts/Production/Handout-Production.pdf)
+[Homework](./Handouts/Production/Homework-Production.pdf)
+
+- Unit III-2：成本最小化
+[Handouts](./Handouts/Costs/Handout-Costs.pdf)
+[Homework](./Handouts/Costs/Homework-Costs.pdf)
+
+- Unit III-3：完全競爭
+[Handouts](./Handouts/Competition/Handout-Competition.pdf)
+[Homework](./Handouts/Competition/Homework-Competition.pdf)
+
+**IV. 市場結構**
+
+- Unit IV-1：獨占市場
+[Handouts](./Handouts/Monopoly/Handout-Monopoly.pdf)
+[Homework](./Handouts/Monopoly/Homework-Monopoly.pdf)
+
+- Unit IV-2：訂價行為
+[Handouts](./Handouts/Pricing/Handout-Pricing.pdf)
+[Homework](./Handouts/Pricing/Homework-Pricing.pdf)
+
+- Unit IV-3：寡占市場
+[Handouts](./Handouts/Oligopoly/Handout-Oligopoly.pdf)
+[Homework](./Handouts/Oligopoly/Homework-Oligopoly.pdf)

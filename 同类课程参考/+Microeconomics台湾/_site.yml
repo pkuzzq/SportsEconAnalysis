@@ -1,0 +1,19 @@
+name: "經濟之鑰-數據分析"
+output_dir: public
+navbar:
+  title: "經濟之鑰-數據分析"
+  left:
+    - text: 個體經濟學
+      href: micro.html
+    - text: 課程公告
+      href: course.html
+    - text: 檔案下載
+      href: download.html
+    - text: 關於我
+      href: about.html
+output:
+  html_document:
+    toc: true
+    theme: flatly
+    highlight: pygments
+excludes: ["*.docx", "*.md"]
