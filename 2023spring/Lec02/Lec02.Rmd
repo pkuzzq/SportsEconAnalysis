@@ -256,7 +256,7 @@ tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", h
     row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
 }
 ```
-class: center, middle, inverse
+class: title-slide-section, middle, inverse
 
 # 供需概论
 
@@ -275,7 +275,7 @@ class: center, middle, inverse
 
 ---
 
-class: title-slide-section, center, middle, inverse 
+class: title-slide-section, middle, inverse 
 # 消费者理论
 
 ---

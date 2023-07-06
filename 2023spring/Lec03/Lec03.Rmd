@@ -254,7 +254,7 @@ tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", h
     row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
 }
 ```
-class: title-slide-section,center, middle, inverse
+class: title-slide-section, middle, inverse
 # 供给：成本衍生的生产决策
 
 ---
@@ -358,7 +358,7 @@ class: title-slide-section,center, middle, inverse
 3. 短期 *vs.* 长期
 
 ---
-class: title-slide-section,center, middle, inverse
+class: title-slide-section, middle, inverse
 # 生产成本
 
 ---
@@ -775,7 +775,7 @@ $=\frac{\frac{d Q}{d L} L-Q}{L^{2}}=\frac{1}{L}(\underbrace{\frac{d Q}{d L}}_{M 
 
 ---
 
-class: title-slide-section,center, middle, inverse
+class: title-slide-section, middle, inverse
 # 供给：成本衍生的生产决策
 
 ---
@@ -1365,7 +1365,7 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
 ]
 
 ---
-class: title-slide-section,center, middle, inverse
+class: title-slide-section, middle, inverse
 # 供给：收入衍生的生产决策
 
 ---
@@ -1385,7 +1385,7 @@ class: title-slide-section,center, middle, inverse
 ]
 
 ---
-class: title-slide-section,center, middle, inverse
+class: title-slide-section, middle, inverse
 
 # 价格接受厂商
 
