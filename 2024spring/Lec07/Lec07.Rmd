@@ -1,0 +1,1363 @@
+---
+title: "体育经济分析: 原理与应用"
+subtitle: "单元3: 体育中的外部性与公共财1"
+author: 
+   - 周正卿
+date: "`r format(Sys.time(), '%d %B %Y')`"
+# xaringan模板
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: yes
+      countIncrementalSlides: yes
+      ratio: '16:10.85'
+    seal: true
+    lib_dir: libs
+  html_document:
+    keep_md: yes
+
+knit: pagedown::chrome_print
+
+
+# beamer模板
+
+# mainfont: Times New Roman
+# fontsize: 10pt
+# output: 
+#   beamer_presentation: 
+#     fonttheme: structurebold
+#     theme: Madrid
+#     colortheme: lily
+#     includes:
+#         in_header: "../beamer_header.tex"
+#     df_print: tibble
+#     latex_engine: xelatex
+
+
+---
+
+```{R, setup, include = F}
+# devtools::install_github("dill/emoGG")
+library(pacman)
+p_load(
+  broom, tidyverse,rmarkdown,
+  ggplot2, ggthemes, ggforce, ggridges,
+  latex2exp, viridis, extrafont, gridExtra,
+  kableExtra, snakecase, janitor,
+  data.table, dplyr, estimatr,
+  lubridate, knitr, parallel,
+  lfe,dslabs,
+  here, magrittr,pammtools)
+
+options(htmltools.dir.version = FALSE)
+
+# Notes directory
+dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/2024spring/Lec07/"
+# Define pink color
+red_pink <- "#e64173"
+turquoise <- "#20B2AA"
+orange <- "#FFA500"
+red <- "#fb6107"
+blue <- "#3b3b9a"
+green <- "#8bb174"
+grey_light <- "grey70"
+grey_mid <- "grey50"
+grey_dark <- "grey20"
+purple <- "#6A5ACD"
+slate <- "#314f4f"
+met_slate <- "#272822" # metropolis font color 
+
+# Dark slate grey: #314f4f
+
+# Knitr options
+opts_chunk$set(
+  comment = "#>",
+  fig.align = "center",
+  fig.height = 7,
+  fig.width = 10.5,
+  warning = F,
+  message = F
+)
+opts_chunk$set(dev = "svg")
+options(device = function(file, width, height) {
+  svg(tempfile(), width = width, height = height)
+})
+options(crayon.enabled = F)
+options(knitr.table.format = "html")
+# A blank theme for ggplot
+theme_empty <- theme_bw() + theme(
+  line = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  axis.text = element_blank(),
+  plot.title = element_blank(),
+  axis.title = element_blank(),
+  plot.margin = structure(c(0, 0, -0.5, -1), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_simple <- theme_bw() + theme(
+  line = element_blank(),
+  panel.grid = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  axis.text.x = element_text(size = 18, family = "STIXGeneral"),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank(),
+  plot.title = element_blank(),
+  axis.title = element_blank(),
+  # plot.margin = structure(c(0, 0, -1, -1), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes_math <- theme_void() + theme(
+  text = element_text(family = "MathJax_Math"),
+  axis.title = element_text(size = 22),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = "grey70",
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+  )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes_serif <- theme_void() + theme(
+  text = element_text(family = "MathJax_Main"),
+  axis.title = element_text(size = 22),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = "grey70",
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+  )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes <- theme_void() + theme(
+  text = element_text(family = "Fira Sans Book"),
+  axis.title = element_text(size = 18),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = grey_light,
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+  )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_market <- theme_bw() + theme(
+  axis.line = element_line(color = met_slate),
+  panel.grid = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  text = element_text(family = cnfont, color = met_slate, size = 17),
+  axis.title.x = element_text(hjust = 1, size = 17),
+  axis.title.y = element_text(hjust = 1, angle = 0, size = 17),
+  # axis.text.x = element_text(size = 12),
+  # axis.text.y = element_text(size = 12),
+  axis.ticks = element_blank()
+)
+theme_gif <- theme_bw() + theme(
+  axis.line = element_line(color = met_slate),
+  panel.grid = element_blank(),
+  rect = element_blank(),
+  text = element_text(family = cnfont, color = met_slate, size = 17),
+  axis.text.x = element_text(size = 12),
+  axis.text.y = element_text(size = 12),
+  axis.ticks = element_blank()
+)
+
+theme_goods <- theme_bw() + theme(
+  axis.line = element_line(),
+  panel.grid = element_blank(),
+  rect = element_rect(size = 1),
+  strip.text = element_blank(),
+  text = element_text(size = 17, family = cnfont), 
+  axis.text.x = element_text(size = 17),
+  axis.text.y = element_text(size = 17, angle = 90, hjust = 0.5),
+  axis.title.x = element_text(color = purple, size = 19),
+  axis.title.y = element_text(color = red_pink, size = 19),
+  axis.ticks = element_blank(),
+  plot.title = element_blank(),
+  legend.position = "none"
+)
+theme_game <- theme_bw() + theme(
+  axis.line = element_line(),
+  panel.grid = element_blank(),
+  rect = element_rect(size = 1),
+  strip.text = element_blank(),
+  text = element_text(size = 20, family = cnfont), 
+  axis.text.x = element_text(size = 20, color = met_slate),
+  axis.text.y = element_text(size = 20, angle = 90, color = met_slate, hjust = 0.5),
+  axis.title.x = element_text(color = met_slate, size = 20),
+  axis.title.y = element_text(color = met_slate, size = 20),
+  axis.ticks = element_blank(),
+  plot.title = element_blank(),
+  legend.position = "none"
+)
+shift_axis <- function(p, y=0){
+  g <- ggplotGrob(p)
+  dummy <- data.frame(y=y)
+  ax <- g[["grobs"]][g$layout$name == "axis-b"][[1]]
+  p + annotation_custom(grid::grobTree(ax, vp = grid::viewport(y=1, height=sum(ax$height))), 
+                        ymax=y, ymin=y) +
+    geom_hline(aes(yintercept=y), data = dummy, size = 0.5, color = met_slate) +
+    theme(axis.text.x = element_blank(), 
+          axis.ticks.x = element_blank())
+}
+wrapper <- function(x, ...) paste(strwrap(x, ...), collapse = "\n")
+game_box_1 <- function(x) 5 - x
+game_box_2 <- function(x) 10 - x
+game_box_3 <- function(x) 15 - x
+w <- seq(0, 5, 0.01)
+z <- seq(5, 10, 0.01)
+# functions
+demand <- function(x) 10 - x
+demand_2 <- function(x) 9 - x
+demand_3 <- function(x) 8 - x
+demand_inc <- function(x) 11 - x
+demand_dec <- function(x) 5 - x
+supply <- function(x) 1 + (4/5)*x
+step_demand <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8), mv = c(8, 7, 6, 5, 4, 3, 2, 1, 0))
+step_demand2 <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(10, 10, 9, 9, 8, 8, 7, 7, 6, 6, 5, 4, 4))
+step_supply <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 8, 8))
+step_supply_tax <- step_supply %>% 
+  mutate(mv = mv + 2)
+
+# data <- read_csv("/Users/zhouzhengqing/Desktop/SportsEconAnalysis/Activity_Pit_Market/Results.csv") %>% 
+#   dplyr::filter(!is.na(price))
+
+theme_set(theme_gray(base_size = 20))
+# Column names for regression results
+reg_columns <- c("Term", "Est.", "S.E.", "t stat.", "p-Value")
+# Function for formatting p values
+format_pvi <- function(pv) {
+  return(ifelse(
+    pv < 0.0001,
+    "<0.0001",
+    round(pv, 4) %>% format(scientific = F)
+  ))
+}
+format_pv <- function(pvs) lapply(X = pvs, FUN = format_pvi) %>% unlist()
+# Tidy regression results table
+tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", highlight_bold = T, digits = c(NA, 3, 3, 2, 5), title = NULL) {
+  x %>%
+    tidy() %>%
+    select(1:5) %>%
+    mutate(
+      term = terms,
+      p.value = p.value %>% format_pv()
+    ) %>%
+    kable(
+      col.names = reg_columns,
+      escape = F,
+      digits = digits,
+      caption = title
+    ) %>%
+    kable_styling(font_size = 20) %>%
+    row_spec(1:nrow(tidy(x)), background = "white") %>%
+    row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
+}
+```
+class: title-slide-section, middle, inverse
+
+# 大纲
+
+---
+class: animated, slideInRight, fadeOutLeft
+
+### 大纲
+
+- 职业体育场地设施的发展历史
+- 如何评估场地设施经济影响?
+- 场地与利益相关者
+  - 俱乐部收入来源?
+  - 使球迷变得更好?
+  - 为当地经济做出贡献?
+
+---
+class: title-slide-section, middle, inverse
+
+# 职业体育场地设施的发展历史
+
+---
+### 职业体育场地设施的发展历史
+
+- 最早的职业体育场地可以追溯到19世纪末和20世纪初的美国，当时棒球和橄榄球等运动开始在大城市和工业化城镇中流行起来。
+
+- 最早的职业体育场地通常是一些露天球场和操场，例如纽约波罗公园（Polo Grounds）和芝加哥卡明斯基公园（Comiskey Park）等。这些场地通常没有坐席，只有一些固定的站立区域，球迷需要站在场地周围或者自己带椅子观看比赛。
+
+.center[
+![6jjSPu](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/6jjSPu.jpg)
+]
+
+???
+
+- 可以看到马车作为体育场的外边界。
+- 照片拍摄于 1911 年。
+- 1883年在Polo Grounds I期举办第一场美国职业棒球大联盟比赛。
+
+
+---
+.center[![Zzqn5o](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/Zzqn5o.png)
+![2B9IOr](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/2B9IOr.jpg)]
+
+???
+- 1905 年纽约巨人队和费城田径队之间的世界系列赛期间,拍摄合并的两部分全景照片。
+- 这张 1921 年的照片展示了马球场的鸟瞰图。 
+
+---
+
+![vilWCF](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/vilWCF.jpg)
+
+???
+
+- 来自马里兰大学的数字收藏网站。
+- "大约在1907-1913年，伊利诺伊州芝加哥，人群挤满了南区棒球场的看台，这里是白袜队的主场，他们正在观看一场棒球比赛。明信片编号：506"。
+
+---
+### 第一阶段：创业期(entrepreneurial period)
+
+- Judith Long
+- 1890-1930
+- 棒球队(个别NFL)建造并经营自己的球场
+- NFL缺乏资金和球迷，而NBA没有稳定下来
+- 随着设施的老化，美国城市面貌的变化以及特许经营权日益增长的市场力量，导致在第一个时期建造的设施逐渐消失了
+
+- 2个显著特点
+  - 几乎场地名称都有Stadium, Park 和 Field
+  - .bb[私人出资]除了芬威公园(Fenway Park)外，大多数球场以建造体育场的球队老板命名的
+
+???
+.tiny[
+- Stadium词源自希腊语sta-dion，指特定距离，有一定距离的比赛，最后指观看比赛的观众座位)
+- Field和Park
+其余都像Wrigley Field或Shibe Park这样的名字，使用公园Park和球场Field这反映了棒球"田园风格"的起源
+- 封闭建筑时代前，棒球队都在开放场地或公园中比赛。建造专用场地是为了防止蹭赛
+]
+
+---
+### 第二阶段：公民建设期(civic infrastructure)
+
+- 1953-1980
+- 政府将体育场馆视为城市发展的核心
+- 双向选择，职业球队流动性提高，各城市竞标吸引或保留球队。公部门承了体育场馆资金的.bb[全部成本]
+- 以城市名称、当地地理特征或者爱国主义名称命名：西雅图国王体育馆、辛辛那提河滨体育场、费城退伍军人体育场
+
+---
+### 第三阶段：公私合营期(public-private partnership）
+
+- 始于1980年
+- 随着广播电视的发展，联盟扩张迅速，寻求好的转播环境。大都会区的城市平均每年启动6个大型体育场馆项目
+- 地方和州政府资助.bb[大约三分之二]的建筑成本，球队和联盟则支付.bb[其余部分]
+- 公共补贴减少了，球队寻求赞助。出售冠名权：比如休斯顿丰田中心
+
+---
+### 职业体育场地设施的发展历史
+
+- 随着职业的商业化和职业化程度提高，所有球队寻求更好的场地，以吸引更多球迷和提高收入
+
+.center[<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/PWCXNl.png width="80%">
+
+**芬威球场(Fenway Park)**
+]
+
+???
+
+- 作为城市景点：最早的职业体育场地中有一些仍在使用，如波士顿红袜的分公园（Fenway Park），它于1912年建成，是美国最古老的职业体育场地之一，仍然是波士顿红袜队的主场。为现今大联盟所使用中的最古老场地。 
+- Yankee 的 无人机视角
+---
+### 职业体育场地设施的发展历史
+#### **芬威球场(Fenway Park)**
+.center[
+```{R echo=FALSE}
+library(htmltools)
+library(shiny)
+
+tags$video(
+  tags$source(src ="./video/YankeeStadium!.mp4", type = "video/mp4"),
+  type = "video/mp4",
+  width = "840",
+  height = "460",
+  controls = TRUE
+)
+```
+]
+---
+### 应用：蜜月期效应
+#### 现实背景与理论背景
+- 1953年之后，政府开始提供财政和政策支持，促进场地翻修、更新一大批场地。建造技术提高和设计理念的更新，从简单的露天球场到现代化的多功能体育场馆
+- 20世纪80年代，公共选择学派唤醒了公众对公共资金使用正义性、合理性的关注
+
+#### 体育设施对职业球队的影响研究始于棒球项目
+  - Clapp和Hakes(2005)新场地对棒球有积极影响，出现了**“蜜月期效应”（honeymoon effect）**
+  - 原因一，棒球球市票房没有NBA、NFL那么大
+  - 原因二，棒球赛事数量多，是NBA和NHL的2倍，是NFL的10倍；与NBA和NHL相比，MLB的场地设施规模也更大
+  - 结果，新场地建成后体育设施直接影响到了主队的收入；但却产生了联盟竞争不均衡的隐患(外部性)
+  
+???
+- 所谓，**蜜月期效应**，就是新球场设施使上座率的增加，但随着时间流逝，人们对球场的“新鲜感”就下降了，这也会导致上座率下降 
+
+---
+### 应用：蜜月期效应
+
+  - 经验表明，翻修后上座率提升一般在**3-5年**左右；新建设施则一般认为有**10年黄金期**
+  - 短期，球迷会因为球场翻新去看比赛
+  - 长期，球队成绩才是决定球迷去留的关键
+  - 蜜月期效应因项目而有差异。相较于MLB，.bb[NHL和NBA由于场地一般比较小，因此新赛场使用对上座率影响会更小、持续时间短]
+
+???
+- 经验表明，上座率一般在**3-5年**左右。在这段时间内，负责运营机构会加强宣传活动，推出很多优惠活动，吸引更多游客参观和消费
+
+---
+class: title-slide-section, middle, inverse
+
+# 场地设施的空间利用
+---
+### 空间利用决定了球队收入
+
+- 新体育设施对球队收入最大影响的部分是：.b[豪华包厢]和.b[特殊座位]。
+
+- 1965年前，现代体育场是没有豪华包厢的，直到休斯顿太空巨蛋球场(Astrodome)在MLB投入使用。借鉴了"古罗马竞技场的贵族高台"的启发，创建了"空中包厢"
+
+.center[**NFL球队与联盟分享大部分收入，但豪华包厢的收入是自留的**]
+
+.left[<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/BJoWZ7.jpg height=300>
+]
+.right[<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/FKJw50.jpg height=300>
+]
+
+???
+- 太空巨蛋是当时世界上最大的室内体育场，号称有世界第8大奇迹。可以放下一栋18层高的建筑。
+- 台北小巨蛋灵感来源于此
+- 2005年卡特里娜飓风来袭，太空巨蛋体育场为数千名灾民提供了庇护所
+
+---
+### 例子：豪华包厢的数量
+
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/Y8gpNA.png width=800>
+]
+
+- NFL2016年市值最高的5支球队，**拥有的体育场年龄均小于20年**
+- 其中3支球队在联盟中拥有**最多豪华包厢**，分别是达拉斯牛仔、华盛顿指挥官和纽约巨人
+
+???
+举个豪华包厢的例子
+
+---
+### 场地规模与形状：棒球和橄榄球
+
+- 一直到20世纪60年代，NFL几乎是租MLB建造的场地。
+  - 为了降成本，MLB建造了.bb[**大尺寸、多用途**]体育场。
+  - 但这是.green[妥协]，因为对棒球项目来说太大，对橄榄球来说太小
+
+- 20世纪60到80年代，建造的NFL和MLB球场几乎都是圆形
+  - 圆形形状是为了同时满足两个项目
+  - 然而，这两项运动最佳观看角度完全不同，部分设施还产生冲突
+
+- 20世纪90年代开始（为什么?），MLB与NFL各球队开始拥有专属球场
+  - 新棒球场平均.green[缩减了1w个座椅]，而新橄榄球场平均.purple[增加了1w个座椅]
+
+---
+### 橄榄球和足球场地规模与形状
+
+![KU3OpI](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/KU3OpI.png)
+
+- 1998，50000+，上座率不到3成
+- 2016，20000+，上座率6成以上
+  
+---
+### 棒球、橄榄球球场规模与形状
+
+.pull-left[
+- 最佳观赏区不同
+  - 对橄榄球而言，太多座位安排在.b[端区角落]，如BB和GG。即使中场附近最好区域，如A和H，也离场地很远
+  - 对棒球而言，A和H区是.b[最差位置]
+- **座位朝向也是问题**
+  - 比如G区座位应该朝向橄榄球场地的中间还是本垒？
+- 结果是，这两项赛事的球迷观赛体验都不好，票价就会受限，而且上座率低现场氛围也不好
+  - 曾经明尼苏达双城队每场比赛，最远外场座位的季票售价低至1美元
+]
+
+.pull-right[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/dgMng9.png height=465>
+]
+
+???
+
+从这里开始
+- NFL在标准化的长方形场地比赛，虽然是球队会进攻到两端，但大部分的动作都发生在球场中间。
+
+- 相比下，棒球场上的大部分动作都发生在内野钻石形状的区域。
+
+
+---
+### 棒球、橄榄球球场规模与形状
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/wLPPlt.png height=330>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/sQd3FQ.png height=330>
+]
+
+- 20世纪80年后期，**单一用途球场**规模和形状更为合理
+- **最佳观赏区离球员更近、数量更多**。橄榄球场的A和H，即便高层的AA和HH区，也是好区域。角端区的座位数减少到最低，如BB和GG区 → 2/3座位都在中间，1/3区域在端区和角区；圆形场地则相反
+- **棒球场回归传统**。更多座位在本垒和内野附近；新建球场与100多年前场地非常相似
+
+---
+### 足球和橄榄球难以共融
+
+- 两项运动场地在形状和大小上极其相似，最佳区域几乎是相同的
+- MLS在发展初期确实使用各种NFL和大学的足球场
+- MLS上座率偏低。每赛季有17场主场，但最佳球场容量却比只有8场主场比赛的NFL球队小得多。原因就是足球在美国没有那么流行。MLS早期巨大体育场中常规比赛只能坐到10%，现场气氛不活跃
+- 足球观众对橄榄球场的标记非常厌恶，并且足球队对地面破坏严重，个别赛场为此使用人工草，这对足球纯粹主义者是种侮辱
+
+
+.left[
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/muatXg.png height=300 width=400>
+]
+]
+.right[
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/Dlj75I.png height=300 width=400>
+]
+]
+
+
+
+---
+### 冰球和篮球共享场地
+
+- NBA早期主要租NHL的场地，由于观赛最佳区域相近，NHL和NBA通常共享设施
+  - 截至2016-2017赛季，有17支NHL和NBA球队在同一大都会区，其中**10对**球队共享场地。相比下，2017年有26支MLB和NFL球队在同一大都会区，仅有**1对**球队共享场地。
+
+- **共享场地造成财务冲突**。NBA球队通常是NHL球队场馆的主要承租者，由于篮球市场的火爆，自然在场地中获益更多，而NHL球队会面临比较糟糕的财务状况。
+  - NHL中最赚钱的4个球队（多伦多枫叶队、纽约游骑兵队、蒙特利尔加拿大人队和底特律红翼队）都是场地的“房东”
+
+---
+class: title-slide-section, middle, inverse
+## 场地设施与利益相关者
+---
+### 新场地设施会让球队获利？→ YES
+
+- 理论上，只要新场地设计合理，会新吸引“真球迷”到现场观赛，若是地标性建筑还会吸引游客和当地人，球队在门票收入上会更多
+
+$$p_{{i}}=R(w_{{i}}, A_{{i}})-C_{0}-C(w_{{i}})$$
+
+- 假设：收入 $R$ 随 $w_{{i}}$ 增加而增加，并随球队设施年限 $A_i$ 增加  而减少(假设球迷偏好新设施)；固定成本 $C_0$ 与 $w_{{i}}$ 无关，  可变成本 $C(w_i)$ 随 $w_{{i}}$ 增加而上升
+- 若新建场地只增加了固定成本，不一定带来**额外收入**，就不会影响胜率
+- 但若是新建场馆降低 $A_i$ ，就会提高的 $R(w_{{i}}, A_{{i}})$ 
+- 这意味着，若是.bb[新设施增加了胜利方的边际收益]
+- 结果如何?
+
+
+---
+.center[
+![x7bVnj](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/x7bVnj.png)
+]
+
+---
+### 应用：设施年龄与球队胜率
+
+- Quinn检验了北美4大联赛的球队胜率和设施年龄的关系，结果发现除了棒球外，设施年龄对任何运动的获胜率都没有影响，而棒球影响也很小
+
+- 经验证据与理论.bb[不一致]
+
+- 似乎与蜜月期效应相悖。.hi[回忆：] Hakes和Clapp验证了MLB球队胜利对收入和上座率的影响，发现在新场地额外胜利会带来更多球迷和收入，但在新场地整体战绩不如旧场地好
+
+- .bb[拥有新场地会让球队更富有，但赚到钱并不必然雇佣更好的球员] <br> → 是不是对球迷福利的损害呢?(值得思考)
+
+---
+### 新场地设施对球迷是福利? → NO
+
+- .hi[直觉：]更绚丽的体育场里 .mono[+] 战绩更好的球队 ，通常不会有利于球迷
+
+  - 因为球队知道，球迷愿意为新设施的便利性和新颖支付更多，因此门票定价也会调整
+  - 事实在理论上，球队边际收益的提高（右移）也是因为门票定价高了
+
+### 应用：场地设施与门票价格
+
+- Baade和Matheson发现，1997至2003年间，16支NFL球队在新建或大幅度翻球场后的第一个赛季，门票价格平均上涨了近30%
+- Gitter和Rhoads发现，在新场地建成后的第一个赛季，棒球小联盟的门票价格平均上涨了20%至25%
+- 经验证据与理论.bb[一致]
+
+---
+### 新场地设施会让城市收益? → NO
+#### 补贴的争议
+
+作为公部门的政府，考虑的是**选票**
+
+- 事实上，体育设施若是离开财政补贴，几乎都无法支付其建设和运营成本
+- 若按盈利的标准，政府新建场馆肯定是错误选择
+- 正外部性是政府使用公共资金的正当理由(稍后解释)，一个重要的前提是：
+
+#### 职业球队有公共财(品)的属性
+
+- 球队获利后，提升城市品牌、社会凝聚、居民满意度等
+
+---
+#### 新建场地的直接收益
+
+.bb[正方]：场地翻修、重建或新建必然增加公共支出，会带动当地就业
+  - 理由是：长期来看，球迷愿意在**新球场**周边地区消费
+    - 首先，拥有职业大联盟球队的城市居民该方面消费更多、储蓄更少
+    - 其次，职业球队会刺激对地区的净出口 (net exports)。例如，吸引其他地方球迷来看比赛，否则自己城市居民就只能前往其他城市去支持主动
+  
+.b[反方]：这部分被.bb[高估]了
+
+- 理由1，.bb[挤占]：公共资金由税收获得，而税收必然带来额外损失（想想垄断）。这部分资金本可以用于投资回报更好的产业设施。实际上，是一种对其他资源的挤占(crowds out)。一个例外是，当遇到经济衰退时，这部分支出被视为固定资产投资，作为刺激经济手段。由于规划期太长，被视为次优选择。
+
+---
+#### 新建场地的直接收益
+
+- 理由2，.bb[替代性消费]：大部分球迷是本地人，如果他们不去看比赛，原本就会把钱花到本地的其他消费上，所以新建场馆只是诱发了替代性消费(substitution spending)，若是没有比赛，本地人休闲时间可能去旅游或者看电影
+
+- 理由3，.bb[过于乐观]，真正的消费可能没有想象的那么多。比如，自带食物、汽油等
+
+---
+#### 经济影响评估(间接收益)之乘数效应
+
+.hi.pink[乘数效应] 广泛来衡量一项赛事或者设施，产生的经济效果。
+**边际消费倾向** (marginal propensity to consume，MPC) 表示每获得 1 块钱愿意在消费上的支出比；**边际储蓄倾向** (marginal propensity to save，MPS) 表示每额外获得 1 块钱的储蓄比。
+
+ $$MPC+MPS=1$$ 
+
+$$ 乘数效应 M= \frac{1}{1-M P C}=\frac{1}{M P S}$$
+比如，第1人有100块钱，消费50元，MPC为0.5；第2人，获得50，再消费25元...
+相当于这100元，创造了约50+25+12.5+...约为100元，所以100相当于200
+
+
+但在开放经济,还应考虑**边际进口倾向** (marginal propensity to import，MPI)。因此将上式子调整为:
+
+$$乘数效应 M= \frac{1}{1 - MPC + MPI}$$
+
+---
+#### 经济影响评估(间接收益)之乘数效应
+
+乘数效应还应该考虑城市的差异:
+1. 很多高薪球员住大城市中，因小城市就不会有这么高的消费欲望
+2. 在小城市的消费会回流到其他大城市，比如万豪、希尔顿酒店
+
+另外:
+1. 税收会抑制乘数效应。职业球员工资比普通人高得多，但税率自然也高，因此抑制了一部分消费。
+2. 随着收入增加，人们通常更倾向于储蓄。球员的职业生涯更短，有额外激励去储蓄更多，所以MPC 比一般工人更小。
+
+---
+
+综合上述情况
+- 直接收益：挤占、替代性消费和更低的实际消费
+- 间接收益：虽有乘数效应放大，但是开放经济、中小城市生成能力差异、税收和职业球员的生涯特征
+
+西方主流观点：**乘数不太可能大于1.0** <br> → 意味着职业体育特许经营权的支出对当地经济没有多少影响 
+
+---
+#### 相关研究
+
+- Matheson、Baumann、Coates 和 Humphreys等研究认为，即便是没有直接增加收入或就业，职业球队存在会使得城市更具有吸引力，反映在对商业住宅和办公空间的需求增加，推动不动产价值提升
+
+- Coates 和 Humphreys 的论文,以及最近 Feng 和 Humphreys 的论文都发现了较小的影响，并且随着与设施的距离增大而迅速下降。
+
+- 这两篇论文的结论是，在其他条件相同情况下，职业体育特许经营权会使附近的社区对潜在的购房者更有吸引力，但对整个城市的影响很小。
+
+---
+#### 相关研究
+
+- 现实是，即使场地设施是亏损的，很多城市依然会兴建或翻新场地，这看似一种非理性行为
+
+- 关键少数：利益相关者影响政客，政客与体育特许权所有者的利益完全吻合：
+
+- 假设一个立法机构由A、B和C三各平等团体组成，每个团体代表该州的三分之一。 该州正考虑建两个体育场，分别在A和B。
+
+- 假设新体育场有正经济效应，但要提高税收，得罪ABC所有选民。如果根据全州意愿投票，必然否决。
+
+- 现在有这么一个制度，可以互相吹捧（Logrolling、选票互助）。A和B合作，等到这个案子成了，用获得的收益去补偿对方的成本。C怎么闹事，都不会翻盘，收益会去补偿。
+
+---
+class: title-slide-section, middle, inverse
+
+# 市场失灵
+---
+### 市场失灵
+
+- 细心的同学可能发现，刚刚讨论问题的思路与之前单元有所不同
+- 之前单元分析对象要么是**市场本身**，要么是**市场内部的经济单位**
+  - 对于前者，我们已经知道：在完全竞争市场中，市场是**有效率的**；在独占市场中，就会出现**无谓损失** 
+  - **隐含假定**：每个市场行为人在进行消费和生产决策时**无需顾虑他人行为后果**
+- 现在，我们将放宽该假设 → 行为主体间的生产与消费可能相互影响的 → 导致市场不一定能够达到**帕累托有效率供给** 接下来正式讨论**外部性**(externalities)和**公共财**(public goods)带来的无谓损失
+- 除上述以外，.hi.green[未来]我们还有机会讨论**信息不对称**导致的无谓损失
+
+#### 市场失灵：市场势力、外部性与公共财、信息不对称
+
+---
+class: title-slide-section, middle, inverse
+
+# 外部性
+---
+### 外部性
+
+- 定义：任何一经济单位的行为，直接影响另一经济单位的.bb[福利]的现象
+  - **经济单位**而且**至少两个**：个人或者厂商；消费者或者生产者
+  - **可正可负** → 正的代表一个单位行为直接造成另一单位的福利增加
+      - 负外部性代表存在**外部成本**(external costs)；正外部性代表存在**外部收益**(external benefits)
+  - 区分**消费性**或者**生产性**两种：赛事带来的堵车就是消费性的
+  - **直接性**：影响机制.hi[不透过]**市场机制**，也[不经过]**价格传导**
+      - 通过价格机制，只要相关条件满足且市场达到**帕累托最优状态**，新均衡仍然是有经济效率的
+      - 例如，若害怕拥堵而减少看比赛，使得门票价格下降，便会降低球队收入与福利，就**不是外生性**；因为门票需求减少，改善了场地周边的交通和环境污染则是**负外部性减少**
+  - **相互性**：与**财产权**(property right)密切关联
+      - 如：二手烟与清洁空气权
+
+---
+### 理解消费的负外部性
+
+.left[
+- 在完全竞争市场下，个人需求曲线代表个体的**边际私人收益**(marginal private benefit,MPB)
+- MSD 代表此个体的行为对他人带来的**边际社会损害**(marginal social damage)，随着消费量的增加而递增
+- 消费者追求自身效用最大化，遵循MPB=MC（MC是给定的，为什么？）
+- 但从整个社会来看，个体的负外部性要从MPB中**扣除**MSD → **边际社会收益**MSB(marginal social benefit) 
+- 结果 $x_c$ 变为 $x_s$ (MSB=MC决定) ，原本市场决策数量**超过**了社会最适消费数量
+- $x_s$ 下的社会总体损失是多少?
+]
+.right[
+![WPjEz1](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/WPjEz1.png)
+]
+
+---
+### 理解消费的负外部性
+.center[
+![iWg69y](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/iWg69y.png)
+]
+
+- 上述结论扩展到整个行业依然成立(MC成为单调递增)
+- 同理，推广到消费的正外部性
+- 市场均衡数量与社会最适数量不一致根本原因是：**消费者没有将外部性纳入消费决策**
+
+---
+### 理解生产的负外部性
+
+.left[
+- 生产时有**边际私人成本**MPC(marginal private cost)
+- MSD 依然代表此个体的行为对他人带来的**边际社会损害**(marginal social damage)，随着生产量的增加而递增
+- 但从整个社会来看，个体生产负外部性要从MPC中**累加**MSD → **边际社会成本**MSC(marginal social cost) 
+- 假设消费没有外部性，生产者是价格接受者且追求利润最大化，遵循边际收益MB=MPC
+- 结果 $x_c$ 变为 $x_s$  ，原本市场决策数量**超过**了社会最适消费数量
+- $x_s$ 下的社会总体损失是多少?
+]
+.right[
+![1KCggr](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/1KCggr.png)
+]
+
+---
+### 练习(5')
+
+- 判断是否是外部性及其正负，同时判断属于生产还是消费？
+
+1.高尔夫球场每天维护需要大量用水 → 在热带国家过度取水，导致土地盐碱化
+
+2.球队购买超级明星，导致增加该俱乐部市场影响力和门票收入
+
+3.超级明星带来联赛整个联赛的影响力和市场吸引力，带来电视转播权增加，但球队并未获得相应补偿
+
+4.球队买通裁判，导致比赛结果事先确定，该行为获得了比赛胜利与收益，但其行为造成对方球队付出代价，还使得联盟、协会、观众、赞助商、电视转播商等联赛利益相关者付出代价，但这些相关者并未因为“黑哨”获得补偿
+
+
+---
+### 作业#1 ：阅读文献
+
+- Baade, R. A., & Matheson, V. A. (2016). Public subsidies for sports stadiums. The Oxford Handbook of Sports Economics, 2, 319-342. This chapter discusses the economic externalities associated with sports stadium subsidies, including the impact on local tax revenue and the potential displacement of other economic activity.
+
+- Lavoie, N., & Poulin, M. (2021). Sport events and urban development: A review of the literature. Journal of Sport and Social Issues, 45(1), 3-21. This article examines the economic and social externalities of sports events on urban development, including the impact on local businesses and the potential for gentrification.
+
+- Humphreys, B. R., & Ruseski, J. E. (2008). The economic choice of participation and time spent in physical activity and sport. International Journal of Sport Finance, 3(2), 69-85. This study explores the externalities associated with participation in sports and physical activity, including the impact on individual health and the potential for reduced healthcare costs.
+
+
+---
+### 作业#1 ：阅读文献
+
+- Fort, R., & Lee, Y. H. (2016). The impact of spectator violence in sports: A meta-analytic review. Journal of Sport and Health Science, 5(1), 12-21. This article reviews the literature on the externalities associated with spectator violence in sports, including the impact on fan safety and the potential for reduced attendance and revenue for sports organizations.
+
+- Principe, K., & Kanter, R. (2016). Externalities of professional team sports franchises: A review of the literature. Journal of Sport Management, 30(1), 6-24. This article provides
+
+
+---
+### 术语(10')
+
+- trickle-down effect in sports
+
+
+---
+### 外部性的消除：政府介入
+- 由于负外部性导致市场均衡数量大于社会最适数量，解决思路通常是两大类：<br> .bb[政府介入]或者将外部性问题.bb[**内部化**]
+1. .bb[**税收和补贴**]。庇古：正外部性时，政府应该对生产者给予补贴或者税收减免，鼓励多生产；负外部性时，征收特别税收增加生产的成本，从而抑制消费或者生产
+2. .bb[**行政方法**]。斯蒂格勒：进行总量控制或者发放生产许可证。其中许可证是可以转让的，通过市场进行交易
+3. .bb[**法律与监管**]。限定配额或者行政处罚等方式
+
+---
+### 外部性的消除：内部化与科斯定理
+
+4. .bb[**通过自愿协商以分配产权**]。科斯：1960年《社会成本问题》中，通过交易成本的选择和私人谈判、私有产权适当界定、签订可执行合同的方式来解决外部性问题 
+  - 前提是**科斯定理**成立：若交易费用为零，无论初始产权如何界定，都可以通过市场达到资源的最佳配置
+
+
+
+---
+### 外部性的消除：其他方式
+
+- .bb[**其他方式**]
+  - 引入非营利性、非官方的社会组织代政府监督：比如社区组织代为管理健身区、环境保护组织、动物保护协会
+  - 企业合并：将外部性产生者与承受者联合一体，实现内部化。比如[中体产业集团](https://www.csig158.com/)是商业设施的所有者、奥林匹克花园的开发商，通过将大型场馆设施的建设、运营和商业开发整合，部分实现场地设施外部性的内部化
+  - 道德约束：斯蒂格利茨认为通过**社会准则**或者**道德约束**使得负外部性产生者自我降低产生外部性
+
+---
+### 应用：整治污染(生产性)
+
+- 河流上有2个厂商，上游养猪(产量 $x$ )，下游养鱼(产量 $y$ )。猪有排泄物 $Z$ 数量是 $z$ 
+- 直接排泄到河水中，可以节省防污设备成本(假设节省成本的效果是递减的)，但会增加下游养鱼厂的生产成本
+- 生产成本函数分别为
+$\begin{aligned} & c^x=c^x(x, z), \frac{\partial c^x}{\partial x}>0, \frac{\partial^2 c^x}{\partial x^2}>0, \frac{\partial c^x}{\partial z}<0, \frac{\partial^2 c^x}{\partial z^2} \geq 0 \\ & c^y=c^y(y, z), \frac{\partial c^y}{\partial y}>0, \frac{\partial^2 c^y}{\partial y^2}>0, \frac{\partial c^y}{\partial z}>0, \frac{\partial^2 c^y}{\partial z^2}>0\end{aligned}$
+- 利润函数分别为 $\begin{aligned} & \pi^x=p_x x-c^x(x, z) \\ & \pi^y=p_y y-c^y(y, z)\end{aligned}$
+- 假定2家均为产品市场价格接受者，则分别可得
+$\frac{\partial \pi^x}{\partial x}=p_x-\frac{\partial c^x}{\partial x}=0,  \frac{\partial \pi^x}{\partial z}=-\frac{\partial c^x}{\partial z}=0,  \frac{\partial \pi^y}{\partial y}=p_y-\frac{\partial c^y}{\partial y}=0$
+- 上面3个式子中的左右2式分别表示2家厂商必须生产到边际成本等价格的水准，会获得利润最大化
+- 上面的中间式污染的.bb[私人边际收益(MPB)] 就是养猪厂增加1单位污染排放量可以降低的产品X的生产成本 $\frac{\partial \pi^x}{\partial z}=-\frac{\partial c^x}{\partial z}$ 
+
+
+???
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/4dSdX6.png height=300>
+
+---
+### 应用：整治污染(生产性外部性)
+
+.left[
+- 由于生产成本函数本身的性质决定，当 $\frac{\partial \pi^x}{\partial z}=-\frac{\partial c^x}{\partial z}=0$ 时代表排放污染的边际收益最大化， 污染量为 $z_0$
+- 但是从社会角度来看，排污还给养鱼厂带来**边际社会损害(MSD)**
+- 在决定社会最适排污量时，就必须同时考虑2家厂商的决策，即：<br> 若MPB>MSD时，增加排污会增加社会整体福利(为什么?)；<br> 反之，减少排污会增加社会整体福利 <br> → 社会最适排污量 $z_s$ 小于 单个厂商的最适排污量 $z_0$ <br>
+→ 厂商各自决策时污染过量 
+]
+
+
+.right[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/4dSdX6.png height=450>
+]
+
+---
+### 应用：整治污染(生产性外部性)
+#### 为什么.bb[内部化]可以解决?
+
+- 2家厂商合并成1家，其利润函数为 $\pi=p_x x+p_y y-c^x(x, z)-c^y(y, z)$
+- 1家厂商同时决定X、Y和Z $\begin{aligned} & \frac{\partial \pi}{\partial x}=p_x-\frac{\partial c^x}{\partial x}=0 \\ & \frac{\partial \pi}{\partial y}=p_y-\frac{\partial c^y}{\partial y}=0 \\ & \frac{\partial \pi}{\partial z}=-\frac{\partial c^x}{\partial z}-\frac{\partial c^y}{\partial z}=0\end{aligned}$ 
+- 与合并前的区别仅仅是在最适污染量时 $\frac{\partial c^x}{\partial z}=-\frac{\partial c^y}{\partial z}$ <br> → 正好是MPB=MSD 相等时的社会最适排污 $z_s$
+- 假如负外部性极强( $MSD \gg MPB$ ) → 不会相交 → 没有社会最适排污量，唯一可做的就是**关停**
+
+---
+### 应用：整治污染(生产性外部性)
+#### 为什么.bb[内部化]可以解决?
+
+- .bb[只要2厂商生产决策影响彼此利润，通过合并或合作，可以获得较独自行动更大的总利润 → 1+1>2]
+- 该模型是简单的，因为：养猪厂的MSD就是对下游养鱼厂的利润损害 <br> .mono[<==>] 没有牵涉到**第三方利益**，负外部性的社会福利损害就等同于对下游私人厂商的利润损害 → 因此通过.bb[合并]可以实现利润扩大 <br> → 暗含着.bb[科斯定理]的思想
+
+---
+### 应用：整治污染(生产性外部性)
+#### 为什么.bb[政府收税]可以解决?
+
+- 将排泄物视为养猪的生产要素之一(就像L或者K)时，其决定方式依然根据 <br> .bb[要素的边际生产收益等于边际要素成本]( $MRP_L=MR \cdot MP_L = MFC_L$ )
+<br> → 排泄物的边际生产收益刚好是 $MPB=\frac{\partial \pi^x}{\partial z}=-\frac{\partial c^x}{\partial z}$ 
+- 厂商选择 $z_0$ 的排泄量是因为该要素的边际要素成本为0 <br> → 意味着存在外部性时的价格机制是失灵的
+- 如何定价？可以从外部性要素带来的社会损害角度进行定价 <br> → 排泄物的市场价格应是它对下游厂商带来的**边际**社会损害 $MSD=-\frac{\partial c^y}{\partial z}$ 
+- .bb[政府]可以根据这个价格进行 .bb[征税]，因此利润函数变为 $\pi^x=p_x x-c^x(x, z)-t z$
+<br> → $\frac{\partial \pi^x}{\partial x}=p_x-\frac{\partial c^x}{\partial x}=0 ; \frac{\partial \pi^x}{\partial z}=-\frac{\partial c^x}{\partial z}-t=0$  → 根据后式，征税后Z的排放量必然较 $z_0$ 更小 → .bb[征税必然抑制排污量]
+- 若将单位税率定为 $t=\frac{\partial c^y\left(y_s, z_s\right)}{\partial z}$ → .bb[庇古税](Pigouvian tax) → 若是正外部性，就是补贴
+
+
+
+---
+### 应用：整治污染(生产性外部性)
+#### 为什么还需要.bb[行政管制]?
+
+- 但实际中，庇古税有很多困难
+- 取决于 $y_s$ 和 $z_s$ ，通常后者是不知道的。因此，实际中政府只能通过**暗访**的方式调查，但往往会**低估**
+- 另外，该模型中的负外部性只有1个源头，受害者只有1个。而现实中，负外部性源头可能很多，甚至不同类型的负外部性带来的损害程度是不同的 → 很难对负外部性要素进行定价
+- 另一个思路是，.bb[政府]若能准确估计负外部性的程度(**最适污染量**)就可以直接.bb[行政管制]排放 $z_s$
+- 问题是征税和管制都必须面对如何调查清楚最适排放量的问题，那么那种更好呢？
+
+---
+### 应用：整治污染(生产性外部性)
+#### 为什么.bb[收税比行政管制更有效率]?
+
+.less-right[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/13rbr3.png height=360>
+]
+.center[一般而言，.bb[<br>在信息不完全情况下，征税比管制更有效率]]
+.more-left[
+- 假设有2个养猪厂，边际私人收益分别是 $MPB_1$ 和 $MPB_2$ ，政府征收单位税率依然为t 
+- 若.bb[征税]则第1家排放 $z_1$ ，第2家排放 $z_2$；<br>若.bb[管制]则一共排污 $z_1+z_2$ ，但政府对私人MPB不清楚，只能**一刀切**，每家的标准为 $z_3=(z_1+z_2)/2$ → 听话的厂商接受管制的结果与征税一样
+- 然而第1家排污减少 $z_3-z_1$ ，第2家排污增加 $z_2-z_3$ ，虽然两者相等(总排污量并没有变)，但前者减少污染导致的利润减少为A，后者排污增加导致利润增加为B，显然B-A>0 → .bb[分开征税的社会总福利更多]
+]
+
+---
+### 应用：整治污染(生产性外部性)
+#### 为什么有时候.bb[仍采用行政管制]?
+
+.right[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/KI4Cbj.png >
+]
+.center[在信息不完全情况下，.bb[<br> 负外部性上升很快，管制更有效率]]
+.left[
+- 右图中，MSD相较于MPB更陡峭（代表什么含义?）
+- .bb[征税]政府因为**信息不足**制定了一个比庇古税 $t_s$ 更低的税率 $t_0$ → 上游排污量 $z_0$ 高出最适排污量 $z_s$ 很多 → 产生大量社会损失eab
+- .bb[管制]政府采取排放标准 $z_1$ ，假定该标准仍高过 $z_s$ 程度与低于 $z_0$ 的程度相同，则 $z_s z_1 / 0z_s = t_0 t_s /0 t_s$ → 福利损失减少到ecd
+]
+
+---
+### 应用：整治污染(生产性外部性)
+#### .bb[政府]还有其他选择么?
+
+.less-right[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/wswu17.png >
+]
+.center[.bb[可交易的排放许可!]]
+.more-left[
+- .bb[征税]虽然避免效率损失，通常无法确定到庇古税；.bb[管制]虽然可实际控制污染量，但会恶化经济效率
+- .bb[**可交易排放许可证下**]，政府决定每年排污总额度，以**配额**(quota)方式分配给厂商固定配额
+- $0_1 0_2$ 代表全年排污总量，由 $0_1$ 向右代表第1家排污量，其边际私人收益为 $MPB_1$ 
+- 假定政府初始分配在 $0_1 0_2/2$ 的M点(代表禀赋点) → 第1家MBP为Mb，故其愿意以不低于Mb的价格出售1单位11排污许可，第2家愿意以不高于Ma的价格购买1单位排污许可 → .hi.green[成交!!] → 直到e点 → 福利增加eab <br> → **MPB较低的第1家厂商，将出售MN的排污许可**
+]
+
+---
+### 应用：整治污染(生产性外部性)
+#### 科斯定理对庇古税的批评
+
+- 税收会带来无谓损失，因此科斯认为，在某些前提下，在对外部性征税也没有必要的；只需要将财产权界定清楚就可以
+- 回忆.bb[外部性的相互性]。对养猪场征税，默认为养猪场是排污的**因** .mono[<==>] 将不受污染的**财产权**设定给养鱼场
+- 由于.bb[财产权]是法律保障财产拥有者可自由处置其财产，并.bb[禁止]他人加以与干预的权力(**谁有财产权 → 谁就有禁止权 → 谁就有理由获得补偿**) <br> → 这意味着除非养鱼厂获得足够.bb[补偿]，否则它有权禁止养猪场排污。因此如果养猪厂不想被禁止，就要付出相当的成本(支付税) → **庇古税只不过是以政府形式收取补偿而已**
+- 同样可以说，如果养鱼厂若没有在下游开厂，利润也不会受损 → 养鱼厂才是外部性出现的**因**  → 要征税也要去对养鱼厂征
+- 现在问题是**庇古税没有清楚的界定财产权**。向谁课税？如果征收对象错了，经济效率会不会进一步受损？
+
+---
+### 应用：整治污染(生产性外部性)
+#### 但科斯定理在现实中使用必须足够谨慎
+- **财产权必须清楚界定**：所有的相关方必须拥有完全明确的产权。也就是说，所有人都必须清楚自己拥有什么权利，并且不能有任何未解决的争议 ← 联赛、联盟和球队间权力分配清楚，联赛所有权归球队、经营权归联盟 → 维持竞争均衡
+- **交易成本可能很大**：交易成本包括交通费用、协商费用、法律费用等，这些都可能会影响交易的结果
+- **两方参与的问题**：当参与协商的利益主体超过2个人或团体时，外部性影响的程度可能不一，很难达成协议
+- **竞争性行为**：两方采用**策略性行为**(strategic behavior)导致行为很难确定
+- **信息不对称问题**：基于理性人假设，信息不对称造成一方很难知道另一方的喜好、偏好，通过协议自然很难达成经济效率
+- **财产权归属影响收入分配**：科斯定理只说明了经济效率不受财产权归属影响
+
+---
+class: title-slide-section, middle, inverse
+
+# 公共财
+---
+### 公共财
+
+- 生产或消费不同类别产品，出现外部性问题的可能性是不同的
+
+- 截止目前，讨论的所有范畴都是**私有财**(私有品)
+
+- 通常由两个维度考虑
+
+  - **排他性**（excludability）：拥有该产品就**限制**别人**消费**、**享用**该产品的程度
+  
+  - **敌对性** （rivalry）：一个人**消费**某产品就会**降低**别人**消费**该产品的能力的程度
+  
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/4YMiH6.png height=165>]
+
+---
+### 排他性与敌对性
+#### 排他性
+- .hi.green[可排他的](excludable):获得产品的好处仅限于那些为该商品付费的人(一般食品杂货、公寓、车辆等)
+- .hi.purple[非排他的](non-excludable): 无论是否付费，任何人都可以享受好处(国防、阳光等)
+
+#### 敌对性
+- .hi.green[敌对的](rival):（1）阻碍其他人消费;（2）降低该产品对别人的价值(你的笔记本、你的牙刷、高峰期道路等)
+- .hi.purple[非敌对的](non-rival): 人们可以同时消费该物品而不减损其价值(灯塔, 风景, 知识等)
+
+---
+### 产品属性
+
+```{r, echo = FALSE, fig.height = 5.5, fig.width = 5.5, dev = "svg"}
+strategies_p1 <- c("非排他的", "可排他的")
+strategies_p2 <- c("敌对的", "非敌对的")
+
+ggplot() + 
+  scale_x_continuous(limits = c(0, 10), expand = c(0,0), breaks = c(2.5, 7.5), labels = strategies_p2, position = "top")+
+  scale_y_continuous(limits = c(0, 10), expand = c(0,0), breaks = c(2.5, 7.5), labels = strategies_p1) +
+  labs(x = "", y = "") +
+  # Player 1 payoffs
+  annotate("text", label = expression("私有财"), x = 2.5, y = 7.5, family =cnfont, size = 6, color = purple) +
+  annotate("text", label = expression("俱乐部财"), x = 7.5, y = 7.5, family =cnfont, size = 6, color = purple) +
+  annotate("text", label = wrapper(expression("公共资源"), 10), x = 2.5, y = 2.5, family =cnfont, size = 6, color = red_pink) +
+  annotate("text", label = expression("(纯粹)公共财"), x = 7.7, y = 2.5, family =cnfont, size = 6, color = red_pink) +
+  # theme stuff
+  theme_goods +
+  geom_segment(aes(x = 5, y = 0, xend = 5, yend = 10), linetype  = "solid", size = 1) +
+  geom_segment(aes(x = 0, y = 5, xend = 10, yend = 5), linetype  = "solid", size = 1) +
+  geom_ribbon(aes(x = w, ymin = 0, ymax = 5), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = z, ymin = 0, ymax = 5), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = w, ymin = 5, ymax = 10), fill = purple, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = z, ymin = 5, ymax = 10), fill = purple, alpha = 0.2, linetype = "blank")
+```
+
+
+---
+### 私有财
+
+.pull-left[
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 4.5, dev = "svg"}
+strategies_p1 <- c("非排他的", "可排他的")
+strategies_p2 <- c("敌对的", "非敌对的")
+
+ggplot() + 
+  scale_x_continuous(limits = c(0, 10), expand = c(0,0), breaks = c(2.5, 7.5), labels = strategies_p2, position = "top")+
+  scale_y_continuous(limits = c(0, 10), expand = c(0,0), breaks = c(2.5, 7.5), labels = strategies_p1) +
+  labs(x = "", y = "") +
+  # Player 1 payoffs
+  annotate("label", label = expression("私有财"), x = 2.5, y = 7.5, family =cnfont, size = 6, color = purple) +
+  annotate("text", label = expression("俱乐部财"), x = 7.5, y = 7.5, family =cnfont, size = 6, color = purple) +
+  annotate("text", label = wrapper(expression("公共资源"), 10), x = 2.5, y = 2.5, family =cnfont, size = 6, color = red_pink) +
+  annotate("text", label = expression("(纯粹)公共财"), x = 7.7, y = 2.5, family =cnfont, size = 6, color = red_pink) +
+  # theme stuff
+  theme_goods +
+  geom_segment(aes(x = 5, y = 0, xend = 5, yend = 10), linetype  = "solid", size = 1) +
+  geom_segment(aes(x = 0, y = 5, xend = 10, yend = 5), linetype  = "solid", size = 1) +
+  geom_ribbon(aes(x = w, ymin = 0, ymax = 5), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = z, ymin = 0, ymax = 5), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = w, ymin = 5, ymax = 10), fill = purple, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = z, ymin = 5, ymax = 10), fill = purple, alpha = 0.2, linetype = "blank")
+```
+]
+
+.pull-right[
+
+- .hi[产权]：明确
+- .hi[使用者]：在边际上承担所有成本并获得所有收益
+- .hi[提供者]：通常由市场中公司提供
+- .hi[市场机制]：若不存在外部性，完全竞争市场可以**有效**分配私有财
+- .hi[代表性产品]：大多数消费品都是私有财产
+]
+
+---
+### 俱乐部财
+
+.pull-left[
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 4.5, dev = "svg"}
+strategies_p1 <- c("非排他的", "可排他的")
+strategies_p2 <- c("敌对的", "非敌对的")
+
+ggplot() + 
+  scale_x_continuous(limits = c(0, 10), expand = c(0,0), breaks = c(2.5, 7.5), labels = strategies_p2, position = "top")+
+  scale_y_continuous(limits = c(0, 10), expand = c(0,0), breaks = c(2.5, 7.5), labels = strategies_p1) +
+  labs(x = "", y = "") +
+  # Player 1 payoffs
+  annotate("text", label = expression("私有财"), x = 2.5, y = 7.5, family =cnfont, size = 6, color = purple) +
+  annotate("label", label = expression("俱乐部财"), x = 7.5, y = 7.5, family =cnfont, size = 6, color = purple) +
+  annotate("text", label = wrapper(expression("公共资源"), 10), x = 2.5, y = 2.5, family =cnfont, size = 6, color = red_pink) +
+  annotate("text", label = expression("(纯粹)公共财"), x = 7.7, y = 2.5, family =cnfont, size = 6, color = red_pink) +
+  # theme stuff
+  theme_goods +
+  geom_segment(aes(x = 5, y = 0, xend = 5, yend = 10), linetype  = "solid", size = 1) +
+  geom_segment(aes(x = 0, y = 5, xend = 10, yend = 5), linetype  = "solid", size = 1) +
+  geom_ribbon(aes(x = w, ymin = 0, ymax = 5), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = z, ymin = 0, ymax = 5), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = w, ymin = 5, ymax = 10), fill = purple, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = z, ymin = 5, ymax = 10), fill = purple, alpha = 0.2, linetype = "blank")
+```
+]
+
+.pull-right[
+- .hi[产权]：不明确
+- .hi[使用者]：支付加入俱乐部的费用，一旦加入后就不一定支付边际成本
+- .hi[提供者]： 一般由公司而非政府提供，但提供者通常具有**市场势力**
+- .hi[市场机制]：厂商会在 MV .mono[>] MC 处定价 <br> .mono[-->] 人为造成稀缺性 <br> .mono[-->] 市场无谓损失
+- .hi[代表性产品]：大部分的订阅或会员制服务都是俱乐部财(Netflix、健身房、高尔夫俱乐部等) 
+]
+
+---
+### 公共资源
+
+.pull-left[
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 4.5, dev = "svg"}
+strategies_p1 <- c("非排他的", "可排他的")
+strategies_p2 <- c("敌对的", "非敌对的")
+
+ggplot() + 
+  scale_x_continuous(limits = c(0, 10), expand = c(0,0), breaks = c(2.5, 7.5), labels = strategies_p2, position = "top")+
+  scale_y_continuous(limits = c(0, 10), expand = c(0,0), breaks = c(2.5, 7.5), labels = strategies_p1) +
+  labs(x = "", y = "") +
+  # Player 1 payoffs
+  annotate("text", label = expression("私有财"), x = 2.5, y = 7.5, family =cnfont, size = 6, color = purple) +
+  annotate("text", label = expression("俱乐部财"), x = 7.5, y = 7.5, family =cnfont, size = 6, color = purple) +
+  annotate("label", label = wrapper(expression("公共资源"), 10), x = 2.5, y = 2.5, family =cnfont, size = 6, color = red_pink) +
+  annotate("text", label = expression("(纯粹)公共财"), x = 7.7, y = 2.5, family =cnfont, size = 6, color = red_pink) +
+  # theme stuff
+  theme_goods +
+  geom_segment(aes(x = 5, y = 0, xend = 5, yend = 10), linetype  = "solid", size = 1) +
+  geom_segment(aes(x = 0, y = 5, xend = 10, yend = 5), linetype  = "solid", size = 1) +
+  geom_ribbon(aes(x = w, ymin = 0, ymax = 5), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = z, ymin = 0, ymax = 5), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = w, ymin = 5, ymax = 10), fill = purple, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = z, ymin = 5, ymax = 10), fill = purple, alpha = 0.2, linetype = "blank")
+```
+]
+
+.pull-right[
+- .hi[产权]：不够明确
+- .hi[使用者]：享受到**所有边际利益**，但**完全不承担边际成本**
+- .hi[提供者]： 自然或者集体
+- .hi[市场机制]：通常没有规范化市场，也就无法有效地管理
+  - **敌对性**会让使用者有**紧张感**(每个人都想比其他人更早使用资源)
+  - **非排他性**导致没人愿意去维护
+  - **结果**不是**过度使用**就是**被遗弃**；拥堵、污染或闲置
+- .hi[代表性产品]：道路、清洁水源、国家公园、集体宿舍
+]
+
+---
+### 公共财
+
+.pull-left[
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 4.5, dev = "svg"}
+strategies_p1 <- c("非排他的", "可排他的")
+strategies_p2 <- c("敌对的", "非敌对的")
+
+ggplot() + 
+  scale_x_continuous(limits = c(0, 10), expand = c(0,0), breaks = c(2.5, 7.5), labels = strategies_p2, position = "top")+
+  scale_y_continuous(limits = c(0, 10), expand = c(0,0), breaks = c(2.5, 7.5), labels = strategies_p1) +
+  labs(x = "", y = "") +
+  # Player 1 payoffs
+  annotate("text", label = expression("私有财"), x = 2.5, y = 7.5, family =cnfont, size = 6, color = purple) +
+  annotate("text", label = expression("俱乐部财"), x = 7.5, y = 7.5, family =cnfont, size = 6, color = purple) +
+  annotate("text", label = wrapper(expression("公共资源"), 10), x = 2.5, y = 2.5, family =cnfont, size = 6, color = red_pink) +
+  annotate("label", label = expression("(纯粹)公共财"), x = 7.7, y = 2.5, family =cnfont, size = 6, color = red_pink) +
+  # theme stuff
+  theme_goods +
+  geom_segment(aes(x = 5, y = 0, xend = 5, yend = 10), linetype  = "solid", size = 1) +
+  geom_segment(aes(x = 0, y = 5, xend = 10, yend = 5), linetype  = "solid", size = 1) +
+  geom_ribbon(aes(x = w, ymin = 0, ymax = 5), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = z, ymin = 0, ymax = 5), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = w, ymin = 5, ymax = 10), fill = purple, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = z, ymin = 5, ymax = 10), fill = purple, alpha = 0.2, linetype = "blank")
+```
+]
+
+.pull-right[
+- .hi[产权]：无法界定
+- .hi[使用者]：享受到**所有边际利益**，但**完全不承担边际成本**
+- .hi[提供者]：通常由政府提供
+- .hi[市场机制]：不存在市场机制
+  - **原因是:** 存在**搭便车问题** → 提供公共财无利可图，且成本过高单个厂商无力提供
+  - **结果**公共财通常是**供给不足**
+- .hi[代表性产品]：拥有职业球队的社区居民，可以享受球队带来的荣誉
+]
+
+---
+class: inverse, middle
+# 个人理性与集体行动问题
+---
+### 集体行动的“囚徒困境”
+
+.pull-left[
+```{r, echo = FALSE, fig.height = 4.5, fig.width = 4.5, dev = "svg"}
+strategies_p1 <- c("背叛", "合作")
+strategies_p2 <- c("合作", "背叛")
+
+pd_1 <- ggplot() + 
+  scale_x_continuous(limits = c(0, 10), expand = c(0,0), breaks = c(2.5, 7.5), labels = strategies_p2, position = "top")+
+  scale_y_continuous(limits = c(0, 10), expand = c(0,0), breaks = c(2.5, 7.5), labels = strategies_p1) +
+  labs(x = "参与者B", y = "参与者A") +
+  # Player 1 payoffs
+  annotate("text", label = wrapper(expression("获得利益， 分担成本"), 15), x = 1.75, y = 6, family =cnfont, size = 4, color = red_pink) +
+  annotate("text", label = wrapper(expression("获得利益， 负担全部费用"), 15), x = 6.75, y = 6, family =cnfont, size = 4, color = red_pink) +
+  annotate("text", label = wrapper(expression("获得利益， 不付代价"), 15), x = 1.75, y = 1, family =cnfont, size = 4, color = red_pink) +
+  annotate("text", label = wrapper(expression("没有利益， 没有成本"), 15), x = 6.75, y = 1, family =cnfont, size = 4, color = red_pink) +
+  # Player 2 payoffs
+  annotate("text", label = wrapper(expression("获得利益， 分担成本"), 15), x = 3.25, y = 9, family =cnfont, size = 4, color = purple) +
+  annotate("text", label = wrapper(expression("获得利益， 不付代价"), 15), x = 8.25, y = 9, family =cnfont, size = 4, color = purple) +
+  annotate("text", label = wrapper(expression("获得利益， 负担全部费用"), 15), x = 3.25, y = 4, family =cnfont, size = 4, color = purple) +
+  annotate("text", label = wrapper(expression("没有利益， 没有成本"), 15), x = 8.25, y = 4, family =cnfont, size = 4, color = purple) +
+  # theme stuff
+  theme_game +
+  geom_segment(aes(x = 0, y = 10, xend = 10, yend = 0), linetype  = "dashed", size = 0.5) +
+  geom_segment(aes(x = 5, y = 10, xend = 10, yend = 5), linetype  = "dashed", size = 0.5) +
+  geom_segment(aes(x = 0, y = 5, xend = 5, yend = 0), linetype  = "dashed", size = 0.5) +
+  geom_segment(aes(x = 5, y = 0, xend = 5, yend = 10), linetype  = "solid", size = 1) +
+  geom_segment(aes(x = 0, y = 5, xend = 10, yend = 5), linetype  = "solid", size = 1) +
+  geom_ribbon(aes(x = w, ymin = 0, ymax = game_box_1(w)), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = w, ymin = 5, ymax = game_box_2(w)), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = z, ymin = 5, ymax = game_box_3(z)), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = z, ymin = 0, ymax = game_box_2(z)), fill = red_pink, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = w, ymin = game_box_1(w), ymax = 5), fill = purple, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = w, ymin = game_box_2(w), ymax = 10), fill = purple, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = z, ymin = game_box_3(z), ymax = 10), fill = purple, alpha = 0.2, linetype = "blank") +
+  geom_ribbon(aes(x = z, ymin = game_box_2(z), ymax = 5), fill = purple, alpha = 0.2, linetype = "blank")
+pd_1
+```
+]
+
+.pull-right[
+- 为什么**公共财**总是供给不足？  <br> .mono[-->] **搭便车**来解释
+- 为什么**公共资源**不是被遗弃就是过度使用？  <br> .mono[-->] **公地悲剧**(Tragedy of the commons)来解释
+- 用**囚徒困境**初步理解个人理性与集体行动的悖论
+  - （.hi.pink[合作], .hi.purple[合作]）通常**帕累托占优策略**（.hi.pink[背叛], .hi.purple[背叛]），但（.hi.pink[背叛], .hi.purple[背叛]）往往是纳什均衡
+]
+
+
+---
+### 应用: 搭便车问题（社区足球场的建造）
+
+.more-left[
+- 场地设施建设和运营成本巨大，但投资回报不大 
+- 假设建社区足球场为2w $
+- 边际社会收益 <br> $\quad$ .mono[=] 0.5w .mono[+] 0.5w .mono[+] 0.4w .mono[+] 0.4w .mono[+] 0.3w .mono[+] 0.3w .mono[+] 0.3w .mono[+] 0.2w .mono[=] 2.9w
+
+- 建设费用低于**社会总收益** <br> .mono[-->]  **建设社区足球场是划算的！**
+- 然而，建设费用超过了每个邻居的愿意支付意愿 <br> .bb[.mono[--> 没有任何居民愿意投资建造社区足球场！]]
+]
+
+.less-right[
+```{R, echo = F, escape = F}
+tab <- data.frame(
+  v1 = c("A ", "B", "C", "D", "E", "F", "G", "H"),
+  v2 = c("$0.5w", "$0.5w", "$0.4w", "$0.4w", "$0.3w", "$0.3w", "$0.3w", "$0.2w")
+) %>% kable(
+  escape = F,
+  col.names = c("居民", "最大支付意愿"),
+  align = c("l", "c")
+) %>%
+  kable_styling() %>% 
+  row_spec(1:4, extra_css = "line-height: 110%;")
+tab 
+```
+
+]
+
+---
+### 应用: 公共资源的悲剧（社区健身设施的过度使用）
+
+.more-left[
+- 有 $x$ 台设施可以健身，社区居民的健康收益函数是 $f(x)$ ，在每单位健康获得的货币价值为 $p$ 
+- 若场地私有，会出租 $x_s$ 使得满足 $MRP(x_s) = c$ （为什么是MRP?) ，其中  $MRP(x_s) = p f^{\prime}(x_s) ,c$ 代表每一件设施的单位成本，假定是固定的
+- 若社区决定场地开放使用。显然，只要居民参加锻炼获得的收益高过成本，就会有人加入使用 → 也就是只要 $p f^{\prime}(x_s+1) \approx p(\frac {f(x_s+1)}{x_s+1}) > c$ 就有人加入 ← 该式刚好代表了多使用1单位设施带来的**平均生产收益(ARP)**
+- 换句话说，当 $ARP(x_s+1) > c$ 就有人加入，直到 $ARP(x_c) = c$
+- 通常健康收益函数 $f(x)$ 具有**边际收益递减**性质 → MRP一般在ARP下方(想想AR与MR) → $x_s < x_c$ 
+]
+
+.less-right[
+![a14OKU](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/a14OKU.png)
+**公共资源的实际使用超出了最适使用**
+]
+
+---
+### 公共财由市场供给不足的必然性
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/4YMiH6.png height=165>]
+- (纯粹)公共财因为具有非排他性，本质上属于.bb[消费或生产具有正外部性]的产品
+- (回忆)正外部性存在时，.bb[**市场均衡供给必然低于社会最适供给**]
+- 消费者普遍具有**搭便车**想法
+  - 在不具有排他性下，消费者为了自身利益，会**隐藏**对公共财的偏好，而生产者缺乏准确的消费者偏好信息下，自然无法收取适当费用
+  - 当大部分消费者都这样想，**厂商供给低于最适水平**
+- 即便是具有一定程度排他性的公共财，在给定供给量下，非敌对性使得多一个消费者使用的边际成本为0或支付极低价格 → 生产者的收入也不足以支撑供给需要的成本
+
+---
+### 应用：政府提供公共财方式
+
+- 既然公共财不足，那么社会必须的公共财就必须有政府供给
+- 政府使用税收，直接提供公共财
+  - 例如：通过政府购买服务的方式
+- 政府代替市场提供公共财，是否会满足经济效率?
+- 理论上是可能的
+
+---
+### 应用：政府代替市场提供公共财
+#### 林达均衡原理
+
+.left[
+- 假设有2个消费者，均消费公共财(X)和私有财(Y)，两类物品价格都为1
+- 横轴代表两位消费愿意承担的**公共财价格**比率， $0_A$ 到 $0_B$ 刚好是1 ；两边的纵轴代表公共财数量 $x$
+- A消费者愿意承担的比例为 $\alpha$ , B消费者愿意承担的比率为 $1-\alpha$ 
+- 只有在 $d^{A}$ 和 $d^{A}$ 的交汇点是均衡(为什么?) → **林达均衡**(Lindahl equilibrium) 
+- 理论上得证：该方式得到均衡能够达到<br>**帕累托最优效率**
+]
+
+
+.right[
+![sGmJlS](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/sGmJlS.png)
+]
+
+
+???
+.smaller[
+- 首先从**消费者选定负担的价格比率看**。当政府选定A消费者承担的公共财比率为a1，此时其公共财需求将超过B消费者。但因为两个消费者对公共财需求量必须相同，政府就必须提高a以降低消费者A对X的需求
+- 其次**从政府提供公共数量看**，假定政府决定提供公共财的数量是xb，此时消费者A愿意承担的价格比率为a2，消费者B愿意承担的价格比率为1-a1，a2+(1-a1)>1，表示两人合起来愿意支付的价格超过xb的公共财成本了，因此消费者就会要求政府提供超过xb的公共财
+]
+
+---
+### 应用：政府代替市场提供公共财
+#### 林达均衡原理
+
+- 林达均衡似乎提供了一个解决公共财的可靠方法，即：政府能够了解每一人对公共财的**真实**偏好，进而刻画其**需求函数**，**代替市场机制**进行定价
+
+- 假设政府在考虑修建一个足球场，但其建设成本不知如何分担。假设有100个球迷，且对球赛的支付意愿不同。一个球迷可以支付10美元，而另一个可能愿意支付20美元。每个球迷的支付意愿都是建立在其自己的使用场地的边际成本基础上的。那么政府就可以根据这些支付意愿分摊建设成本
+
+- 当使用者意识到要为其使用支付成本时，就会**掩盖偏好** → **低报支付意愿** → 两条需求曲线同时下移 → 实际供给量必然低于社会最适供给量 → <br> .bb[因此处理公共财最重要的是诱导消费者展现真实偏好]
+
+---
+### 应用：政府代替市场提供公共财
+#### 克拉克税
+
+- 假定只有3个消费者A、B和C，政府考虑是否建造一个成本为 $c$ 的体育场馆，他们支付意愿为 $v_A$ 、 $v_B$ 和 $v_C$
+- 只要 $v_A + v_B + v_B >c$ ，政府就出资建造该场馆
+- 但问题是如何诱导消费者透露真实评价。如果消费者未来支付的使用费用或者缴税与透露评价成正比，大家都很可能会低报 → 上式不成立，场馆就建不成，社会福利损失
+- 反之，就要想办法涉及一套**事前机制**，让其未来的支付成本与当前的支付意愿无关 → **克拉克税**
+- 之所以消费者敢**隐瞒**真正支付意愿，因为隐瞒不用支付任何代价或者不受惩罚 → **克拉克税**的基本精神就是对**隐瞒或者说谎行为**的.bb[成本内部化]
+
+---
+### 应用：政府提供公共财方式
+#### 克拉克税
+
+- 假设场馆建设成本政府要求必须由3人分摊 → $c_A+c_B+c_A=c$
+- 考虑建设成本后，每人的净剩余价值为 $v^{net}_{i}=v_i - c_i$
+- 所以只要 $v^{net}_{A}+v^{net}_{B}+v^{net}_{C} \geq 0$ ，不管 $v^{net}_{i}$ 各自是多少，就不会影响建设决策；如果不成立，各自的 $v^{net}_{i}$ 也不重要 → 因此关心的是影响是否能建设的那个人
+- 定义左右决策状态的**关键者**(pivotal agent)
+  - 例如：当 $v^{net}_{B}+v^{net}_{C} <0$ 与 $v^{net}_{A}+v^{net}_{B}+v^{net}_{C} \geq 0$ 同时成立是，A消费者就是关键者；同样的， $v^{net}_{B}+v^{net}_{C} \geq 0$ 与 $v^{net}_{A}+v^{net}_{B}+v^{net}_{C} <0$ 同时成立时，A也是关键者 <br> → 每个人都能成为关键者，也可能大家都是关键者
+- 由于决策状态改变会使**非关键者**受到损害。如第1种情况下因为A的决策导致场馆修建，B和C的损害为 $-(v^{net}_{B}+v^{net}_{C})$ ；第2种情况是A的决策导致场馆没有修建，B和C的损害为 $v^{net}_{B}+v^{net}_{C}$ <br> → 根据.bb[克拉克税的精神]，A作为关键者支付的税额 $T_A = |v^{net}_{B}+v^{net}_{C}|$ 
+
+---
+### 应用：政府提供公共财方式
+#### 克拉克税
+
+- 克拉克税听上去很陌生，但实际使用中却非常熟悉
+
+- 例如：促进球队的竞争力和公平竞争，防止球队投资过度，以及维护联盟的竞争均衡
+
+- **工资帽**。规定每个球队在薪酬方面的支出总额不能超过特定的上限。如果球队超过了这个上限，就需要向联盟缴纳一定的克拉克税。这可以防止富有的球队在薪酬方面过度投资，从而确保竞争的公平性
+
+- **奢侈税**。联盟对球队的支出额度设置一个阈值，超过这个阈值的球队需要向联盟缴纳奢侈税。这也可以防止球队过度投资，并促进联盟内的公平竞争
+
+- 由于竞争均衡是联盟生存的“必需品”，但并不**直接**是各支球队生存的依赖。而一个竞争均衡的联盟有助于吸引更多球迷和投资方。通过**克拉克税**的方式，将各个球队(每支球队都是关键者)**过度投资行为**造成的**外部性内部化**
+
+---
+### 解决公共财供给不足的方式
+
+- 政府供给。直接供给：国企或非国企来提供生产，如教育、保健和医院等；间接供给：利用预算安排、政策或合约安排行程经济激励，引导私人企业参与生产
+- 私人供给。一般形式有合同承包、公私竞争、特许经营、公私合营的基础设施发展与运营（PPP）
+- 联合供给。德姆塞茨：在非排他性的场所出售私有财，实现混合搭配销售
+- 自愿供给。自愿组织 → 给个人去开发**赛事活动** → 火人节
+
+---
+### 物品分类与分类供给
+
+.right[
+![HWegeB](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/HWegeB.png)
+]
+
+.left[
+- 公共财：政府供给 .mono[+] 联合供给
+- 非俱乐部财：联合供给 .mono[+] 私人供给
+- 公共资源：政府供给 .mono[+] 联合供给 .mono[+] 自愿供给
+]
+
+

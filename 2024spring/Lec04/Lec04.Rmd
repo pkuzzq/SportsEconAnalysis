@@ -1,6 +1,6 @@
 ---
 title: "体育经济分析: 原理与应用"
-subtitle: "单元2: 职业体育联盟"
+subtitle: "单元2: 职业体育联盟1"
 author: 
    - 周正卿
 date: "`r format(Sys.time(), '%d %B %Y')`"
