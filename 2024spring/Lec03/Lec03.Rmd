@@ -51,7 +51,7 @@ p_load(
 options(htmltools.dir.version = FALSE)
 
 # Notes directory
-dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/2024spring/Lec03"
+dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/2024spring/Lec03/"
 # Define pink color
 red_pink <- "#e64173"
 turquoise <- "#20B2AA"
@@ -3447,16 +3447,5 @@ tab
 ```
 
 .pink[A: ] .pink[厂商不断退出市场，直到经济利润恢复到0 .mono[-->] 市场供应下降]
-
-
----
-
-exclude: true
-
-```{R, generate pdfs, include = F, eval = F}
-
-pagedown::chrome_print("Lec03.html", output = "Lec03.pdf")
-
-```
 
 
