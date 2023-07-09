@@ -63,6 +63,9 @@
 <clipPath id="clip-3">
 <path clip-rule="nonzero" d="M 214 66 L 217 66 L 217 316.851562 L 214 316.851562 Z M 214 66 "/>
 </clipPath>
+<clipPath id="clip-4">
+<path clip-rule="nonzero" d="M 42.152344 153 L 217 153 L 217 156 L 42.152344 156 Z M 42.152344 153 "/>
+</clipPath>
 </defs>
 <rect x="-36" y="-36" width="432" height="432" fill="rgb(100%, 100%, 100%)" fill-opacity="1"/>
 <g clip-path="url(#clip-0)">
@@ -93,6 +96,10 @@
 <path fill-rule="nonzero" fill="rgb(15.294118%, 15.686275%, 13.333333%)" fill-opacity="1" stroke-width="0.708661" stroke-linecap="round" stroke-linejoin="round" stroke="rgb(15.294118%, 15.686275%, 13.333333%)" stroke-opacity="1" stroke-miterlimit="10" d="M 217.996094 67.753906 C 217.996094 71.070312 213.019531 71.070312 213.019531 67.753906 C 213.019531 64.4375 217.996094 64.4375 217.996094 67.753906 "/>
 <g clip-path="url(#clip-3)">
 <path fill="none" stroke-width="2.133957" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(15.294118%, 15.686275%, 13.333333%)" stroke-opacity="1" stroke-dasharray="8.535827 8.535827" stroke-miterlimit="10" d="M 215.507812 316.847656 L 215.507812 67.753906 "/>
+</g>
+<path fill-rule="nonzero" fill="rgb(15.294118%, 15.686275%, 13.333333%)" fill-opacity="1" stroke-width="0.708661" stroke-linecap="round" stroke-linejoin="round" stroke="rgb(15.294118%, 15.686275%, 13.333333%)" stroke-opacity="1" stroke-miterlimit="10" d="M 217.996094 154.523438 C 217.996094 157.84375 213.019531 157.84375 213.019531 154.523438 C 213.019531 151.207031 217.996094 151.207031 217.996094 154.523438 "/>
+<g clip-path="url(#clip-4)">
+<path fill="none" stroke-width="2.133957" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(15.294118%, 15.686275%, 13.333333%)" stroke-opacity="1" stroke-dasharray="8.535827 8.535827" stroke-miterlimit="10" d="M 42.152344 154.523438 L 215.507812 154.523438 "/>
 </g>
 <path fill="none" stroke-width="1.066978" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(15.294118%, 15.686275%, 13.333333%)" stroke-opacity="1" stroke-miterlimit="10" d="M 42.152344 316.847656 L 42.152344 5.480469 "/>
 <g fill="rgb(30.196078%, 30.196078%, 30.196078%)" fill-opacity="1">

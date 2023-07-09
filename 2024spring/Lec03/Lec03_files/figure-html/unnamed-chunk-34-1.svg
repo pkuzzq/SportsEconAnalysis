@@ -57,6 +57,9 @@
 <clipPath id="clip-2">
 <path clip-rule="nonzero" d="M 33.152344 166 L 354.523438 166 L 354.523438 169 L 33.152344 169 Z M 33.152344 166 "/>
 </clipPath>
+<clipPath id="clip-3">
+<path clip-rule="nonzero" d="M 160 166 L 163 166 L 163 316.851562 L 160 316.851562 Z M 160 166 "/>
+</clipPath>
 </defs>
 <rect x="-36" y="-36" width="432" height="432" fill="rgb(100%, 100%, 100%)" fill-opacity="1"/>
 <g clip-path="url(#clip-0)">
@@ -83,6 +86,10 @@
 <g fill="rgb(54.509804%, 69.411765%, 45.490196%)" fill-opacity="1">
 <use xlink:href="#glyph-0-5" x="316.097656" y="191.334961"/>
 <use xlink:href="#glyph-0-2" x="335.097656" y="191.334961"/>
+</g>
+<path fill-rule="nonzero" fill="rgb(15.294118%, 15.686275%, 13.333333%)" fill-opacity="1" stroke-width="0.708661" stroke-linecap="round" stroke-linejoin="round" stroke="rgb(15.294118%, 15.686275%, 13.333333%)" stroke-opacity="1" stroke-miterlimit="10" d="M 164.1875 167.390625 C 164.1875 170.710938 159.210938 170.710938 159.210938 167.390625 C 159.210938 164.074219 164.1875 164.074219 164.1875 167.390625 "/>
+<g clip-path="url(#clip-3)">
+<path fill="none" stroke-width="2.133957" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(15.294118%, 15.686275%, 13.333333%)" stroke-opacity="1" stroke-dasharray="8.535827 8.535827" stroke-miterlimit="10" d="M 161.699219 316.847656 L 161.699219 167.390625 "/>
 </g>
 <path fill="none" stroke-width="1.066978" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(15.294118%, 15.686275%, 13.333333%)" stroke-opacity="1" stroke-miterlimit="10" d="M 33.152344 316.847656 L 33.152344 5.480469 "/>
 <g fill="rgb(30.196078%, 30.196078%, 30.196078%)" fill-opacity="1">
