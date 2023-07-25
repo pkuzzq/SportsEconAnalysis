@@ -17,12 +17,9 @@ output:
     lib_dir: libs
   html_document:
     keep_md: yes
-
 knit: pagedown::chrome_print
 
-
 # beamer模板
-
 # mainfont: Times New Roman
 # fontsize: 10pt
 # output: 
@@ -35,9 +32,7 @@ knit: pagedown::chrome_print
 #     df_print: tibble
 #     latex_engine: xelatex
 
-
 ---
-
 ```{R, setup, include = F}
 # devtools::install_github("dill/emoGG")
 library(pacman)

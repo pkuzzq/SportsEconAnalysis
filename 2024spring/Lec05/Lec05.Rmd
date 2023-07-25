@@ -4,6 +4,7 @@ subtitle: "单元2: 职业体育联盟2"
 author: 
    - 周正卿
 date: "`r format(Sys.time(), '%d %B %Y')`"
+
 # xaringan模板
 output:
   xaringan::moon_reader:
@@ -17,11 +18,9 @@ output:
     lib_dir: libs
   html_document:
     keep_md: yes
-
 knit: pagedown::chrome_print
 
 # beamer模板
-
 # mainfont: Times New Roman
 # fontsize: 10pt
 # output: 
