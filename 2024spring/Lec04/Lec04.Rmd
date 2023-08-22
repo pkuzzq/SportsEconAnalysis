@@ -259,18 +259,6 @@ tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", h
 ```
 class: title-slide-section, middle, inverse
 
-# 引言
-
----
-### 课程进度
-
-- 生产者理论
-  - 厂商长\短期供给曲线
-  - 市场长\短期供给曲线
-- 今天：职业体育联盟
-    - 垄断
-    
----
 ### 讲授路径（非常重要）
 
 - 从成本线看供给生产函数。当经济学打开厂商生产的黑箱时，首先看到的是要素的投入，包括要素价格、要素数量以及要素组合的方式。我们将会定义出生产函数、生产技术以及生产阶段。在图形上，我们看到是L-Q平面，反映的“要素-产量”关系
@@ -287,7 +275,7 @@ class: title-slide-section, middle, inverse
 
 class: title-slide-section,inverse, middle
 
-# 商业价值与垄断
+# 垄断是商业价值的保证
 ---
 
 .center[
@@ -302,15 +290,13 @@ class: title-slide-section,inverse, middle
 ---
 ### 职业体育联盟垄断来源
 
-MLB的国家联盟是美国最古老的职业体育联盟，成立于1876年，被后来联盟一直相仿的最初的2个基本原则是职业联盟垄断势力的最初来源：
+MLB(棒球)国家联盟是美国最古老的职业体育联盟，成立于1876年，被后来联盟一直相仿的最初的2个基本原则是职业联盟垄断势力的最初来源：
 
-1. 成员俱乐部对其主场拥有专属权  →  "领地权"在赛事产品市场的卖方垄断；
+1. 领地权  →  区域门票市场的定价权；
 
-2. 储备系统(reserve system)将球员约束在成员俱乐部，不能随意转会 → 在劳动力市场中构成买方垄断
+2. 储备系统(reserve system)：球员合约到期后不能随意转会 → 劳动力市场中对劳动要素的完全定价权
 
-结果是：
-
-职业联盟作为合资公司制定赛事规则，每支球队（特许经营权）被授权在一定地域内垄断于赛事和球员。
+为什么立法给与棒球反垄断豁免权?
 
 ---
 ### 领地权
@@ -331,19 +317,14 @@ MLB的国家联盟是美国最古老的职业体育联盟，成立于1876年，�
 
 在领地范围内：
 
-- 在球赛市场上，职业俱乐部是唯一或者是少数几家法定经营者；
-
-- 在球员市场上，职业俱乐部是唯一或者是少数几家法定购买者。
-
 简单的情况下，我们暂且先考虑只有一家的球队的**独占（monopoly）**  和 **独买monopsony**
 
 - 这里的独占有时**并非简单指一家**厂商，若是厂商对产品的**定价权**有相当的支配能力，那么就符合独占厂商。eg：小岛麦当劳
 
-
 ---
 class: title-slide-section,inverse, middle
 
-# 独占厂商的均衡
+# 独占厂商决策过程及其福利结果
 
 ---
 ### 独占厂商的需求函数
@@ -389,362 +370,6 @@ ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
   geom_hline(yintercept = 5, color = red_pink, size = 1) +
   annotate("text", label = "D=AR=MR", x = 8, y = 5.5, color = red_pink, family = cnfont, size = 6)
 ```
-]
-
----
-### 价格变动的两种效应
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 7
-p_2 <- 9
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "x", y = "$") +
-  # geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
-  geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  # geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  # geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  # geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
-
-.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
-
-.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
-
-]
-
----
-count: false
-### 价格变动的两种效应
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 7
-p_2 <- 9
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "x", y = "$") +
-  geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
-  # geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
-
-.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
-
-.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
-
-]
-
----
-count: false
-### 价格变动的两种效应
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 7
-p_2 <- 9
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "x", y = "$") +
-  geom_rect(aes(xmin = 0, xmax = q_2, ymin = p_1, ymax = p_2), alpha = 0.2, fill = red_pink) +
-  geom_rect(aes(xmin = q_1, xmax = q_2, ymin = 0, ymax = p_1), alpha = 0.2, fill = purple) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
-
-.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
-
-.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
-
-.purple.hi[产出效应]  .mono[>] .pink.hi[价格效应] .mono[==>]  厂商降价导致 .green.hi[总收益增加]
-
-]
-
----
-### 价格变动的两种效应
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 4
-p_2 <- 6
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "x", y = "$") +
-  # geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
-  geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  # geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  # geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  # geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
-
-.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
-
-.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
-
-]
-
----
-count: false
-### 价格变动的两种效应
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 4
-p_2 <- 6
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "x", y = "$") +
-  geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
-  # geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
-
-.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
-
-.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
-
-]
-
----
-count: false
-### 价格变动的两种效应
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 4
-p_2 <- 6
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "x", y = "$") +
-  geom_rect(aes(xmin = 0, xmax = q_2, ymin = p_1, ymax = p_2), alpha = 0.2, fill = red_pink) +
-  geom_rect(aes(xmin = q_1, xmax = q_2, ymin = 0, ymax = p_1), alpha = 0.2, fill = purple) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
-
-.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
-
-.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
-
-.purple.hi[产出效应]  .mono[=] .pink.hi[价格效应] .mono[==>]  厂商降价导致 .green.hi[总收益不变]
-
-]
-
----
-### 价格变动的两种效应
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 1
-p_2 <- 3
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "x", y = "$") +
-  # geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
-  geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  # geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  # geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  # geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
-
-.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
-
-.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
-
-]
-
----
-count: false
-### 价格变动的两种效应
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 1
-p_2 <- 3
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "x", y = "$") +
-  geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
-  # geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
-
-.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
-
-.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
-
-.purple.hi[产出效应]  .mono[<] .pink.hi[价格效应] .mono[==>]  厂商降价导致 .green.hi[总收益减少]
-
-]
-
----
-count: false
-### 价格变动的两种效应
-
-.more-left[
-```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
-demand <- function(x) 10 - x
-inv_demand <- function(x) 10 - x
-p_1 <- 1
-p_2 <- 3
-q_1 <- inv_demand(p_1) 
-q_2 <- inv_demand(p_2)
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
-  theme_market +
-  labs(x = "x", y = "$") +
-  geom_rect(aes(xmin = 0, xmax = q_2, ymin = p_1, ymax = p_2), alpha = 0.2, fill = red_pink) +
-  geom_rect(aes(xmin = q_1, xmax = q_2, ymin = 0, ymax = p_1), alpha = 0.2, fill = purple) +
-  stat_function(fun = demand, color = red_pink, size = 1) +
-  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
-  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
-  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
-  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
-  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
-```
-]
-
-.less-right[
-$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
-
-.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
-
-.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
-
-.purple.hi[产出效应]  .mono[<] .pink.hi[价格效应] .mono[==>]  厂商降价导致 .green.hi[总收益减少]
-
 ]
 
 ---
@@ -1391,6 +1016,364 @@ ggplot() +
 class: title-slide-section,inverse, middle
 
 # 应用：为什么真实票价没有那么高?
+
+---
+### 价格变动的两种效应
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 7
+p_2 <- 9
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "x", y = "$") +
+  # geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
+  geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  # geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  # geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  # geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
+
+.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
+
+.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
+
+]
+
+---
+count: false
+### 价格变动的两种效应
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 7
+p_2 <- 9
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "x", y = "$") +
+  geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
+  # geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
+
+.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
+
+.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
+
+]
+
+---
+count: false
+### 价格变动的两种效应
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 7
+p_2 <- 9
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "x", y = "$") +
+  geom_rect(aes(xmin = 0, xmax = q_2, ymin = p_1, ymax = p_2), alpha = 0.2, fill = red_pink) +
+  geom_rect(aes(xmin = q_1, xmax = q_2, ymin = 0, ymax = p_1), alpha = 0.2, fill = purple) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
+
+.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
+
+.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
+
+.purple.hi[产出效应]  .mono[>] .pink.hi[价格效应] .mono[==>]  厂商降价导致 .green.hi[总收益增加]
+
+]
+
+---
+### 价格变动的两种效应
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 4
+p_2 <- 6
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "x", y = "$") +
+  # geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
+  geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  # geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  # geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  # geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
+
+.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
+
+.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
+
+]
+
+---
+count: false
+### 价格变动的两种效应
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 4
+p_2 <- 6
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "x", y = "$") +
+  geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
+  # geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
+
+.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
+
+.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
+
+]
+
+---
+count: false
+### 价格变动的两种效应
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 4
+p_2 <- 6
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "x", y = "$") +
+  geom_rect(aes(xmin = 0, xmax = q_2, ymin = p_1, ymax = p_2), alpha = 0.2, fill = red_pink) +
+  geom_rect(aes(xmin = q_1, xmax = q_2, ymin = 0, ymax = p_1), alpha = 0.2, fill = purple) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
+
+.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
+
+.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
+
+.purple.hi[产出效应]  .mono[=] .pink.hi[价格效应] .mono[==>]  厂商降价导致 .green.hi[总收益不变]
+
+]
+
+---
+### 价格变动的两种效应
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 1
+p_2 <- 3
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "x", y = "$") +
+  # geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
+  geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  # geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  # geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  # geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
+
+.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
+
+.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
+
+]
+
+---
+count: false
+### 价格变动的两种效应
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 1
+p_2 <- 3
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "x", y = "$") +
+  geom_rect(aes(xmin = 0, xmax = q_1, ymin = 0, ymax = p_1), alpha = 0.2, fill = green) +
+  # geom_rect(aes(xmin = 0, xmax = q_2, ymin = 0, ymax = p_2), alpha = 0.2, fill = green) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
+
+.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
+
+.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
+
+.purple.hi[产出效应]  .mono[<] .pink.hi[价格效应] .mono[==>]  厂商降价导致 .green.hi[总收益减少]
+
+]
+
+---
+count: false
+### 价格变动的两种效应
+
+.more-left[
+```{r, echo = FALSE, fig.height = 5, fig.width = 5, dev = "svg"}
+demand <- function(x) 10 - x
+inv_demand <- function(x) 10 - x
+p_1 <- 1
+p_2 <- 3
+q_1 <- inv_demand(p_1) 
+q_2 <- inv_demand(p_2)
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = seq(0, 10, 1)) +
+  theme_market +
+  labs(x = "x", y = "$") +
+  geom_rect(aes(xmin = 0, xmax = q_2, ymin = p_1, ymax = p_2), alpha = 0.2, fill = red_pink) +
+  geom_rect(aes(xmin = q_1, xmax = q_2, ymin = 0, ymax = p_1), alpha = 0.2, fill = purple) +
+  stat_function(fun = demand, color = red_pink, size = 1) +
+  geom_point(x = q_1, y = p_1, color = met_slate, size = 2) +
+  geom_point(x = q_2, y = p_2, color = met_slate, size = 2) +
+  geom_segment(x = 0, xend = q_1, y = p_1, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = 0, xend = q_2, y = p_2, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_1, xend = q_1, y = 0, yend = p_1, color = met_slate, linetype = "dashed", size = 1) +
+  geom_segment(x = q_2, xend = q_2, y = 0, yend = p_2, color = met_slate, linetype = "dashed", size = 1) +
+  annotate("text", label = "D=AR", x = 8, y = 3.65, color = red_pink, family = cnfont, size = 9) 
+```
+]
+
+.less-right[
+$\pi(x) =xP_x-TC(x)$ ，但 $P_x$ 与 $x$ **反方向**运动，那么乘积如何?
+
+.pink.hi[价格效应] 是指产品价格下降，**已有**消费者支付更少了
+
+.purple.hi[产出效应] 是指产品价格下降，会**新增加**消费者购买产品
+
+.purple.hi[产出效应]  .mono[<] .pink.hi[价格效应] .mono[==>]  厂商降价导致 .green.hi[总收益减少]
+
+]
+
+
 
 ---
 ### 数学理解：一般独占厂商均衡与需求弹性
