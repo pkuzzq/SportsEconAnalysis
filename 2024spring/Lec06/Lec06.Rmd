@@ -403,13 +403,26 @@ $$
   - 区隔市场会改变成本函数与需求函数 → 意味着三级差别取价时的总产量可能较单一定价总产量或多或少。**当总产量变得更少时，一般社会福利会更低**
 
 ---
+### 三级差别取价：电影院票价
+
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/nSomYv.png height=530>
+]
+
+---
+### 三级差别取价：热刺队的票价结构
+
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/lei5ml.png height=450>
+]
+- 票价结构：14种不同类型座位：年龄(18-65)、视野。
+- 3种比赛类型。A（曼城、曼联等）B（阿斯顿维拉、水晶宫等）C（狼、莱斯特城等）
+
+---
 ### 思考：尖峰定价是差别取价么?
 
 - 除了对不同市场差别取价外，也可能在同一市场的不同时间差别取价 → **跨时差别取价**(intertemporal price disc.)
-- 尖峰定价法(peak-load pricing)
-  - 所有球迷都想在同一时段看比赛
-  - 晚高峰的滴滴打车更贵
-  
+
 ![C5h0ka](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/C5h0ka.png)
 
 ---
@@ -431,10 +444,15 @@ $$
 ---
 ### 二级差别取价
 - 实施条件：真实情况厂商无法看到每个个体的需求（支付意愿）。但厂商可以对***不同购买数量**设定**不同价格**
-    - 数量折扣（quantity discounts）是假设比赛质量一定，球迷消费体育赛事的边际效用会随着他们参加比赛的数量而下降
-    - 买一送一 buy one get one
-    - Personal Seat Licenses
+
 - 定价以购买数量为准则，因此也称为**数量差别取价**（quantity discrimination）；因不同购买量所支付价格不同，也称为**非线性定价法**（nonlinear pricing）
+
+    - 数量折扣（quantity discounts）是假设比赛质量一定，球迷消费体育赛事的边际效用会随着他们参加比赛的数量而下降
+    - Personal Seat Licenses
+    
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/NhfAR0.png>
+]
 
 ---
 ### 二级差别取价应用：两部定价法
