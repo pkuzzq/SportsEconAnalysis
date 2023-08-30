@@ -288,31 +288,35 @@ class: title-slide-section,center, middle, inverse
 ---
 ### 例子：球队胜率与上座率
 
-假设联盟总裁想知道哪些因素能提升比赛上座率最重要
+- 假设球队老板非常关心上座率，想知道哪些因素能够影响上座率? → 1 个 Y，n 个 X
 
-- 一个方法是用平均观众人数反映上座率现实情况，但是它无法反映变量间的关系
-
-- **理论或者常识**告诉我们球队获胜越多，观众就越多。把上座率ATT作为因变量，因为它是我们的**目标变量**，理论上我们认为它取决于胜率。而WPCT作自变量，是我们可以**操纵变量**。
-- 将理论**简化为模型** $ATT=f(WPCT)$ 
-- 可以**假设** $\frac{\partial ATT}{\partial WPCT} \gt 0$ 以与**理论描述一致**
-- 经过样本，**检验**上述观点的最直接方式是**散点图**。但这样无法精确计算胜率从0.5提高到0.51时，上座率会增加多少。因为提高胜率通常意味着要花钱买球员
-- 为了与样本结合，最简单的方法是将理论模型改写为**可回归的线性表达式**  $ATT_i= \beta + \tau \times WPCT_i + \varepsilon_i$
-  - $i$ 代表每支球队 
+- **理论或者常识**：球队获胜越多，观众就越多。把上座率ATT作为因变量，因为它是我们的**目标变量**，而WPCT作自变量，是期待的**操纵变量**
+- 根据理论抽象为**模型** $ATT=f(WPCT)$ → 前提：其他因素不再进入 
+- 为与**理论描述一致**，进一步**假设** $\frac{\partial ATT}{\partial WPCT} \gt 0$
+- 第一步，**检验**上述观点的最直接方式是经由**样本**制作**散点图**。但这样无法精确计算胜率对上座率影响值，通常提高胜率意味着多花钱
+- 第二步，由于对线性关系更感兴趣，进一步将理论模型改写为**总体线性表达式**(之后会有新称呼)  $ATT= \beta + \tau \times WPCT + e$
+- 第三步，选择一种**方法**进行对参数 $\tau$  进行**拟合**。使用最多的是：**一般最小二乘OLS**
+- 那么根据样本得到的**估计值** $\hat\tau$ 就那个**真实值** $\tau$ 么? 
 
 ---
 ### 例子：球队胜率与上座率
 
-- 接下来要选择一种**回归方法**，这里采取最广泛使用的**一般最小二乘OLS**对线性表达式进行**拟合**
-- 通过限定一些**回归假设**，我们就可以得到**估计值** $\hat\tau$ ，然而我们感兴趣的是**真实值** $\tau$ , 前者是否真的代表后者? → identification
+- 论证后者能够表达前者的过程，就是经济学论文的核心: .bb[识别](identification)
 
 --
 
-  - 举个例子：进校门人脸识别，闸机中有图片库和模型，用抽样照片去跟库里的匹配。两者匹配好肯定是根据某些算法进行的，当误差缩小到一定范围之后，闸门就会开放。现场照片就是 $\hat\tau$ ，而照片库里的我们就是 $\tau$ ，这个**过程**就是**识别** 
-  - 上面的例子中，至少有个库。但理论中的参数 $\tau$ 往往不知道(或存在但观察不到)，只能经过**理论建构、稳健性检验、排除竞争性理论**等方式**推断**(猜) → 识别过程无标准
+- 举个例子：进校门人脸识别，闸机中有图片库和模型，用抽样照片去跟库里的匹配。两者匹配好肯定是根据某些算法进行的，当误差缩小到一定范围之后，闸门就会开放。现场照片就是 $\hat\tau$ ，而照片库里的我们就是 $\tau$ ，这个**过程**就是**识别** 
+
+- 上面例子中，至少有个照片库里真有你的照片，但理论中的参数 $\tau$ 是不知道的，只能用估计值去猜 → **推断**
+<br> → **理论建构、稳健性检验、排除竞争性理论** 
+<br> → 是一种哲学行为
+
+--
+
 - 得到的估计值 $\hat\tau$ 至少存在两方面意义，统计学(理论)意义和经济学(现实)意义
   - 统计学意义（statistical significance），需要**统计推断**
-  - 经济学意义（economic significance，要看**效应值**与**经济学解释**
-- 若 $\tau$ 具有**因果性**，上述过程是**因果推断**
+  - 经济学意义（economic significance），要看**效应值**与**经济学解释**
+- 若真实值 $\tau$ 具有**因果性**，上述过程是**因果推断**
 
 ---
 ### 例子：球队胜率与上座率
@@ -320,11 +324,11 @@ class: title-slide-section,center, middle, inverse
 .center[ ATT =-2.4536+65.23 * WPCT ]
 - 告诉我们WPCT每增加一个单位(+0.001)，就会增加65.23个球迷到场。当把平均值WPCT=0.500代入等式，得到 30.163 或30163 球迷，这是当年的平均上座率
 - $R^2=0.311$ 反映**拟合度**(代表胜率能够解释31.1%的上座率变化)，t统计值代表显著性( $H_0 = 0,H_1 \ne 0$  )
-- 但是其余的 68.9% 呢? 说明还有其他很多因素会影响，基于以上结论的决策并没有足够说服力
+- 但是其余的 68.9% 呢? → .purple[质疑1: 模型的解释力度不够 → 研究问题是否足够重要?模型是否过度简化?]
   - 市场规模是一个**干扰因素**。纽约有8500万人，辛辛那提只有30万人 → **控制**
-  - 联赛差异（分区）是另一个干扰因素。AL和NL是存在差异的 → **控制**
-  - 最关键的，因为这两个因素很有可能会影响球队胜率，若是忽略它们会导致**遗漏变量偏差**，产生所谓的**内生性**问题，导致我们用 $\hat\tau$ 代表 $\tau$ 是**偏误**的
-- 我们将可回归的线性表达式改为 $ATT_i=\boldsymbol{X} \beta + \tau \times WPCT_i + \varepsilon_i$
+  - 联赛差异（分区）是另一个干扰因素。AL和NL的竞争力度是有差异的 → **控制**
+  - 最关键的：这两个因素同时影响球队胜率和上座率。若忽略它们会导致**遗漏变量偏差**，产生所谓的**内生性**问题 → .purple[质疑 2:用估计值代替真实值是**偏误**的]
+- 为此，将总体线性表达式**修正**为 $ATT=\boldsymbol{X} \beta + \tau \times WPCT + e$
   - 市场规模与联赛差异进入了 $\boldsymbol{X}\beta$
 
 ---
@@ -333,15 +337,14 @@ class: title-slide-section,center, middle, inverse
 .center[ATT=-.421+1.174POP-2.014 LEAGUE + 59.31*WPCT
 <img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/WanJH1.png height=230>]
 
-- 练习：系数如何解释？具有如何意义？Dummy(AL=1) vs Continuous
-- 讨论：59.31是否具有**因果性**?
+- 那么59.31就能代表真实值了么?
 - 59.310；17.939；3.31；1.96；0.003；0.005
+- 练习：系数如何解释？具有如何意义？Dummy(AL=1) vs Continuous
 
 
 ---
 class: title-slide-section,inverse,middle
-# 如何去找“真相”
-
+# **假设**已有研究问题，**假设**想得到因果
 ---
 class: center,middle
 
@@ -353,61 +356,57 @@ class: center,middle
 <br>
 ![BigPicture](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/BigPicture.png)
 
-- 样本(estmators) .mono[-->] 事实(=estmands?) .mono[-->] 因果模型(=parameter?) .mono[-->] Knowledge
-- 2.2 → 2.21 → .bb[2.21] → 2.21!!!   
+- 观察样本(estmators) .mono[-->] 客观事实(=estmands) .mono[-->] 因果模型(=parameter) .mono[-->] Knowledge
 
 ---
 class: title-slide-section, middle, inverse
-# 从事实到因果模型：避免遗漏变量偏误与控制变量滥用
+# 从客观事实到因果模型I <br> → 平衡遗漏变量与过度控制
 ---
 
 ### 理论、总体分布与样本
 
 <br>
-
 <img src="./figs/BigPicture1.png">
-
-
----
-
-增加控制变量确实可以提高回归模型，让系数趋向于“因果”，但也不控制变量越多越好。为了说明这个道理，引入**遗漏变量偏误**的概念
-
-.hi-pink[例子：教育回报率]
+- 增加控制变量确实可以提高回归模型解释力，但过度控制会产生失去模型的意义<br> → 引入遗漏变量偏误公式工具
+- .hi-pink[例子：教育回报率]
 ---
 ### 遗漏变量偏误公式
 
-- 我们使用遗漏变量偏误公式(Omitted Variable Bias Formula)描述 .hi-slate[当回归包含不同的控制变量时，回归结果之间存在的关系。] 它提供了**长回归方程**和**短回归方程**估计系数之间的联系。
-- 将所有控制变量简化为**家庭背景、智力和动机**所组成的控制变量集合，标为 $\left( {A}_i \right)$ 并记为“能力”。在控制了能力后，对工资关于教育水平进行回归的方程就可以写成：
+- **长回归方程**和**短回归方程**
+- 除了教育以外，其他的控制如**家庭背景、智力和动机**标为 $\left( {A}_i \right)$ 并记为“能力”
 
 $$
 \begin{align}
   {Y}_{i} &= \alpha + \tau {s}_i + {A}_{i}'\gamma + e_i \tag{1}
 \end{align}
 $$
-- 其中, $\alpha, \tau, \gamma$ 是总体回归系数（没有跟样本结合）, $e_{i}$ 是回归残差。给定 $A_{i}$, 如果CIA成立（ $e_i$ 与其他回归元不再相关 ）, 那么系数 $\tau$ 具有因果性。但在实际中, 能力是很难度量的。那么, 假如回归方程（1）遗漏了“能力"，此时回归方程变为：
+- 注意, $\alpha, \tau, \gamma$ 是总体意义上的, $e_{i}$ 表示扰动项。暂且假设系数 $\tau$ 具有因果性
+- 但问题是, 能力是看不到的，且很难精准测量。假如研究者将方程（1）“能力"遗漏了
 $$
 \begin{align}
   {Y}_{i} &= \alpha + \beta {s}_i + v_i \tag{2}
 \end{align}
 $$
 
----
-### 遗漏变量偏误公式
-
-我们将方程 (2) 称为**短回归方程**, (1) 称为**长回归方程**。
-那么**遗漏变量偏误公式 (Omitted Variable Bias Formula)**为：
+- **遗漏变量偏误公式 (Omitted Variable Bias Formula)**为：
 
 $$
 \begin{align}
   \hat \beta_{ols} =\dfrac{\mathop{{Cov}} \left( {Y}_{i},\, {s}_i \right)}{\mathop{{Var}} \left( {s}_i \right)} = \tau + \gamma' \delta_{As}
 \end{align}
 $$
-其中, $\delta_{As}$ 是对 $A_{i}$ 关于 $s_{i}$ 回归得到的系数。
+- 其中, $\delta_{As}$ 是对 $A_{i}$ 关于 $s_{i}$ 回归得到的系数
 
-该公式表明：**短回归系数**等于**长回归系数**加上**bias**，等于**遗漏变量效应**乘以**遗漏变量对自变量的回归系数**。
+---
+### 遗漏变量偏误公式
 
-因此，满足以下两个条件，那么长、短回归方程对教育回报率的估计将一样:
- (.hi-slate[a]) 受教育程度与能力大小无关 $\left( \delta_{As} = 0 \right)$ **或者** (.hi-slate[b]) 在控制受教育程度后，能力大小与工资多少无关 $\left( \gamma = 0 \right)$.
+- 该公式表明：**短回归系数**等于**长回归系数**加上**bias**，等于**遗漏变量效应**乘以**遗漏变量对自变量的回归系数**
+
+- 若长、短回归方程对教育回报率的估计值一样，以下2个条件至少有 1 个成立:
+    
+    1.受教育程度与能力大小无关 $\left( \delta_{As} = 0 \right)$
+    
+    2.在控制受教育程度后，能力大小与工资多少无关 $\left( \gamma = 0 \right)$.
  
 ---
 ### 例子(MHE)
@@ -433,7 +432,10 @@ column_spec(1, bold = T, italic = F)
 tab321
 ```
 
-- 在这里，我们有四种增加控制变量的方式，关于工资对上学年限的回归（来自NLSY，美国青年纵向调查）
+MHE给出了4种增加控制变量的方式，关于工资(Y)对上学年限(X)的回归（来自NLSY，美国青年纵向调查）
+
+the regression of Y on X , regress Y on X
+
 ---
 ### 例子(MHE)
 
@@ -467,7 +469,7 @@ tab321 %>% column_spec(5, color = red_pink)
 
 - .hi[第4列] (第3列又控制 AFQT.super[.pink[†]] 分数) 意味着每额外获得1年教育，工资有8.7%的增长。 
 
-.footnote[.pink[†] *AFQT* is *Armed Forces Qualification Test，武装部队资格测验*, 反映能力]
+.footnote[.pink[†] 武装部队资格测验（AFQT）是美国军队招募的基本资格测验。它是由美国国防部于1950年开发的一个筛查测试，用于评估一个人是否符合入伍资格。]
 ---
 ### 例子(MHE)
 
@@ -490,10 +492,9 @@ $$
 ---
 ### 遗漏变量偏误公式
 
-- 关注最想要的
-OVB公式的使用**并不**要求每一个回归模型都能正确识别因果关系。该公式比较了.hi-purple[短模型]中的回归系数和.hi-pink[长模型]中同一变量的回归系数。.super[.pink[†]]
+- OVB公式**并不**要求每一个回归模型都能正确识别因果关系。该公式比较了.hi-purple[短模型]中的回归系数和.hi-pink[长模型]中同一变量的回归系数。.super[.pink[†]]
 
-- **条件独立假设**的重要性
+- $\tau$ 是否因果还应该有其他的假设：**条件独立假设** → 更理想的方式是RCT
 
 $$
 \begin{align}
@@ -501,15 +502,12 @@ $$
 \end{align}
 $$
 
-- 可信的条件独立假设? → 随机分配
 
-### 坏的控制变量
+### 加入坏的控制变量 → 过度控制问题
 
 - 好的控制变量是发生在干预变量.super[.pink[†]]之前或取值不受自变量影响
 
-- 仍以教育收益率为例，个人职业和就业行业就不是好的控制变量。
-
-- 为什么？
+- 仍以教育收益率为例，个人职业和就业行业就不是好的控制变量
 
 ???
 - 因为个人职业及就业行业往往是教育完成之后个人选择的结果，也就是说，这些变量发生在教育之后，可能受到教育的影响。
@@ -542,20 +540,20 @@ column_spec(6, color = red_pink)
 --
 
 <br><br>
-其实：我们很难解释是何种原因导致了这种下降。
+导致很难解释是何种原因导致了系数下降
 
-教育水平的系数变小可能仅仅是**选择偏误**的一种表现。因此最好还是用不由教育水平决定的那些变量作为控制变量。
+教育水平的系数变小可能仅仅是(过度控制导致的)**选择偏误**表现。因此最好还是用不由教育水平决定的那些变量作为控制变量
 
 ---
 ### 如何加入控制变量
 
-- 有些控制变量是不合格的，将其加入回归固然可以改变回归系数，但实际上却不该将其加人。**不合格的控制变量**会有严重的问题（比如某些药会导致高血压）。
-
 - **时间原则**是普遍被接受的，也就是**考虑控制变量被决定的时间**。一般来说在自变量被记录之前就决定的变量大部分是好控制。
-- 但是某些情况下，要考虑到**人的预期**。比如重大赛事前会超前部署
+
+- 但是某些情况下，要考虑到**人的预期**。比如赛事的超前部署、消费的预期
+
 ---
 class: title-slide-section,inverse, middle
-# 从事实到因果模型：避免内生性问题
+# 从客观事实到因果模型II<br> → 避免内生性问题(含遗漏变量问题)
 
 ---
 
@@ -574,9 +572,10 @@ $$
 \end{equation}
 $$
 
-- 那么可以说这个线性模型存在内生性问题。
-  - 无法识别自变量的因果关系系数的情形（常见于经济类文章）
-  - 若无法将内生性控制在可信服的水平下，那么回归结果基本是无效的
+- 那么可以说这个线性模型存在**内生性问题(endogeneity issue)**
+
+  - 大雷：没有指出自变量的因果关系系数的情形（常见于经济类文章）→ Reject!
+  - 小雷：无法控制在可信服的水平下 → No top journal
 
 ---
 
@@ -705,7 +704,7 @@ $$
 
 ---
 class: title-slide-section,inverse, middle
-# 事实是建立在总体意义上的模型
+# 经验研究中的客观事实是什么?<br> → 总体意义上的模型
 
 ---
 
@@ -765,90 +764,7 @@ $$Var(Y)=E[V(Y|X)]+V[E(Y|X)]$$
 
 ---
 class: title-slide-section,inverse,middle
-# 事实是良好且能够被认知的
-
----
-### 条件期望函数及其误差项的优良性质
-
-- **性质1** (期望迭代法则,law of iterated expectation)
-$$
-E[E[Y \mid X]]=E[Y]
-$$
-
- $E[Y|X]$ 的期望值是 $[Y]$ 的无条件期望值。
- <br/><br/>
-例如：
-![Fx16GT](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/Fx16GT.png)
----
-- **性质1**推论
-$$E\left[E[Y|X_{1},X_{2}]|X_{1}\right]=E[Y|X_{1}]$$
-    - 内部期望值以X1和X2同时为条件,外部期望值只以X1为条件。迭代后的期望值可以得到简单的答案E[Y|X1],即只以X1为条件的期望值。《E》表述为"较小的信息集获胜" → 以小谋大
-<br/><br/>
-例：
-![Q65T2b](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/Q65T2b.png)
-
----
-- **性质2** (线性) $$E[a(X)Y+b(X)|X]=a(X)E[Y|X]+b(X)$$ 对于函数 $a(\cdot)$ and $b(\cdot)$. 
- <br/><br/>
- <br/><br/>
-
-- **性质3**（独立意味着均值独立）
- <br/><br/>
-若 $X$ 与 $Y$ 独立, 则 $E[Y|X]=E[Y]$
-
----
-- **性质3**的证明 (以离散变量为例): 
-$$
-\begin{eqnarray}
-E[Y|X]&=&\sum_{i=1}^{N}y_{i}P(Y=y_{i}|X) \\
-	  &=&\sum_{i=1}^{N}y_{i}\frac{P(Y=y_{i},X)}{P(X)} \\
-	  &=&\sum_{i=1}^{N}y_{i}\frac{P(Y=y_{i})\times P(X)}{P(X)} 
-	  &=&E[Y].
-\end{eqnarray}
-$$
-用到了 $P(Y=y,X=x)=P(X=x)P(Y=y)$ .
-
----
-    
-- **性质4** （均值独立意味着不相干）
-<br/>
-若 $E[Y|X]=E[Y]$, 则 $Cov(X,Y)=0$.
-    -  $E[Y|X]=E[Y]$ is 均值独立(**mean independence**)
-    - 记住: 均值独立意味着不相干，反过来不一定成立.
-
-- **性质5** （条件期望值是最小均值平方误差）
-<br/>
-假设对于任意函数 $g$ 有 $E[Y^{2}]<\infty$ 并 $E[g(X)]<\infty$ , 那么 $$E[(Y-\mu(X))^{2}]\leq E[(Y-g(X))^{2}]$$ 
-其中 $\mu(X)=E[Y|X]$
-<br/>
-解读:
-    - 假设使用某种函数形式 $g$ 和数据 $X$ 来解释 $Y$
-    -  那么 $g$ 的最小均方误（ **the mean squared error** ）就是条件期望。
-
-
----
-
-- **性质5**的证明:
-$$
-\begin{eqnarray}
-E[(Y-g(X))^{2}]	&=&E[\left\{ \left(Y-\mu(X)\right)+\left(\mu(X)-g(X)\right)\right\} ^{2}]\\
-	&=&E\left[\left(Y-\mu(X)\right)^{2}\right]+E\left[\left(\mu(X)-g(X)\right)^{2}\right]\\
-	&+& 2E\left[\left(Y-\mu(X)\right)\left(\mu(X)-g(X)\right)\right].
-\end{eqnarray}
-$$
-使用期望迭代法则
-$$
-\begin{eqnarray}
-E\left[\left(Y-\mu(X)\right)\left(\mu(X)-g(X)\right)\right]	&=&E\left\{E\left[\left(Y-\mu(X)\right)\left(\mu(X)-g(X)\right)|X\right]\right\} \\
-	&=&E\left\{ \left(\mu(X)-g(X)\right)\left(E[Y|X]-\mu(X)\right)\right\} \\
-	&=&0
-\end{eqnarray}
-$$
-所以，
-$$
-E[(Y-g(X))^{2}]=E\left[\left(Y-\mu(X)\right)^{2}\right]+E\left[\left(\mu(X)-g(X)\right)^{2}\right]
-$$ 
-上式取最小值，当且仅当 $g(X)=\mu(X)$.
+# 特性良好且能被认知的客观事实<br> → 经验研究是有边界的
 
 ---
 ### 条件期望函数及其误差项的优良性质
@@ -870,7 +786,7 @@ $$ e = Y - E(Y|X) = Y - m(x) $$
 ]
 
 ---
-### CEF与可回归的模型间的关系
+### CEF与总体模型间的关系
 
 
 step1: 定义条件期望函数 $m(x) = E(Y|X)$
@@ -1081,17 +997,99 @@ CEF是给定 ${X}_{i}$ 能够预测 ${Y}_{i}$ 最好预测方式.
 - step 7：计算条件期望 $E(Y \mid X=x)$ 
 
 ---
+### 条件期望函数及其误差项的优良性质
+
+- **性质1** (期望迭代法则,law of iterated expectation)
+$$
+E[E[Y \mid X]]=E[Y]
+$$
+
+ $E[Y|X]$ 的期望值是 $[Y]$ 的无条件期望值。
+ <br/><br/>
+例如：
+![Fx16GT](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/Fx16GT.png)
+---
+- **性质1**推论
+$$E\left[E[Y|X_{1},X_{2}]|X_{1}\right]=E[Y|X_{1}]$$
+    - 内部期望值以X1和X2同时为条件,外部期望值只以X1为条件。迭代后的期望值可以得到简单的答案E[Y|X1],即只以X1为条件的期望值。《E》表述为"较小的信息集获胜" → 以小谋大
+<br/><br/>
+例：
+![Q65T2b](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/Q65T2b.png)
+
+---
+- **性质2** (线性) $$E[a(X)Y+b(X)|X]=a(X)E[Y|X]+b(X)$$ 对于函数 $a(\cdot)$ and $b(\cdot)$. 
+ <br/><br/>
+ <br/><br/>
+
+- **性质3**（独立意味着均值独立）
+ <br/><br/>
+若 $X$ 与 $Y$ 独立, 则 $E[Y|X]=E[Y]$
+
+---
+- **性质3**的证明 (以离散变量为例): 
+$$
+\begin{eqnarray}
+E[Y|X]&=&\sum_{i=1}^{N}y_{i}P(Y=y_{i}|X) \\
+	  &=&\sum_{i=1}^{N}y_{i}\frac{P(Y=y_{i},X)}{P(X)} \\
+	  &=&\sum_{i=1}^{N}y_{i}\frac{P(Y=y_{i})\times P(X)}{P(X)} 
+	  &=&E[Y].
+\end{eqnarray}
+$$
+用到了 $P(Y=y,X=x)=P(X=x)P(Y=y)$ .
+
+---
+    
+- **性质4** （均值独立意味着不相干）
+<br/>
+若 $E[Y|X]=E[Y]$, 则 $Cov(X,Y)=0$.
+    -  $E[Y|X]=E[Y]$ is 均值独立(**mean independence**)
+    - 记住: 均值独立意味着不相干，反过来不一定成立.
+
+- **性质5** （条件期望值是最小均值平方误差）
+<br/>
+假设对于任意函数 $g$ 有 $E[Y^{2}]<\infty$ 并 $E[g(X)]<\infty$ , 那么 $$E[(Y-\mu(X))^{2}]\leq E[(Y-g(X))^{2}]$$ 
+其中 $\mu(X)=E[Y|X]$
+<br/>
+解读:
+    - 假设使用某种函数形式 $g$ 和数据 $X$ 来解释 $Y$
+    -  那么 $g$ 的最小均方误（ **the mean squared error** ）就是条件期望。
+
+
+---
+
+- **性质5**的证明:
+$$
+\begin{eqnarray}
+E[(Y-g(X))^{2}]	&=&E[\left\{ \left(Y-\mu(X)\right)+\left(\mu(X)-g(X)\right)\right\} ^{2}]\\
+	&=&E\left[\left(Y-\mu(X)\right)^{2}\right]+E\left[\left(\mu(X)-g(X)\right)^{2}\right]\\
+	&+& 2E\left[\left(Y-\mu(X)\right)\left(\mu(X)-g(X)\right)\right].
+\end{eqnarray}
+$$
+使用期望迭代法则
+$$
+\begin{eqnarray}
+E\left[\left(Y-\mu(X)\right)\left(\mu(X)-g(X)\right)\right]	&=&E\left\{E\left[\left(Y-\mu(X)\right)\left(\mu(X)-g(X)\right)|X\right]\right\} \\
+	&=&E\left\{ \left(\mu(X)-g(X)\right)\left(E[Y|X]-\mu(X)\right)\right\} \\
+	&=&0
+\end{eqnarray}
+$$
+所以，
+$$
+E[(Y-g(X))^{2}]=E\left[\left(Y-\mu(X)\right)^{2}\right]+E\left[\left(\mu(X)-g(X)\right)^{2}\right]
+$$ 
+上式取最小值，当且仅当 $g(X)=\mu(X)$.
+
+
+---
 ### 经验研究为什么从LPF而不是CEF开始？
 
-- 简洁且经济含义明确：线性CEF也是常见的线性回归模型(linear regression model)。其中一个原因是 $m(x1,x2)$ 完整线性CEF为 $m\left(x_{1}, x_{2}\right)=x_{1} \beta_{1}+x_{2} \beta_{2}+x_{1}^{2} \beta_{3}+x_{2}^{2} \beta_{4}+x_{1} x_{2} \beta_{5}+\beta_{6}$  
+- .bb[Meaningful] !!  → 实证模型的建立基于的理论模型
 
-CEF是具有好的预测性质，那么什么是“好”的**准则**？
+- 线性CEF不是也有经济意义么? 未必。
+<br> → 一个原因是：总体模型 $m(x1,x2)$ 等价线性CEF形式为 $m\left(x_{1}, x_{2}\right)=x_{1} \beta_{1}+x_{2} \beta_{2}+x_{1}^{2} \beta_{3}+x_{2}^{2} \beta_{4}+x_{1} x_{2} \beta_{5}+\beta_{6}$  
 
-定义**损失函数(loss function)**,  表达为常用的二次型形式：
-
-$$ L(Y, g(x))=(Y-g(x))^{2} $$
-其中 $L(·)$ 是r.v.，取期望得**均值平方误差（mean squared error，MSE）**，简称**均方误**
-$$ R(Y, g(x)) = E[L(Y, g(x))] = E[(Y-g(x))^{2}] $$
+- 转向LPF(linear projection function) 
+<br> $m^{LPF}\left(x_{1}, x_{2}\right)=x_{1} \beta_{1}+x_{2}\beta_{2}+\beta_{3}$ 
 
 ---
 ### 经验研究为什么从LPF而不是CEF开始？
@@ -1116,7 +1114,18 @@ $E(X_i e_i) = 0$ (矩阵形式为 $E[Xe]=0$ )
 ---
 ### 经验研究为什么从LPF而不是CEF开始？
 
-- LPF是MMSE，CEF也是MMSE。继续使用最小化MSE**准则**：
+- .bb[补充一个知识点]:CEF 还有一个非常好的性质 → 预测
+
+- 好”的**准则**。定义**损失函数(loss function)**,  表达为常用的二次型形式：
+
+$$ L(Y, g(x))=(Y-g(x))^{2} $$
+- 其中 $L(·)$ 是r.v.，取期望得**均值平方误差（mean squared error，MSE）**，简称**均方误**
+$$ R(Y, g(x)) = E[L(Y, g(x))] = E[(Y-g(x))^{2}] $$
+
+---
+### 经验研究为什么从LPF而不是CEF开始？
+
+- CEF是MMSE → LPF 也是MMSE。继续使用最小化MSE**准则**：
 $$
 \begin{align}
   \beta = \underset{b}{{arg min}}\thinspace \mathop{E}\left[ \left( m({X_i})-{X_i}^{\prime} b \right)^2 \right]
@@ -1125,8 +1134,8 @@ $$
 
 - 回归与条件期望函数定理（ Regression-CEF Theorem）
 - 结论：
-  - **LPF同样是CEF的MMSE和BLP**
-  - 通常而言，CEF不一定是线性的；但CEF若是线性的, 那么LPF就是CEF
+  - **LPF是CEF的MMSE(最小均方误)和BLP(最优线性预测)**
+  - 通常而言，CEF不一定是线性的(才需要多项式表达) <br> 但CEF若是线性的, 那么LPF就是CEF
 
 ---
 class: clear, middle, center
@@ -1221,13 +1230,13 @@ gg_cef +
 - .hi-pink.bb[实际上]的做法是使用 LPF 进行建模(to see is to believe)
 
 - 由于只有 **线性CEF .mono[=] LPF**，即使使用了**模型设定**正确的LPF，      
-一部分信息**先天地**进入到了干扰项 $e$ ，所以**必须**假定 **干扰项条件均值独立于自变量** ，即  $E(e \mid X) = E(e)=c$ ，才保证LPF的估计系数距离线性CEF的真实值不远
+一部分信息(高阶项)也会**先天地**进入到了干扰项 $e$ ，所以**必须**假定 **干扰项条件均值独立于自变量** ，即  $E(e \mid X) = E(e)=c$ ，才保证LPF的估计系数距离线性CEF的真实值不远
 
-- 即便统计推断可靠，但线性CEF出现概率仍旧很小，这就凸显了**识别过程的重要性**
+- 即便统计推断可靠，总体是线性CEF的形式仍然是概率事件，这就凸显了**识别过程的重要性**
 
 ---
 class: title-slide-section,inverse, middle
-# 从样本到事实：原材料的重要性
+# 从观测样本到客观事实 <br> → 避免 Garbage in, Garbage out
 
 ---
 
@@ -1302,7 +1311,7 @@ $$
 
 - **总体**
 $\hat{\boldsymbol{\beta}}_{ols}={E}\left[\boldsymbol{X} \boldsymbol{X}^{\prime}\right]^{-1} {E}[\boldsymbol{X} Y]$ 
-- **样本** $\hat{\boldsymbol{\beta}}_{ols}=\left(\sum_{i} X_{i} X_{i}^{\prime}\right)^{-1}\left(\sum_{i} X_{i} Y_{i}\right)$
+- **样本** $\hat{\boldsymbol{\beta}}^{s}_{ols}=\left(\sum_{i} X_{i} X_{i}^{\prime}\right)^{-1}\left(\sum_{i} X_{i} Y_{i}\right)$
  
 .footnote[.pink[†]
 矩方法(method-of-moments) 。根据大数定律和中心极限定理使用样本矩 $\dfrac{1}{n}\sum_i {X}_{i} {X}_{i}'$ 估计总体矩 $\mathop{E}\left[{X}_{i} {X}_{i}' \right]$. 还可以使用其他估计方法, _e.g._ ${Y}_{i}$ 给定 ${X}_{i}$ 去最小化 ${Y}_{i}$ 的MSE.
@@ -1330,13 +1339,24 @@ $\mathop{E}\left[ \left( {Y}_{i} - {X}_{i}'\beta \right)^2 \mid {X}_{i} \right] 
 - 标准差(SD)是总体估计值(是随机变量)分布(未知但存在)的标准差；标准误(SE，报告)是样本估计值的均值的分布
 
 - 使用**样本估计值(也是随机变量)**的分布均值来推断总体估计值 <br> →
-样本估计值的宽，导致抽样的误差就越大
+样本估计值分布宽，导致抽样的误差就越大
 
   - **增加的统计的power**，>80%
 
   - 统计软件中会报告SE
 
 ---
+class:center,middle
+### 研究的“山鸡精神”
+
+.center[
+<video controls width="800" height="500">
+  <source src="./video/山鸡.mp4", type="video/mp4">
+</video>
+]
+
+---
+
 class:center,middle
 
 .pull-left[<img src="figs/power.jpg">
@@ -1350,23 +1370,16 @@ class:center,middle
 ### Type I/II error
 
 .center[
-```{R echo=FALSE}
-library(htmltools)
-library(shiny)
-
-tags$video(
-  tags$source(src ="./video/error.mp4", type = "video/mp4"),
-  type = "video/mp4",
-  width = "840",
-  height = "460",
-  controls = TRUE
-)
-```
+<video controls width="800" height="500">
+  <source src="./video/error.mp4", type="video/mp4">
+  <track label="中文" kind="subtitles" srclang="zh" src="./video/error.srt" default>
+</video>
 ]
+
 
 ---
 class: title-slide-section,inverse,middle
-# 潜在结果框架下的因果模型   
+# 因果模型 <br> → 建立在潜在结果框架之下   
 
 ---
 ### 理论、总体分布与样本
@@ -1826,7 +1839,7 @@ $$
   \color{#6A5ACD}{{Y}_{i}} = \alpha + \tau \color{#e64173}{s_i} + \eta_i \tag{B}
 \end{align}
 $$
--  $(\text{A})$ 式中 $\tau$ 是**真实处置效应**，而 $(\text{B})$ 式$\tau$ 的 **样本估计值** $\hat \tau$ 通常会因为 $s_i$ 的**样本选择问题**产生偏误
+-  $(\text{A})$ 式中 $\tau$ 是**真实处置效应**，而 $(\text{B})$ 式 $\tau$ 的 **样本估计值** $\hat\tau$ 通常会因为 $s_i$ 的**样本选择问题**产生偏误
 - 文章的**研究设计**中说明如何能得到真实处置效应(内生性问题必须说明)
 
 ---
@@ -1890,7 +1903,7 @@ $$
 
 ---
 class: title-slide-section,inverse, middle
-# 从样本出发寻找“真相”
+# 从观测样本到因果模型<br> → 必须排除的偏误
 
 ---
 
@@ -1957,7 +1970,7 @@ $$Y_{i}(0)=\alpha+\beta X_{i}+e_{i}$$
 ---
 
 class: title-slide-section,inverse, middle
-## 从总体理解，从样本着手：偏误类型与解决办法
+## 从观测样本到因果模型<br> → 对症下药: 偏误类型与解决办法
 
 ---
 ### 有向无环图

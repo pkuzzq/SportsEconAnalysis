@@ -1,0 +1,107 @@
+/*
+Theme Name: Preferential Child
+Description: A <a href='http://codex.wordpress.org/Child_Themes'>Child Theme</a> for the Preferential Wordpress Theme. If you plan to do a lot of file modifications we recommend to use this Theme instead of the original Theme. Updating wil be much easier and you won't lose your changes.
+Version: 1.0
+Author: Styled Themes
+Author URI: http://www.styledthemes.com
+Template: preferential
+*/
+
+
+
+/*Add your own styles below*/
+#pref-main-section, #pref-bottom, #pref-social-content {
+  font-size: 1rem !important;
+}
+
+#pref-main-section {
+    padding: 0rem 0;
+}
+
+ /*call to action height*/
+#pref-cta {
+    padding: 0.5rem 0;
+    text-align: center;
+}
+
+/*change headers to not bold*/
+h1,h2,h3,h4,h5,h6,h7 {
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	line-height:1.1;
+	margin: 0.75rem 0;
+}
+
+/*special font for Sport$Biz intro widget
+h7 {
+	font-size: 1.8 rem;
+	line-height: 1.5;
+	font-weight: normal;
+}*/
+
+.widget h7 {
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.5;
+	font-weight: normal;
+}
+
+
+/*change dk blue to custom*/
+blockquote.darkblue {
+	border-color: #494b79;
+}
+mark.darkblue {
+	background-color: #494b79;
+}
+.border-darkblue {
+	border-color: #494b79;
+}
+ul.list-checkmark.darkblue li:before {
+	color: #494b79;
+}
+.pref-img-box.darkblue {
+	background-color: #494b79;
+	color: #cdd9e5;
+}
+.pref-content-box.darkblue {
+	background-color: #494b79;
+}
+.action-button.darkblue {
+	background-color:#494b79;
+	color: #fff;
+}
+.pref-icon-box.darkblue h3 {
+	background-color: #494b79;
+	color: #fff;
+}
+.progress-bar-darkblue {
+  background-color: #494b79;
+}
+.panel.darkblue {
+	border-color: #494b79;
+}
+.nav-tabs.darkblue > li.active > a:focus {
+  background-color: #494b79;
+}
+.pref-faq-label {
+	display: inline-block;
+	padding: 2px 10px 2px 10px;
+	background: #494b79;
+	color: #FFF;
+	text-transform: uppercase;
+	vertical-align: top;
+	margin-right: 6px;
+	border-radius: 3px;
+}
+.pref-promo-box.darkblue h3 {
+	background-color: #494b79;
+	color: #fff;
+}
+.widget.halfbar.darkblue .barouter {
+		border-color: #494b79;
+	}
+.widget.header.darkblue h3 {
+		background-color: #494b79;
+	}
+.table-darkblue thead {background-color: #494b79;color: #fff;}
+.table-darkblue {border-color: #494b79;}

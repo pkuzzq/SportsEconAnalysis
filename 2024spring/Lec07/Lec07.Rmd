@@ -370,7 +370,6 @@ class: title-slide-section, middle, inverse
 .center[
 <video controls width="700" height="500">
   <source src="./video/YankeeStadium!.mp4" type="video/mp4">
-  <track label="中文" kind="subtitles" srclang="zh" src="mycaptions.vtt" default>
 </video>
 ]
 
@@ -403,9 +402,10 @@ class: title-slide-section, middle, inverse
 ---
 class: title-slide-section, middle, inverse
 
-# 场地设施的空间利用
+# 丰富空间利用增加收入
+
 ---
-### 空间利用决定了球队收入
+### 豪华包厢、专属座位区
 
 - 新体育设施对球队收入最大影响的部分是：.b[豪华包厢]和.b[特殊座位]。
 
@@ -432,9 +432,6 @@ class: title-slide-section, middle, inverse
 
 - NFL2016年市值最高的5支球队，**拥有的体育场年龄均小于20年**
 - 其中3支球队在联盟中拥有**最多豪华包厢**，分别是达拉斯牛仔、华盛顿指挥官和纽约巨人
-
-???
-举个豪华包厢的例子
 
 ---
 ### 场地规模与形状：棒球和橄榄球
@@ -493,12 +490,21 @@ class: title-slide-section, middle, inverse
 - 20世纪80年后期，**单一用途球场**规模和形状更为合理
 - **最佳观赏区离球员更近、数量更多**。橄榄球场的A和H，即便高层的AA和HH区，也是好区域。角端区的座位数减少到最低，如BB和GG区 → 2/3座位都在中间，1/3区域在端区和角区；圆形场地则相反
 - **棒球场回归传统**。更多座位在本垒和内野附近；新建球场与100多年前场地非常相似
+
 ---
+### 例子：圣路易斯红雀 St. Louis Cardinals - Busch Stadium
 
 .center[
-<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/fJauXP.png height=555>
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/kdwxoj.jpg height=500>
 ]
 
+
+---
+### 例子：圣路易斯红雀 St. Louis Cardinals - Busch Stadium
+
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/fJauXP.png height=500>
+]
 
 ---
 ### 足球和橄榄球难以共融
