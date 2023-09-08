@@ -1941,7 +1941,7 @@ sr_conditions +
 
 .pink[Q: ] 厂商何时运营？何时歇业？
 
-.pink[A: ] 价格接受厂商，是否歇业完全依赖市场价格
+.pink[A: ] 价格接受厂商，是否歇业完全依赖市场价格π
 
 1. .hi.purple[SRAC] .mono[<] P <br> .mono[-->] .green[有利润]
 
