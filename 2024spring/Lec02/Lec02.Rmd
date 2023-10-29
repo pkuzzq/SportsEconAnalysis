@@ -555,7 +555,6 @@ ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
 ---
 
 ### 讨论
-
 **Q:** 根据下面的表格，如果价格是59，消费者会购买多少个单位？购买这一数量的产品会有多大的好处？提示：购买行为是边际上的决策；消费福利是总体的。
 
 ```{R, echo = F, escape = F}
@@ -571,6 +570,7 @@ data.frame(
 row_spec(1:7, color = met_slate) %>%
 row_spec(1:7, extra_css = "line-height: 110%;")
 ```
+
 ???
 **答案是** .pink[ 购买3单位。消费盈余是235 .mono[-] 3 .mono[×] 59 .mono[=] 58.]
 
