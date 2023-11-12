@@ -257,7 +257,7 @@ tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", h
     row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
 }
 ```
-class: title-slide-section, middle, inverse
+class: title-slide-section, middle
 
 ### 讲授路径（非常重要）
 
