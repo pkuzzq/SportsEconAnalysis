@@ -4,7 +4,7 @@
     <title>体育经济分析: 原理与应用</title>
     <meta charset="utf-8" />
     <meta name="author" content="周正卿" />
-    <meta name="date" content="2023-09-01" />
+    <meta name="date" content="2023-12-02" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
@@ -24,7 +24,7 @@ class: center, middle, inverse, title-slide
 ### 周正卿
 ]
 .date[
-### 01 September 2023
+### 02 December 2023
 ]
 
 ---
@@ -39,8 +39,7 @@ class: title-slide-section,inverse, middle
 ### 课程进度
 
 - 今天：差别取价
-    
----
+
 ---
 
 class: title-slide-section,inverse, middle
@@ -76,10 +75,10 @@ class: title-slide-section,inverse, middle
 ### 应用：可变票价与动态票价
 
 - **可变票价**与**动态票价**是体育赛事门票取价中最常见的两种取价策略
-- 可变票价（variable ticket pricing，VTP）：对季前赛、常规赛和季后赛，以及对分区对手或热门对手的比赛收取不同的价格
+- 可变票价（variable ticket pricing，VTP）：预定的标准（对手、比赛轮次或比赛日）提前设定门票价格。这种定价方式在销售开始前就已固定，不会根据市场变化调整
   - MLB芝加哥小熊队有三个不同的取价等级。季初比赛为"铜"，季中比赛为"银"，季末比赛为"金"
   - NFL的达拉斯牛仔队还按照分区对手或热门对手的比赛收取更多费用
-- 动态票价：根据比赛的重要性或竞争程度、对手实力、是否有超级明星、比赛日当天的天气、比赛是否周末等可能因素确定门
+- 动态票价：实时市场需求和供应情况进行调整；购买者的需求量、时间接近比赛日等因素而变化
   - Golden Warrior最早实施DTP的NBA球队之一，使用一个名为 "每周动态交易"的系统，该系统根据对手实力和其他变量等因素动态调整每场比赛的票价
   - Boston Red Sox在主场比赛中使用动态票价：周末对阵热门对手通常更贵
 
@@ -114,12 +113,7 @@ class: title-slide-section,inverse, middle
 .right[
 &lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/udNyg9.png height=350&gt;
 ]
----
-### 一级差别取价应用：计算消费者剩余
 
-- 假定门票反需求函数是线性的： `\(p_x=90-0.004 \cdot x\)` ；球迷观看比赛的边际成本是固定的 `\(MC=10\)`
-- 独占市场且只设定单一价格时 `\(MR=90-0.008 \cdot x = MC = 10\)` → 解得 `\(x_m = 10000,p_x^m=50,\pi^m=400000,CS^m=200000\)`
-- 独占市场且FPC时 `\(MR=p_x=90-0.004 \cdot x= MC = 10\)` → 解得 `\(x_{FPD} = 20000,p_x^{FPD}=10,\pi^{FPD}=0,CS^{FPD}=800000\)`
 
 ---
 ### 一级差别取价福利分析
@@ -182,20 +176,37 @@ class: title-slide-section,inverse, middle
 .right[
 &lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/UByZYC.png height=370&gt;
 ]
+
+---
+### 一级差别取价应用：计算消费者剩余
+
+- 假定门票反需求函数是线性的： `\(p_x=90-0.004 \cdot x\)` ；球迷观看比赛的边际成本是固定的 `\(MC=10\)`
+- **独占市场且只设定单一价格时**：
+   - 边际收益 (MR) 等于边际成本 (MC):
+      `\(MR = 90 - 0.008 \cdot x = MC = 10\)`
+   - 解得 `\(x_m = 10000 , p_x^m = 50 , \pi^m = 400000 , PS^m = 200000\)` 
+
+- **独占市场且完全差别取价 (FPC) 时**：
+   - MR 等于价格 `\(p_x\)` 和 MC:
+     `\(MR = p_x = 90 - 0.004 \cdot x = MC = 10\)`
+   - 解得 `\(x_{FPD} = 20000 , p_x^{FPD} = 10 , \pi^{FPD} = 0, PS^{FPD} = 800000\)`
+
+- 消费者剩余： `\(CS = \frac{1}{2} \times (最高支付意愿价格 - 均衡价格) \times 交易量\)` 
+- 生产者剩余： `\(PS = \frac{1}{2} \times (均衡价格 - 最低接受价格) \times 交易量\)` 
+
 ---
 ### 三级差别取价
-- 厂商根据消费者某些**显而易见**的特征（性别、年龄、职业等）分成不同消费者群体
-  - 区隔市场(Segmented Markets) ← 有防止转售的技术（出示学生证件等）
+- 关键在于市场细分，销售者识别出具有不同价格弹性的消费者群体，并对这些群体采取不同的定价策略 → 区隔市场(Segmented Markets) ← 有防止转售的技术（证件等）
 - 有两个市场分别可以在理论最大化下决策 
   - `\(\max_{x_1, x_2} p_x^1(x_1) x_1+p_x^2(x_2) x_2-c x_1-c x_2\)`
   - `\(\begin{aligned} &amp; p_x^1(x_1)+p_x^{1\prime}(x_1) x_1-c=0 \Rightarrow M R_1(x_1)=M C \\ &amp; p_x^2(x_2)+p_x^{2\prime}(x_2) x_2-c=0 \Rightarrow M R_2(x_2)=M C\end{aligned}\)`
 - 根据**逆需求弹性定价法则** 
   -  `\(p_x^1(x_1)=\frac{c}{1-1 / \varepsilon_1}\)` 和 `\(p_x^2(x_2)=\frac{c}{1-1 / \varepsilon_2}\)`
-- 那么 `\(p_x^1(x_1)&gt;p_x^2(x_2)\)` 当且仅当
+- 那么 `\(p_x^1(x_1) &lt; p_x^2(x_2)\)` 当且仅当
 $$
 `\begin{gathered}
-\frac{c}{1-1 / \varepsilon_1}&gt;\frac{c}{1-1 / \varepsilon_2} \Rightarrow 1-\frac{1}{\varepsilon_2}&lt;1-\frac{1}{\varepsilon_1} \\
-\Rightarrow \frac{1}{\varepsilon_2}&gt;\frac{1}{\varepsilon_1} \Rightarrow \varepsilon_2&lt;\varepsilon_1
+\frac{c}{1-1 / \varepsilon_1} &lt; \frac{c}{1-1 / \varepsilon_2} \Rightarrow 1-\frac{1}{\varepsilon_2}&gt;1-\frac{1}{\varepsilon_1} \\
+\Rightarrow \frac{1}{\varepsilon_2}&lt;\frac{1}{\varepsilon_1} \Rightarrow \varepsilon_2&gt;\varepsilon_1
 \end{gathered}`
 $$
 - **独占厂商在需求弹性更大的市场上收取更低的价格以掠夺更多的消费者剩余**
@@ -224,18 +235,10 @@ $$
 ]
 
 ---
-### 三级差别取价：热刺队的票价结构
-
-.center[
-&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/lei5ml.png height=450&gt;
-]
-- 票价结构：14种不同类型座位：年龄(18-65)、视野。
-- 3种比赛类型。A（曼城、曼联等）B（阿斯顿维拉、水晶宫等）C（狼、莱斯特城等）
-
----
 ### 思考：尖峰定价是差别取价么?
 
 - 除了对不同市场差别取价外，也可能在同一市场的不同时间差别取价 → **跨时差别取价**(intertemporal price disc.)
+- 常见于交通运输（如火车、飞机票价）、电力供应、旅游和娱乐行业等领域。其目的是通过价格机制来管理和平衡需求，减轻高峰时期的拥挤或过载问题，并在需求较低时刺激消费
 
 ![C5h0ka](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/C5h0ka.png)
 
@@ -257,24 +260,28 @@ $$
 
 ---
 ### 二级差别取价
-- 实施条件：真实情况厂商无法看到每个个体的需求（支付意愿）。但厂商可以对***不同购买数量**设定**不同价格**
+- 实施条件：真实情况厂商无法看到每个个体的需求（支付意愿）。但厂商可以对**购买的数量、产品版本或产品质量**设定**不同价格**
 
 - 定价以购买数量为准则，因此也称为**数量差别取价**（quantity discrimination）；因不同购买量所支付价格不同，也称为**非线性定价法**（nonlinear pricing）
 
     - 数量折扣（quantity discounts）是假设比赛质量一定，球迷消费体育赛事的边际效用会随着他们参加比赛的数量而下降
-    - Personal Seat Licenses
+    - 产品版本：Personal Seat Licenses
+    - 产品质量：茅台
     
 .center[
 &lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/NhfAR0.png&gt;
 ]
 
+
 ---
 ### 二级差别取价应用：两部定价法
-- 从事SPD的厂商无需购买者的任何情报，是通过**价格与数量的组合**诱使购买者**自我选择**（self-selection）
-- 两部定价法（two-part tariff）
-  - 固定的入场费entry fee
-  - 变动的使用费usage fee
-  - 如游乐场、COSCO
+- 一个典型应用是“两部定价法”（Two-Part Tariff）。这种定价策略结合了固定费用和变量费用，其中消费者首先支付一个入门费用（固定部分），然后根据实际使用或消费量支付额外费用（变量部分）
+- 两部定价法的目的是允许企业更好地从消费者获得的总体价值中获益，同时给予消费者使用或消费产品的灵活性。这种策略在多种行业中都有应用，尤其是在服务行业和公用事业中非常常见
+
+  - 公用事业：例如电力或水供应公司。消费者可能每月支付一个基本服务费（固定费用），再根据他们的实际用电或用水量支付额外费用（变量费用）
+  - 俱乐部会员费：例如健身房或俱乐部。会员首先支付入会费（固定费用），然后可能会为使用特定服务或设施支付额外费用
+  - 移动通信和互联网服务：服务提供商可能会收取基本的月租费（固定费用），再根据客户的通话时长、数据使用等（变量费用）进行收费
+  - 软件订阅：许多软件公司采用这种模式，用户首先支付基本订阅费用，然后根据额外功能或服务的使用支付更多费用
 
 ---
 ### 二级差别取价应用：两部定价法
@@ -301,10 +308,10 @@ $$
 
 ---
 ### 二级差别取价应用：两部定价法
-#### 第2种情况：非对称信息(asymmetric	information)
+#### 第2种情况：非对称信息(asymmetric	information) 
 .left[
 - 无论使用费 `\(p_x\)` 在何处，高需求消费者剩余 `\(CS_2\)`  **总大于**低需求消费者剩余 `\(CS_1\)`
-- 厂商只会将入场费定在 `\(A=CS_1\)` 或者 `\(A=CS_2\)` 而不是其他水准(为什么？)
+- （低入场，高使用）还是（高入场，低使用）?
 - 假定两类消费者人数是相同的，因此右图是两类消费者中的代表性"选手"
 - 假设使用费 `\(p_x=c\)` ， `\(A=CS_1=c a_1 e_1\)` ，厂商利润将会是 `\(2 ca_1e_1\)` （为什么?）; 若厂商的入场费只有高需求消费者接受， `\(A=CS_2=ca_2e_2\)` ，厂商利润就是 `\(ca_2e_2\)` 。若 `\(ca_2e_2&gt;2ca_1e_1\)` ，厂商就应当将入场费设定为 `\(A=CS_2\)` (那么使用费如何设定呢?)
 ]
@@ -366,9 +373,10 @@ https://gatorboosters.org/membership/football.html
 ### 其他类型的取价
 #### 捆绑 bundling
 
-- 当卖家将两个或更多独立的产品进行打包出售（通常是互补品）
-- NFL要求：必须购买季前赛才能购买季票
-- MLB要求：购买所有81个主场票才能获得30场左右的好座位
+- 纯捆绑(Pure Bundling)：产品作为一套组合购买，不能单独销售。例如，NBA官方线上订阅只能购买整个赛季
+- 混合捆绑(Mixed Bundling)：产品既可以作为捆绑包一起购买，也可以单独购买。例如，赛季套票和单场次门票都可购买
+  - NFL要求：必须购买季前赛才能购买季票
+  - MLB要求：购买所有81个主场票才能获得30场左右的好座位
 - 捆绑帮助提高利润的前提是：
   - 首先，球迷对门票购买意愿是区别的
   - 其次，无法进行差别取价
@@ -399,7 +407,7 @@ https://gatorboosters.org/membership/football.html
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-- 假设A更偏好常规赛比赛(共8个主场)，WTP是1200，而对季前赛不感兴趣，但出于对主队支持，仅愿意支付100
+- 假设有两类代表性消费者：A更偏好常规赛比赛(共8个主场)，WTP是1200，而对季前赛不感兴趣，但出于对主队支持，仅愿意支付100
 - B对常规赛只愿意支付1000，而季前赛支出150
 - 若是门票是分开出售的，球队的季前赛收益为200(=100 `\(\times\)` 2)，常规赛事2000（=1000 `\(\times\)` 2），总收益是2200
 - 若是捆绑销售，将套票定价为1150，两个消费者都会购买（1300&gt;1150），总收益为2300（=1150 `\(\times\)` 2），利润增加100（假设成本不变）
@@ -438,6 +446,25 @@ https://gatorboosters.org/membership/football.html
 - 分开销售是，季前赛收入是200，常规赛是2400，收益是2600
 - 捆绑销售时，总收益也是2600 (1300 `\(\times\)` 2) 
 - **正相关**支付意愿无法提高捆绑销售的支付意愿
+
+---
+### 真实中的例子
+
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/WechatIMG3741.jpg&gt;
+
+---
+
+1. **电价构成**：电网企业为工商业用户代理购电的电价包括以下部分：
+   - **代理购电价格**：根据预测购电成本等因素计算
+   - **上网环节线损费用**：为传输电力过程中的损耗费用
+   - **输配电价**：涉及电力传输和分配的成本
+   - **系统运行费用**：维持电力系统正常运行的费用
+   - **政府性基金及附加**：包括水利工程基金、水库移民扶持资金和可再生能源附加等
+2. **电度用电价格**：这是按实际使用电量计算的电价，由代理购电价格、线损费用、输配电价、系统运行费用和政府性基金及附加构成
+3. **峰谷分时电价**：针对100千伏安及以上工业用户，电价根据日内不同时间段的用电需求而变化，定价机制旨在通过价格激励来平衡电网的负荷，减轻高峰时段的电网压力
+   - 高峰时段的电价高于平时段
+   - 低谷时段的电价低于平时段
+4. **特殊用户的电价调整**：对于特定类型的用户（如已参与市场交易的用户、拥有自备电厂的用户等），代理购电价格可能会有所调整，如上表中1.5倍的执行
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
