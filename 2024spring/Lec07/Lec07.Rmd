@@ -382,13 +382,6 @@ class: title-slide-section, middle, inverse
 ]
 
 ---
-### 想一想：体育场馆如何使消费者收益？
-
-- 消费者受益 → 增加上座率 → 给场馆带来收入  → 政府可以从中获得税收 → 支持更多、更好的体育建设，打造更好的运动设施
-
-- 请大家列举：
-
----
 ### 应用：蜜月期效应
 #### 现实背景与理论背景
 - 1953年之后，政府开始提供财政和政策支持，促进场地翻修、更新一大批场地。建造技术提高和设计理念的更新，从简单的露天球场到现代化的多功能体育场馆
@@ -733,6 +726,25 @@ $$乘数效应 M= \frac{1}{1 - MPC + MPI}$$
 - 为职业球队建设场馆与建造城市绿地是不同的
   - 虽然都有社会文化价值，但前者意味着公共资金的利益被一部分群体挪用
   - 从其他球队角度看，竞争对手从公共补贴中变得更加强大，迫使他们也“威胁”自己的政府 → 形成恶性循环
+
+---
+class:middle,center
+### 讨论：是否应该修建 Sofi Stadium
+
+.center[
+```{R echo=FALSE}
+library(htmltools)
+library(shiny)
+
+tags$video(
+  tags$source(src ="./video/sofi1.mp4", type = "video/mp4"),
+  type = "video/mp4",
+  width = "900",
+  height = "500",
+  controls = TRUE
+)
+```
+]
 
 ---
 class: title-slide-section, middle, inverse

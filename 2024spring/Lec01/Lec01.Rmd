@@ -52,7 +52,7 @@ p_load(
 options(htmltools.dir.version = FALSE)
 
 # Notes directory
-dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/2023spring/Lec01"
+dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/2024spring/Lec01"
 # Define pink color
 red_pink <- "#e64173"
 turquoise <- "#20B2AA"
@@ -255,7 +255,7 @@ tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", h
     row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
 }
 ```
-class: center, middle, inverse
+class: title-slide-section, middle, inverse 
 
 # 简介
 
@@ -265,19 +265,20 @@ class: center, middle, inverse
 ---
 
 ### 关于我
-
-- 北京大学经济学本硕博
-- 兴趣领域: 体育经济 + 数据科学
+- 北京大学经济学院，本硕博
+- 兴趣: 体育经济 + 数据科学
 
 ### 关于课程
-
-- Level01：经济基础；Lec01-03
+- Section 01：经济学基础
   - 基础加深经济直觉；后期专题帮助选题
-- Level02：体育专题；
+- Section 02：核心专题
   - 职业体育
-  - 大型赛事
-  - 健康行为
-- Level03：实证专题
+  - 对体育设施和大型赛事的批判
+  - 人对健康与幸福的追求
+  - 计量经济学入门
+- Section 03：探索方向
+  - 电竞竞技与整合体育
+  - 促进城市和区域发展
 
 ???
 .tiny[
@@ -317,26 +318,26 @@ class: center, middle, inverse
 
 1. **了解**经济学原理的基本内容
 2. **了解**影响体育参与者（如球员、球迷、老板和官员等）的行动动机。
-3. **了解**包括性别、地理（即城市/农村）、年龄等经典人口因素，以及体育领域相关的政治性活动
+3. **了解**体育相关的热点与前沿
 4. **解释、构建和分析**适用于体育领域的经济模型
 5. **批判性地思考**现有研究和报告中的文字表述
 
-以上这些目标将会通过作业、以及最后以数据驱动研究报告来实现
+以上这些目标将会通过作业、以及最后以**数据驱动**研究报告来实现
 
 ---
 
 ### 工欲善其事，必先利其器
 
 - 同步/版本控制：坚果云、Git
-- 数据分析工具：R 或者 STATA → 决定你未来的研究高度
-- 综合数据库：Scopus, Web of Science, Jstor
-- 学术搜索：知网(CNKI), Google Scholar, Semantic Scholar → 顺腾摸瓜找线索
+- 数据分析工具：**R** 或者 **STATA** → 决定你未来的研究高度
+- 综合数据库：Scopus, **Web of Science**, **Jstor**
+- 学术搜索：CNKI, Google Scholar, Semantic Scholar → 顺腾摸瓜找线索
 - 跟踪最新发展：Researchgate, NBER, AEA, Twitter, 学术公众号
-- 文献抓取：Zotero, Endnote
-- 梳理思路：Mindmeister等Ming Map
+- 文献抓取：**Zotero**, Endnote
+- 梳理思路：Mindmeister等Mind Map
 - 写作：除了Word以外, **Latex**, **Overleaf**等
 - 对某一类研究方法比较熟悉
-  - 至少OLS
+  - 至少OLS → TWFE → DiD
   - 了解统计学和计量经济学的关系，几次课程远远不够
 
 ---
@@ -360,7 +361,7 @@ class: center, middle, inverse
 
 2. 经济学的主要框架 → 完成属于自己的**知识路径成长图**
 
-2. 研究类型 → 聚焦经验研究，识别**因果关系**
+3. 研究类型 → 聚焦经验研究，识别**因果关系**
 
 
 ???
@@ -371,7 +372,7 @@ class: center, middle, inverse
 
 ---
 
-class: title-slide-section, center, middle, inverse 
+class: title-slide-section, middle, inverse 
 # 经济学的十大原理
 
 ---
@@ -455,9 +456,13 @@ class: title-slide-section, center, middle, inverse
 
 ### 原理 4:  人们会对激励做出反应
 
-- 激励：引起一个人做出某种行为的东西，比如奖励或者惩罚的预期
+- 激励：引起一个人做出某种行为的**因素**，比如奖励或者惩罚的预期
 
-  **Incentive**: something that induces a person to act。
+  **Incentive**: something that induces a person to act
+
+  - 行为的影响：人们的选择和行为会受到成本与收益变化的影响。当成本或收益发生变化时，人们的行为也相应地调整
+
+  - 理性决策：理性人会通过比较成本与收益来做出决策，因此他们对激励的变化非常敏感
 
 ---
 
@@ -475,16 +480,12 @@ class: title-slide-section, center, middle, inverse
 
 ---
 .center[
-![abc76451c77edc0569aa2af879956b25fa17c129](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/abc76451c77edc0569aa2af879956b25fa17c129.jpg)
+![abc76451c77edc0569aa2af879956b25fa17c129](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/WCwMZH.png)
 ]
 
-- 亚当.斯密在《国富论》中有著名观察结果：
-  家庭和企业仿佛被一只“看不见的手”所指引，在市场上相互交易，并增进整体经济的福利。这个“看不见的手”，其实就是市场。
-  通过价格体系来发挥作用:
-  
-    - 买者与卖者之间的相互作用决定市场价格
-    - 每个价格即反映了物品对于买者的价值，也反映了生产物品的成本
-    - 在许多情况下，价格引导**自利**的家庭与企业做出**使社会经济福利最大化的决策**（税收会扭曲价格，也会扭曲家庭和企业的决策）
+- “By preferring the support of domestic to that of foreign industry, he intends only his own security; and by directing that industry in such a manner as its produce may be of the greatest value, he intends only his own gain, and he is in this, as in many other cases, led by an **Invisible Hand** to promote an end which was no part of his intention.”
+
+- 尊重价格体系 → 分工创造财务、税收扭曲价格
 
 ---
 
@@ -544,7 +545,7 @@ class: title-slide-section, center, middle, inverse
 
 ---
 
-class: title-slide-section, center, middle, inverse 
+class: title-slide-section, middle, inverse 
 # 经济学的基本框架
 
 ???
@@ -641,7 +642,7 @@ class: title-slide-section, center, middle, inverse
 
 ---
 
-class: title-slide-section, center, middle, inverse 
+class: title-slide-section, middle, inverse 
 # 研究的类型
 
 ???
@@ -729,15 +730,5 @@ class: title-slide-section, center, middle, inverse
 
 另一大类是非结构数据：文字、音频和图像。
 
-
----
-
-exclude: true
-
-```{R, generate pdfs, include = F, eval = F}
-
-pagedown::chrome_print("Lec01.html", output = "Lec01.pdf")
-
-```
 
 

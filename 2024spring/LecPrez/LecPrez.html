@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>体育经济分析: 原理与应用</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="周正卿" />
+    <meta name="date" content="2024-01-19" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# 体育经济分析: 原理与应用
+]
+.subtitle[
+## 单元1: 概要与预备知识
+]
+.author[
+### 周正卿
+]
+.date[
+### 19 January 2024
+]
+
+---
+
+
+
+class: title-slide-section, middle, inverse 
+
+# 简介
+
+???
+同学们好，我们开始上课。
+
+---
+
+### 关于我
+- 北京大学经济学院，本硕博
+- 兴趣: 体育经济 + 数据科学
+
+### 关于课程
+- Section 01：经济学基础
+  - 基础加深经济直觉；后期专题帮助选题
+- Section 02：核心专题
+  - 职业体育
+  - 对体育设施和大型赛事的批判
+  - 人对健康与幸福的追求
+  - 计量经济学入门
+- Section 03：探索方向
+  - 电竞竞技与整合体育
+  - 促进城市和区域发展
+
+???
+.tiny[
+- 我在04年进入到北京大学，一直经济学院学习~
+- 我是想说我从经济来教体育，现在开始交体育经济。那么经济了解么？体育内行么？这是我一直在问自己的问题，就是通过了解体育经济到底能给我们带来什么。 
+- 我想在回答这个问题之前，不管怎样，我们还是应该有一个比较好的基础，那么藉由我的学习经验和成长路径，给大家分享一些知识，还有思考的方式是提供一些技能啊，这是我觉得这门课的初衷。
+- 我的经验告诉我就是在最开始的时候，我们没有一个特别清晰的学习计划，会导致后来盲目的学习。 因此，通过短短的这几节课，希望大概能给大家勾勒一个嗯初步框架、经验，未来能够帮助更好的发展。
+]
+
+---
+### 认知与追求真理
+
+.center[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/J0sFDs.png height= 500&gt; 
+]
+???
+.tiny[
+-  这里就涉及到一个对认知过程的这种理解概念。
+- 课上内容，都是比较成熟的知识点，我会用一种大家能够接受的方式讲授出来
+- 如果只是停留在记忆的这个过程，这并不是初衷，最终的是希望 藉由这次课程发现更多更好的研究问题，从中的选择一些 自己感兴趣，或者是国家和社会需要的方向，作为自己的研究领域， 根据经济学课的知识体系来搭建和完善自己的研究技能，从而得到自己想要的答案
+
+]
+
+---
+
+.center[![H1dewU](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/H1dewU.jpg)]
+
+???
+.tiny[
+- 所以，无论你的起点在哪里，都按照高阶认知的方向去学习和扩展自己的能力。
+- 其中的一些动词是有助于大家理解如何进行研究的~
+]
+
+---
+
+### 课程目标
+
+1. **了解**经济学原理的基本内容
+2. **了解**影响体育参与者（如球员、球迷、老板和官员等）的行动动机。
+3. **了解**体育相关的热点与前沿
+4. **解释、构建和分析**适用于体育领域的经济模型
+5. **批判性地思考**现有研究和报告中的文字表述
+
+以上这些目标将会通过作业、以及最后以**数据驱动**研究报告来实现
+
+---
+
+### 工欲善其事，必先利其器
+
+- 同步/版本控制：坚果云、Git
+- 数据分析工具：**R** 或者 **STATA** → 决定你未来的研究高度
+- 综合数据库：Scopus, **Web of Science**, **Jstor**
+- 学术搜索：CNKI, Google Scholar, Semantic Scholar → 顺腾摸瓜找线索
+- 跟踪最新发展：Researchgate, NBER, AEA, Twitter, 学术公众号
+- 文献抓取：**Zotero**, Endnote
+- 梳理思路：Mindmeister等Mind Map
+- 写作：除了Word以外, **Latex**, **Overleaf**等
+- 对某一类研究方法比较熟悉
+  - 至少OLS → TWFE → DiD
+  - 了解统计学和计量经济学的关系，几次课程远远不够
+
+---
+### ChatGPT
+
+.left[- 查询代码
+![hPwQfR](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/hPwQfR.png)
+]
+
+.right[ .left[寻找思考，但不是抄袭]
+![fe3JGL](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/fe3JGL.png)
+]
+
+---
+## 做知识的主人，做知识的创造者
+
+
+### 本节内容
+
+1. 经济学的十大原理 → 初步建立经济学思维
+
+2. 经济学的主要框架 → 完成属于自己的**知识路径成长图**
+
+3. 研究类型 → 聚焦经验研究，识别**因果关系**
+
+
+???
+.tiny[
+- 思维最重要
+- 了解研究类型有助于在阅读文献时抓住重点
+]
+
+---
+
+class: title-slide-section, middle, inverse 
+# 经济学的十大原理
+
+---
+## 经济学研究什么问题?
+
+- 稀缺性:社会资源的有限性
+
+  **Scarcity**:  the limited nature of society’s resources
+- 经济学: 研究人或公司（行动单位）在资源稀缺下如何进行决策的。
+  
+  **Economics**:  the study of how society manages its scarce resources
+  
+  稀缺性既是绝对的，又是相对的。人对商品、服务和资源的需求超过了可用的范围，就会出现稀缺。
+  
+  i.e. 时间。无论贫富，任何人一天只有24小时，通过劳动、资产等获得收入，购买商品和服务，或者休闲或睡觉。
+
+
+---
+## 人们如何做出决策(1.2.3.4)？
+
+### 原理 1:  人们面临权衡取舍(Tradeoffs)
+
+- 效率: 社会能从其稀缺资源中得到的最大利益
+  
+  **Efficiency**:  the property of society getting the most it can from its scarce resources
+  
+- 平等: 经济成果在社会成员中平均分配
+  
+  **Equality**:  the property of distributing economic prosperity uniformly among society’s members（i.e. 控制污染会使收入下降）
+  
+  效率与平等永远是需要关注的两个问题。
+
+???
+.tiny[
+- 用经济学思考问题， 绝大多数的时候是没办法既想要A又想要B的。
+- 经济学的回答的是， 多少A或多少B对大家最有利？
+- 所以一个核心的问题就是我们怎么来分配资源，才能让社会的总产出最大？ 而平等问题则蛋糕怎么样才能更合理？
+]
+
+---
+
+### 那么公平呢？
+
+.center[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/equality02-1024x641.jpeg  height="500" width="660"&gt;
+]
+
+???
+.tiny[
+- 我想这个图就做得很好的注释 
+- 平等相当于跟每个人分配了同样多的资源或成果， 公平衡量的是最后大家是不是都到了一样的结果，就不是全部是经济问题了。
+]
+
+---
+
+### 原理 2:  某种东西的成本是为了得到它所放弃的东西
+
+- 机会成本：是为了得到这种东西所放弃的东西
+
+  **Opportunity cost**： whatever must be given up to obtain some item.
+  
+### 原理 3:  理性人考虑边际量
+
+- 理性人：系统、有目的地尽最大努力实现其目标的人
+  
+  **Rational people**：people who systematically and purposefully do the best they can to achieve their objectives
+  （理性人通过比较成本与利益的边际变动来做出决策）
+  
+  - 边际变动：对现有行动计划的微小增量调整
+
+  **Marginal changes**：a small incremental adjustments to a plan of action.
+  （人们对于任何一种物品的支付意愿基于获得一单位的边界收益）
+  （**当且仅当**边界收益 [&gt;] 边界成本时，理性人就会行动)
+
+???
+.tiny[
+- 机会成本的比较好，理解就是比方说他现在听课，你这个花的这个时间成本， 如果你这个时间再去运动那个会获得很多的健康和快乐，这部分应该计算在内。 这部分的
+]
+
+---
+
+### 原理 4:  人们会对激励做出反应
+
+- 激励：引起一个人做出某种行为的**因素**，比如奖励或者惩罚的预期
+
+  **Incentive**: something that induces a person to act
+
+  - 行为的影响：人们的选择和行为会受到成本与收益变化的影响。当成本或收益发生变化时，人们的行为也相应地调整
+
+  - 理性决策：理性人会通过比较成本与收益来做出决策，因此他们对激励的变化非常敏感
+
+---
+
+## 人们如何相互影响(5,6,7)？
+
+### 原理 5:  贸易可以使每个人的状况都变得更好
+
+- **比较优势**：当一方进行一项生产时所付出的机会成本比另一方低，这一方面拥有了进行这项生产的比较优势。
+
+  要素禀赋不同 → 分工和专业生产达到最优效率 → 贸易 → 各方最终收益最大
+
+### 原理 6:  市场通常是组织经济活动的一种好方法
+
+- **市场经济**：许多企业和家庭在物品和劳务市场上相互交易，通过他们的**分散决策**来配置资源的经济。
+
+---
+.center[
+![abc76451c77edc0569aa2af879956b25fa17c129](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/WCwMZH.png)
+]
+
+- “By preferring the support of domestic to that of foreign industry, he intends only his own security; and by directing that industry in such a manner as its produce may be of the greatest value, he intends only his own gain, and he is in this, as in many other cases, led by an **Invisible Hand** to promote an end which was no part of his intention.”
+
+- 尊重价格体系 → 分工创造财务、税收扭曲价格
+
+---
+
+### 原理 7:  政府有时可以改善市场结果
+
+- **产权**：个人拥有并控制稀缺资源的能力
+  
+  **Property rights**: the ability of an individual to own and exercise control over scarce resources.
+  （只有政府在实施规则并维护市场经济制度，价格才会起作用）（政府干预经济的目标有两类：效率和平等）
+
+- **市场失灵**：市场本身不能有效配置资源的情况
+
+  **Market failure**:  a situation in which a market left on its own fails to allocate resources efficiently
+  
+  导致市场失灵的原因:
+      - 外部性(Externalities)：生产或消费一个物品影响到旁观者的福利（比如：污染）    
+      - 市场势力(Market power)：单个买者或卖者有能显著影响市场价格的能力（比如，垄断）
+
+---
+## 整体经济如何运行(8,9,10)？
+
+### 原理 8:  一国的生活水平取决于它生产物品与服务的能力
+
+- **生产率**：即每一单位劳动投入所生产的物品与劳务数量。
+  
+  **Productivity**：the amount of goods and services produced from each unit of labor input
+  （生产率决定了平均收入的增长率）
+  （生产率取决于设备，劳动者的技能以及可用的技术）
+
+- 三个要素决定了生产率：
+  - 人力资本。**人力资本**是经济体中普通工人所积累的知识（来自教育和经验）、技能。
+  - 技术变革
+  - 规模经济
+
+???
+.tiny[
+- 通常用生产率反映一个国家的生产能力
+]
+
+---
+### 原理 9:  当政府发行了过多货币时，物价上升
+
+- **通货膨胀**：经济中物价总水平的上升
+
+### 原理 10:  社会面临通货膨胀与失业之间的短期权衡取舍
+
+- 货币量增加增加了支付能力，更多的支付导致物价上涨，物价上涨但同时刺激企业雇佣更多的工人，失业率会下降
+  （短期1-2年内，许多经济政策朝相反的方向推动通货膨胀与失业）
+- 经济周期：就业和生产等经济活动的波动
+
+- 大规模失业 → 犯罪率上升；货币增发 → 贫富差距加大 → 社会不稳定；恶性通胀 → 社会动乱
+
+???
+.tiny[
+- 这里面宏观经济呢，不是我们关注的重点
+]
+
+---
+
+class: title-slide-section, middle, inverse 
+# 经济学的基本框架
+
+???
+.tiny[
+所谓基本框架，就是通过经济学来认识世界。
+对象不同，关注的口径不同，自然呈现出的特点有差异。
+]
+---
+
+### 微观、宏观与计量是三位一体的
+
+经济学涵盖了相当大的领域，但通常分为两大部分: 
+
+- **微观经济学**。关注经济中个体主体的行为，如家庭、工人和企业。 
+- **宏观经济学**。将经济视为一个整体，它侧重于广泛的问题，例如生产增长、失业人数、物价、政府赤字以及进出口 → 货币政策和财政政策
+- 微观经济学和宏观经济学不是独立的学科，而是对整个经济学科的互补观点。
+
+经济学家习惯用使用**理论**或**模型**来刻画世界
+- **理论**是对两个或多个变量间如何相互作用的简化表述 → 目的是为了将复杂的世界用最简单、最本质的方法来刻画
+
+- 经济学家有时用**模型**等同于**理论**。严格来说，理论更抽象，而模型是建立在从应用或经验基础上的。
+
+- **计量经济学**：建立在样本(经验)基础上，用**统计方法**(应用数学)检验**经济理论**的学问。
+
+???
+.tiny[
+- 下面就看一个例子 
+]
+
+---
+### 一个简单的模型
+
+.center[
+![626d1c7cf155ffff8f72475d68ac15fe4da4eb75](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/626d1c7cf155ffff8f72475d68ac15fe4da4eb75.jpg)
+]
+
+现实世界中，有许多不同的商品和服务市场以及许多不同类型的劳动力市场， 但上图简化了这些，让大家更容易了解本质。
+
+???
+.tiny[
+- 上图是循环流图，左右两边是两个经济主体。
+- 左边是家庭，右边是企业。箭头表示要素流向。
+- A + B是产品市场：企业把商品和服务卖个家庭，家庭支付钱
+- C + D是劳动力市场：企业向家庭购买劳动力，劳动获取工资、报酬和福利。
+]
+
+---
+#### 一个例子：建立概念树
+
+.center[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/2996i5.png width= 600 &gt;
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/mpIABg.png width= 600 &gt;
+]
+
+???
+.tiny[
+- 这是集美大学郑志强老师关于体育经济学发展的综述性文章。
+- 主要梳理了发展历程以及发展规律。 我认为对大家有很好的启发作用，特别是 文章中提到了很多经济学的概念， 对应到很多体育经济的研究领域当中。
+- 同学们可以在其中标注出和的经济学原理相关的一些基本概念以及对于的学派，有个大概的了解（30分钟内）。 
+- 那么大家就给大家布置一个小小的作业。
+]
+ 
+---
+### 作业：绘制自学路径图（1.5小时内完成）
+
+1.提炼话题
+
+步骤：翻译并罗列10个**文章题目**与**摘要**（5中+5英），提炼5个**关键词**（可以不相关），这些议题要有相关理论和数据能够支持，不一定特别精确。
+
+文章从哪找：中文（体育科学，上体学报、北体学报或经济与大健康类期刊，from CNKI）；英文（*Journal of Sports Economics*, *International Journal of Sport Finance*, *Journal of Sport Management* , *Sport Management Review*, 等等）
+
+2.选择理论
+
+步骤：每个**关键词**找一个临近的领域和理论
+
+从哪找社群：领域在NBER的 [Summer Institute](https://www.nber.org/conferences/summer-institute-2023) 的Week3中找微观的对应领域与学术带头人；理论在AEA[Journals](https://www.aeaweb.org/journals)的JEL和JEP找理论源头和发展脉络。
+
+3.制作“自学课表与路径图”
+
+---
+### Harvard’s Economics Department 
+
+.center[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/VNd4jd.png height="520"&gt;
+]
+
+---
+### 经济学主要分支
+
+.center[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/wny1KH.png height="450"&gt;
+]
+- [Branches of Economics](https://idreamcareer.com/blog/economics-subject-a-comprehensive-guide/) 
+
+---
+
+class: title-slide-section, middle, inverse 
+# 研究的类型
+
+???
+.tiny[
+- 不知道大家在看文献的时候会不会有一种感觉？ 就是他文章的排版布局， 明显区别与另外一类文章。 这个文章在体育经济或者是体育产业上面表现得特别明显。 其实不光是体育领域，经济领域当中也存在这样的现象。
+- 下面，我举个例子看一下。
+]
+
+---
+## 直观感受
+
+.left[
+![XQFe94](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/XQFe94.png)
+]
+
+.right[![MaO5oj](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/MaO5oj.png)
+]
+.white[1]
+
+.center[
+好文章有共同特点：**有明确的核心观点**]
+
+1. “基本事实”
+2. “基本立场”
+3. 解决问题的“前提”或“方案”
+
+???
+.tiny[
+有了问题还不是最重要的,关键是还要提出观点。要么是研究者所看到(观察)或听到(访谈、问卷)的“基本事实”;要么是就某个现象或观点提出“赞成”或“反对”的“基本立场”;要么是研究者就某个问题提出的解决问题的“假设”或“变革方案”。学术论文的“基本立场”也可以称为“命题”。比较而言，提出“基本事实”比较容易，提出“研究假设”或“变革方案”比较困难，提出并论证某个“基本立场”(或命题)最不容易。
+
+- 有了观点，你就想办法去论证你观点是正确的。因此，这就涉及到了两大类的研究。
+
+]
+
+---
+
+## 实证研究？经验研究？
+
+**实证研究**(Positive research)。解决 “是什么”的问题，没有价值判断。
+
+比如，你的观点：人们会对激励做出反应 → 
+提出假设：资源稀缺 + 理性人（效用最大化和利润最大化）→ 
+理论建模。
+
+**规范研究**（Normative research）：解决“应该是什么”的问题，带有价值判断。
+
+- 为了提高足球整体水平，**应该**引入更多外籍球员。
+
+  - 为了表达上述观点是正确的，可以采集数据，发现拥有外籍球员更多的国家的足球水平是更高的（**经验研究的方法**）；也可以构建“模型”，引入外籍球员这个要素或变量，来说明对整体足球发展带来的好处（**理论研究的方法**）。
+
+???
+.tiny[
+- 前者比较像是去建立一个模型，或是论证观点的逻辑框架。后者，更想是一名“医生”，给患者开药方。 
+
+- 那么另外一种常见的对研究的分类的就是量化和质性研究。 
+]
+
+---
+
+## 量化 + 质性
+
+经验研究既可以是量化（quantitative）的,也可以是质性（qualitative）的。
+
+质性研究：倾向于描述某个主题，而非进行测量。一般样本量比较小，比较松散、直观的。
+
+量化研究：收集客观、不容辩驳的数据。定量资料一定是结构化的。
+
+**当质性研究是通过质性类数据得出研究结论的,也属于经验研究范畴**。
+
+---
+
+### 量化分析依赖结构化的数据
+
+- **横断面（cross-sectional）**：某个时点采集。样本量相当大的。一般的假设是横截面观测值是相互独立的。
+
+- **时间序列（time series）**：单个个体持续时间的观察。样本量可能相当大。
+
+- **面板数据（panel data）**：一些个体在时间段内反复测量。短面板是大N小T，长面板（国别研究）时小N大T, 性质倾向时间序列。假设是个体之间是相互独立的，但某个个体的观测值是相互依赖的。
+
+- **聚类（clustered）**：将面板数据划分为 "群组"，一般“组间独立，组内相关”。与普通面板数据相比，聚类只对组内关联的结构假设。
+
+- **空间数据（spatial data）**：具有空间依赖性。特殊的聚类数据，允许地理单元内所有个体都相互关联，并且需要对关联结构的明确假设。
+
+- **大数据**。网站的客户群，干扰因素多，且高度相关，需要降维。
+
+另一大类是非结构数据：文字、音频和图像。
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": true,
+"ratio": "16:10.85"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,261 @@
+---
+title: "北京冬奥遗产运用成为推动京津冀协同发展新动能研究"
+author: 
+   - 周正卿
+institute: "北京大学体育教研部"
+date: "2024年1月20日"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: 
+    - prez-theme.css
+    - animate.css
+    nature:
+      countIncrementalSlides: no
+      highlightLines: yes
+      highlightStyle: github
+      ratio: '16:9'
+  knit: pagedown::chrome_print
+  seal: true
+
+---
+class: title-slide
+<style>
+.logo {
+  background-image: url(logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 0.5em;
+  left: 1em;
+  width: 60px;
+  height: 60px;
+  z-index: 30;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
+
+```{R, setup, include = F}
+# devtools::install_github("dill/emoGG")
+library(pacman)
+p_load(
+  broom, tidyverse,rmarkdown,
+  ggplot2, ggthemes, ggforce, ggridges,
+  latex2exp, viridis, extrafont, gridExtra,
+  kableExtra, snakecase, janitor,
+  data.table, dplyr, estimatr,
+  lubridate, knitr, parallel,
+  lfe,dslabs,
+  here, magrittr,fontawesome)
+options(htmltools.dir.version = FALSE)
+# Define pink color
+red_pink <- "#e64173"
+turquoise <- "#20B2AA"
+orange <- "#FFA500"
+red <- "#fb6107"
+blue <- "#3b3b9a"
+green <- "#8bb174"
+grey_light <- "grey70"
+grey_mid <- "grey50"
+grey_dark <- "grey20"
+purple <- "#6A5ACD"
+slate <- "#314f4f"
+met_slate <- "#272822" # metropolis font color 
+
+# Dark slate grey: #314f4f
+
+# Knitr options
+opts_chunk$set(
+  comment = "#>",
+  warning = F,
+  message = F,
+  echo = F, 
+  error = F,
+  dev = "svg"
+)
+options(device = function(file, width, height) {
+  svg(tempfile(), width = width, height = height)
+})
+
+xaringanExtra::use_editable(expires = 1)
+xaringanExtra::use_tile_view()
+xaringanExtra::use_scribble()
+xaringanExtra::use_animate_css()
+xaringanExtra::use_fit_screen()
+xaringanExtra::use_clipboard()
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+```
+```{r xaringanExtra, echo = FALSE}
+xaringanExtra::use_progress_bar(
+  color = "#0A214F", location = "top",height="3px" )
+```
+
+```{r xaringanExtra-freezeframe, echo=FALSE}
+xaringanExtra::use_banner(
+  top_left = "",
+  top_right = "",
+  bottom_left = " &emsp;&emsp;&emsp; Department of Physical Education",
+  exclude = "title-slide"
+)
+
+```
+
+
+## 大纲
+.left[
+1. 选题依据
+2. 研究目标
+3. 研究动态
+4. 研究内容
+5. 重点与难点
+6. 研究方法
+7. 研究计划
+]
+
+---
+layout: true
+
+<div class="my-footer"></div>       
+
+<div style="position: absolute;left:280px;bottom:16px;color:#0A214F;font-size:16px">`r r2symbols::sym('copyright')``r rmarkdown::metadata$author`</div>
+---
+
+Hello, .can-edit[world], and welcome to my talk!
+
+## .can-edit[You can edit this slide title]
+
+.can-edit.key-likes[
+- thing one
+- thing two
+]
+
+---
+
+##  选题依据
+
+- 热点议题
+  - 北京冬奥遗产运用成为推动京津冀协同发展新动能研究，是当前**大型赛事遗产利用、城市群协同发展**和**区域经济增长**等领域。
+- 政治站位
+  - 习近平总书记多次强调推动京津冀协同发展，重视冬奥遗产**可持续使用**
+  - 北京冬奥会、冬残奥会作为全党全国向第二个百年奋斗目标迈进的活动，管理好冬奥会的"**物质遗产 + 文化和人才遗产**"，是"十四五"期间实施京津冀协同发展战略的重要举措。
+- 本课题拟以冬奥遗产促进京津冀协同发展的新动能，提供可操作落地的政策建议。
+
+
+
+---
+background-image: url(images/1963_LashMiller.jpg)
+background-position: center
+background-size: cover
+
+# 1Title goes here. 
+## 2Title Goes here. 
+### 3**David Hall** and folks. 
+#### 4Dept. of Chemistry Univeristy of Toronto.
+
+
+---
+
+count: false
+class: title-slide
+
+# Title goes here. 
+## Subtitle Goes here. 
+### **David Hall** and folks. 
+#### Dept. of Chemistry Univeristy of Toronto.
+
+
+---
+
+## 幻灯片应该有一个简洁的主题句，不超过两行，并包含大约20个单词
+
+
+.center2[
+```{r fig.align='center', out.width = "900px"}
+knitr::include_graphics(path = "images/1963_LashMiller.jpg")
+```
+]
+
+---
+
+class: center, middle,animated,slideInRight
+
+
+# For centered text use 'h1' level
+
+This is centered content.  
+
+---
+
+## Do not use bullet points, but this is how to do it (didn't make pretty). 
+
+
+.left[
+- text goes here
+- this is a list
+- And these are bullet points
+] 
+
+.right[
+- But don't use bullet points
+]
+
+.bottomright[
+Here's some citations </br> Hall et al. <i> ES&T </i> (2020)</br> Peng et al. <i> ES&T </i> 2016]
+
+---
+
+# Sample Slide
+
+.blockquote[
+Lorem Ipsum  哈哈哈哈哈
+]
+
+
+* Bullet A
+      * Bullet 1
+      * Bullet 2
+
+* Bullet B
+
+---
+
+## 请记得使用Github页面轻松分享演示文稿，注意仓库必须是公开的
+
+```r
+# Point to correct repo branch. 
+usethis::use_github_pages(branch = "main")
+
+```
+
+---
+
+## For more info, check out the following: 
+
+- [*Meet xaringang* by Alison Hill](https://arm.rbind.io/slides/xaringan.html)
+
+- [Chapter 7: xaringang Presentations of *R Markdown: The Definitive Guide* by Yihui Xie et al. ](https://bookdown.org/yihui/rmarkdown/xaringan.html)
+
+
+---
+layout:false
+class: center
+
+background-size: 70%
+background-image: url(https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/s7PQ2C.png)
+
+## 感谢各位专家指导建议
