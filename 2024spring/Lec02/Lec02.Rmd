@@ -85,6 +85,7 @@ options(device = function(file, width, height) {
 options(crayon.enabled = F)
 options(knitr.table.format = "html")
 # A blank theme for ggplot
+# A blank theme for ggplot
 theme_empty <- theme_bw() + theme(
   line = element_blank(),
   rect = element_blank(),
@@ -168,45 +169,6 @@ theme_gif <- theme_bw() + theme(
   axis.text.y = element_text(size = 12),
   axis.ticks = element_blank()
 )
-
-theme_goods <- theme_bw() + theme(
-  axis.line = element_line(),
-  panel.grid = element_blank(),
-  rect = element_rect(size = 1),
-  strip.text = element_blank(),
-  text = element_text(size = 17, family = cnfont), 
-  axis.text.x = element_text(size = 17),
-  axis.text.y = element_text(size = 17, angle = 90, hjust = 0.5),
-  axis.title.x = element_text(color = purple, size = 19),
-  axis.title.y = element_text(color = red_pink, size = 19),
-  axis.ticks = element_blank(),
-  plot.title = element_blank(),
-  legend.position = "none"
-)
-theme_game <- theme_bw() + theme(
-  axis.line = element_line(),
-  panel.grid = element_blank(),
-  rect = element_rect(size = 1),
-  strip.text = element_blank(),
-  text = element_text(size = 20, family = cnfont), 
-  axis.text.x = element_text(size = 20, color = met_slate),
-  axis.text.y = element_text(size = 20, angle = 90, color = met_slate, hjust = 0.5),
-  axis.title.x = element_text(color = met_slate, size = 20),
-  axis.title.y = element_text(color = met_slate, size = 20),
-  axis.ticks = element_blank(),
-  plot.title = element_blank(),
-  legend.position = "none"
-)
-shift_axis <- function(p, y=0){
-  g <- ggplotGrob(p)
-  dummy <- data.frame(y=y)
-  ax <- g[["grobs"]][g$layout$name == "axis-b"][[1]]
-  p + annotation_custom(grid::grobTree(ax, vp = grid::viewport(y=1, height=sum(ax$height))), 
-                        ymax=y, ymin=y) +
-    geom_hline(aes(yintercept=y), data = dummy, size = 0.5, color = met_slate) +
-    theme(axis.text.x = element_blank(), 
-          axis.ticks.x = element_blank())
-}
 wrapper <- function(x, ...) paste(strwrap(x, ...), collapse = "\n")
 # functions
 demand <- function(x) 10 - x
@@ -215,6 +177,7 @@ demand_3 <- function(x) 8 - x
 demand_inc <- function(x) 11 - x
 demand_dec <- function(x) 5 - x
 supply <- function(x) 1 + (4/5)*x
+
 step_demand <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8), mv = c(8, 7, 6, 5, 4, 3, 2, 1, 0))
 step_demand2 <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(10, 10, 9, 9, 8, 8, 7, 7, 6, 6, 5, 4, 4))
 step_supply <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 8, 8))
@@ -255,6 +218,13 @@ tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", h
     row_spec(1:nrow(tidy(x)), background = "white") %>%
     row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
 }
+
+xaringanExtra::use_tile_view()
+xaringanExtra::use_scribble()
+xaringanExtra::use_animate_css()
+xaringanExtra::use_fit_screen()
+xaringanExtra::use_clipboard()
+
 ```
 class: title-slide-section, middle, inverse
 
@@ -265,7 +235,7 @@ class: title-slide-section, middle, inverse
 ### 微观经济学架构
 
 .more-left[
-<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/9RXn3f.png  height="450" width="500">
+<img src=./figs/microecon.png  height="450" width="500">
 ]
 
 .less-right[
@@ -288,6 +258,9 @@ class: title-slide-section, middle, inverse
 .hi[Q:] 对同一件商品，每个的意愿支付都不同。那么什么决定了差异化的每个人的意愿支付？
 
 .hi[A:] 商品价值对每个人不同
+
+- 代表性个体
+- 限定条件后，会影响结论的稳健性（robustness）
 
 ---
 
@@ -417,52 +390,6 @@ ggplot(data = step_demand, mapping = aes(x = x, y = mv)) +
 
 讲了那么多价值.而我们平时都是讨论价格？这两者有什么关系？要先讲一个故事~
 
----
-
-#### 钻石与水悖论
-
-.pink[Q:] 亚当·斯密在《国富论》中指出：
-> 没什么东西比水更有用；能用它交换的货物却非常有限；很少的东西就可以换到水。相反，钻石没有什么用处，但可以用它换来大量的货品。
-
-水非常有用，但在市场上价格很低；钻石几乎没什么用，但在市场上价格很高。该悖论也称作价值悖论。为什么会有这样的现象呢？
-
----
-#### 钻石与水悖论
-
-.less-right[
-.pink[TV.sub[水]] .mono[>] .purple[TV.sub[钻石]]
-
-.purple[MV.sub[钻石]] .mono[>] .pink[MV.sub[水]]
-
-- 市场价格反映了消费者的边际价值，而不是总价值。
-]
-
-.more-left[
-```{r diamond_water, echo = FALSE, fig.height = 5, fig.width = 6, dev = "svg"}
-water <- function(x) {
-  1/(0.05*x + 0.1)
-}
-diamond <- function(x) {
-  0.5/(0.05*x + 0.1)
-}
-ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  scale_x_continuous(limits = c(0, 14.5), expand = c(0, 0), breaks = NULL) +
-  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
-  theme_market +
-  labs(x = "Q", y = "MV") +
-  stat_function(fun = water, color = red_pink, size = 1) +
-  stat_function(fun = diamond, color = purple, size = 1) +
-  annotate("text", label = expression(MV[水]), x = 4.5, y = 4.25, color = red_pink, family = cnfont, size = 9) +
-  annotate("text", label = expression(MV[钻石]), x = 4.25, y = 1.1, color = purple, family = cnfont, size = 9) +
-  geom_point(aes(x = 8, y = 2), color = met_slate, size = 2) +
-  geom_segment(aes(x = 8, y = 0, xend = 8, yend = 2), linetype = "dashed", color = met_slate, size = 1) +
-  geom_segment(aes(x = 0, y = 2, xend = 8, yend = 2), linetype = "dashed", color = met_slate, size = 1) +
-  geom_point(aes(x = .5, y = 4), color = met_slate, size = 2) +
-  geom_segment(aes(x = .5, y = 0, xend = .5, yend = 4), linetype = "dashed", color = met_slate, size = 1) +
-  geom_segment(aes(x = 0, y = 4, xend = .5, yend = 4), linetype = "dashed", color = met_slate, size = 1)
-
-```
-]
 ---
 
 ### 消费者盈余 Consumer surplus
@@ -961,6 +888,37 @@ $$\epsilon_d = \dfrac{d Q_d}{d P} \dfrac{P}{Q} \leq 0$$
 - 年龄、健康、质量、广告、维持货物的成本、货物的合法性，*等等*。
 
 ---
+### 弹性概念的重要性(一)
+
+- 将数量分析与实物形态产品统一。弹性通过市场分析获得，而对于大多数人而言接触到时实物形态的产品，并且仅仅对自己了解，因此如何快速做出判断非常重要。一方面预测价格政策变化，一方面洞察市场行情变化后对目标收入的影响
+
+  - 例如，价格弹性较高的商品表明价格下降会导致需求量显著增加，从而可能增加总收入或支出；相反，对于价格弹性较低的商品，需求量对价格变动不太敏感，因此价格下降可能不会显著增加总收入
+
+- 弹性概念不仅可以应用于需求侧，还将其应用于供给侧，为理解供给量如何响应价格变化提供了类似的分析工具。这种对称的方法强化了价格机制在资源分配中的中心作用，同时也展示了市场经济中供需双方如何互动以达到均衡。
+
+---
+### 弹性概念的重要性（二）
+
+- 体现了实证研究、规范研究和施政艺术之间的差异性。例如体育赛事门票市场中的需求价格弹性，可以帮助学生更好地理解经济学的应用。
+
+#### **实证研究**(Positive research) → 解决 “是什么”的问题，没有价值判断，以描述性居多
+
+- 对体育赛事门票市场需求状况是什么样的。通过分析不同价格水平下的门票销售数据，可以观察到门票价格上升时需求量减少，从而揭示需求价格弹性的存在。这种分析纯粹基于观察市场行为，不涉及任何关于市场应该如何表现的假设
+
+#### **规范研究**(Nomative research) → 基于价值判断的“应该怎么做”
+
+- 如考虑到公平性和可及性，门票的价格应该设置在什么水平。如果发现高价格使得低收入群体无法负担观看比赛，可能会提出降低价格的建议
+
+---
+### 弹性概念的重要性（二）
+
+#### **施政艺术**（the Art of Economics） → 有效的政策制定
+
+- 设计一个平衡赛场氛围和球队收入的票价策略。在了解不同价格与需求价格弹性的关系后，门票策略就是施政艺术的体现了，既能确保财务成功，又能提升上座率。包括实施动态定价机制、为特定群体提供折扣等。政策制定通常要平衡经济、社会和政治等其他目标，靠考虑到政策能够有效的采纳
+- Manzenreiter, W., & Horne, J. (2005). Public Policy, **Sports Investments and Regional Development Initiatives in Japan**. J. Nauright & K. S. Schimmel , The Political Economy of Sport (Page 152–182). Palgrave Macmillan UK. 
+- 建立J.League还紧密关联到三大国家目标：增强国家队实力，提升日本足球队在国际上的成就以及争取举办世界杯决赛的资格。J 联赛代表了体育作为社会政策形式，也是促进区域振兴和城市发展规划的工具，遇到市场力量和追求国家荣誉的思维时会发生的情形。J联赛设计雄心勃勃，汲取了欧洲俱乐部体育的精髓，融入了北美体育的商业运作模式。各成员俱乐部与本地社区（家乡）建立紧密联系，增强地区自豪感并对居民培养出强烈的社区归属感。不同于日本职业棒球联赛中依赖补贴和企业所有者决策的做法，俱乐部被期望能作为独立自主且经济可行的实体运营。
+
+---
 ### 小结
 
 支付意愿 .mono[->] 价值 最优购买
@@ -977,7 +935,7 @@ $$\epsilon_d = \dfrac{d Q_d}{d P} \dfrac{P}{Q} \leq 0$$
 
 弹性（需求的价格弹性）.mono[->]
 
-自己去发掘：需求的价格弹性、需求的收入弹性、需求的交叉价格弹性
+自己去发掘：需求的价格弹性、需求的收入弹性、需求的交叉价格弹性，以及需求价格弹性与与总收入之间的关系
 
 ---
 
@@ -1356,17 +1314,23 @@ ggplot() +
 ---
 ### 负外部性的例子-静态和动态
 
-那么为什么没有人取消湖人的比赛呢？
+- 那么为什么没有人取消湖人的比赛呢？从另一个维度来理解上面的情况。通过**囚徒困境**来刻画居民和政府（或比赛组织者）之间的互动。
 
-我们从另一个维度来理解上面的情况。
+- 将这个概念应用到湖人比赛的情况：
 
-上述问题属于**静态(static)的负外部性**情况。如果是短期决策，居民会采取以下**行动方案**:
+1. **政府/比赛组织者的选择**：
+   - **合作**：考虑到居民的利益，采取措施减少比赛对周边居民的负面影响，如改进交通管理、减少噪音等，或在极端情况下取消比赛。
+   - **不合作**：忽略居民的抱怨，继续举行比赛以保证收入和利益最大化。
 
-- 周边居民会被交通拥堵、噪音和污染影响 → 投诉政府
+2. **居民的选择**：
+   - **合作**：忍受比赛带来的不便，不采取行动。
+   - **不合作**：通过投诉、搬家等方式表达不满，寻求改变现状。
 
-- 若家里有老人或者升学娃 → 直接搬离
 
-这时候我们用**囚徒困境**来刻画: 
+在短期内，政府/比赛组织者可能更倾向于不合作，因为取消比赛会带来经济损失和合约责任问题。居民也可能通过投诉来表达不满
+
+???
+但面对比赛带来的经济效益和城市声誉等因素，他们的影响力有限。因此，双方陷入了一种“囚徒困境”，即便共同合作对社区整体最有利，但短期内的决策往往导致维持现状，不利于解决负外部性问题。
 
 ---
 ### 囚徒困境解释市场机制的不完美
@@ -1379,6 +1343,7 @@ ggplot() +
 - 囚徒困境是**非零和博弈**
 - 参与者都是**理性人** 
 - 如何选择？
+- 囚徒困境是博弈论中的一个典型例子，用来说明两个理性的个体，即便最好的结果是合作，但由于缺乏信任和沟通，最终往往导致双方都采取对自己最有利的策略，结果反而对双方都不好。
 ]
 
 ???
@@ -1391,20 +1356,21 @@ ggplot() +
 - 这种情况就称为纳什均衡点。这时个体的理性利益选择是与整体的理性利益选择不一致的。 
 ]
 
---- 
-### 动态看负外部性
 
-仍考虑湖人队的例子，居民要是考虑到时间的因素，如何决策？
+---
+### 动态的负外部性
 
-- 通常大联盟球队及所在主场，都被视为一座城市的无形和有形资产。比如，Staples就是地标性建筑。吸引商业进入。
+- 从长期或动态的角度来看，负外部性问题会促使政府和组织者采取行动来缓解影响，因为持续的负面影响可能导致居民离开，减少税收，甚至影响城市的长期发展和吸引力
+- 长期解决方案可能包括建设更好的基础设施，改善交通系统，或者在规划大型活动时更加考虑社区的声音和需要。
+- 在动态的情境中，随着时间的推移，参与者可能开始认识到合作的长期利益，从而找到更可持续的解决方案，以减少负外部性并改善所有人的福祉。
 
-- 长期来看，居民可能习惯拥堵和噪音，甚至态度发生变化，视之为**繁荣的标志**。
-
-请头脑风暴举例说明会有哪些好处?
+- 请说明长期来做，赛事组织者会采取什么样措施?
 
 ???
-- 吸引了企业家和有钱人到来，这会让当地人生活得更好。
 
+- 通常大联盟球队及所在主场，都被视为一座城市的无形和有形资产。比如，Staples就是地标性建筑。吸引商业进入
+- 长期来看，居民可能习惯拥堵和噪音，甚至态度发生变化，视之为**繁荣的标志**
+- 吸引了企业家和有钱人到来，这会让当地人生活得更好
 - 地产繁荣。即使体育场的负面影响占主导地位，营业额也已将外部因素内化，因为在瑞格利维尔购买房屋或企业的人已因任何不便而得到补偿。补偿以较低的房地产价格的形式出现。
 
 ---
@@ -1453,18 +1419,7 @@ ggplot() +
   - 通过参与各类可供观赏的运动组合获得体验感，满足人的欲望、提高福祉水平，→ 竞技运动服务业
   - 通过增加个体身体运动能力、改善身体和心理健康水平，扩大社交网络，间接实现“再生产”能力提升的服务类产品 → 健身休闲娱乐服务业
 
----
-### 体育产品的属性（供讨论）
 
-- 依据产品形态，能够清楚划分生产与消费是否具有可分性与不可分性
-
-- 依据竞争性和排他性，私人财产还是公共财产（俱乐部、公共资源和纯公共品）
-  - 排他性（excludability）：拥有该产品就限制别人消费、享用该产品的程度 → 无法分享
-  - 敌对性 （rivalry）：一个人消费某产品就会降低别人消费该产品的能力的程度 → 恶化他人体验
-
-- 依据收益回报的时间，买上收益和推迟收益
-  - 在消费层面，依照满足人的需求层次的需要 → 内在机制建立
-  - 推迟收益，面对**非理性**的情形 → 外界进行干预
   
 ---
 ### 如何从消费角度理解体育
@@ -1480,3 +1435,71 @@ ggplot() +
 1.文章的观点是什么？（是否读懂思路，能否提炼观点）
 2.文章的结构如何安排？
 3.作者是如何论证观点的？
+
+---
+### 经济思想史的发展（补充）
+#### 从“价值-价格”转向“效用-价值” 的讨论
+  - “价值-价格”影响最为深远的讨论在 1776 年斯密的《国富论》
+  - 因为在斯密之前主流是重商主义（经济活动的最终目是赚钱，当时的财富主要来源于对外贸易 → 贸易干预 + 殖民地）
+  - 但斯密却国家财富直接的表现是生产领域效率的提高和人均收入水平的提高。如何提高生产领域的效率呢？需要将资源给到那些产生价值最多领域。这里有一个重要问题就是价值从何而来？谁产生价值？他认为劳动产生价值→劳动价值理论。
+
+---
+### 经济思想史的发展（补充）
+#### 从“价值-价格”转向“效用-价值” 的讨论
+
+- 价格可见，但是价值不可见，因此在“价值-价格”体系下演变成了三种价值来源说：
+    - 劳动成本价值论 labor cost theory of value - 古代的简单情况：看劳动投入时间，但局限是同样程度痛苦程度、工艺繁杂程度等都不同
+    - 劳动指令价值论 labor command theory of value - 东西能换多少工作 - 持有的商品或货币能“指令”多少其他人的劳动量，但收藏品升值又如何解释？更可能是因为稀缺、艺术偏好和预期升值导致的
+    - **生产成本价值论** cost of production theory of value - 做东西要花的总成本：价值由投入品价值构成，但工资、地租和利息都是价格，陷入重复解释
+
+---
+### 经济思想史的发展（补充）
+#### 从“价值-价格”转向“效用-价值” 的讨论
+
+- 斯密关于“钻石与水”的讨论最终导致劳动价值论的终结
+
+.pink[Q:] 亚当·斯密在《国富论》中指出：
+> 没什么东西比水更有用；能用它交换的货物却非常有限；很少的东西就可以换到水。相反，钻石没有什么用处，但可以用它换来大量的货品
+
+他通过对比水和钻石的使用价值和交换价值，指出了交换价值（价格）和个人或社会的实际需求（使用价值）之间的明显差异，从而提出了这一悖论。但他并没有完全解决这个悖论，反倒是从价值来源论证谈起，才有了上面的价值论三说
+
+---
+#### 钻石与水悖论
+
+.less-right[
+.pink[TU.sub[水]] .mono[>] .purple[TU.sub[钻石]]
+
+.purple[MU.sub[钻石]] .mono[>] .pink[MU.sub[水]]
+
+- 市场价格反映了消费者最后一单位购买带来的边际效用，而不是总效用
+]
+
+.more-left[
+```{r diamond_water, echo = FALSE, fig.height = 5, fig.width = 6, dev = "svg"}
+water <- function(x) {
+  1/(0.05*x + 0.1)
+}
+diamond <- function(x) {
+  0.5/(0.05*x + 0.1)
+}
+ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  scale_x_continuous(limits = c(0, 14.5), expand = c(0, 0), breaks = NULL) +
+  scale_y_continuous(limits = c(0, 10.5), expand = c(0, 0), breaks = NULL) +
+  theme_market +
+  labs(x = "Q", y = "MV") +
+  stat_function(fun = water, color = red_pink, size = 1) +
+  stat_function(fun = diamond, color = purple, size = 1) +
+  annotate("text", label = expression(MV[水]), x = 4.5, y = 4.25, color = red_pink, family = cnfont, size = 9) +
+  annotate("text", label = expression(MV[钻石]), x = 4.25, y = 1.1, color = purple, family = cnfont, size = 9) +
+  geom_point(aes(x = 8, y = 2), color = met_slate, size = 2) +
+  geom_segment(aes(x = 8, y = 0, xend = 8, yend = 2), linetype = "dashed", color = met_slate, size = 1) +
+  geom_segment(aes(x = 0, y = 2, xend = 8, yend = 2), linetype = "dashed", color = met_slate, size = 1) +
+  geom_point(aes(x = .5, y = 4), color = met_slate, size = 2) +
+  geom_segment(aes(x = .5, y = 0, xend = .5, yend = 4), linetype = "dashed", color = met_slate, size = 1) +
+  geom_segment(aes(x = 0, y = 4, xend = .5, yend = 4), linetype = "dashed", color = met_slate, size = 1)
+
+```
+]
+
+
+

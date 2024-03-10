@@ -105,8 +105,6 @@
 <g clip-path="url(#clip-3)">
 <path fill-rule="nonzero" fill="rgb(54.509804%, 69.411765%, 45.490196%)" fill-opacity="0.2" d="M 114.304688 334.78125 L 178.363281 334.78125 L 178.363281 115.246094 L 114.304688 115.246094 Z M 114.304688 334.78125 "/>
 </g>
-<path fill="none" stroke-width="1.066978" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(15.294118%, 15.686275%, 13.333333%)" stroke-opacity="1" stroke-miterlimit="10" d="M 18.21875 334.78125 L 18.21875 5.480469 "/>
-<path fill="none" stroke-width="1.066978" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(15.294118%, 15.686275%, 13.333333%)" stroke-opacity="1" stroke-miterlimit="10" d="M 18.21875 334.78125 L 354.519531 334.78125 "/>
 <g fill="rgb(15.294118%, 15.686275%, 13.333333%)" fill-opacity="1">
 <use xlink:href="#glyph-3-1" x="334.519531" y="350.299805"/>
 <use xlink:href="#glyph-3-2" x="344.519531" y="350.299805"/>

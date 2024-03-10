@@ -4,8 +4,20 @@
     <title>体育经济分析: 原理与应用</title>
     <meta charset="utf-8" />
     <meta name="author" content="周正卿" />
-    <meta name="date" content="2024-01-20" />
+    <meta name="date" content="2024-03-09" />
     <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra_fit-screen/fit-screen.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -24,7 +36,7 @@ class: center, middle, inverse, title-slide
 ### 周正卿
 ]
 .date[
-### 20 January 2024
+### 09 March 2024
 ]
 
 ---
@@ -122,12 +134,27 @@ class: title-slide-section, middle, inverse
 
 .hi[目标] 生产者理论的分析路线（高级）
 
-- WTP → MV → 需求曲线（P-Q关系）
+- WTP → 需求曲线（P-Q关系）
 
 - 供给曲线从何而来?（P-Q关系）
 
 ---
+### 思想史：供给理论比需求理论形式化展开的晚
 
+- 供给理论又称为边际生产率理论。在亚当斯密之后，古典经济学家对于供给分析是缺失的。通常假定供给是固定（完全无弹性），在有限的供给下如何进行资源配给和要素供应与价格解释，特别是对包括工资、租金、利息和利润之间相互联系与财富分配进行阐述
+  - 早期的Longfield（1802-1884）在1834年的《政治经济学讲义》中批评了劳动价值论，并提出边际生产率理论 → 从需求分析中无法解决要素配置和财富分配问题
+  - 图能（1783-1850）则主要集中在农业经济学和土地使用的最优分配上，提出的土地使用理论（极差地租） →  暗示了后来的**边际报酬递减律**
+- 边际生产率理论为就业理论提供重要启示，特别是与工资和劳动力市场链接后，就能得出一个非常重要观点：**在完全竞争市场中，工资应当等于劳动力的边际产出的价值** &lt;br&gt;→ 意味着，如果工资过高将导致失业，因为企业在成本和收益平衡的基础上决定雇佣劳动力的数量
+&lt;br&gt; → 降低工资能够提高就业水平，从而减轻经济萧条的影响。然而，这种观点在大萧条后，遭遇到了凯恩斯的批评
+
+---
+### 名词解析
+- resource allocation 资源配置 → 分配或者拨用人、财、物、时间等资源，以达到某种目的
+
+- income distribution 收入分配 → 在一定范围内的分发或者分享某种**单一**要素
+
+- revenue share 收入共享 → 把收入给汇总后，再以某种标准共享给大家，参与者人人有份，且保持公平
+---
 ### 讲授路径
 
 .less-right[
@@ -146,10 +173,10 @@ class: title-slide-section, middle, inverse
 
 
 ---
-### 讲授路径（非常重要）
+### 讲授逻辑（写在前面）
 
-- 从成本线看供给生产函数。当经济学打开厂商生产的黑箱时，首先看到的是要素的投入，包括要素价格、要素数量以及要素组合的方式。我们将会定义出生产函数、生产技术以及生产阶段。在图形上，我们看到是L-Q平面，反映的“要素-产量”关系
-- 生产函数不同意味着成本函数差异，而成本函数刻画的是Q-$平面，与需求曲线（回忆：本质是刻画消费者偏好）在同一个维度。成本函数反映的是“产量-成本消耗”关系
+- 从成本线得到供给生产函数。当经济学打开厂商生产的黑箱时，首先看到的是要素的投入，包括要素价格、要素数量以及要素组合的方式。我们将会定义出生产函数、生产技术以及生产阶段。在图形上，我们看到是L-Q平面，反映的“要素-产量”关系 
+- 生产函数不同意味着成本函数差异，而成本函数刻画的是Q-$平面，与需求曲线（回忆：本质是刻画消费者偏好）在同一个维度。成本函数反映的是“产量-成本消耗”关系 → 成本和要素需求是一个问题的两面（暂不深入）
 - 两条路径是理解单个厂商的供给行为的关键
   - MC 路径：生产技术出发 → 生产函数 → 成本函数 → MC 曲线
   - MR 路径：若限定厂商为价格接受者，就可以获得 MR 曲线 
@@ -159,7 +186,7 @@ class: title-slide-section, middle, inverse
   - 寡头市场、独占性竞争的市场结构 → 经济主体间博弈
 
 ---
-### MR 和 MC v.s. 内部决策与外部约束
+### MR=MC v.s. **内部决策与外部约束**
 
 - 两者都是内部决策 → 回忆：受制于外部约束
 
@@ -338,6 +365,15 @@ count: false
 - 随着教练数量的增加，每增加一个教练所带来的额外学员数量在逐渐减少。这就是边际报酬递减法则的体现
 - 在一定程度上，增加更多的输入（如教练）将不再能够有效地提高产出（如培训学员数量），甚至可能会导致产出的减少
 
+---
+### 报酬递减原理 principle of diminishing returns
+
+- **重要性**：解释厂商短期供给曲线的形状 + 厂商派生的生产要素需求曲线形状
+- **来源于农业生产的观察**。Ricardo 在研究农业生产函数时（即土地的实物投入与实物产出间的关系）时发现：当他把土地当成一个可变要素，然后假定整个生产过程中资本对劳动的比率因技术不变而固定，只是持续增加土地要素，然后看单位面积的农产品产出会有什么样的变化。他发现，单位土地的产生是递减的 → “土地的报酬递减”，他认为是由于土地的质量下降引起的（不断耕作新土地，贫瘠土地最终投入使用） → 最终使得全国平均亩产量趋于下降
+- **后来者的精炼**：一种要素不变，持续增加可变要素到这种不变要素上时，产量开始以递增速度增加，然后以递减的速度增加，最终递减
+- **深刻性**：涉及到了要素投入的量与质的关系 
+&lt;br&gt; → 对利润来源的解释 &lt;br&gt;→ 对“经济租”(economic rent)和成本的区分 + 大规模非同质要素的假设 &lt;br&gt;→ 机会成本概念的产生
+
 
 ---
 ### 为什么要区分生产阶段
@@ -377,15 +413,11 @@ class: title-slide-section, middle, inverse
 ### 成本要考虑是否影响决策以及时间
 
 
-- 要素分为**可变要素**和**固定要素**，对于成本来看，是否影响边际生产决策就分为**可变成本**和**固定成本**
-
-- 生产要素分是可变还是固定，还须视时间长短
-  
-  - 若是生产决策时间非常短，那么所有要素都可能是固定的 → **极短期**
-  
-  - 随着时间拉长，有些固定要素就会转变为可变要素 → **长期**
-  
-  - 只要还存在固定要素的生产决策 → **短期**
+- **市场期market period**：市场期间是如此短暂，以至于供给是固定的或完全无弹性的。价格对供应量没有反作用，因为这个周期太短，企业无法对价格变化做出反应
+- **短期short run**：短期是企业可以改变生产和供应但不能改变厂房规模的时期。更高的价格驱使厂商供应数量增加，供应曲线向上倾斜。只能改变产量，不能改变厂房规模。在短期内，企业的总成本分为随产出变化的成本(**可变成本**)；不随产出变化的成本(**固定成本**)。这种区分来自对商业世界的观察。
+- **长期long run**：厂房规模可以变化，所有成本都是可变的。长期供应曲线比短期更有弹性，因为企业能够通过改变厂房规模充分调整以适应价格变化
+  - 长期供应曲线可以采取三种一般形式：它可以向上和向右倾斜（成本可能增加）；它可以完全有弹性（成本可能恒定）；或者，在不寻常的情况下，它可以向下和向右倾斜（成本可能减少）→ 规模经济
+- **世俗期secular period**：一个行业的世俗期或非常长期，允许技术和人口变化，代际间价格的变动时的时间设定
 
 ---
 class: clear-slide
@@ -408,46 +440,46 @@ class: clear-slide
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1800 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 1800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2400 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 2400 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2800 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 2800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 3000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -474,46 +506,46 @@ class: clear-slide
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1800 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 1800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2400 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 2400 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2800 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 2800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 3000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -540,46 +572,46 @@ class: clear-slide
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $0 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $2000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $2000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1800 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $4000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 1800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $4000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2400 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $6000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 2400 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $6000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2800 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $8000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 2800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $8000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $10000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 3000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $10000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -606,46 +638,46 @@ class: clear-slide
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $0 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $2000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $3000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $2000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $3000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1800 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $4000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $5000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 1800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $4000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $5000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2400 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $6000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $7000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 2400 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $6000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $7000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2800 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $8000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $9000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 2800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $8000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $9000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $10000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $11000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 3000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $10000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $11000 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -658,7 +690,7 @@ class: clear-slide
 
 .pink.hi[可变成本] 劳动力.mono[--&gt;] 市场工资为每月2000元
 
-.center[.purple[**SRTC曲线**]]
+.center[.purple[**STC曲线**]]
 
 .pull-left[
 &lt;table&gt;
@@ -670,28 +702,28 @@ class: clear-slide
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $1000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $3000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 1000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $3000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 1800 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $5000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 1800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $5000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2400 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $7000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 2400 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $7000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 2800 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $9000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 2800 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $9000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; 3000 &lt;/td&gt;
-   &lt;td style="text-align:center;color: #272822 !important;line-height: 110%;"&gt; $11000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; 3000 &lt;/td&gt;
+   &lt;td style="text-align:center;color: rgba(39, 40, 34, 255) !important;line-height: 110%;"&gt; $11000 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -735,6 +767,7 @@ class: clear-slide
 
 .pink[任一方案的总成本 .mono[=] 5万]
 
+
 ---
 ###  会计利润  v.s.  经济利润 
 
@@ -750,20 +783,27 @@ class: clear-slide
 
 &gt;所以一家赚钱的公司，并不总是意味着一家公司做得很好
 
+---
+### 机会成本的思想
+- 奥地利经济学派的代表人物：米赛斯（1881-1973），给出了区别于新古典经济学的成本定义，在《经济学的认识论》第四章关于主观价值理论的发展中论述到，在现代经济学中，成本是**the importance of the next most urgent want that can now no longer be satisfied**（对于决策者而言，当下最紧迫的、不能马上就满足的其他需求的重要性）
+  - 在现代经济学教材中，把替代的可行方案中价值最高的方案的价值就是机会成本；因此新古典经济学家把超过平均成本的部分定义为利润（无法体会到其经济含义）
+  - 了解盈利的意义（即便在完全竞争下）。心理最想满足的欲望，它的心理价值只能用 importance 来衡量（主观价值判断），不能用 value 来描述 → 企业家会使用当前要素创造的价值会比账目价值高 
+
+
 
 ---
-### 短期总成本曲线SRC
+### 短期总成本曲线SC
 
 .more-left[
 &lt;img src="Lec03_files/figure-html/unnamed-chunk-14-1.svg" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
-#### .purple.hi[**SRTC曲线**]:产出与.pink[最低投入成本]的关系
+#### .purple.hi[**STC曲线**]:产出与.pink[最低投入成本]的关系
 
 - Q-$平面
 
-- 短期的前面SR
+- 短期的前面S
 
 .hi[思考]为什么总成本曲线是S型？
 ]
@@ -776,14 +816,14 @@ class: clear-slide
 ### 总成本的构成
 
 #### 总成本 .mono[=] .green[固定成本] .mono[+] .pink[可变成本]
-- SRTC(x)=TFC + TVC(x)
+- STC(x)=TFC + TVC(x)
 #### .green[固定成本]
 &gt; .green[成本不随产出数量的变化而变化]
-- 如租金、设备成本、贷款支付等；对短期边际成本SRMC没有影响
+- 如租金、设备成本、贷款支付等；对短期边际成本SMC没有影响
 
 #### .pink[可变成本]
 &gt; .pink[成本随产出数量变化而变化]
-- 如工资, 原材料成本等；对短期边际成本SRMC有影响
+- 如工资, 原材料成本等；对短期边际成本SMC有影响
 
 ---
 ### 总成本的构成
@@ -841,7 +881,7 @@ class: clear-slide
 ]
 
 ---
-### 短期平均成本 SRAC
+### 短期平均成本 SAC
 
 .more-left[
 &lt;img src="Lec03_files/figure-html/unnamed-chunk-18-1.svg" style="display: block; margin: auto;" /&gt;
@@ -850,21 +890,22 @@ class: clear-slide
 .less-right[
 #### 定义
 
-&gt; SRAC .mono[=] SRTC &amp;divide; 总产量 &lt;br&gt; .mono[=] AFC .mono[+] AVC
+&gt; SAC .mono[=] STC &amp;divide; 总产量 &lt;br&gt; .mono[=] AFC .mono[+] AVC
 
 ]
 
 ---
-### 短期边际成本SRMC
+### 短期边际成本SMC
 
 .more-left[
 &lt;img src="Lec03_files/figure-html/unnamed-chunk-19-1.svg" style="display: block; margin: auto;" /&gt;
 ]
 
-
+.less-right[
 #### 定义
+&gt; 产量增加一个单位所产生的总成本的变化。
 
-&gt; 产量增加一个单位所产生的总成本的变化。 
+]
 
 ---
 ### 图形展示：MC与 MP、AVC 与 AP 的关系
@@ -875,22 +916,22 @@ class: clear-slide
 ---
 ### 数学推导：MC与 MP、AVC 与 AP 的关系
 
-- `\(SRTC=TFC+TVC(x)=rK_0+wL\)`
+- `\(STC=TFC+TVC(x)=rK_0+wL\)`
 
 - `\(L=f^{-1}(x)\)`
 
-- `\(SRTC(x)=TFC+TVC(x)=rK_0+wf^{-1}(x)\)`
+- `\(STC(x)=TFC+TVC(x)=rK_0+wf^{-1}(x)\)`
 
-- `\(SRMC(x)=w \frac{df^{-1}(x)}{dx}\)`
+- `\(SMC(x)=w \frac{df^{-1}(x)}{dx}\)`
 
 - `\(\frac{df^{-1}(x)}{dx}=\frac{dL}{dx}=\frac{1}{\frac{dx}{dL}}=\frac{1}{\frac{df(L)}{dL}}=\frac{1}{f\prime(L)} = \frac{1}{MP_L}\)`
 
-- `\(SRMC=\frac {w}{MP_L}\)`
+- `\(SMC=\frac {w}{MP_L}\)`
 
 - 同理： `\(AVC=\frac {w}{AP_L}\)`
 
 ???
-AVC和TVC没有加上SR或者LR是因为它们只有在短期的时候才有区分
+AVC和TVC没有加上S或者L是因为它们只有在短期的时候才有区分
 
 ---
 ### 应用：成本类型的判别
@@ -904,14 +945,14 @@ AVC和TVC没有加上SR或者LR是因为它们只有在短期的时候才有区�
 - 运营成本：“水电气讯”按时付费、办公室日常开销
 - 市场开发成本：比赛日各类开支、宣传、产品渠道等
 - 劳务成本：安保、兼职人员、临时人员
-  
+
 ---
 ### 长期决策：要素替代关系与长期成本
 
-- 长期决策依然延续“生产技术→成本的”思考方式，但是
-  - 长期的不同是企业可以调整所有生产要素（劳动和资本）→ 允许企业选择最优的要素组合来最大化产量或效率 → 长期生产函数应该反映要素间的技术替代关系
-
 - 短期 → 边际报酬与生产技术：在长期生产函数中，企业可以采用不同的生产技术。每种技术对劳动和资本的边际报酬（即增加一个单位的劳动或资本所带来的额外产量）可能是不同的 &lt;br&gt; → 短期中，我们谈论边际报酬递减规律，是建立资本投入为固定的情况下；但长期而言，不仅需要单一要素持续投入会受边际报酬规律影响，原本的单一要素的边际产量也会受到**要素比例投入比例改变**的影响（交叉效果）
+
+- 长期决策依然延续“生产技术→成本的”思考方式，**但是**
+  - 长期中企业可以调整所有生产要素（劳动和资本）→ 允许企业选择最优的要素组合来最大化产量或效率 → 长期生产函数应该反映要素间的技术替代关系
 
 - 长期→ 规模报酬（Returns to Scale）： 规模报酬关注当所有生产要素的使用量同时按照某一比例增加时，产量如何变化。如果产量增加的比例等于生产要素增加的比例，那么称为恒定规模报酬；如果产量增加的比例大于生产要素增加的比例，则为递增规模报酬；反之则为递减规模报酬
 
@@ -935,10 +976,9 @@ AVC和TVC没有加上SR或者LR是因为它们只有在短期的时候才有区�
 ]
 
 .less-right[
-- LRAC 比SRAC 更平缓
-  - SRAC 每点对应的规模相同
-  - LRAC 每点对应的规模不同
-
+- LAC 比SAC 更平缓
+  - SAC 每点对应的规模相同
+  - LAC 每点对应的规模不同
 ]
 
 ---
@@ -952,29 +992,29 @@ AVC和TVC没有加上SR或者LR是因为它们只有在短期的时候才有区�
 #### economies/&lt;br&gt;diseconomies of scale:长期平均总成本随**产量**增加而减少的特性
 - **规模经济与规模不经济**
 &lt;br&gt;反映长期中厂商投入生产要素集中度与经济效益之间的关系
-  - 规模经济：SRAC 相切于 LRAC 下降位置
+  - 规模经济：SAC 相切于 LAC 下降位置
   → 规模扩大时，平均成本有下降趋势
 - 导致平均成本曲线 U 型原因不同
-  - 短期SR：**边际**报酬递增或递减
-  - 长期LR：**规模**报酬递增或递减
+  - 短期S：**边际**报酬递增或递减
+  - 长期L：**规模**报酬递增或递减
 
 ]
 
 ---
 ### 长期用规模经济与规模不经济反映要素集中度与经济效益的关系
 
-- **最适规模**：能够使得 LRAC 达到最低点的规模
-  - 最适规模量级大：意味着最大产量即便非常大，也能维持 LRAC 持续下降或最低
+- **最适规模**：能够使得 LAC 达到最低点的规模
+  - 最适规模量级大：意味着最大产量即便非常大，也能维持 LAC 持续下降或最低
   - 最适规模有很多个 → 盘子形，比如超市等
   - 最适规模只有一个 → V 型
 - 规模经济再细分为**内部经济**(internal)和**外部经济**(external)
-  - 内部经济：规模扩大后，厂商内部因素使得LRAC 继续降低
+  - 内部经济：规模扩大后，厂商内部因素使得LAC 继续降低
       - 源于：企业自身的规模和运营效率——更有效分工和专业化、采购经济、技术经济(足够资源投入研发)、管理经济(大厂魅力)
-      - 结果：处于LRAC负斜率
-  - 外部经济：规模扩大后，厂商因外部因素使得LRAC持续降低
+      - 结果：处于LAC负斜率
+  - 外部经济：规模扩大后，厂商因外部因素使得LAC持续降低
       - 源于：企业所处的行业和地区的整体环境——行业集聚(体育公园、晋江)、基础设施建设(体育产业园，数字、水电气讯)、技术溢出效应(创业园、科技园)
-      - 效果：LRAC整体下移
-- 规模不经济(内部不经济)：管理效率下降、分工无法提升生产效率；效果：处于LRAC正斜率
+      - 效果：LAC整体下移
+- 规模不经济(内部不经济)：管理效率下降、分工无法提升生产效率；效果：处于LAC正斜率
 
 ---
 class: title-slide-section, middle, inverse
@@ -1124,9 +1164,9 @@ class: title-slide-section, middle, inverse
 
 .pink[Q: ] 厂商如何最大化利润?
 
-.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
+.pink[A: ] .pink[在 MR .mono[=] SMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; 产品价格(P) &lt;/th&gt;
@@ -1143,11 +1183,11 @@ class: title-slide-section, middle, inverse
    &lt;td style="text-align:center;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;line-height: 110%;"&gt; SRAC &lt;/td&gt;
+   &lt;td style="text-align:left;line-height: 110%;"&gt; SAC &lt;/td&gt;
    &lt;td style="text-align:center;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; TC = SRAC × TP &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; TC = SAC × TP &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1170,9 +1210,9 @@ count: false
 
 .pink[Q: ] 厂商如何最大化利润?
 
-.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
+.pink[A: ] .pink[在 MR .mono[=] SMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; 产品价格(P) &lt;/th&gt;
@@ -1189,11 +1229,11 @@ count: false
    &lt;td style="text-align:center;line-height: 110%;"&gt; $96.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;line-height: 110%;"&gt; SRAC &lt;/td&gt;
+   &lt;td style="text-align:left;line-height: 110%;"&gt; SAC &lt;/td&gt;
    &lt;td style="text-align:center;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; TC = SRAC × TP &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; TC = SAC × TP &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1216,9 +1256,9 @@ count: false
 
 .pink[Q: ] 厂商如何最大化利润?
 
-.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
+.pink[A: ] .pink[在 MR .mono[=] SMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; 产品价格(P) &lt;/th&gt;
@@ -1235,11 +1275,11 @@ count: false
    &lt;td style="text-align:center;line-height: 110%;"&gt; $96.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;line-height: 110%;"&gt; SRAC &lt;/td&gt;
+   &lt;td style="text-align:left;line-height: 110%;"&gt; SAC &lt;/td&gt;
    &lt;td style="text-align:center;line-height: 110%;"&gt; $8.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; TC = SRAC × TP &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; TC = SAC × TP &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; $64.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1262,9 +1302,9 @@ count: false
 
 .pink[Q: ] 厂商如何最大化利润?
 
-.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
+.pink[A: ] .pink[在 MR .mono[=] SMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; 产品价格(P) &lt;/th&gt;
@@ -1281,11 +1321,11 @@ count: false
    &lt;td style="text-align:center;line-height: 110%;"&gt; $96.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;line-height: 110%;"&gt; SRAC &lt;/td&gt;
+   &lt;td style="text-align:left;line-height: 110%;"&gt; SAC &lt;/td&gt;
    &lt;td style="text-align:center;line-height: 110%;"&gt; $8.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; TC = SRAC × TP &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; TC = SAC × TP &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; $64.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1307,9 +1347,9 @@ count: false
 
 .pink[Q: ] 厂商如何最大化利润?
 
-.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
+.pink[A: ] .pink[在 MR .mono[=] SMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; 产品价格(P) &lt;/th&gt;
@@ -1326,11 +1366,11 @@ count: false
    &lt;td style="text-align:center;line-height: 110%;"&gt; \( \qquad \ \ \ \) &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;line-height: 110%;"&gt; SRAC &lt;/td&gt;
+   &lt;td style="text-align:left;line-height: 110%;"&gt; SAC &lt;/td&gt;
    &lt;td style="text-align:center;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; TC = SRAC × TP &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; TC = SAC × TP &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1353,9 +1393,9 @@ count: false
 
 .pink[Q: ] 厂商如何最大化利润?
 
-.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
+.pink[A: ] .pink[在 MR .mono[=] SMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; 产品价格(P) &lt;/th&gt;
@@ -1372,11 +1412,11 @@ count: false
    &lt;td style="text-align:center;line-height: 110%;"&gt; $42.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;line-height: 110%;"&gt; SRAC &lt;/td&gt;
+   &lt;td style="text-align:left;line-height: 110%;"&gt; SAC &lt;/td&gt;
    &lt;td style="text-align:center;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; TC = SRAC × TP &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; TC = SAC × TP &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1399,9 +1439,9 @@ count: false
 
 .pink[Q: ] 厂商如何最大化利润?
 
-.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
+.pink[A: ] .pink[在 MR .mono[=] SMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; 产品价格(P) &lt;/th&gt;
@@ -1418,11 +1458,11 @@ count: false
    &lt;td style="text-align:center;line-height: 110%;"&gt; $42.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;line-height: 110%;"&gt; SRAC &lt;/td&gt;
+   &lt;td style="text-align:left;line-height: 110%;"&gt; SAC &lt;/td&gt;
    &lt;td style="text-align:center;line-height: 110%;"&gt; $7.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; TC = SRAC × TP &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; TC = SAC × TP &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; $42.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1445,9 +1485,9 @@ count: false
 
 .pink[Q: ] 厂商如何最大化利润?
 
-.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
+.pink[A: ] .pink[在 MR .mono[=] SMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; 产品价格(P) &lt;/th&gt;
@@ -1464,11 +1504,11 @@ count: false
    &lt;td style="text-align:center;line-height: 110%;"&gt; $42.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;line-height: 110%;"&gt; SRAC &lt;/td&gt;
+   &lt;td style="text-align:left;line-height: 110%;"&gt; SAC &lt;/td&gt;
    &lt;td style="text-align:center;line-height: 110%;"&gt; $7.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; TC = SRAC × TP &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; TC = SAC × TP &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; $42.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1490,9 +1530,9 @@ count: false
 
 .pink[Q: ] 厂商如何最大化利润?
 
-.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
+.pink[A: ] .pink[在 MR .mono[=] SMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; 产品价格(P) &lt;/th&gt;
@@ -1509,11 +1549,11 @@ count: false
    &lt;td style="text-align:center;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;line-height: 110%;"&gt; SRAC &lt;/td&gt;
+   &lt;td style="text-align:left;line-height: 110%;"&gt; SAC &lt;/td&gt;
    &lt;td style="text-align:center;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; TC = SRAC × TP &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; TC = SAC × TP &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1536,9 +1576,9 @@ count: false
 
 .pink[Q: ] 厂商如何最大化利润?
 
-.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
+.pink[A: ] .pink[在 MR .mono[=] SMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; 产品价格(P) &lt;/th&gt;
@@ -1555,11 +1595,11 @@ count: false
    &lt;td style="text-align:center;line-height: 110%;"&gt; $20.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;line-height: 110%;"&gt; SRAC &lt;/td&gt;
+   &lt;td style="text-align:left;line-height: 110%;"&gt; SAC &lt;/td&gt;
    &lt;td style="text-align:center;line-height: 110%;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; TC = SRAC × TP &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; TC = SAC × TP &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1582,9 +1622,9 @@ count: false
 
 .pink[Q: ] 厂商如何最大化利润?
 
-.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
+.pink[A: ] .pink[在 MR .mono[=] SMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; 产品价格(P) &lt;/th&gt;
@@ -1601,11 +1641,11 @@ count: false
    &lt;td style="text-align:center;line-height: 110%;"&gt; $20.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;line-height: 110%;"&gt; SRAC &lt;/td&gt;
+   &lt;td style="text-align:left;line-height: 110%;"&gt; SAC &lt;/td&gt;
    &lt;td style="text-align:center;line-height: 110%;"&gt; $8.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; TC = SRAC × TP &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; TC = SAC × TP &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; $32.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1628,9 +1668,9 @@ count: false
 
 .pink[Q: ] 厂商如何最大化利润?
 
-.pink[A: ] .pink[在 MR .mono[=] SRMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
+.pink[A: ] .pink[在 MR .mono[=] SMC 处选择生产 TP]（.green[MR]= `\(\bar{P}\)`）
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; 产品价格(P) &lt;/th&gt;
@@ -1647,11 +1687,11 @@ count: false
    &lt;td style="text-align:center;line-height: 110%;"&gt; $20.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;line-height: 110%;"&gt; SRAC &lt;/td&gt;
+   &lt;td style="text-align:left;line-height: 110%;"&gt; SAC &lt;/td&gt;
    &lt;td style="text-align:center;line-height: 110%;"&gt; $8.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; TC = SRAC × TP &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; TC = SAC × TP &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; $32.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -1698,7 +1738,7 @@ count: false
 
 ---
 ### 短期决策
-&gt;为什么 AVC 在 SRAC 的下方?
+&gt;为什么 AVC 在 SAC 的下方?
 
 .more-left[
 &lt;img src="Lec03_files/figure-html/unnamed-chunk-49-1.svg" style="display: block; margin: auto;" /&gt;
@@ -1713,7 +1753,7 @@ count: false
 ---
 count: false
 ### 短期决策
-&gt;为什么 AVC 在 SRAC 的下方?
+&gt;为什么 AVC 在 SAC 的下方?
 
 .more-left[
 &lt;img src="Lec03_files/figure-html/unnamed-chunk-50-1.svg" style="display: block; margin: auto;" /&gt;
@@ -1730,7 +1770,7 @@ count: false
 ---
 count: false
 ### 短期决策
-&gt;为什么 AVC 在 SRAC 的下方?
+&gt;为什么 AVC 在 SAC 的下方?
 
 .more-left[
 &lt;img src="Lec03_files/figure-html/unnamed-chunk-51-1.svg" style="display: block; margin: auto;" /&gt;
@@ -1742,14 +1782,14 @@ count: false
 
 .pink[A: ] 价格接受厂商，是否停工完全依赖市场价格
 
-1. .hi.purple[SRAC] .mono[&lt;] P &lt;br&gt; .mono[--&gt;] .green[有利润]
+1. .hi.purple[SAC] .mono[&lt;] P &lt;br&gt; .mono[--&gt;] .green[有利润]
 
 ]
 
 ---
 count: false
 ### 短期决策
-&gt;为什么 AVC 在 SRAC 的下方?
+&gt;为什么 AVC 在 SAC 的下方?
 
 .more-left[
 &lt;img src="Lec03_files/figure-html/unnamed-chunk-52-1.svg" style="display: block; margin: auto;" /&gt;
@@ -1761,16 +1801,16 @@ count: false
 
 .pink[A: ] 价格接受厂商，是否停工完全依赖市场价格
 
-1. .hi.purple[SRAC] .mono[&lt;] P &lt;br&gt; .mono[--&gt;] .green[有利润]
+1. .hi.purple[SAC] .mono[&lt;] P &lt;br&gt; .mono[--&gt;] .green[有利润]
 
-2. .hi.orange[AVC] .mono[&lt;] P .mono[&lt;] .hi.purple[SRAC] &lt;br&gt; .mono[--&gt;] .pink[存在运营损失]
+2. .hi.orange[AVC] .mono[&lt;] P .mono[&lt;] .hi.purple[SAC] &lt;br&gt; .mono[--&gt;] .pink[存在运营损失]
 
 ]
 
 ---
 count: false
 ### 短期决策
-&gt;为什么 AVC 在 SRAC 的下方?
+&gt;为什么 AVC 在 SAC 的下方?
 
 .more-left[
 &lt;img src="Lec03_files/figure-html/unnamed-chunk-53-1.svg" style="display: block; margin: auto;" /&gt;
@@ -1782,9 +1822,9 @@ count: false
 
 .pink[A: ] 价格接受厂商，是否停工完全依赖市场价格π
 
-1. .hi.purple[SRAC] .mono[&lt;] P &lt;br&gt; .mono[--&gt;] .green[有利润]
+1. .hi.purple[SAC] .mono[&lt;] P &lt;br&gt; .mono[--&gt;] .green[有利润]
 
-2. .hi.orange[AVC] .mono[&lt;] P .mono[&lt;] .hi.purple[SRAC] &lt;br&gt; .mono[--&gt;] .pink[存在运营损失]
+2. .hi.orange[AVC] .mono[&lt;] P .mono[&lt;] .hi.purple[SAC] &lt;br&gt; .mono[--&gt;] .pink[存在运营损失]
 
 3. P .mono[&lt;] .hi.orange[AVC] &lt;br&gt; .mono[--&gt;] .orange[停工]
 
@@ -1794,7 +1834,7 @@ count: false
 count: false
 ### 短期决策
 
-&gt;为什么 AVC 在 SRAC 的下方?
+&gt;为什么 AVC 在 SAC 的下方?
 
 .more-left[
 &lt;img src="Lec03_files/figure-html/unnamed-chunk-54-1.svg" style="display: block; margin: auto;" /&gt;
@@ -1806,9 +1846,9 @@ count: false
 
 .pink[A: ] 价格接受厂商，是否停工完全依赖市场价格
 
-1. .hi.purple[SRAC] .mono[&lt;] P &lt;br&gt; .mono[--&gt;] .green[有利润]
+1. .hi.purple[SAC] .mono[&lt;] P &lt;br&gt; .mono[--&gt;] .green[有利润]
 
-2. .hi.orange[AVC] .mono[&lt;] P .mono[&lt;] .hi.purple[SRAC] &lt;br&gt; .mono[--&gt;] .pink[存在运营损失]
+2. .hi.orange[AVC] .mono[&lt;] P .mono[&lt;] .hi.purple[SAC] &lt;br&gt; .mono[--&gt;] .pink[存在运营损失]
 
 3. P .mono[&lt;] .hi.orange[AVC] &lt;br&gt; .mono[--&gt;] .orange[停工]
 
@@ -1817,7 +1857,7 @@ count: false
 ---
 ### 短期决策
 
-&gt;为什么 AVC 在 SRAC 的下方?
+&gt;为什么 AVC 在 SAC 的下方?
 
 .more-left[
 &lt;img src="Lec03_files/figure-html/unnamed-chunk-55-1.svg" style="display: block; margin: auto;" /&gt;
@@ -1827,7 +1867,7 @@ count: false
 
 #### .purple[短期供给曲线]
 
-P .mono[&gt;] P.sub[停工] .mono[--&gt;] 短期供给曲线 .mono[=] .hi.purple[SRMC] 在.hi.orange[AVC]以上的部分
+P .mono[&gt;] P.sub[停工] .mono[--&gt;] 短期供给曲线 .mono[=] .hi.purple[SMC] 在.hi.orange[AVC]以上的部分
 
 P .mono[&lt;] P.sub[停工] .mono[--&gt;] 短期供给曲线 .mono[=] Y轴
 
@@ -1837,7 +1877,7 @@ P .mono[&lt;] P.sub[停工] .mono[--&gt;] 短期供给曲线 .mono[=] Y轴
 count: false
 ### 短期决策
 
-&gt;为什么 AVC 在 SRAC 的下方?
+&gt;为什么 AVC 在 SAC 的下方?
 
 .more-left[
 &lt;img src="Lec03_files/figure-html/unnamed-chunk-56-1.svg" style="display: block; margin: auto;" /&gt;
@@ -1847,7 +1887,7 @@ count: false
 
 #### .purple[短期供给曲线]
 
-P .mono[&gt;] P.sub[停工] .mono[--&gt;] 短期供给曲线 .mono[=] .hi.purple[SRMC] 在.hi.orange[AVC]以上的部分
+P .mono[&gt;] P.sub[停工] .mono[--&gt;] 短期供给曲线 .mono[=] .hi.purple[SMC] 在.hi.orange[AVC]以上的部分
 
 P .mono[&lt;] P.sub[停工] .mono[--&gt;] 短期供给曲线 .mono[=] Y轴
 
@@ -1919,7 +1959,7 @@ count: false
 
 .pink[A: ] 价格接受厂商，是否停工完全依赖市场价格
 
-1. P .mono[&gt;] .hi.purple[LRAC] &lt;br&gt; .mono[--&gt;] .green[有利润]
+1. P .mono[&gt;] .hi.purple[LAC] &lt;br&gt; .mono[--&gt;] .green[有利润]
 
 ]
 
@@ -1937,9 +1977,9 @@ count: false
 
 .pink[A: ] 价格接受厂商，是否停工完全依赖市场价格
 
-1. P .mono[&gt;] .hi.purple[LRAC] &lt;br&gt; .mono[--&gt;] .green[有利润]
+1. P .mono[&gt;] .hi.purple[LAC] &lt;br&gt; .mono[--&gt;] .green[有利润]
 
-2. .hi.purple[LRAC] .mono[&gt;] P &lt;br&gt; .mono[--&gt;] .orange[退出市场]
+2. .hi.purple[LAC] .mono[&gt;] P &lt;br&gt; .mono[--&gt;] .orange[退出市场]
 
 ]
 
@@ -1957,9 +1997,9 @@ count: false
 
 .pink[A: ] 价格接受厂商，是否停工完全依赖市场价格
 
-1. P .mono[&gt;] .hi.purple[LRAC] &lt;br&gt; .mono[--&gt;] .green[有利润]
+1. P .mono[&gt;] .hi.purple[LAC] &lt;br&gt; .mono[--&gt;] .green[有利润]
 
-2. .hi.purple[LRAC] .mono[&gt;] P &lt;br&gt; .mono[--&gt;] .orange[退出市场]
+2. .hi.purple[LAC] .mono[&gt;] P &lt;br&gt; .mono[--&gt;] .orange[退出市场]
 
 ]
 
@@ -1974,7 +2014,7 @@ count: false
 
 ### .purple[单个厂商的长期供给曲线]
 
-P .mono[&gt;] P.sub[收支平衡] .mono[--&gt;] 长期供给曲线 &lt;br&gt; .mono[=] .hi.red-pink[MC]高于最小.hi.purple[LRAC]以上的部分
+P .mono[&gt;] P.sub[收支平衡] .mono[--&gt;] 长期供给曲线 &lt;br&gt; .mono[=] .hi.red-pink[MC]高于最小.hi.purple[LAC]以上的部分
 
 
 P .mono[&lt;] P.sub[收支平衡] .mono[--&gt;] 长期供给曲线 &lt;br&gt; .mono[=]  Y轴
@@ -1992,7 +2032,7 @@ P .mono[&lt;] P.sub[收支平衡] .mono[--&gt;] 长期供给曲线 &lt;br&gt; .m
 
 #### .purple[单个厂商的长期供给曲线]
 
-P .mono[&gt;] P.sub[收支平衡] .mono[--&gt;] 长期供给曲线 &lt;br&gt; .mono[=] .hi.red-pink[MC]高于最小.hi.purple[LRAC]以上的部分
+P .mono[&gt;] P.sub[收支平衡] .mono[--&gt;] 长期供给曲线 &lt;br&gt; .mono[=] .hi.red-pink[MC]高于最小.hi.purple[LAC]以上的部分
 
 P .mono[&lt;] P.sub[收支平衡] .mono[--&gt;] 长期供给曲线 &lt;br&gt; .mono[=]  Y轴
 
@@ -2009,12 +2049,12 @@ class: title-slide-section,inverse, middle
 .pink[问题] 价格接受厂商对市场结果的调整过程如何？
 
 - 注意，只有短期才有所谓的调整
-- 长期，产品的均衡价格最低，等于最低LRAC → 经济利润为 0
+- 长期，产品的均衡价格最低，等于最低LAC → 经济利润为 0
 
 ---
 ### 完全竞争市场的短期均衡
 
-**Case 1:** 市场短期价格 .mono[&gt;] 市场长期价格(minLRAC)
+**Case 1:** 市场短期价格 .mono[&gt;] 市场长期价格(minLAC)
 
 - 单厂商赚取利润 &lt;br&gt; .mono[--&gt;] 其他企业家看到市场有利可图 &lt;br&gt; .mono[--&gt;] 厂商数量增加 &lt;br&gt; .mono[--&gt;] 市场短期供给曲线右移 &lt;br&gt; .mono[--&gt;] 市场短期价格下降
 
@@ -2022,7 +2062,7 @@ class: title-slide-section,inverse, middle
 ### 完全竞争市场的短期均衡
 
 
-**Case 2:** 市场短期价格 .mono[&lt;] 市场长期价格(minLRAC)
+**Case 2:** 市场短期价格 .mono[&lt;] 市场长期价格(minLAC)
 
 - 单厂商亏损经营（或停工） &lt;br&gt; .mono[--&gt;] 离开市场 &lt;br&gt; .mono[--&gt;] 市场上此类产品供应厂商数量减少 &lt;br&gt; .mono[--&gt;] 市场短期供给曲线左移 &lt;br&gt; .mono[--&gt;] 市场短期价格上升
 
@@ -2037,10 +2077,10 @@ class: title-slide-section,inverse, middle
 .center[**市场**]
 &lt;img src="Lec03_files/figure-html/unnamed-chunk-65-1.svg" style="display: block; margin: auto;" /&gt;
 ]
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:center;"&gt; P.sub[LR] &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; P.sub[L] &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; Q.sub[厂商] &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; Q.sub[市场] &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; N.sub[厂商数量] &lt;/th&gt;
@@ -2048,8 +2088,8 @@ class: title-slide-section,inverse, middle
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; LRAC的最低点 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; LRAC的最低点处的产量 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; LAC的最低点 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; LAC的最低点处的产量 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; Q.sub[厂商] × N.sub[多厂商] &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; Q.sub[市场] ÷ Q.sub[厂商] &lt;/td&gt;
   &lt;/tr&gt;
@@ -2066,10 +2106,10 @@ class: title-slide-section,inverse, middle
 .center[**市场**]
 &lt;img src="Lec03_files/figure-html/unnamed-chunk-68-1.svg" style="display: block; margin: auto;" /&gt;
 ]
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:center;"&gt; P.sub[LR] &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; P.sub[L] &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; Q.sub[厂商] &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; Q.sub[市场] &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; N.sub[厂商数量] &lt;/th&gt;
@@ -2096,10 +2136,10 @@ count: false
 .center[**市场**]
 &lt;img src="Lec03_files/figure-html/unnamed-chunk-71-1.svg" style="display: block; margin: auto;" /&gt;
 ]
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:center;"&gt; P.sub[LR] &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; P.sub[L] &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; Q.sub[厂商] &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; Q.sub[市场] &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; N.sub[厂商数量] &lt;/th&gt;
@@ -2132,7 +2172,7 @@ class: clear-slide
 class: clear-slide
 .pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么，从短期到长期，原厂商如何调整产量?
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; 均衡 &lt;/th&gt;
@@ -2237,7 +2277,7 @@ class: clear-slide
 class: clear-slide
 .pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么，从短期到长期，原厂商如何调整产量?
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; 均衡 &lt;/th&gt;
@@ -2321,7 +2361,7 @@ class: clear-slide
 class: clear-slide
 .pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么，从短期到长期，原厂商如何调整产量?
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; 均衡 &lt;/th&gt;
@@ -2365,78 +2405,17 @@ class: clear-slide
 
 **A.sub[3]:** .pink[长期厂商不断退出市场，直到经济利润恢复到0 .mono[--&gt;] 市场总供给下降]
 
-
+---
+### 边际成本分析表达的深刻观点
+- 成本是经济学最核心的概念。因为生产决策是在边际成本线上的决策，而一旦决定生产就会产生所谓的**派生需求**（derived demand）。厂商的需求不像消费者的需求是直接源自于效用和预算约束的优化，而厂商之所以需要劳动和资本，是为了把生产的产品卖出去
+- 时间维度划分的重要性。
 
 ---
-### 体育企业
+### 报酬递增的来源
 
-- 健身休闲和竞赛表演（职业俱乐部）
-  - 1750 年，英国，纽马克特赛马俱乐部（the Jockey club）是世界上第一个按照所有权和经营权分离原则，按独立法人模式商业运营的俱乐部
-  - 1888，英格兰足球联赛，欧洲职业俱乐部联盟的起源
-  - 1876，MLB是北美职业联盟的起源
-- 资本所有权和生产经营权分离，促成了更多资源、人才、知识进入体育行业
-  - 生产方式的规律
-  - 决策的基本逻辑 → 不同目标的行为差异
-  - 联盟的组织形态
-      - 收益方式：连锁经营、特许经营等模式
-      - 联盟治理：维持竞争均衡（收入分享、工资帽、奢侈税、选秀）；门票定价策略；选址与扩张
-      - 治理联盟：反垄断
+- 论劳动分工与市场广度
 
 
----
-### Jockey Club
-
-.center[
-<video type="video/mp4" width="840" height="460" controls="TRUE">
-<source src="./video/jockclub.mp4" type="video/mp4"/>
-<track src="./video/jockclub.srt" kind="subtitles" srclang="cn" label="Chinese"/>
-</video>
-]
-
-
----
-### 现代企业的起源（从小作坊到大厂商）
-
-- “协力组合说”（Jacob Viner,1892-1970）：规模经济（Economies of Scale）+ 范畴经济（Economies of Scope）
-
-.center[&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/viner.jpg height=280&gt;]
-
-- 规模经济指，当生产规模增加时平均成本会下降（后续会讲）→ 在规模经济的作用下，小规模的生产体有就动机去扩张规模，追求规模经济
-- 范畴经济是厂商在**生产多种产品**比**生产单一产品**的成本要低（资源共享和技术关联） → 小生产体有动机联合更多不同类产品的生产体，从而建立大规模的厂商
-
-
-???
-
-- 企业部门分为生产部门和非生产部门。像是销售、会计、财务、市场等部门，虽然不直接生产产品，但它们控制成本、提高效率方面发挥着重要作用。有效的内部管理可以进一步降低企业的运营成本，增强其市场竞争力。
-
-- 大型企业通过规模经济实现成本效率，通过范畴经济实现市场风险的分散和管理效率的提高。此外，大型企业在面对市场波动时，由于其产品和服务的多样性，能够更好地吸收市场的冲击，从而实现更稳定的收入。
-
-- 合并与市场波动：当不同的厂商生产技术相互关联，或者处于同一供应链的不同环节时，通过合并可以降低市场波动带来的风险。合并后的大型企业能够更好地控制供应链，减少对外部市场变化的依赖，从而实现更稳定的收入和利润。
----
-### 现代企业的起源（从小作坊到大厂商）
-
-- “长期关系说”（Oliver Williamson,1932-2020） 发展了交易成本理论。企业交易时会面临着特定投资（specific investment）和高转换成本（switching cost）
-
-.center[&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/256px-Nobel_Prize_2009-Press_Conference_KVA-35-3-193x300.jpg&gt;]
-
-- **案例**：在20世纪80年代，Nike与Jordan签订长期合约，推出了“Air Jordan”鞋
-  - 专门投入巨大资源进行产品设计、市场营销和广告宣传。这些投资是高度专用的
-  - 转换成本： 更换代言人会带来巨大成本。增加了Jordan对Nike依赖程度
-
-???
-- 特定投资是在其他用途上的价值较低，反而增加了交易双方在未来持续合作的激励（互惠）。一旦更换新交易对象，就面临着高转换成本（重新谈判、重新投资等），所以实际形成了一种双边独占的情况，为了减少不确定性和潜在的敲诈风险，双方可能会选择签订**长期合约**，作为价格、供应量、质量标准的制度保障 → → 解释了在不确定性和复杂性的市场环境中，企业为何选择特定的治理结构，比如长期合约、垂直整合或合并（从小变大），以管理交易成本并保护对特定交易的投资
-
----
-### 现代企业的起源（从小作坊到大厂商）
-
-- “不完全契约说”（Ronald Coase,1932-2020） 帮助解释为什么厂商能解决不完全契约问题
-
-.center[
-&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/220px-Coase_profile_2003.jpg height=270 width=200&gt;
-]
-
-- 由于契约中不能穷尽所有情况，特别是**不确定因素和契约遗漏项**、**结果多样性**、**是否履约监督成本**以及高昂的**违约诉讼费** 厂商可以理解为对不完全契约问题的一种回应
-- 厂商通过内部化（即在厂商内部进行交易而不通过市场）来减少交易成本，尤其是在监督、协商和执行契约方面的成本
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

@@ -97,8 +97,6 @@
 <g clip-path="url(#clip-5)">
 <path fill="none" stroke-width="2.133957" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(15.294118%, 15.686275%, 13.333333%)" stroke-opacity="1" stroke-dasharray="8.535827 8.535827" stroke-miterlimit="10" d="M 35.21875 209.332031 L 48.710938 209.332031 "/>
 </g>
-<path fill="none" stroke-width="1.066978" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(15.294118%, 15.686275%, 13.333333%)" stroke-opacity="1" stroke-miterlimit="10" d="M 35.21875 334.78125 L 35.21875 5.480469 "/>
-<path fill="none" stroke-width="1.066978" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(15.294118%, 15.686275%, 13.333333%)" stroke-opacity="1" stroke-miterlimit="10" d="M 35.21875 334.78125 L 426.519531 334.78125 "/>
 <g fill="rgb(15.294118%, 15.686275%, 13.333333%)" fill-opacity="1">
 <use xlink:href="#glyph-2-1" x="413.519531" y="350.299805"/>
 </g>
