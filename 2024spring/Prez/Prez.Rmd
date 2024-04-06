@@ -5,6 +5,7 @@ author:
 institute: "北京大学体育教研部"
 date: "2024年1月20日"
 output:
+  pdf_document:
   xaringan::moon_reader:
     lib_dir: libs
     css:
@@ -31,7 +32,7 @@ p_load(
   lubridate, knitr, parallel,
   lfe,dslabs,
   here, magrittr)
-
+dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/2024spring/Prez/"
 options(htmltools.dir.version = FALSE)
 # Define pink color
 red_pink <- "#e64173"
@@ -285,3 +286,14 @@ background-size: 68%
 background-image: url(https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/s7PQ2C.png)
 
 ## 感谢各位专家指导建议
+
+
+---
+exclude: true
+
+
+```{R generate pdfs, include=F}
+
+pagedown::chrome_print("Prez.html", output = "Prez.pdf")
+
+```

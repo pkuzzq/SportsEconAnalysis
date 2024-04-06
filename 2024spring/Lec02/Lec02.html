@@ -4,8 +4,25 @@
     <title>体育经济分析: 原理与应用</title>
     <meta charset="utf-8" />
     <meta name="author" content="周正卿" />
-    <meta name="date" content="2024-02-26" />
+    <meta name="date" content="2024-04-06" />
     <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra_fit-screen/fit-screen.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <script src="libs/freezeframe/freezeframe.min.js"></script>
+    <script src="libs/xaringanExtra-freezeframe/freezeframe-init.js"></script>
+    <script id="xaringanExtra-freezeframe-options" type="application/json">{"selector":"img[src$=\"gif\"]","trigger":"click","overlay":false,"responsive":true,"warnings":true}</script>
+    <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -24,7 +41,7 @@ class: center, middle, inverse, title-slide
 ### 周正卿
 ]
 .date[
-### 26 February 2024
+### 06 April 2024
 ]
 
 ---
@@ -50,8 +67,10 @@ class: title-slide-section, middle, inverse
 
 ---
 
-class: title-slide-section, middle, inverse 
+class: title-slide-section, center ,middle, inverse 
 # 消费者理论
+
+Rational Choice Theory: Consumers
 
 ---
 
@@ -92,7 +111,7 @@ class: title-slide-section, middle, inverse
 ### 边际价值递减规律
 
 .more-left[
-&lt;img src="Lec02_files/figure-html/mv-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/mv-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -112,7 +131,7 @@ Q 增加 .mono[-&gt;] MV 下降
 ### 最优购买
 
 .more-left[
-&lt;img src="Lec02_files/figure-html/mv1b-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/mv1b-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -128,7 +147,7 @@ Q 增加 .mono[-&gt;] MV 下降
 ### 最优购买
 
 .more-left[
-&lt;img src="Lec02_files/figure-html/mv2b-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/mv2b-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -141,7 +160,7 @@ Q 增加 .mono[-&gt;] MV 下降
 ### 最优购买
 
 .more-left[
-&lt;img src="Lec02_files/figure-html/mv3-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/mv3-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -165,7 +184,7 @@ Q 增加 .mono[-&gt;] MV 下降
 ### 消费者盈余 Consumer surplus
 
 .more-left[
-&lt;img src="Lec02_files/figure-html/cs-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/cs-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -181,7 +200,7 @@ Q 增加 .mono[-&gt;] MV 下降
 ### 边际价值与最优购买的对应关系反映了个体的需求曲线
 
 .more-left[
-&lt;img src="Lec02_files/figure-html/ind_demand1-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/ind_demand1-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -199,7 +218,7 @@ Q 增加 .mono[-&gt;] MV 下降
 ### 边际价值与最优购买的对应关系反映了个体的需求曲线
 
 .more-left[
-&lt;img src="Lec02_files/figure-html/ind_demand2-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/ind_demand2-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -314,7 +333,7 @@ Q 增加 .mono[-&gt;] MV 下降
 ]
 
 .more-left[
-&lt;img src="Lec02_files/figure-html/market_demand-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/market_demand-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -332,14 +351,14 @@ Q 增加 .mono[-&gt;] MV 下降
 class: clear-slide
 
 .center[**价格增加 .mono[-&gt;]  需求量q.sub[D] 下降**]
-&lt;img src="Lec02_files/figure-html/p_increase2-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/p_increase2-1.svg" width="410.4" style="display: block; margin: auto;" /&gt;
 
 ---
 count: false
 class: clear-slide
 
 .center[**价格下降 .mono[-&gt;] 需求量q.sub[D] 上升 **]
-&lt;img src="Lec02_files/figure-html/p_decrease2-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/p_decrease2-1.svg" width="410.4" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -361,45 +380,96 @@ class: clear-slide
 count: false
 
 .center[**需求增加**]
-&lt;img src="Lec02_files/figure-html/demand_increase2-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/demand_increase2-1.svg" width="410.4" style="display: block; margin: auto;" /&gt;
 ---
 count: false
 
 .center[**需求降低**]
-&lt;img src="Lec02_files/figure-html/demand_decrease2-1.svg" style="display: block; margin: auto;" /&gt;
-
-
----
-### 弹性
-
-思考：如何刻画价格与需求量的关系？
-
-- 斜率、导数？
-- 经济学上，除了关心变动**关系**以外，更想知道关系的**强度**
-
-- 依靠导数会产生严重的问题，比如导数大小收到自变量或者因变量计量单位的影响
-- 因此，我改为考虑**自变量变动百分之一时，因变量会变动百分之几** → 消除计量单位影响
+&lt;img src="Lec02_files/figure-html/demand_decrease2-1.svg" width="410.4" style="display: block; margin: auto;" /&gt;
 
 ---
-### 需求的价格弹性  Price Elasticity of Demand
+class: inverse, center, middle
 
-- 定义
-&gt; 衡量需求量变化对价格变化的反应强度
+# 需求(量)的价格弹性
 
-`\(\epsilon_d = \dfrac{\text{% 需求量变化}}{\text{% 价格变化}} \leq 0\)`
-
-.hi[解释:] "价格提高一个百分点，需求量就会增加 `\(\epsilon_d\)` 个百分点。" A的B弹性，A在分子，B在分母
-- `\(\epsilon_d &lt; -1\)` .mono[==&gt;] 需求是对价格变动 .pink[敏感的] (.pink[富有弹性的]).
-- `\(-1 &lt;\epsilon_d \leq 0\)` .mono[==&gt;] 需求是对价格变 .pink[不敏感的] (.pink[缺乏弹性的]).
-
-- 这里 敏感 .mono[==] 弹性
+Price Elasticity of Demand
 
 ---
 
 ### 需求(量)的价格弹性
 
+.pull-left[
+- 经济学上，除了关心变动**关系**以外，更想知道关系的**强度**
+  
+  - 依靠导数会产生严重的问题，比如导数大小收到自变量或者因变量计量单位的影响
+  - **自变量变动百分之一时，因变量会变动百分之几** → 消除计量单位影响
+  
+- .hi[需求的价格弹性：] 如果价格变动 1% 会引起 **需求量**的变动 百分制之几
+
+$$ \epsilon_d  = \frac{\% \Delta q_d}{\% \Delta p}$$
+
+]
+
+.pull-right[
+.middle[
+.center[
+&lt;img src=https://www.dropbox.com/s/uuajn64cnex5uru/elastic.jpg?raw=1&gt;
+]
+]
+]
+
+---
+### 需求(量)的价格弹性
+
+&lt;br&gt;&lt;br&gt;
+
+$$ \epsilon_d  = \frac{\% \Delta q_d}{\% \Delta p}$$
+
+.smallest[
+|                 | .hi[“富有弹性Elastic”] | “单位弹性Unit Elastic” | .hi[“缺乏弹性Inelastic”] |
+|-----------------|-----------|----------------|------------|
+| **直觉**:    | **大量**反馈 | 成比例反馈 | **少量**反馈 |
+| **数学**: | `\(\vert  \epsilon_d \vert &gt; 1\)` | `\(\vert  \epsilon_d \vert = 1\)` | `\(\vert  \epsilon_d  \vert &lt; 1\)` |
+|                 | 分子 `\(&gt;\)` 分母 | 分子 `\(=\)` 分母 | 分子 `\(&lt;\)` 分母 |
+| ** `\(p\)` 变化 1%，导致** | 需求量变化**超过** 1% | 需求量变化**等于** 1% | 需求量变化**小于** 1% | 
+
+]
+
+---
+### 图示: 需求(量)的价格弹性
+
+.center[
+一个相同的50%价格折扣：
+]
+
+.pull-left[
+
+.center[
+.smallest[
+“缺乏弹性”需求曲线
+]
+]
+
+&lt;img src="Lec02_files/figure-html/unnamed-chunk-2-1.svg" width="468" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+.center[
+.smallest[
+“富有弹性”需求曲线
+]
+]
+&lt;img src="Lec02_files/figure-html/unnamed-chunk-3-1.svg" width="468" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+### 图示: 需求(量)的价格弹性
+
 .more-left[
-&lt;img src="Lec02_files/figure-html/unnamed-chunk-2-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/unnamed-chunk-4-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -414,10 +484,9 @@ count: false
 
 ---
 
-### 需求(量)的价格弹性
-
+### 图示:需求(量)的价格弹性
 .more-left[
-&lt;img src="Lec02_files/figure-html/unnamed-chunk-3-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/unnamed-chunk-5-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -430,10 +499,9 @@ count: false
 ]
 
 ---
-### 需求(量)的价格弹性
-
+### 图示: 需求(量)的价格弹性
 .more-left[
-&lt;img src="Lec02_files/figure-html/unnamed-chunk-4-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/unnamed-chunk-6-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -443,10 +511,9 @@ count: false
 ]
 
 ---
-### 需求(量)的价格弹性
-
+### 图示: 需求(量)的价格弹性
 .more-left[
-&lt;img src="Lec02_files/figure-html/unnamed-chunk-5-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/unnamed-chunk-7-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -457,10 +524,9 @@ count: false
 
 ---
 count: false
-### 需求(量)的价格弹性
-
+### 图示:需求(量)的价格弹性
 .more-left[
-&lt;img src="Lec02_files/figure-html/unnamed-chunk-6-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/unnamed-chunk-8-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -470,58 +536,120 @@ count: false
 ]
 
 ---
+### 公式：需求(量)的价格弹性
 
-### 影响需求价格弹性的因素：
+`$$\epsilon_d = \frac{\% \Delta q}{\% \Delta p} = \cfrac{\left(\frac{\Delta q}{q}\right)}{\left(\frac{\Delta p}{p}\right)} = \color{#e64173}{\frac{\Delta q}{\Delta p}} \times \color{#44C1C4}{\frac{p}{q}}$$`
 
-1. .pink[替代品越多] .mono[-&gt;] .pink[对价格更敏感].
+.pull-left[
 
-2. .pink[该物消费支出占总所得比越高].mono[-&gt;] .pink[对价格更敏感]. 吃大餐！
 
-3. .pink[物品越耐用] .mono[-&gt;] .pink[对价格更敏感]. 物品耐用（汽车），加价可迟一些再买，所以弹性较高。
+- .pink[第一项]: *direction* of the effect
+  - .hi[价格效应]
+  - 总是.hi[负的]
 
-4. .pink[奢侈品].mono[-&gt;] .pink[对价格更敏感] ；.pink[必需品].mono[-&gt;] .pink[对价格不敏感] （所谓的刚性需求）
+- .turquoise[Second term]: *magnitude* of the effect
+  - 将根据 `\(p\)` 和 `\(q\)` 而改变
+]
 
-5. .pink[时间长].mono[-&gt;] .pink[对价格更敏感].
-一般，长期需求弹性大于短期需求弹性。因为时间长时，寻找替代品和进行调整总是比较容易的。
+.pull-right[
+- .hi-purple[弧弹性] 与 .hi-purple[点弹性]
+- 进一步简化为...
+`$$\color{red}{\mathbf{\epsilon_d} = \mathbf{\frac{1}{slope} \times \frac{p}{q}}}$$`
+- 逆需求曲线的斜率
+- 要找到任何一点的弹性，需要 3 件事：
+  1. 价格 
+  2. 相关的需求量 
+  3. （逆）需求的斜率
+- 在回归中使用：  `\(\epsilon_d = \dfrac {d ln q}{d ln p}\)`
+]
 
-&gt; 休闲体育活动的价格敏感性？
-&gt; 项目的多样性(替代品多) .mono[+] 中等收入群体扩大（休闲时间长） .mono[+]   体育休闲活动不是必需品 .mono[--&gt;] 极为敏感的
-&gt; 需求弹性是很好的研究方向：测试市场、历史销售数据的分析和综合分析
+
 ---
 
-### 需求的价格弹性
+### 价格弹性沿着需求曲线变化
 
-- 精确表示
+.pull-left[
 
-`$$\epsilon_d = \dfrac{d Q_d}{d P} \dfrac{P}{Q} \leq 0$$`
-- .hi[意义：]随着**需求量**沿着线性的需求曲线增加， `\(\epsilon_d\)`  向零趋近。
-- 特点1：除了线性函数外，通常每一点切线的斜率是不同的；即便在线性函数中，上式右半部分中 `\(P/Q\)` 取决于点的位置
-- 特点2：在回归中使用。  `\(\epsilon_d = \dfrac {d ln Q_d}{d ln P}\)`
-- 特点3：该点的边际量与平均量比值。 `\(\epsilon_d = \dfrac {\dfrac{d Q_d}{d P}} {\dfrac{P}{Q}}\)`
-- 特点4：图形表达。点到y轴的截距/点到x轴的截距，再配以符号
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/7q1k3A.png&gt;
+]
+
+.pull-right[
+
+`$$\epsilon_{d} = \mathbf{\frac{1}{slope} \times \frac{p}{q}}$$`
+
+- **弹性 `\(\neq\)` 斜率** (但是它们相关)!
+
+
+- 随着价格 `\(\downarrow\)`（一般情况是，数量 `\(\uparrow\)` ），**弹性** `\(\downarrow\)`
+
+  - `\(\frac{1}{slope}\)` 固定不变（线性需求曲线）
+  - 当 `\(\downarrow p\)` 和 `\(\uparrow q\)` ， `\(\frac{p}{q}\)` 变小
+
+]
+
+---
+
+### 需求(量)的价格弹性: 影响因素
+
+.pull-left[
+.small[
+.hi-purple[什么决定了你的购买行为对价格变化的反应？] 
+
+1. .pink[替代品越多] .mono[-&gt;] .pink[对价格更敏感]
+  
+  - 通用品（弹性较小）与小众商品（弹性较大）
+  
+  - .pink[该物消费支出占总所得比越高].mono[-&gt;] .pink[对价格更敏感]
+  
+  - .pink[奢侈品] vs. .pink[必需品]
+
+- .pink[时间长].mono[-&gt;] .pink[对价格更敏感]
+  
+  - .pink[耐用品] .mono[-&gt;] .pink[对价格更敏感]
+
+]
+]
+
+.pull-right[
+.hi[讨论]：
+
+- 休闲体育活动的价格敏感性？
+
+]
+
 
 ---
 
 ### 思考：弹性与总收入的关系？
+.center[
+.hi-pink[问题:]  价格上涨一定意味总收入增加么？
+]
 
-- .pink[问题:]  价格上涨一定意味总收入增加么？价格上涨对总收入意味着什么？
+.pull-left[
+&lt;br&gt;&lt;br&gt;
+.smaller[
+- 需求的价格弹性与.hi[收入密切相关 `\\((R)\\)`]&lt;sup&gt;.magenta[†]&lt;/sup&gt;
 
-- 数学表达式为: `\(TR=P*Q_{d}\)`
+`$$R(q)=pq$$`
 
-.pink[问题:] 什么因素决定了消费者对某一产品的需求？
+| 需求价格弹性 | `\(\Delta R\)` 和 `\(\Delta p\)` |
+|:-----------------------|---------------------------:|
+| 富有弹性 `\(\vert \varepsilon \vert &gt; 1\)` | p 与 R  **相反变动** |
+| 单位弹性 `\(\vert \varepsilon \vert = 1\)` | R **最大化** |
+| 缺乏弹性 `\(\vert \varepsilon \vert &lt; 1\)` | p 与 R **同向变动** |
 
---
+]
+]
 
-.pink[A:]
-- 收入或财富（正常品或劣等品）。
+.pull-right[
+.center[
+.smaller[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/3aFu9b.png&gt;
 
-- 相关商品(替代或互补)的价格。
-
-- 对未来价格或未来收入的预期。
-
-- 消费者口味（偏好）。
-
-- 年龄、健康、质量、广告、维持货物的成本、货物的合法性，*等等*。
+.hi-purple[Revenue max'ed at price where `\\(\varepsilon = - 1\\)`]
+]
+]
+]
 
 ---
 ### 弹性概念的重要性(一)
@@ -552,7 +680,36 @@ count: false
 
 - 设计一个平衡赛场氛围和球队收入的票价策略。在了解不同价格与需求价格弹性的关系后，门票策略就是施政艺术的体现了，既能确保财务成功，又能提升上座率。包括实施动态定价机制、为特定群体提供折扣等。政策制定通常要平衡经济、社会和政治等其他目标，靠考虑到政策能够有效的采纳
 - Manzenreiter, W., &amp; Horne, J. (2005). Public Policy, **Sports Investments and Regional Development Initiatives in Japan**. J. Nauright &amp; K. S. Schimmel , The Political Economy of Sport (Page 152–182). Palgrave Macmillan UK. 
-- 建立J.League还紧密关联到三大国家目标：增强国家队实力，提升日本足球队在国际上的成就以及争取举办世界杯决赛的资格。J 联赛代表了体育作为社会政策形式，也是促进区域振兴和城市发展规划的工具，遇到市场力量和追求国家荣誉的思维时会发生的情形。J联赛设计雄心勃勃，汲取了欧洲俱乐部体育的精髓，融入了北美体育的商业运作模式。各成员俱乐部与本地社区（家乡）建立紧密联系，增强地区自豪感并对居民培养出强烈的社区归属感。不同于日本职业棒球联赛中依赖补贴和企业所有者决策的做法，俱乐部被期望能作为独立自主且经济可行的实体运营。
+  
+  - 建立J.League还紧密关联到三大国家目标：增强国家队实力，提升日本足球队在国际上的成就以及争取举办世界杯决赛的资格。J 联赛代表了体育作为社会政策形式，也是促进区域振兴和城市发展规划的工具，遇到市场力量和追求国家荣誉的思维时会发生的情形。J联赛设计雄心勃勃，汲取了欧洲俱乐部体育的精髓，融入了北美体育的商业运作模式。各成员俱乐部与本地社区（家乡）建立紧密联系，增强地区自豪感并对居民培养出强烈的社区归属感。不同于日本职业棒球联赛中依赖补贴和企业所有者决策的做法，俱乐部被期望能作为独立自主且经济可行的实体运营。
+
+
+---
+
+### 例子：
+
+.pull-left[
+.center[
+&lt;img src=https://www.dropbox.com/s/wt77kiwckzgcvbx/superbowlelasticity.png?raw=1&gt;
+
+]
+
+]
+
+.pull-right[
+.smaller[
+尽管联赛整体的平均观众人数本赛季下降了0.43%，创下自2010年以来的新低，但亚特兰大的观众人数却连续第二年实现增长。梅赛德斯-奔驰体育场和猎鹰队已经成为吸引观众并让他们感到满意的标杆。
+
+猎鹰队摒弃了长期以来行业内普遍实行的高价策略——这一做法一直令粉丝们十分反感。他们决定将大多数食品的售价定在与街边相同的水平……
+
+**结果，价格大幅下降了50%。** 这让粉丝们感到无比欢喜。**虽然球队每售出一个2美元的热狗赚的钱变少了，但从总体上来看，却赚得更多了。**
+
+球迷每场比赛的平均消费额增长了16%。在2016年NFL的年度食品服务调查中排名第18的亚特兰大，在2017年各项指标上都跃居第一，且领先幅度显著。
+
+.source[Wall Street Journal (Feb 3, 2019)]
+
+]
+]
 
 ---
 ### 小结
@@ -585,8 +742,11 @@ count: false
 ]
 
 ---
-class: title-slide-section,inverse, middle
+class: inverse,center,middle
+
 # 生产者理论
+
+Rational Choice Theory: Producers
 
 ---
 
@@ -606,7 +766,7 @@ layout: false
 ### 供给曲线
 
 .more-left[
-&lt;img src="Lec02_files/figure-html/unnamed-chunk-7-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/unnamed-chunk-9-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -640,7 +800,7 @@ layout: false
 ### 供给的变动
 
 .more-left[
-&lt;img src="Lec02_files/figure-html/unnamed-chunk-8-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/unnamed-chunk-10-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -655,8 +815,11 @@ layout: false
 ]
 
 ---
-class: title-slide-section,inverse, middle
+class: inverse,center,middle
+
 # 市场均衡
+
+Market Equilibrium
 
 ---
 
@@ -674,7 +837,7 @@ class: title-slide-section,inverse, middle
 ]
 
 .more-left[
-&lt;img src="Lec02_files/figure-html/unnamed-chunk-9-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/unnamed-chunk-11-1.svg" width="388.8" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -689,7 +852,7 @@ class: title-slide-section,inverse, middle
 ]
 
 .more-left[
-&lt;img src="Lec02_files/figure-html/unnamed-chunk-10-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/unnamed-chunk-12-1.svg" width="388.8" style="display: block; margin: auto;" /&gt;
 ]
 
 .footnote[.pink[†]: *市场剩余* .mono[&lt;=&gt;] Q.sub[D] .mono[&lt;] Q.sub[S].]
@@ -706,7 +869,7 @@ class: title-slide-section,inverse, middle
 ]
 
 .more-left[
-&lt;img src="Lec02_files/figure-html/unnamed-chunk-11-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/unnamed-chunk-13-1.svg" width="388.8" style="display: block; margin: auto;" /&gt;
 ]
 
 .footnote[.pink[†]: *市场短缺* .mono[&lt;=&gt;] Q.sub[D] .mono[&gt;] Q.sub[S].]
@@ -725,7 +888,7 @@ class: title-slide-section,inverse, middle
 ]
 
 .more-left[
-&lt;img src="Lec02_files/figure-html/unnamed-chunk-12-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/unnamed-chunk-14-1.svg" width="388.8" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -739,7 +902,7 @@ P .mono[=].mono[]4.50 .mono[==&gt;] TS .mono[=] .mono[]36.
 ]
 
 .more-left[
-&lt;img src="Lec02_files/figure-html/unnamed-chunk-13-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/unnamed-chunk-15-1.svg" width="388.8" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -908,18 +1071,7 @@ P .mono[=].mono[]4.50 .mono[==&gt;] TS .mono[=] .mono[]36.
   - 通过参与各类可供观赏的运动组合获得体验感，满足人的欲望、提高福祉水平，→ 竞技运动服务业
   - 通过增加个体身体运动能力、改善身体和心理健康水平，扩大社交网络，间接实现“再生产”能力提升的服务类产品 → 健身休闲娱乐服务业
 
----
-### 体育产品的属性（供讨论）
 
-- 依据产品形态，能够清楚划分生产与消费是否具有可分性与不可分性
-
-- 依据竞争性和排他性，私人财产还是公共财产（俱乐部、公共资源和纯公共品）
-  - 排他性（excludability）：拥有该产品就限制别人消费、享用该产品的程度 → 无法分享
-  - 敌对性 （rivalry）：一个人消费某产品就会降低别人消费该产品的能力的程度 → 恶化他人体验
-
-- 依据收益回报的时间，买上收益和推迟收益
-  - 在消费层面，依照满足人的需求层次的需要 → 内在机制建立
-  - 推迟收益，面对**非理性**的情形 → 外界进行干预
   
 ---
 ### 如何从消费角度理解体育
@@ -975,7 +1127,7 @@ P .mono[=].mono[]4.50 .mono[==&gt;] TS .mono[=] .mono[]36.
 ]
 
 .more-left[
-&lt;img src="Lec02_files/figure-html/diamond_water-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec02_files/figure-html/diamond_water-1.svg" width="432" style="display: block; margin: auto;" /&gt;
 ]
 
 

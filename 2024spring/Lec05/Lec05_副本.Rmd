@@ -1,0 +1,1166 @@
+---
+title: "体育经济分析: 原理与应用"
+subtitle: "单元2: 职业体育联盟2+"
+author: 
+   - 周正卿
+date: "`r format(Sys.time(), '%d %B %Y')`"
+# xaringan模板
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: yes
+      countIncrementalSlides: yes
+      ratio: '16:10.85'
+    seal: true
+    lib_dir: libs
+  html_document:
+    keep_md: yes
+
+knit: pagedown::chrome_print
+
+# beamer模板
+
+# mainfont: Times New Roman
+# fontsize: 10pt
+# output: 
+#   beamer_presentation: 
+#     fonttheme: structurebold
+#     theme: Madrid
+#     colortheme: lily
+#     includes:
+#         in_header: "../beamer_header.tex"
+#     df_print: tibble
+#     latex_engine: xelatex
+
+---
+
+```{R, setup, include = F}
+# devtools::install_github("dill/emoGG")
+library(pacman)
+p_load(
+  broom, tidyverse,rmarkdown,
+  ggplot2, ggthemes, ggforce, ggridges,
+  latex2exp, viridis, extrafont, gridExtra,
+  kableExtra, snakecase, janitor,
+  data.table, dplyr, estimatr,
+  lubridate, knitr, parallel,
+  lfe,dslabs,scales,
+  here, magrittr,readxl, gapminder, Ecdat, wooldridge)
+
+options(htmltools.dir.version = FALSE)
+
+# Notes directory
+dir_slides <- "/Users/zhouzhengqing/Desktop/SportsEconAnalysis/2024spring/Lec05/"
+# Define pink color
+red_pink <- "#e64173"
+turquoise <- "#20B2AA"
+orange <- "#FFA500"
+red <- "#fb6107"
+blue <- "#3b3b9a"
+green <- "#8bb174"
+grey_light <- "grey70"
+grey_mid <- "grey50"
+grey_dark <- "grey20"
+purple <- "#6A5ACD"
+slate <- "#314f4f"
+met_slate <- "#272822" 
+
+# Dark slate grey: #314f4f
+
+# Knitr options
+opts_chunk$set(
+  comment = "#>",
+  fig.align = "center",
+  fig.height = 7,
+  fig.width = 10.5,
+  #dpi = 300,
+  #cache = T,
+  warning = F,
+  message = F
+)  
+opts_chunk$set(dev = "svg")
+options(device = function(file, width, height) {
+  svg(tempfile(), width = width, height = height)
+})
+options(crayon.enabled = F)
+options(knitr.table.format = "html")
+# A blank theme for ggplot
+theme_empty <- theme_bw() + theme(
+  line = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  axis.text = element_blank(),
+  plot.title = element_blank(),
+  axis.title = element_blank(),
+  plot.margin = structure(c(0, 0, -0.5, -1), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_simple <- theme_bw() + theme(
+  axis.line = element_line(color = met_slate),
+  panel.grid = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  text = element_text(family = "Fira Sans", color = met_slate, size = 17),
+  # axis.text.x = element_text(size = 12),
+  # axis.text.y = element_text(size = 12),
+  axis.ticks = element_blank()
+)
+theme_axes_math <- theme_void() + theme(
+  text = element_text(family = "MathJax_Math"),
+  axis.title = element_text(size = 22),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = "grey70",
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+  )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes_serif <- theme_void() + theme(
+  text = element_text(family = "MathJax_Main"),
+  axis.title = element_text(size = 22),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = "grey70",
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+  )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes <- theme_void() + theme(
+  text = element_text(family = "Fira Sans Book"),
+  axis.title = element_text(size = 18),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = grey_light,
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+  )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_market <- theme_bw() + theme(
+  axis.line = element_line(color = met_slate),
+  panel.grid = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  text = element_text(family = cnfont, color = met_slate, size = 17),
+  axis.title.x = element_text(hjust = 1, size = 17),
+  axis.title.y = element_text(hjust = 1, angle = 0, size = 17),
+  axis.ticks = element_blank()
+)
+theme_gif <- theme_bw() + theme(
+  axis.line = element_line(color = met_slate),
+  panel.grid = element_blank(),
+  rect = element_blank(),
+  text = element_text(family = cnfont, color = met_slate, size = 17),
+  axis.text.x = element_text(size = 12),
+  axis.text.y = element_text(size = 12),
+  axis.ticks = element_blank()
+)
+theme_goods <- theme_bw() + theme(
+  axis.line = element_line(),
+  panel.grid = element_blank(),
+  rect = element_rect(size = 1),
+  strip.text = element_blank(),
+  text = element_text(size = 17, family = cnfont), 
+  axis.text.x = element_text(size = 17),
+  axis.text.y = element_text(size = 17, angle = 90, hjust = 0.5),
+  axis.title.x = element_text(color = purple, size = 19),
+  axis.title.y = element_text(color = red_pink, size = 19),
+  axis.ticks = element_blank(),
+  plot.title = element_blank(),
+  legend.position = "none"
+)
+theme_game <- theme_bw() + theme(
+  axis.line = element_line(),
+  panel.grid = element_blank(),
+  rect = element_rect(size = 1),
+  strip.text = element_blank(),
+  text = element_text(size = 20, family = cnfont), 
+  axis.text.x = element_text(size = 20, color = met_slate),
+  axis.text.y = element_text(size = 20, angle = 90, color = met_slate, hjust = 0.5),
+  axis.title.x = element_text(color = met_slate, size = 20),
+  axis.title.y = element_text(color = met_slate, size = 20),
+  axis.ticks = element_blank(),
+  plot.title = element_blank(),
+  legend.position = "none"
+)
+shift_axis <- function(p, y=0){
+  g <- ggplotGrob(p)
+  dummy <- data.frame(y=y)
+  ax <- g[["grobs"]][g$layout$name == "axis-b"][[1]]
+  p + annotation_custom(grid::grobTree(ax, vp = grid::viewport(y=1, height=sum(ax$height))), 
+                        ymax=y, ymin=y) +
+    geom_hline(aes(yintercept=y), data = dummy, size = 0.5, color = met_slate) +
+    theme(axis.text.x = element_blank(), 
+          axis.ticks.x = element_blank())
+}
+wrapper <- function(x, ...) paste(strwrap(x, ...), collapse = "\n")
+# functions
+
+demand <- function(x) 10 - x
+demand_2 <- function(x) 9 - x
+demand_3 <- function(x) 8 - x
+demand_inc <- function(x) 11 - x
+demand_dec <- function(x) 5 - x
+supply <- function(x) 1 + (4/5)*x
+step_demand <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8), mv = c(8, 7, 6, 5, 4, 3, 2, 1, 0))
+step_demand2 <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(10, 10, 9, 9, 8, 8, 7, 7, 6, 6, 5, 4, 4))
+step_supply <- tibble(x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), mv = c(2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 8, 8))
+step_supply_tax <- step_supply %>% 
+  mutate(mv = mv + 2)
+
+data <- read_csv("/Users/zhouzhengqing/Desktop/SportsEconAnalysis/Activity_Pit_Market/Results.csv") %>% 
+  dplyr::filter(!is.na(price))
+
+theme_set(theme_gray(base_size = 20))
+# Column names for regression results
+reg_columns <- c("Term", "Est.", "S.E.", "t stat.", "p-Value")
+# Function for formatting p values
+format_pvi <- function(pv) {
+  return(ifelse(
+    pv < 0.0001,
+    "<0.0001",
+    round(pv, 4) %>% format(scientific = F)
+  ))
+}
+format_pv <- function(pvs) lapply(X = pvs, FUN = format_pvi) %>% unlist()
+# Tidy regression results table
+tidy_table <- function(x, terms, highlight_row = 1, highlight_color = "black", highlight_bold = T, digits = c(NA, 3, 3, 2, 5), title = NULL) {
+  x %>%
+    tidy() %>%
+    select(1:5) %>%
+    mutate(
+      term = terms,
+      p.value = p.value %>% format_pv()
+    ) %>%
+    kable(
+      col.names = reg_columns,
+      escape = F,
+      digits = digits,
+      caption = title
+    ) %>%
+    kable_styling(font_size = 20) %>%
+    row_spec(1:nrow(tidy(x)), background = "white") %>%
+    row_spec(highlight_row, bold = highlight_bold, color = highlight_color)
+}
+
+xaringanExtra::use_tile_view()
+xaringanExtra::use_scribble()
+xaringanExtra::use_animate_css()
+xaringanExtra::use_fit_screen()
+xaringanExtra::use_clipboard()
+
+```
+class: title-slide-section,inverse, middle
+
+# 补充知识点-临时-可以放到之前的课件中
+
+
+---
+
+class: inverse, middle
+
+# Where are the Firms in Economic Theory?
+
+---
+
+# Firms in Economics
+
+.pull-left[
+
+]
+
+.pull-right[
+
+]
+
+---
+
+# Firms in Economics
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uSLscJ2cY04" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+---
+
+# Firms in Economics
+
+.pull-left[
+
+```{r, fig.retina=3, fig.height=5}
+mc_ex1<-function(x){30*x+8}
+avc_ex1<-function(x){15*x+8}
+ac_ex1<-function(x){15*x+8+45/x}
+afc_ex1<-function(x){45/x}
+
+ggplot(data.frame(x=c(0,10)), aes(x=x))+
+  stat_function(fun=mc_ex1, geom="line", size=2, color = "red")+
+    geom_label(aes(x=2.5,y=mc_ex1(2.5)), color = "red", label=expression(MC(q)), size = 4)+
+  stat_function(fun=avc_ex1, geom="line", size=2, color = "brown")+
+    geom_label(aes(x=3,y=avc_ex1(3)), color = "brown", label=expression(AVC(q)), size = 4)+
+  stat_function(fun=afc_ex1, geom="line", size=2, color = "pink")+
+    geom_label(aes(x=3,y=afc_ex1(3)), color = "pink", label=expression(AFC(q)), size = 4)+
+  stat_function(fun=ac_ex1, geom="line", size=2, color = "orange")+
+    geom_label(aes(x=3,y=ac_ex1(3)), color = "orange", label=expression(AC(q)), size = 4)+
+   scale_x_continuous(breaks=c(0,1,1.73,2,3,4),
+                     limits=c(0,4),
+                     expand=expand_scale(mult=c(0,0.1)))+
+  scale_y_continuous(breaks=seq(0,100,10),
+                     labels=scales::dollar,
+                     limits=c(0,100),
+                     expand=expand_scale(mult=c(0,0.1)))+
+  #scale_colour_manual("Curves", values = line_colors, guide=F)+
+  labs(x = "Output, q",
+       y = "Per-Unit Costs ($)",
+       caption = expression(paste(C(q)==15*q^2+8*q+45)))+
+  theme_classic(base_family = cnfont, base_size=20)
+
+```
+
+]
+
+--
+
+.pull-right[
+
+$$\begin{align*}
+\max_{L,K,p} pf(l,k)-wL-rK\\
+\end{align*}$$
+
+]
+
+---
+
+### 新古典生产理论 Neoclassical Production Theory
+
+.center[
+![](https://www.dropbox.com/s/or07x494x8obcy6/firmsneoclassical.png?raw=1)
+]
+
+---
+
+### 新古典生产理论 Neoclassical Production Theory
+
+.center[
+![](https://www.dropbox.com/s/ztomeks7480ysgx/firmneoclassical2.png?raw=1)
+]
+
+---
+
+### 新古典生产理论 Neoclassical Production Theory
+
+.center[
+![](https://www.dropbox.com/s/x3xturob0zq32qp/firmneoclassical3.png?raw=1)
+]
+
+---
+class: inverse, middle
+
+# 企业做什么？
+
+---
+
+### 企业
+
+- 在现代市场经济中，大部分的生产活动是在.purple[公司]这种组织形式下进行的 → 公司作为法律虚构实体，具有自己的法律人格，能够拥有财产、签订合同、诉讼和被诉讼
+  - 公司的组织形式的出现极大地促进了资源的聚集和大规模生产，同时也使得投资风险可以分散
+- 在工业革命以前，生产主要是通过以下几种方式组织的：
+
+1. **工艺协会**（Craft guilds）：中世纪欧洲的工艺协会是早期的职业团体，成员通常是从事同一行业的工匠和商人。它们控制着工艺知识的传播，设置入行和质量标准，同时也具有一定的社会和政治影响力。工艺协会保护了工匠的利益，同时也限制了竞争
+2. **独立工匠**Independent artisans：在工业化之前，许多生产活动是由独立的工匠完成的，他们拥有自己的作坊，亲自完成或者在家庭成员的帮助下完成生产活动。这些工匠通常在当地市场销售自己的产品
+3. **独立承包商**Independent contractors
+：在某些情况下，大型工程或项目可能会雇用独立承包商来完成特定的工作。这些承包商会雇佣必要的工人，并对完成特定任务负责。这种组织形式在建筑和农业中较为常见
+
+---
+
+
+---
+
+### 公司是做什么的 I
+
+- 在经济学和管理学中，对于“公司（the firm）”所做的假设和其优化模型的建立是理解公司行为和决策过程的基础
+- 将“公司”视为一个单一的决策主体，虽然现实中公司的决策通常是由多个个体（如董事会、高管等）通过复杂的内部过程做出的。
+
+1. **选择（Choose）** .hi-blue[ < 一些替代品 >]
+    - 生产什么产品、提供什么服务、使用什么技术、采取什么市场策略、投资什么资源；在优化模型中，选择是变量，代表公司可以控制和调整的决策点
+2. **以最大化（In order to maximize）** .hi-green[< 一些目标 >]
+    - 利润最大化，其他目标（市场份额最大化、长期增长、社会责任）
+3. **受到限制（Subject to）** .hi-red[< 一些约束条件 >]
+    - 资本、资源、技术、市场环境、法律法规等，公司可能受到原材料供应量的限制，或者受到生产能力和技术水平的限制
+
+---
+
+### 公司是做什么的 II
+
+.pull-left[
+.smaller[
+
+- 公司将一些商品转换成其他商品
+]
+]
+
+.pull-right[
+.center[
+<img src=./figs/inputoutput.png>]
+]
+
+---
+
+### 公司是做什么的 II
+
+.pull-left[
+.smaller[
+
+- 公司将一些商品转换成其他商品
+
+- **投入（Inputs）**: $x_1, x_2, \cdots, x_n$
+  - <span class="green">**如**: 劳动力（工时、技能水平、创新能力）, 仓库空间, 电力, 贷款, 石油, 纸板, 化肥, 计算机, 软件程序等<span>
+]
+]
+.pull-right[
+.center[
+<img src=./figs/inputoutput.png>]
+]
+
+---
+
+### 公司是做什么的 II
+
+.pull-left[
+.smaller[
+
+- 公司将一些商品转换成其他商品
+
+- **投入（Inputs）**: $x_1, x_2, \cdots, x_n$
+  - <span class="green">**如**: 劳动力（工时、技能水平、创新能力）, 仓库空间, 电力, 贷款, 石油, 纸板, 化肥, 计算机, 软件程序等<span>
+
+- **投入（Output）**: $q$
+  - <span class="green">**如**: 汽油, 汽车, 法律服务, 移动应用, 蔬菜, 咨询建议, 财务报告等<span>
+]
+]
+
+.pull-right[
+.center[
+<img src=./figs/inputoutput.png>]
+]
+
+---
+
+### 公司是做什么的 III
+
+.pull-left[
+
+- .hi[生产技术] 或 .hi[生产函数]:
+  
+  - 将特定**投入** $(x_1, x_2, \cdots, x_n)$ 转换成 **产出** $(q)$
+$$q=f(x_1, x_2, \cdots, x_n)$$
+
+]
+
+.pull-right[
+.center[
+<img src=./figs/inputoutput.png>]
+]
+
+---
+
+### 生产函数与生产算法
+
+.pull-left[
+.center[ 生产函数 production function
+
+<img src=./figs/recipe1.PNG>]
+
+]
+
+.pull-right[
+.center[ 生产算法 production algorithm
+
+<img src=./figs/recipe2.PNG >]
+
+]
+
+---
+
+### 如果市场如此伟大，为什么公司存在？
+
+
+- 公司取消按价格分配商品，转而采用严格的命令和控制层次结构/中央计划！
+- 不少经济学家讨论了公司存在的理论基础
+  - 减少交易成本
+  - 解决信息不对称
+  - 增加生产效率以及更好地协调经济活动等
+- 代表性观点
+  - 罗纳德·科斯在其著名的论文《公司的性质》（The Nature of the Firm, 1937）中提出，公司的存在是为了减少交易成本。当市场交易的成本高于企业内部组织相同交易的成本时，公司就会形成
+  - 奥利弗·威廉姆森（Oliver E. Williamson）则在交易成本理论下进一步探讨了不同治理结构下交易成本的变化，尤其是当交易涉及到高度特定资产时，公司内部的治理结构相比市场交易更能减少成本和风险
+
+- **公司作为契约的纽带**：可能会探讨公司如何通过契约来协调不同利益相关者之间的关系
+- **资产特定性和垂直整合**Asset Specificity and Vertical Integration：可能会分析在特定资产投资重大时，企业如何通过垂直整合来降低交易成本和避免市场失败。
+- **合同限制和产权**Contractual Restraints & Property Rights：可能会讨论产权的分配如何影响公司的决策和资源分配
+
+
+---
+
+class: inverse, middle
+
+# 劳动的分工
+
+---
+
+### 劳动的分工 I
+
+.left-column[
+.center[
+![80%](https://www.dropbox.com/s/w5ecx0628ihm9n2/smith.png?raw=1)
+
+Adam Smith
+
+1723-1790
+]
+]
+
+.right-column[
+> "劳动的生产能力最大的提升，以及在任何地方指导或应用时所需的大部分技能、灵巧和判断力，似乎都是**劳动分工**的效果。," (Book I, Chapter 1).
+
+.source[Smith, Adam, 1776, [*An Enquiry into the Nature and Causes of the Wealth of Nations*](https://www.econlib.org/library/Smith/smWN.html)]
+]
+
+---
+### 劳动的分工 II
+
+
+- 在.hi[劳动的分工]下完成的产出**超过**了孤立状态下(.hi-purple[自给自足autarky])）的产出
+
+  - 资源禀赋的变种：不同地区和国家拥有不同的资源禀赋，劳动分工允许每个地区专注于利用其相对优势资源，从而实现更高效的全球资源配置
+  
+  - 生产机会的变种：劳动分工伴随着市场扩大，允许生产规模扩张，利用规模经济，降低单位成本，增加总产出
+  
+  - 人才的变种：人在技能、才能和偏好上存在天然的差异，劳动分工使得个体可以根据自己的特长和兴趣从事适合的工作，这不仅提高了个人的工作满意度，也增加了整个社会的生产效率
+]
+
+
+
+---
+
+### 劳动的分工 III
+
+.left-column[
+.center[
+![80%](https://www.dropbox.com/s/w5ecx0628ihm9n2/smith.png?raw=1)
+
+Adam Smith
+
+1723-1790
+]
+]
+
+.right-column[
+
+> "一个人靠自己的劳动所能满足的需求仅仅是很小的一部分。他通过交换自己劳动所产生的、超出自己消费需要的剩余部分，以换取其他人劳动所产生的、他自己需要的部分，来满足自己更大一部分的需求。这样，每个人都是通过交换生活的，或者在某种程度上成为了一个商人，而整个社会也逐渐成长为一个真正的商业社会" (Book I, Chapter 4).
+
+
+.source[Smith, Adam, 1776, [*An Enquiry into the Nature and Causes of the Wealth of Nations*](https://www.econlib.org/library/Smith/smWN.html)]
+
+]
+
+
+---
+### 别针工厂示例 I
+
+.center[
+<img src=https://www.dropbox.com/s/hqe5bnvm6e0p1eg/pinfactory.png?raw=1 height=400>
+
+]
+
+???
+以一个非常简单的制造业为例……即**制针行业**。在这个行业的当前运作方式中，不仅整个工作是一个特殊的行业，而且它被分成了许多分支，其中大部分也是特殊的行业。一个人拉伸钢丝，另一个人将其拉直，第三个人切割，第四个人尖端化，第五个人在顶部磨光以便安装针头……这样，**制作一根针的重要工作就这样被分成了大约十八个不同的操作过程**……**只用了十个人[他们]一天之内就能制作超过四万八千根针……但如果他们各自分开独立工作[他们]肯定每人一天不能制作二十根，甚至可能一根针都做不出来……**
+
+---
+
+### 劳动的分工: 起源
+
+.left-column[
+.center[
+![80%](https://www.dropbox.com/s/w5ecx0628ihm9n2/smith.png?raw=1)
+
+Adam Smith
+
+1723-1790
+]
+]
+
+.right-column[
+
+> "这种**劳动分工**，源自于许多好处，**并不最初是任何人类智慧的效果**，这种智慧预见并意图那种它所带来的普遍富裕。它是一种在**人类本性中特定倾向的后果**，虽然非常缓慢和逐渐的；这种倾向没有考虑到如此广泛的效用；**即倾向于以物易物，交换一样东西换取另一样东西**" (Book I, Chapter 2).
+
+
+
+.source[Smith, Adam, 1776, [*An Enquiry into the Nature and Causes of the Wealth of Nations*](https://www.econlib.org/library/Smith/smWN.html)]
+
+]
+
+---
+
+### 劳动的分工范围：受市场规模的制约
+
+.left-column[
+.center[
+![80%](https://www.dropbox.com/s/w5ecx0628ihm9n2/smith.png?raw=1)
+
+Adam Smith
+
+1723-1790
+]
+]
+
+.right-column[
+
+> "正如交换的能力促成了劳动分工，因此**这种分工的程度必然总是受到...市场规模的限制。**当市场非常小的时候，没有人会有动力完全致力于一种职业，因为缺乏交换他自己劳动所产生的、超出自己消费需求的那部分剩余产出以换取他所需要的其他人劳动所产生的产出的能力。," (Book I, Chapter 3).
+
+
+
+.source[Smith, Adam, 1776, [*An Enquiry into the Nature and Causes of the Wealth of Nations*](https://www.econlib.org/library/Smith/smWN.html)]
+]
+
+---
+
+### 劳动的分工: 总结
+
+.pull-left[
+.smallest[
+
+- **劳动分工**：人们在生产中**专业化**，然后与他人**交换**他们的产品，以获得所有他们想要的商品的过程
+
+- 两种含义：
+    
+    1. **工厂系统** Factory system：将生产过程分解为专门的离散步骤，以提高生产率
+    
+    2. **经济系统** Economic system：一个经济体中的人们专业化并交换以满足所有需求，导致普遍繁荣
+
+- .hi-purple[交易机会越多，专业化的好处就越大]
+
+]
+]
+
+.pull-right[
+.center[
+![](https://www.dropbox.com/s/925t8cq32nav5qs/tradeportship.jpg?raw=1)
+]
+]
+
+---
+
+### 劳动的分工与资本的积累 I
+
+.left-column[
+.center[
+![80%](https://www.dropbox.com/s/2pt0qjuskr954ks/allynyoung.jpg?raw=1)
+
+Allyn Young
+
+1876-1929
+]
+]
+
+.right-column[
+
+.smaller[
+
+> "当然，重要的是，**通过劳动分工，一组复杂的过程被转化为一系列更简单的过程，其中至少有一些过程适合使用机械**。在使用机械和采用间接过程中，存在进一步的劳动分工，其经济效益再次**受到市场规模的限制**。**为了钉下一颗钉子而制造一个锤子是浪费的；使用任何方便手边的笨拙工具会更好**," (p.530).
+
+]
+
+.source[Young, Allyn, 1928, "Increasing Returns and Economics Progress,"*Economic Journal* 38(152)]
+]
+
+---
+
+### 劳动的分工与资本的积累 II
+
+.left-column[
+.center[
+![80%](https://www.dropbox.com/s/2pt0qjuskr954ks/allynyoung.jpg?raw=1)
+
+Allyn Young
+
+1876-1929
+]
+]
+
+.right-column[
+
+.smaller[
+
+> "为了生产一百辆汽车而配备一套复杂的专用夹具、量具、车床、钻床、压力机和传送带的工厂设备将是浪费的；更好的方法是主要依靠标准类型的工具和机器，以便相对更多地使用直接应用的劳动力，相对较少地使用间接应用的劳动力。**如果[亨利]福特的产量非常小，他的方法将是荒谬且不经济的**，即使他的产量是许多其他汽车制造商所称的大量，也会是不赚钱的" (p.530).
+
+
+]
+
+.source[Young, Allyn, 1928, "Increasing Returns and Economics Progress,"*Economic Journal* 38(152)]
+]
+
+---
+
+### 劳动的分工与资本的积累 III
+
+.pull-left[
+.smaller[
+- 更多的交易机会创造了 .hi-purple[规模经济]
+    - 随着产出 $\uparrow$ ，平均成本 $\downarrow$ 
+
+- 这使得在资本和技术上的大量投资变得有利可图：
+    - 将固定成本 $f$ 分摊到更大量的产出 $q$ 上
+
+- 节省劳动力的技术：
+    - 可能完全用资本替代劳动力
+    - 可能为劳动力创造新的复杂任务
+
+]
+]
+
+.pull-right[
+.center[
+![](https://www.dropbox.com/s/1rnebv6h5ykm47l/factoryrobots.jpg?raw=1)
+]
+]
+
+---
+
+### *知识* 的分工
+
+- 市场规模的扩大 → 更大程度的劳动分工，以及更大程度的专业化和 .hi-purple[知识分工]
+
+.center[
+
+![80%](https://www.dropbox.com/s/5vwtr35g1g17t7i/moderndoctors.jpg?raw=1)
+]
+
+---
+### 劳动、生产力的分工与就业
+
+.left-column[
+.center[
+![80%](https://www.dropbox.com/s/hd1ttehrm38zq6p/munger.jpg?raw=1)
+
+Michael Munger
+]
+]
+
+.right-column[
+.smaller[
+> "斯密谈到的市场是指潜在的（并且在一个重要意义上，实际的！）产品消费者的数量。随着运输和通信处理贸易的能力增强，工厂的规模也在增加。让我再说一遍，因为这很显然却又让人困惑。**随着你能够接触到的潜在客户数量的扩大，以及运输和处理的成本下降，工厂变得更少而更大。**这些工厂中的资本投资远远增加，但工人数量减少。而产出增加了十倍、一百倍、甚至一千亿倍。"
+
+]
+]
+
+.source[Munger, Michael, 2007, ["I'll Stick With These: Some Sharp Observations on the Division of Labor,"](https://www.econlib.org/library/Columns/y2007/Mungerpins.html) *EconLog*]
+
+---
+
+### 应用：劳动、生产力的分工与就业
+
+.center[
+<img src=https://www.dropbox.com/s/5mnrzbexpo7qa5w/ditchsticks.jpg?raw=1 width=70%>
+
+100名工人手持棍棒
+]
+
+---
+
+### 应用：劳动、生产力的分工与就业
+
+.center[
+
+<img src=https://www.dropbox.com/s/71rgix88kstke7u/ditcheshovels.jpg?raw=1 width=60%>
+
+10个持铁锹的工人]
+
+---
+
+### 应用：劳动、生产力的分工与就业
+
+.center[
+
+<img src=https://www.dropbox.com/s/444dszwtburrud1/backhoe.jpg?raw=1 width=60%>
+
+1个开挖掘机的工人
+]
+
+---
+
+### 劳动、生产力的分工与就业：一个框架
+
+.pull-left[
+.center[
+<img src=https://www.dropbox.com/s/w21nzzxfg6bx5je/dol.png?raw=1 width=100%>
+]
+]
+
+.pull-right[
+
+- .hi-blue[每个工人的生产率]: 随着更大的市场和更多的资本投资，呈指数增长。
+
+- .hi-red[就业水平]: 随着更大的市场和更多的资本投资，先增加后减少
+
+]
+
+---
+
+### 劳动、生产力的分工与就业
+
+.left-column[
+.center[
+![80%](https://www.dropbox.com/s/hd1ttehrm38zq6p/munger.jpg?raw=1)
+
+Michael Munger
+]
+]
+
+.right-column[
+.smaller[
+> "今天，大多数的针制造已经转移到了亚洲。你的第一反应可能是点头并想，“当然，因为劳动力便宜。”但这并不是故事的重要部分。针制造是高度资本密集型的。斯密关于劳动分工的洞见，以及豪（Howe）将生产过程连续化、提高劳动生产力的想法，这些因素结合在一起，已经将中国针的市场扩展到了全世界。随着针的产出扩大，中国从事针制造的工人数量已经**下降**，而不是上升。随着生产率的激增，工资增加了十倍以上。"
+
+]
+]
+
+.source[Munger, Michael, 2007, ["I'll Stick With These: Some Sharp Observations on the Division of Labor,"](https://www.econlib.org/library/Columns/y2007/Mungerpins.html) *EconLog*]
+
+---
+
+### 劳动、生产力的分工与就业
+
+.center[
+
+<img src=https://www.dropbox.com/s/v3x5wf0xsb7f190/chinalayoffs.png?raw=1 width="70%" >
+
+]
+
+---
+
+### 劳动、生产力的分工与就业
+
+.center[
+![60%](https://www.dropbox.com/s/fnr6leus3nf8r7p/manufacturinghistory.jpg?raw=1)
+]
+
+---
+
+class: inverse, middle
+
+# 劳动的分工与企业
+
+---
+### 两种组织生产的方式
+
+在生产的“组织”方法上，主要可以区分为两种方法，它们各自适用于不同的环境和目标，具有不同的优势和限制。
+
+#### 1.分散式（Decentralized）生产组织  <br> → 适合于需要高度灵活性和快速适应市场变化的环境 
+
+- 分散式生产组织侧重于将决策权和生产责任下放到更接近生产一线的个体或团队手中
+- 鼓励以 .hi-pink[合同订立] 或 .hi-purple[利用市场]，即： <br>
+
+买家和卖家就一次的**特定交易**达成**一次性**协议
+- **优势**：**灵活性和适应性** + **创新和员工参与**
+- **限制**：**一致性和协调问题** + **管理复杂性** 
+
+---
+### 两种组织生产的方式
+
+#### 2. 集中式（Centralized）生产组织  <br> → 追求效率和标准化的大规模生产
+
+- 在这种模式下，一个**中心**或几个**中心节点**负责制定生产计划、分配资源、监督生产过程，并做出所有重要的经营决策
+- 注重的是.hi-pink[团队生产] 和 .hi-purple[内部组织]internal organization，即：<br> 
+
+资源所有者（或其代理人）雇用生产要素并管理它们的生产
+- **优势**：**效率和标准化** + **统一策略和方向**
+- **限制**：**灵活性较差** + **创新受限**
+
+---
+
+### 为什么不将一切都合同化？
+
+.left-column[
+.center[
+![80%](https://www.dropbox.com/s/9s3qzw1m3rrl9sy/stigler.png?raw=1)
+.smallest[
+George Stigler
+
+1911-1991
+
+Economics Nobel 1982
+]
+]
+]
+.right-column[
+
+.smallest[
+
+>大师级的枪械制造企业家并不常拥有自己的生产工厂或车间。他们一般只有一个专门存放枪械部件的仓库。这些企业家的主要工作是采购半成品，然后将它们分配给各种专业技工进行组装和完工。他们向各个独立的制造商采购所需的零件，如枪管、枪锁、瞄准器、扳机、拉杆以及枪支装饰部件的制造者，如果涉及到军用产品，还会包括刺刀的制造者。这些部件一经采购，就会被送往一系列的安装工人那里，他们各自负责枪械组装和精加工的不同阶段，包括调整、去除多余的枪管部分、硬化、抛光、钻孔拉膛、雕刻、着色，以及最终的锁具调整，确保各个工作部件的准确配合 (pp.192-193).
+
+]
+.source[Stigler, George J, (1951), "The Division of Labor is Limited by the Extent of the Market," *Journal of Political Economy* 59(3):3-21]
+
+]
+
+
+---
+
+### 为什么不将一切都合同化？
+
+.pull-left[
+.center[
+![](https://www.dropbox.com/s/8v1mbh56z02pfgh/productionprocess.png?raw=1)
+]
+]
+
+.pull-right[
+
+- .hi-purple[手工生产过程]：在这一过程中，每位工匠都按照自己独特的工作节奏进行工作，他们不仅需要掌握多种技能，还要能够独立地承担并完成多个生产环节的任务。这种方式允许工匠根据自身**专长**和当前的工作需求灵活地调整自己的工作计划和生产步骤
+]
+
+---
+
+### 为什么不将一切都合同化？
+
+.pull-left[
+
+![](https://www.dropbox.com/s/ij05r7z30gmz7jz/productionprocess1.png?raw=1)
+
+.smallest[
+每一项工作都可能是某位工人的特定专业领域。然而，这引出了一个问题：
+- 在一个企业内部，有多少工作任务是由**企业自己员工**完成的，而又有多少工作任务是需要**外部独立公司**来承担的呢？这个问题的核心在于理解一个企业将哪些工作任务视为其**核心竞争力**并予以**内部化**处理，与之相对的是，哪些任务因为**效率或专业性**的考虑，更适合由**外部专门机构**来完成。这种区分不仅影响着企业的组织结构，也深刻影响着整个行业的产业链布局
+
+]
+]
+
+.pull-right[
+.smallest[
+- 在斯密关于劳动分工的论述中，并没有涉及到企业界限的具体划分问题。他**主要强调了劳动分工如何提高生产效率，却没有明确指出这种分工如何在不同企业之间划分**
+- 对于生产过程中的各个环节，存在一个探讨点：这些环节是应该独立为各自的公司运营，还是说它们可以集中在一个企业内部进行管理和执行？这个问题触及了企业如何根据自身的优势、市场条件和成本考量来选择组织形式
+- .hi-purple[垂直整合Vertical integration] 是指一个企业通过**内部化**生产过程的不同阶段，从而控制从原材料采购到最终产品销售整个产业链的战略
+  - 可能是为了提高效率、降低成本或者增加市场控制力
+  - 通过垂直整合，企业可以更好地控制生产流程中的质量和成本，同时也对企业界限的确定提出了新的视角
+]
+]
+
+---
+
+# Coase: Transactions Costs
+
+.left-column[
+.center[
+![70%](https://www.dropbox.com/s/16vhn3ugeyzffu0/coase.png?raw=1)
+
+.smaller[
+Ronald H. Coase
+
+(1910-2013)
+
+Economics Nobel 1991]
+
+]
+]
+
+.right-column[
+
+.smallest[
+
+“The main reason why it is profitable to establish a firm would seem to be that there is a .hi[cost of using the price mechanism]," (pp.192-193).
+
+]
+.source[Coase, Ronald H, (1937), "The Nature of the Firm," *Economica* 59(3):3-21]
+
+]
+
+---
+
+# Transaction Costs I
+
+.pull-left[
+
+- Example .hi[Transaction costs]!
+  - .hi-purple[Search costs]: cost of finding trading partners
+  - .hi-purple[Bargaining costs]: cost of reaching an agreement
+  - .hi-purple[Enforcement costs]: trust between parties, cost of upholding agreement, dealing with unforeseen contingencies, punishing defection, using police and courts
+]
+
+.pull-right[
+.center[
+![](https://www.dropbox.com/s/r9swgigquy9m6g2/transactionscosts.JPG?raw=1)
+]
+]
+
+---
+
+# Transaction Costs II
+
+.pull-left[
+
+- With high transaction costs, resources *cannot* be traded
+
+- Resources *cannot* be switched to higher-valued uses
+
+- If others value goods higher than their current owners, resources are *inefficiently* allocated!
+]
+
+.pull-right[
+.center[
+![](https://www.dropbox.com/s/r9swgigquy9m6g2/transactionscosts.JPG?raw=1)
+]
+]
+
+---
+
+# Incomplete Contracts
+
+.pull-left[
+.center[
+![](https://www.dropbox.com/s/1ly4d5zpcy15lih/contractcontingencies.png?raw=1)
+]
+]
+
+.pull-right[
+
+- Contract performance takes place over time - the source of uncertainty
+
+- .hi[Complete contracts] that account for every possible contingency are *impossible*
+
+- Have to constantly renegotiate terms of contract to respond to uncertain changes
+
+]
+
+---
+
+# The Firm: A General Contract
+
+.pull-left[
+.center[
+![70%](https://www.dropbox.com/s/kpqo5wnz8j6i5qz/employmentcontractset.png?raw=1)
+
+.smallest[
+At any time, employer can choose $x \in X$ for employee to perform, where $X$ is the set of tasks in the employee's "job description"
+]
+]
+]
+
+.pull-right[
+
+- Establishing an organization (firm) substitutes a single .hi[employment contract] between factor owner (worker, landowner, etc.) and firm owner
+
+- Firm owner (or their agents) pays factor owner (hourly wage, salary, rent, etc) for the right to direct factor owner to provide whatever service firm owner's discretion (within bounds of the contract)
+  - aka "job description"
+
+]
+
+---
+
+# The Make-or-Buy Decision
+
+.pull-left[
+.center[
+![](https://www.dropbox.com/s/m9jxjtqgyzuidxu/makeorbuy.jpg?raw=1)
+]
+]
+
+.pull-right[
+
+- Firms (and individuals!) face a .hi[make-or-buy decision] on all of their inputs and output:
+  - Produce something in-house (.hi-purple[team production]) OR
+  - Buy it from another producer in the market (.hi-purple[contracting])
+
+- Smith's describes how markets $\implies$ specialization $\implies$ productivity, NOT which production processes are *internalized* vs. *left external*
+]
+
+---
+
+# Make-or-Buy Decision
+
+.pull-left[
+.center[
+![80%](https://www.dropbox.com/s/r7g5xj4vg7wtmyc/safewaydelivery.png?raw=1)
+
+Operate own delivery vehicles
+]
+]
+
+.pull-right[
+.center[
+![80%](https://www.dropbox.com/s/is37v6txcx7cf3l/fedextruck.png?raw=1)
+
+Contract with outside delivery companies
+]
+
+]
+
+---
+
+# Make-or-Buy Decision
+
+.pull-left[
+.center[
+![80%](https://www.dropbox.com/s/1marrr4gvirjw5r/chef.png?raw=1)
+
+Operate own cafeteria
+]
+]
+
+.pull-right[
+.center[
+![60%](https://www.dropbox.com/s/0he8cvvae4t2cmx/panera.png?raw=1)
+
+Employees/students turn to the market
+]
+
+]
+
+---
+
+# Make-or-Buy Decision
+
+.pull-left[
+.center[
+![80%](https://www.dropbox.com/s/smweawkts91mtut/gmworkers.jpg?raw=1)
+
+Auto manufacturers often produce their own car bodies
+]
+]
+
+.pull-right[
+.center[
+![80%](https://www.dropbox.com/s/w692cf76gyru63w/goodyeartires.jpg?raw=1)
+
+But often buy the tires from other companies
+]
+
+]
+
+---
+
+# Make-or-Buy Decision
+
+.pull-left[
+.center[
+![80%](https://www.dropbox.com/s/l1lmyxsj1il3dng/google.png?raw=1)
+
+Google doesn't make its own hardware
+]
+]
+
+.pull-right[
+.center[
+![80%](https://www.dropbox.com/s/t14ikzqg4awc6e1/ibm.png?raw=1)
+
+IMB makes its own hardware
+]
+
+]
+
+

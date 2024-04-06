@@ -260,25 +260,31 @@ class: title-slide-section, middle, inverse
 # 简介
 
 ???
-同学们好，我们开始上课。
+同学们好，我们开始上课
 
 ---
 
 ### 关于我
 - 北京大学经济学院，本硕博
-- 兴趣: 体育经济 + 数据科学
+  - 兴趣: 体育经济 + 数据科学
+
+- 特长：乒乓球
+
+---
 
 ### 关于课程
 - Section 01：经济学基础
   - 基础加深经济直觉；后期专题帮助选题
+  
 - Section 02：核心专题
   - 职业体育
   - 对体育设施和大型赛事的批判
-  - 人对健康与幸福的追求
   - 计量经济学入门
+  - 人对健康与幸福的追求
+  
 - Section 03：探索方向
-  - 电竞竞技与整合体育
-  - 促进城市和区域发展
+  - 数字经济与整合体育 → 新质生产力 → 形成新动能
+  - 促进城市和区域发展 → 高质量经济发展 → 符合新时代人民要求
 
 ???
 .tiny[
@@ -287,6 +293,22 @@ class: title-slide-section, middle, inverse
 - 我想在回答这个问题之前，不管怎样，我们还是应该有一个比较好的基础，那么藉由我的学习经验和成长路径，给大家分享一些知识，还有思考的方式是提供一些技能啊，这是我觉得这门课的初衷。
 - 我的经验告诉我就是在最开始的时候，我们没有一个特别清晰的学习计划，会导致后来盲目的学习。 因此，通过短短的这几节课，希望大概能给大家勾勒一个嗯初步框架、经验，未来能够帮助更好的发展。
 ]
+
+---
+### 讨论
+
+- 大家认为什么是体育经济？
+
+- 经济学能够帮助怎样指导实践？
+
+- 未来是否会用到体育经济？
+
+
+### 上课方式
+
+- 鼓励随时打断
+
+- 鼓励不同意见：没有错误的观点，只有不全面的表达方式
 
 ---
 ### 认知与追求真理
@@ -335,7 +357,7 @@ class: title-slide-section, middle, inverse
 - 跟踪最新发展：Researchgate, NBER, AEA, Twitter, 学术公众号
 - 文献抓取：**Zotero**, Endnote
 - 梳理思路：Mindmeister等Mind Map
-- 写作：除了Word以外, **Latex**, **Overleaf**等
+- 写作：除了Word以外, **Latex**, **Overleaf**等（毕业论文写作阶段）
 - 对某一类研究方法比较熟悉
   - 至少OLS → TWFE → DiD
   - 了解统计学和计量经济学的关系，几次课程远远不够
@@ -423,7 +445,7 @@ class: title-slide-section, middle, inverse
 ???
 .tiny[
 - 我想这个图就做得很好的注释 
-- 平等相当于跟每个人分配了同样多的资源或成果， 公平衡量的是最后大家是不是都到了一样的结果，就不是全部是经济问题了。
+- 平等相当于跟每个人分配了同样多的资源或成果， 公平衡量的是最后大家是不是都到了一样的结果，就不是全部是经济问题了
 ]
 
 ---
@@ -479,13 +501,32 @@ class: title-slide-section, middle, inverse
 - **市场经济**：许多企业和家庭在物品和劳务市场上相互交易，通过他们的**分散决策**来配置资源的经济。
 
 ---
+### 斯密的观点
+
+
+.left-column[
 .center[
-![abc76451c77edc0569aa2af879956b25fa17c129](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/WCwMZH.png)
+<img src="./figs/smith.png" >
+.smallest[
+Adam Smith
+
+1723-1790
+]
+]
 ]
 
-- “By preferring the support of domestic to that of foreign industry, he intends only his own security; and by directing that industry in such a manner as its produce may be of the greatest value, he intends only his own gain, and he is in this, as in many other cases, led by an **Invisible Hand** to promote an end which was no part of his intention.”
+.right-column[
 
-- 尊重价格体系 → 分工创造财务、税收扭曲价格
+> 通过更喜欢支持国内产业而不是支持外国产业，[企业家]只打算确保自己的安全；通过以这样的方式指导该产业，使其产品可能最有价值，[企业家]只打算获得自己的利益，并且在这种情况下，就像在许多其他情况下一样，他被一只**无形的手**引导着去促进一个并非他本意的一部分的目的 (Book I, Chapter X Part II).
+
+.source[Smith, Adam. (1776).*An Enquiry into the Nature and Causes of the Wealth of Nations*
+
+- 尊重价格体系 → 分工创造财富；税收扭曲价格
+
+]
+]
+
+
 
 ---
 
@@ -546,7 +587,7 @@ class: title-slide-section, middle, inverse
 ---
 
 class: title-slide-section, middle, inverse 
-# 经济学的基本框架
+# 经济学的基本内容
 
 ???
 .tiny[
@@ -559,9 +600,9 @@ class: title-slide-section, middle, inverse
 
 经济学涵盖了相当大的领域，但通常分为两大部分: 
 
-- **微观经济学**。关注经济中个体主体的行为，如家庭、工人和企业。 
-- **宏观经济学**。将经济视为一个整体，它侧重于广泛的问题，例如生产增长、失业人数、物价、政府赤字以及进出口 → 货币政策和财政政策
-- 微观经济学和宏观经济学不是独立的学科，而是对整个经济学科的互补观点。
+- .hi[微观]: [modeling] .hi-purple[选择] + .hi-purple[结果]
+- .hi[宏观]: [modeling] .hi-purple[选择者的系统性互动] 或 .hi-purple[突现行为 emergent behavior]
+- 微观经济学和宏观经济学不是独立的学科，而是对整个经济学科的互补观点
 
 经济学家习惯用使用**理论**或**模型**来刻画世界
 - **理论**是对两个或多个变量间如何相互作用的简化表述 → 目的是为了将复杂的世界用最简单、最本质的方法来刻画
@@ -593,6 +634,32 @@ class: title-slide-section, middle, inverse
 ]
 
 ---
+### 重新学习你所认为的
+
+.pull-left[
+
+- 你在日常生活中“知道”的术语对经济学家来说意味着.hi-purple[完全不同的东西]：
+
+> 需求、价格、成本、效率、福利、竞争、边际、均衡、利润、公共产品、歧视、弹性 
+
+- 使用这些词语的“普通”含义可能会导致错误的经济结论！ 
+
+- 你需要.hi-purple[重新学习]这些词语的经济含义
+]
+
+.pull-left[
+
+- 你需要掌握一些**新的词汇**：
+<br>
+<br>
+> 报酬递减率、边际成本、消费者剩余、配置效率、外部性、网络效应
+
+- 避免使用过多的专业术语，但这些概念对于解释现实是有用的！
+
+]
+
+
+---
 #### 一个例子：建立概念树
 
 .center[
@@ -607,7 +674,7 @@ class: title-slide-section, middle, inverse
 - 同学们可以在其中标注出和的经济学原理相关的一些基本概念以及对于的学派，有个大概的了解（30分钟内）。 
 - 那么大家就给大家布置一个小小的作业。
 ]
- 
+
 ---
 ### 作业：绘制自学路径图（1.5小时内完成）
 
@@ -626,6 +693,15 @@ class: title-slide-section, middle, inverse
 3.制作“自学课表与路径图”
 
 ---
+### 经济学 $\neq$ 商业 or $$$
+
+.center[
+
+<img src="./figs/tweetmoney.png" width=80% >
+]
+
+
+---
 ### Harvard’s Economics Department 
 
 .center[
@@ -639,6 +715,72 @@ class: title-slide-section, middle, inverse
 <img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/wny1KH.png height="450">
 ]
 - [Branches of Economics](https://idreamcareer.com/blog/economics-subject-a-comprehensive-guide/) 
+
+---
+
+class: title-slide-section, middle, inverse 
+# 经济学的基本思维概述
+
+
+---
+### 模型
+
+- 大多数人不会成为职业经济学家也没关系 → 经济学是一门.hi-purple[社会科学 Social science ] 或者是 .hi-purple[文科 liberal art]，即使它不是你的职业，对你也有用
+  - 理解 .hi-turquoise[“世界如何运行”]
+  - 一个伟大的 .hi-turquoise[胡说八道检测器 bullshit-detector]，尤其是针对自私自利、软弱无力或政治性言论
+
+- 经济学是一种基于几个核心思想的.hi-purple[思维方式]：
+
+  - .hi[人们会对激励做出反应] 
+> 包括金钱、惩罚、税收和补贴、受伤风险、声誉、利润、性别差异以及道德观念。
+
+  - .hi[环境会调整到平衡状态] → 为什么会这么思考问题？
+> 人们会根据他人的行动来调整自己的选择，以达到最优解
+
+---
+### 关于激励
+
+- 人们对（变化中的）**激励**做出反应
+
+- 人们有他们寻求达到的**目标**
+
+- 使一个选择变得更昂贵 $\neq$ 人们停止追求他们的目标
+
+- 人们将寻找替代方法（次优方案）来达到目标
+
+- .hi-purple[意想不到的后果]！
+
+---
+.center[
+<img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/FRlnEZ.png >
+
+]
+
+---
+### 优化与均衡
+
+.pull-left[
+- .hi[优化]：如果人能够 .hi-purple[认知、学习] 并 .hi-purple[改变] 他们的行为，就将倾向于转向更高价值的选择 → 假定人是向善的
+
+    - 主体有他们价值的 **目标 objectives**
+    - 主体面临 **约束 constraints**
+    - 在约束内做出 **权衡 tradeoffs** 以最大化目标
+]
+
+.pull-right[
+- .hi[均衡]：基于**市场机制**还是**社会计划者**，前者突出竞争，后者突出福利
+
+    - 主体与他人在稀缺资源上 **竞争compete**
+    - 主体基于价格 **调整adjust** 行为
+    - 当调整停止时的 **稳定结果 Stable outcomes**
+]
+
+- 如果没有更好的.hi[替代方案]，那么一个人处于.hi[最优状态]
+- 每个人都处于.hi[最优状态] $\iff$ 系统处于.hi[均衡]
+- 这门课程中95%问题的答案： .hi[边际收益等于边际成本]
+  - 什么是收益？什么是成本？
+  - 语言直觉 $\iff$  数学 $\iff$  图形
+
 
 ---
 
