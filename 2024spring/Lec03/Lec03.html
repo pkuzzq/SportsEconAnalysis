@@ -4,7 +4,7 @@
     <title>体育经济分析: 原理与应用</title>
     <meta charset="utf-8" />
     <meta name="author" content="周正卿" />
-    <meta name="date" content="2024-04-06" />
+    <meta name="date" content="2024-04-14" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view/tile-view.js"></script>
@@ -18,6 +18,10 @@
     <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <script src="libs/freezeframe/freezeframe.min.js"></script>
+    <script src="libs/xaringanExtra-freezeframe/freezeframe-init.js"></script>
+    <script id="xaringanExtra-freezeframe-options" type="application/json">{"selector":"img[src$=\"gif\"]","trigger":"click","overlay":false,"responsive":true,"warnings":true}</script>
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -36,7 +40,7 @@ class: center, middle, inverse, title-slide
 ### 周正卿
 ]
 .date[
-### 06 April 2024
+### 14 April 2024
 ]
 
 ---
@@ -195,19 +199,21 @@ Rational Choice Theory: Producers
 ---
 ### 思想史：供给理论比需求理论形式化展开的晚
 
-- 供给理论又称为边际生产率理论。在亚当斯密之后，古典经济学家对于供给分析（生产环节）是缺失的。通常假定供给是固定（完全无弹性），在有限的供给下如何进行资源配给和要素供应与价格解释，特别是对包括工资、租金、利息和利润之间相互联系与财富分配进行阐述
+- 供给理论又称为**边际生产率**理论。在亚当斯密之后，古典经济学家对于供给分析（生产环节）是缺失的。通常假定供给是固定（完全无弹性），在有限的供给下如何进行资源配给和要素供应与价格解释，特别是对包括工资、租金、利息和利润之间相互联系与财富分配进行阐述
   - 早期的Longfield（1802-1884）在1834年的《政治经济学讲义》中批评了劳动价值论，并提出边际生产率理论 → 从需求分析中无法解决**要素**配置和财富分配问题
-  - 图能（1783-1850）则主要集中在农业经济学和土地使用的最优分配上，提出的土地使用理论（极差地租） →  暗示了后来的**边际报酬递减律**
-- 边际生产率理论为就业理论提供重要启示，特别是与工资和劳动力市场链接后，就能得出一个非常重要观点：**在完全竞争市场中，工资应当等于劳动力的边际产出的价值** &lt;br&gt;→ 意味着，如果工资过高将导致失业，因为企业在成本和收益平衡的基础上决定雇佣劳动力的数量
-&lt;br&gt; → 降低工资能够提高就业水平，从而减轻经济萧条的影响。然而，这种观点在大萧条后，遭遇到了凯恩斯的批评
+  - 图能（1783-1850）则主要集中在**农业**经济学和**土地使用**的最优分配上，提出的土地使用理论（极差地租） →  暗示了后来的**边际报酬递减律**
+- 边际生产率理论为就业理论提供重要启示，特别是与**生产要素市场**链接后，就能得出一个非常重要观点：**在完全竞争市场中，工资应当等于劳动力的边际产出的价值** &lt;br&gt;→ 意味着，如果工资过高将导致失业，因为企业在成本和收益平衡的基础上决定雇佣劳动力的数量；降低工资能够提高就业水平，从而减轻经济萧条的影响
+ &lt;br&gt;→  但这种观点在大萧条后，遭遇到了凯恩斯的批评 → 宏观经济理论的提出
 
 ---
 ### 名词解析
-- resource allocation 资源配置 → 分配或者拨用人、财、物、时间等资源，以达到某种目的
+- resource allocation 资源配置 → 分配或者拨用人、财、物、时间等资源，以达到某种目的 &lt;br&gt;→ 事前视角
 
 - income distribution 收入分配 → 在一定范围内的分发或者分享某种**单一**要素
-
+ &lt;br&gt;→ 事后视角
 - revenue share 收入共享 → 把收入给汇总后，再以某种标准共享给大家，参与者人人有份，且保持公平
+ &lt;br&gt;→ 循环视角
+ 
 ---
 ### 讲授路径
 
@@ -229,8 +235,8 @@ Rational Choice Theory: Producers
 ---
 ### 讲授逻辑（写在前面）
 
-- 从成本线得到供给生产函数。当经济学打开厂商生产的黑箱时，首先看到的是要素的投入，包括要素价格、要素数量以及要素组合的方式。我们将会定义出生产函数、生产技术以及生产阶段。在图形上，我们看到是L-Q平面，反映的“要素-产量”关系 
-- 生产函数不同意味着成本函数差异，而成本函数刻画的是Q-$平面，与需求曲线（回忆：本质是刻画消费者偏好）在同一个维度。成本函数反映的是“产量-成本消耗”关系 → 成本和要素需求是一个问题的两面（暂不深入）
+- 成本线得到供给生产函数。当经济学打开厂商生产的黑箱时，首先看到的是要素的投入，包括**要素价格**、**要素数量**以及**要素组合方式**。我们将会定义出生产函数、生产技术以及生产阶段。在图形上，我们看到是L-Q平面，反映的“要素-产量”关系 → 技术决定论 
+  - 生产函数不同意味着成本函数差异，成本函数刻画的是Q-$平面，与需求曲线（回忆：本质是刻画消费者偏好）在同一个维度。成本函数反映的是“产量-成本消耗”关系             → 成本和要素需求是一个问题的两面（暂不深入）
 - 两条路径是理解单个厂商的供给行为的关键
   - MC 路径：生产技术出发 → 生产函数 → 成本函数 → MC 曲线
   - MR 路径：若限定厂商为价格接受者，就可以获得 MR 曲线 
@@ -240,12 +246,57 @@ Rational Choice Theory: Producers
   - 寡头市场、独占性竞争的市场结构 → 经济主体间博弈
 
 ---
-### MR=MC v.s. **内部决策与外部约束**
+### MR=MC v.s. **内部决策与外部约束** 
 
-- 两者都是内部决策 → 回忆：受制于外部约束
+- 理解任何决策的微观基础都可以从这个角度出发
+  
+  - 比如？
 
-- 对于拥有定价权的企业来说，MC 相对 MR 更为外部约束一些
+- 两者都是内部决策 
+  
+  - 比较两方的约束差异
 
+- MC 要反映行业特点、行业发展规律
+
+---
+class: title-slide-section, center, middle, inverse
+
+# 生产者行为
+
+Producer Behavior
+
+---
+### 生产者行为 
+
+生产者如何决定： 
+
+- 生产哪些产品 
+- 生产多少 
+- 使用哪些投入 
+- 以什么价格出售 
+
+这些问题的答案是供给曲线的构建模块
+
+---
+### 生产的基础 
+
+.pull-left[ 
+
+- 交换和消费几乎所有商品，必须先**生产**出来
+- .hi[消费] 是为了获得**效用**而消耗价值 
+  - .hi-purple[消费是所有经济活动最终的目标]
+- .hi[生产] 是通过将**低价值**的商品（资源、投入等）转化为**高价值**的商品（产出、消费品等）来创造价值
+- 都是**需求（Demand）**表现
+  - .hi-red[供应] 实际上是 .hi-blue[需求] 伪装的！ 
+  - .hi-red[(机会) 成本] 用于购买（稀缺的）生产投入，因为其他人的 .hi-blue[需求] 这些相同的投入来消费或生产其他有价值的东西！ 
+  - 必须支付成本才能将它们从其他有价值的生产用途中**分离**出来
+]
+
+.pull-right[
+.middle[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/qWNpqa.png&gt;
+]
+]
 
 ---
 ### 生产技术
@@ -258,41 +309,173 @@ Rational Choice Theory: Producers
 .hi.pink[要素投入 .mono[--&gt;]  生产技术 .mono[--&gt;] 产出方式]
 ] 
 
+.center[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/6JglCG.png height=360&gt;
+
+]
+
 ---
-### 生产函数TPF
+### 生产要素 I
+
+`$$Q=A \,f(T,L,K)$$`
 
 .pull-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-2-1.svg" style="display: block; margin: auto;" /&gt;
+.smaller[
+- 经济学家通常将投入分类，称为.hi[“生产要素” (FOP)]：
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 要素 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 所有权 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 收益 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 土地 (T) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 地主 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 租金 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 劳动力 (L) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 劳动者 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 工资 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 资本 (K) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 资本家 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 利息 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+.smallest[
+- `\(A\)`: .b["全要素生产率"] (创意、知识、制度因素)
+- `\(L\)`:  → `\(eL\)` ：人力资本和劳动力
+
+]
 ]
 
 .pull-right[
-#### 定义:**一段时间内**生产要素投入量与.pink[产品最大产出量]之间的关系
-- `\(Q=f(L, K)\)` 。为了方便，暂且分析短期(只有一种可变要素)。
-- 有时以产量(Q,output)代替产品最大产出量(TP)
-- 生产行为都是在**一个时间段内**进行的 → TP 是**流量**概念
-&lt;br&gt;→像土地而言，是一种**存量**概念
-&lt;br&gt;→资本有时是固定的，有时是变动的。不会因生产而马上消失，属于**耐久财**。**当前的资本量是过去新增资本的累积减去耗损与折旧，因此通常也视为存量**
-- 劳动?
+.center[
+&lt;img src=./figs/factors.jpg&gt;
 ]
 
+]
+
+---
+
+### 生产要素 II
+
+
+`$$Q=f(L,K)$$`
+
+.pull-left[
+
+- 我们假设只有两个输入：劳动力 L 和资本 K
+
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 要素 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 所有权 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 收益 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 劳动力 (L) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 劳动者 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 工资 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 资本 (K) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 资本家 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 利息 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+]
+
+.pull-right[
+.center[
+&lt;img src=./figs/factors.jpg&gt;
+]
+
+]
+
+---
+### 生产函数TPF
+
+#### 定义:**一段时间内**生产要素投入量与.pink[产品最大产出量]之间的关系
+- `\(Q=f(L, K)\)` 
+
+- 有时以产量(Q，output)代替产品最大产出量(TP)
+
+- 生产行为都是在**一个时间段内**进行的 → TP 是**流量**概念
+
+&lt;br&gt;→像土地而言，是一种**存量**概念
+
+&lt;br&gt;→资本有时是固定的，有时是变动的。不会因生产而马上消失，属于**耐久财**
+
+  - **当前的资本量是过去新增资本的累积减去耗损与折旧，因此通常也视为存量**
+
+
+
+
+---
+### 生产（成本）要考虑时间问题
+
+
+- **市场期market period**：市场期间是如此短暂，以至于供给是固定的或完全无弹性的。价格对供应量没有反作用，因为这个周期太短，企业无法对价格变化做出反应
+- **短期short run**：短期是企业可以改变生产和供应但不能改变厂房规模的时期。更高的价格驱使厂商供应数量增加，供应曲线向上倾斜。只能改变产量，不能改变厂房规模。在短期内，企业的总成本分为随产出变化的成本(**可变成本**)；不随产出变化的成本(**固定成本**)。这种区分来自对商业世界的观察。
+- **长期long run**：厂房规模可以变化，所有成本都是可变的。长期供应曲线比短期更有弹性，因为企业能够通过改变厂房规模充分调整以适应价格变化
+  - 长期供应曲线可以采取三种一般形式：它可以向上和向右倾斜（成本可能增加）；它可以完全有弹性（成本可能恒定）；或者，在不寻常的情况下，它可以向下和向右倾斜（成本可能减少）→ 规模经济
+- **世俗期secular period**：一个行业的世俗期或非常长期，允许技术和人口变化，代际间价格的变动时的时间设定
+
+
+
+---
+### 短期：生产函数
+
+.pull-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-4-1.svg" width="360" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+- `\(Q=f(L, \bar{K})\)` 
+
+- 假设资本是固定的（即工厂、店面等数量） 
+
+- 短期决策仅关于使用劳动力
+
+]
 
 ---
 count: false
 ### 最大总产出的三个阶段
 
 
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-3-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-5-1.svg" width="864" style="display: block; margin: auto;" /&gt;
 
 
 ---
 ### 边际产量 MP
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-4-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-6-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
 #### 定义:增加一单位.pink[可变要素]劳动投入量所增加的产量
+- $$
+M P_L=\frac{\Delta Q}{\Delta L}
+$$
 
 - 保持技术水平不变,保持其他要素（资本）投入不变，只改变劳动力投入
 
@@ -303,11 +486,14 @@ count: false
 ### 边际产量 MP
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-5-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-7-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
 #### 定义:增加一单位.pink[可变要素]劳动投入量所增加的产量
+- $$
+M P_L=\frac{\Delta Q}{\Delta L}
+$$
 
 - 保持技术水平不变,保持其他要素（资本）投入不变，只改变劳动力投入
 
@@ -320,15 +506,72 @@ count: false
 ### 边际产量 MP
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-6-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-8-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
 #### 定义:增加一单位.pink[可变要素]劳动投入量所增加的产量
+- $$
+M P_L=\frac{\Delta Q}{\Delta L}
+$$
 
 - 保持技术水平不变,保持其他要素（资本）投入不变，只改变劳动力投入
 
 ]
+
+
+---
+### 经验法则:单一要素边际报酬最终会递减
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-9-1.svg" width="360" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+
+- .hi-purple[Law of diminishing marginal returns:]
+&lt;br&gt; .hi[在其他所有要素保持不变的情况下],增加单一生产要素，将导致产出增加幅度逐渐降低。
+
+
+- 为了增加产出，企业需要增加所有要素！
+
+]
+
+
+---
+### 应用：经营体育场馆
+
+- 假设你是一家体育场馆的经理，场馆有5个篮球场。为了提高场馆的使用率和收入，你决定招聘更多的教练来提供篮球培训课程
+    1. 当你招聘了1个教练时，每天可以为20个学员提供培训
+    2. 当你招聘第2个教练时，每天又增加了20个学员，总共40个学员
+    3. 当你招聘第3个教练时，由于篮球场数量的限制，每天只增加了15个学员，总共55个学员
+    4. 当你招聘第4个教练时，每天只增加了10个学员，总共65个学员
+- 随着教练数量的增加，每增加一个教练所带来的额外学员数量在逐渐减少。这就是边际报酬递减法则的体现
+- 在一定程度上，增加更多的输入（如教练）将不再能够有效地提高产出（如培训学员数量），甚至可能会导致产出的减少
+
+---
+### 报酬递减原理 principle of diminishing returns
+
+- **重要性**：解释厂商短期供给曲线的形状 + 厂商派生的生产要素需求曲线形状
+
+- **来源于农业生产的观察**。李嘉图Ricardo 在研究农业生产函数时（即土地的实物投入与实物产出间的关系）时发现：当他把土地当成一个可变要素，然后假定整个生产过程中资本对劳动的比率因技术不变而固定，只是持续增加土地要素（可变），然后看单位面积的农产品产出会有什么样的变化。他发现，单位土地的产生是递减的 → “土地的报酬递减”，他认为是由于土地的质量下降引起的（不断耕作新土地，贫瘠土地最终投入使用） → 最终使得全国平均亩产量趋于下降
+
+- **后来者精炼**：一种要素不变，**持续**增加**可变要素**到这种**不变要素**上时，产量开始以递增速度增加，然后以递减的速度增加，最终递减
+
+- **深刻性**：涉及到了要素投入的量与质的关系 
+&lt;br&gt; → 对利润来源的解释 &lt;br&gt;→ 对“经济租”(economic rent)和成本的区分 + 大规模非同质要素的假设 &lt;br&gt;→ 机会成本概念的产生
+
+---
+### 平均产量
+
+- 平均产量 Average product of labor 
+
+- `$$AP_L= \frac{Q}{L}$$`
+
+- 衡量：劳动生产率
+  - 分析时参照行业还是单个企业
+  
+
 
 ---
 ### 最大总产量、平均产量和边际产量的关系
@@ -395,39 +638,6 @@ count: false
 
 - .b[所以**实际中MP**是**向下倾斜的**]
 
----
-### 经验法则:单一要素边际报酬最终会递减
-
-.pull-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-7-1.svg" style="display: block; margin: auto;" /&gt;
-]
-
-.pull-right[
-#### 解释
-
-持续增加一种要素投入.purple[边际生产效率最终为负] → 边际报酬递减（diminishing marginal returns） &lt;br&gt;←  the law of diminishing marginal returns]
-
-
----
-### 应用：经营体育场馆
-
-- 假设你是一家体育场馆的经理，场馆有5个篮球场。为了提高场馆的使用率和收入，你决定招聘更多的教练来提供篮球培训课程
-    1. 当你招聘了1个教练时，每天可以为20个学员提供培训
-    2. 当你招聘第2个教练时，每天又增加了20个学员，总共40个学员
-    3. 当你招聘第3个教练时，由于篮球场数量的限制，每天只增加了15个学员，总共55个学员
-    4. 当你招聘第4个教练时，每天只增加了10个学员，总共65个学员
-- 随着教练数量的增加，每增加一个教练所带来的额外学员数量在逐渐减少。这就是边际报酬递减法则的体现
-- 在一定程度上，增加更多的输入（如教练）将不再能够有效地提高产出（如培训学员数量），甚至可能会导致产出的减少
-
----
-### 报酬递减原理 principle of diminishing returns
-
-- **重要性**：解释厂商短期供给曲线的形状 + 厂商派生的生产要素需求曲线形状
-- **来源于农业生产的观察**。Ricardo 在研究农业生产函数时（即土地的实物投入与实物产出间的关系）时发现：当他把土地当成一个可变要素，然后假定整个生产过程中资本对劳动的比率因技术不变而固定，只是持续增加土地要素，然后看单位面积的农产品产出会有什么样的变化。他发现，单位土地的产生是递减的 → “土地的报酬递减”，他认为是由于土地的质量下降引起的（不断耕作新土地，贫瘠土地最终投入使用） → 最终使得全国平均亩产量趋于下降
-- **后来者的精炼**：一种要素不变，持续增加可变要素到这种不变要素上时，产量开始以递增速度增加，然后以递减的速度增加，最终递减
-- **深刻性**：涉及到了要素投入的量与质的关系 
-&lt;br&gt; → 对利润来源的解释 &lt;br&gt;→ 对“经济租”(economic rent)和成本的区分 + 大规模非同质要素的假设 &lt;br&gt;→ 机会成本概念的产生
-
 
 ---
 ### 为什么要区分生产阶段
@@ -460,18 +670,247 @@ count: false
 
 ---
 
-class: title-slide-section, middle, inverse
-# 成本
+class: middle, inverse, center
+
+# 成本最小化问题
+
+The Cost Minimization Problem
 
 ---
-### 成本要考虑是否影响决策以及时间
+### 生产决策时考虑的成本是.bb[机会成本]
+
+- 稀缺性  .mono[-&gt;] 机会成本
+
+- 依据是否能使用会计账目划分：  总成本.mono[=] .purple[显成本] .mono[+] .pink[隐成本]
+
+#### .purple[显成本]
+
+- 一般是工资、租金、原材料、维修费、缴纳税款等。
+
+#### .pink[隐成本]
+
+- 丧失的**次优投资品的价值**。例等额的投资要是放在股票市场的回报
+
+---
+
+### 例子：给你100万去投资，该如何选？
+
+项目的启动资金是100万，利息是5%。
+
+.pink[方案1：]借100万
+
+- 显成本 .mono[=] 5万
+
+.pink[方案2：]动用40万的储蓄，借60万
+
+- 显成本 .mono[=] 3万 .mono[&lt;--] 偿还5%的贷款利息
+
+- 隐成本 .mono[=] 2万 .mono[&lt;--] 从储蓄中拿出40万RMB，放弃5%的利息
+
+.pink[任一方案的总成本 .mono[=] 5万]
+
+---
+
+### 机会成本的出处
+.left-column[
+.center[
+&lt;img src=../images/mises2.png&gt;
+
+.smallest[
+Ludwig von Mises
+
+1881—1973
+
+奥地利经济学派
+]
+]
+]
+
+.right-column[
+.small[
 
 
-- **市场期market period**：市场期间是如此短暂，以至于供给是固定的或完全无弹性的。价格对供应量没有反作用，因为这个周期太短，企业无法对价格变化做出反应
-- **短期short run**：短期是企业可以改变生产和供应但不能改变厂房规模的时期。更高的价格驱使厂商供应数量增加，供应曲线向上倾斜。只能改变产量，不能改变厂房规模。在短期内，企业的总成本分为随产出变化的成本(**可变成本**)；不随产出变化的成本(**固定成本**)。这种区分来自对商业世界的观察。
-- **长期long run**：厂房规模可以变化，所有成本都是可变的。长期供应曲线比短期更有弹性，因为企业能够通过改变厂房规模充分调整以适应价格变化
-  - 长期供应曲线可以采取三种一般形式：它可以向上和向右倾斜（成本可能增加）；它可以完全有弹性（成本可能恒定）；或者，在不寻常的情况下，它可以向下和向右倾斜（成本可能减少）→ 规模经济
-- **世俗期secular period**：一个行业的世俗期或非常长期，允许技术和人口变化，代际间价格的变动时的时间设定
+&gt;成本是**the importance of the next most urgent want that can now no longer be satisfied**（对于决策者而言，当下最紧迫的、不能马上就满足的其他需求的重要性）
+  
+&gt; 在现代经济学教材中，把**替代的可行方案中价值最高**的方案的价值就是机会成本
+- 因此新古典经济学家把超过平均成本的部分定义为利润（无法体会到其经济含义）
+
+&gt; 即便在完全竞争下），0 经济利润也有意义
+  - 心理最想满足的欲望，它的心理价值只能用 importance 来衡量（主观价值判断），而不是用 value 来描述 &lt;br&gt;→ 企业家使用当前要素创造的价值会比账目价值高 
+
+]
+
+.source[von Mises, Ludwig, 1949, 《经济学的认识论》第四章]
+
+]
+
+
+---
+###  会计利润  v.s.  经济利润 
+
+#### 会计利润 &lt;br&gt; `\(\quad\)` .mono[=] 总收益 .mono[-] .pink[显成本]
+
+#### 经济利润 &lt;br&gt; `\(\quad\)` .mono[=] 总收益 .mono[-] (.pink[显成本] .mono[+] .purple[隐成本])  &lt;br&gt; `\(\quad\)` .mono[=] 会计利润 .mono[-] .purple[隐成本]
+
+**重要** 
+
+.center[
+## 会计利润 .mono[&gt;] 经济利润
+]
+
+&gt;所以一家赚钱的公司，并不总是意味着一家公司做得很好
+
+
+
+---
+
+### 会计与经济观点 I
+
+.more-left[
+
+- 有助于考虑两个观点：
+
+1. .hi-purple[“会计观点”]：你的收入是否大于支出？
+2. .hi[“经济观点”]：你的产品是否使你的资源得到了最佳的社会利用
+
+  - 是否存在你将资源拒之门外的价值更高的用途？
+
+]
+
+.less-right[
+.center[
+![ 70%](../images/costrevenue.jpg)
+
+![ 70%](../images/disappear.jpg)
+]
+]
+
+---
+### 会计与经济观点 II
+
+.more-left[
+
+- .hi-turquoise[对社会的意义]：消费者是否最希望你用稀缺资源（因为有其他用途！）来生产当前的产品？ 
+
+- .hi-turquoise[这是一门.ul[*经济学*]课程，而不是商业课程]！ 
+
+  - .hi-purple[经济学家是亲市场的，而不是亲商业的]！ 
+
+  - 对一个企业有利/不利的事情对社会可能产生不利/有利的后果！
+
+]
+
+.less-right[
+.center[
+![ 70%](../images/costrevenue.jpg)
+
+![ 70%](../images/disappear.jpg)
+]
+]
+
+---
+
+### 市场经济中的消费者主权
+.left-column[
+.center[
+&lt;img src=../images/mises2.png&gt;
+
+.smallest[
+Ludwig von Mises
+
+1881—1973
+]
+]
+]
+
+.right-column[
+.quitesmall[
+
+&gt; 在市场社会中，所有经济事务的方向都是企业家的任务。他们控制着生产。他们掌舵并驾驶着这艘船。一位肤浅的观察者会认为他们是至高无上的。但事实并非如此。他们必须无条件地服从船长的命令。**船长是消费者**。企业家、农民和资本家都不能决定生产什么。消费者决定这一点。如果一位商人没有严格按照市场价格结构向他传达的公众命令行事，他就会遭受损失，破产，并因此被从掌舵的显赫位置上撤换。其他在满足消费者需求方面做得更好的企业家会取代他。
+
+&gt; 消费者惠顾那些他们能以最便宜的价格买到想要东西的商店。他们的购买和不购买决定了谁应该拥有和经营工厂和土地。他们让穷人变富，让富人变穷。他们准确地决定应该生产什么，生产什么质量，生产什么数量，”（第 270 页）。
+
+]
+
+.source[von Mises, Ludwig, 1949, *Human Action*]
+
+]
+
+---
+
+### 机会成本与沉没成本
+
+.more-left[
+
+- 机会成本是一个**前瞻性**的概念 
+
+  - 过去做出的不可回收成本的选择称为 .hi[沉没成本] 
+
+- 沉没成本**不应**进入未来的决策 
+
+  - 许多人难以放弃不可改变的过去决定： .hi[沉没成本谬误]
+]
+
+.less-right[
+.center[
+![](../images/sunkcost.jpg)
+]
+]
+
+
+---
+
+### 企业中常见的沉没成本
+
+.more-left[
+
+- 许可费、长期租赁合同 
+
+- 特定资本（无替代用途）：制服、菜单、标志 
+
+- 研发支出 
+
+- 广告支出
+
+]
+
+.less-right[
+
+.center[
+![](../images/sunkcost.jpg)
+]
+]
+
+---
+
+### 固定成本与沉没成本
+
+.more-left[
+.small[
+- .hi[固定] 与 .hi-purple[沉没] 成本之间的差异？ 
+
+- .hi-purple[沉没成本] 是一种 .hi[固定成本]，不可避免且不可收回 
+
+  - 从长远来看，许多 .hi[固定成本] 可以避免或改变 
+- 常见的 .hi[固定]，但不是 .hi-purple[沉没] 成本：
+  - 办公空间租金、耐用品、（可续期的）营业许可证 
+
+- 在决定是否继续经营时，.hi[固定成本] 很重要，.hi-purple[沉没成本] 则无关紧要！
+]
+]
+
+.less-right[
+.center[
+![](../images/sunkcost.jpg)
+]
+]
+
+
+
+---
+class: title-slide-section, center, middle, inverse
+
+# 短期成本
 
 ---
 class: clear-slide
@@ -784,72 +1223,14 @@ class: clear-slide
 ]
 
 .pull-right[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-13-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-15-1.svg" width="306" style="display: block; margin: auto;" /&gt;
 ]
-
-
----
-### 生产决策时考虑的成本是.bb[机会成本]
-
-- 稀缺性  .mono[-&gt;] 机会成本
-
-- 依据是否能使用会计账目划分：  总成本.mono[=] .purple[显成本] .mono[+] .pink[隐成本]
-
-#### .purple[显成本]
-
-- 一般是工资、租金、原材料、维修费、缴纳税款等。
-
-#### .pink[隐成本]
-
-- 丧失的**次优投资品的价值**。例等额的投资要是放在股票市场的回报。
-
----
-
-### 例子：给你100万去投资，该如何选？
-
-项目的启动资金是100万，利息是5%。
-
-.pink[方案1：]借100万
-
-- 显成本 .mono[=] 5万
-
-.pink[方案2：]动用40万的储蓄，借60万
-
-- 显成本 .mono[=] 3万 .mono[&lt;--] 偿还5%的贷款利息
-
-- 隐成本 .mono[=] 2万 .mono[&lt;--] 从储蓄中拿出40万RMB，放弃5%的利息
-
-.pink[任一方案的总成本 .mono[=] 5万]
-
-
----
-###  会计利润  v.s.  经济利润 
-
-#### 会计利润 &lt;br&gt; `\(\quad\)` .mono[=] 总收益 .mono[-] .pink[显成本]
-
-#### 经济利润 &lt;br&gt; `\(\quad\)` .mono[=] 总收益 .mono[-] (.pink[显成本] .mono[+] .purple[隐成本])  &lt;br&gt; `\(\quad\)` .mono[=] 会计利润 .mono[-] .purple[隐成本]
-
-**重要** 
-
-.center[
-## 会计利润 .mono[&gt;] 经济利润
-]
-
-&gt;所以一家赚钱的公司，并不总是意味着一家公司做得很好
-
----
-### 机会成本的思想
-- 奥地利经济学派的代表人物：米赛斯（1881-1973），给出了区别于新古典经济学的成本定义，在《经济学的认识论》第四章关于主观价值理论的发展中论述到，在现代经济学中，成本是**the importance of the next most urgent want that can now no longer be satisfied**（对于决策者而言，当下最紧迫的、不能马上就满足的其他需求的重要性）
-  - 在现代经济学教材中，把替代的可行方案中价值最高的方案的价值就是机会成本；因此新古典经济学家把超过平均成本的部分定义为利润（无法体会到其经济含义）
-  - 了解盈利的意义（即便在完全竞争下）。心理最想满足的欲望，它的心理价值只能用 importance 来衡量（主观价值判断），不能用 value 来描述 → 企业家会使用当前要素创造的价值会比账目价值高 
-
-
 
 ---
 ### 短期总成本曲线SC
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-14-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-16-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -883,7 +1264,7 @@ class: clear-slide
 ### 总成本的构成
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-15-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-17-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -908,7 +1289,7 @@ class: clear-slide
 ### 平均固定成本AFC
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-16-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-18-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -924,7 +1305,7 @@ class: clear-slide
 ### 平均可变成本AVC
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-17-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-19-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -934,17 +1315,82 @@ class: clear-slide
 
 ]
 
+
 ---
-### 短期平均成本 SAC
+### 平均成本
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-18-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-20-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
 #### 定义
 
-&gt; SAC .mono[=] STC &amp;divide; 总产量 &lt;br&gt; .mono[=] AFC .mono[+] AVC
+&gt; ATC .mono[=] TC &amp;divide; Q &lt;br&gt; .mono[=] AFC .mono[+] AVC
+
+]
+
+---
+count: false
+### 平均成本
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-21-1.svg" width="360" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+#### 定义
+
+&gt; ATC .mono[=] TC &amp;divide; Q &lt;br&gt; .mono[=] AFC .mono[+] AVC
+
+有效的规模 Efficient scale .mono[=] Q，最小化 ATC
+]
+
+---
+### 平均成本
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-22-1.svg" width="360" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+
+有效的规模 Efficient scale .mono[=] Q，最小化 ATC
+
+Q.mono[&lt;]有效规模：下降的AFC拉低ATC
+
+Q.mono[&gt;]有效规模：上升的AVC拉高ATC。
+]
+
+---
+### 平均成本 .mono[+] 边际成本
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-23-1.svg" width="360" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+MC .mono[&lt;] ATC .mono[==&gt;] ATC 下降
+
+MC .mono[&gt;] ATC .mono[==&gt;] ATC 上升
+
+MC 在使 ATC 最小的 Q 处与 ATC 相交
+
+]
+
+---
+count: false
+### 平均成本 .mono[+] 边际成本
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-24-1.svg" width="360" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+MC .mono[&lt;] ATC .mono[==&gt;] ATC 下降
+
+MC .mono[&gt;] ATC .mono[==&gt;] ATC 上升
+
+MC 在使 ATC 最小的 Q 处与 ATC 相交
 
 ]
 
@@ -952,7 +1398,7 @@ class: clear-slide
 ### 短期边际成本SMC
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-19-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-25-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -960,6 +1406,22 @@ class: clear-slide
 &gt; 产量增加一个单位所产生的总成本的变化。
 
 ]
+
+---
+
+### 边际和平均之间的关系
+
+- 边际值与平均值之间的数学关系 
+
+  - 如果 .red[边际值] &lt; .orange[平均值]，则 .orange[平均值] 降低 
+
+  - 如果 .red[边际值] &gt; .orange[平均值]，则 .orange[平均值] 提高 
+
+  - 如果 .red[边际值] = .orange[平均值] 时，.orange[平均值] 最大化/最小化 
+
+- .hi-purple[当 MC(q)=AC(q) 时，AC(q) **最小**]（盈亏平衡价格） 
+
+- .hi-purple[当 MC(q)=AVC(q) 时，AVC(q) **最小***]（关门价格）
 
 ---
 ### 图形展示：MC与 MP、AVC 与 AP 的关系
@@ -1001,20 +1463,101 @@ AVC和TVC没有加上S或者L是因为它们只有在短期的时候才有区分
 - 劳务成本：安保、兼职人员、临时人员
 
 ---
+class: title-slide-section, center, middle, inverse
+
+# 长期成本
+
+---
 ### 长期决策：要素替代关系与长期成本
 
-- 短期 → 边际报酬与生产技术：在长期生产函数中，企业可以采用不同的生产技术。每种技术对劳动和资本的边际报酬（即增加一个单位的劳动或资本所带来的额外产量）可能是不同的 &lt;br&gt; → 短期中，我们谈论边际报酬递减规律，是建立资本投入为固定的情况下；但长期而言，不仅需要单一要素持续投入会受边际报酬规律影响，原本的单一要素的边际产量也会受到**要素比例投入比例改变**的影响（交叉效果）
+- 短期决策 
+  - 边际报酬与生产技术：在长期生产函数中，企业可以采用不同的生产技术。每种技术对劳动和资本的边际报酬（即增加一个单位的劳动或资本所带来的额外产量）可能是不同的 &lt;br&gt; → 短期中，我们谈论**边际报酬递减规律**，是建立资本投入为固定的情况下
 
-- 长期决策依然延续“生产技术→成本的”思考方式，**但是**
-  - 长期中企业可以调整所有生产要素（劳动和资本）→ 允许企业选择最优的要素组合来最大化产量或效率 → 长期生产函数应该反映要素间的技术替代关系
+- 长期决策
+- 不仅需要单一要素持续投入会受边际报酬规律影响，原本的单一要素的边际产量也会受到**要素比例投入比例改变**的影响（交叉效果）
+- 决策依然延续“生产技术→成本的”思考方式，**但是**
+  - 长期中企业可以调整所有生产要素（劳动和资本）→ 允许企业选择最优的要素组合来最大化产量或效率 → 长期生产函数应该反映要素间的**技术替代关系**
 
-- 长期→ 规模报酬（Returns to Scale）： 规模报酬关注当所有生产要素的使用量同时按照某一比例增加时，产量如何变化。如果产量增加的比例等于生产要素增加的比例，那么称为恒定规模报酬；如果产量增加的比例大于生产要素增加的比例，则为递增规模报酬；反之则为递减规模报酬
+---
+### 规模报酬&lt;sup&gt;.pink[†]&lt;/sup&gt;returns to scale与生产技术
+
+.pull-left[
+.small[
+
+
+- .hi-purple[规模报酬不变 constant returns to scale]：产出与投入以.hi-turquoise[相同比例]增加
+
+- .hi-purple[规模报酬递增 increasing returns to scale ]：产出增加率 .hi-turquoise[超过] 要素增加比率
+
+- .hi-purple[规模报酬递减 decreasing returns to scale]：产出增加率 .hi-turquoise[低于] 要素增加比率
+
+- 生产技术的进步可以改变一个企业或经济体的规模报酬状况
+    - 自动化：通过引入自动化和更高效的生产流程，可以将原本规模报酬递减的生产过程转变为规模报酬递增
+    - 信息化
+]
+]
+
+.pull-right[
+.middle[
+![](./figs/scaleup.png)
+]
+]
+.footnote[&lt;sup&gt;.pink[†]&lt;/sup&gt;  生产的.hi[规模报酬]：当**所有**投入.hi-turquoise[以相同比率]（规模）增加时产出的变化
+]
+
+
+
+---
+
+### 长期成本与规模经济 I
+
+.pull-left[
+.center[
+![](./figs/scaleup.png)
+]
+]
+
+.pull-right[
+.small[
+- 基于生产规模经济的成本的属性：当产量增加（规模化）时平均成本的变化
+
+- .hi-purple[规模经济]：产量增加，平均成本.hi-turquoise[下降]
+  - 固定成本高 `\(AFC &gt; AVC(q)\)` 可变成本低 
+
+- .hi-purple[规模不经济]：产量增加，平均成本.hi-turquoise[上升]
+  - 固定成本低 `\(AFC &lt; AVC(q)\)` 可变成本高
+
+- .hi-purple[规模经济不变]：产量增加，平均成本.hi-turquoise[不变]
+
+- 公司的平均成本最低（最佳工厂规模），称为.hi[最低有效规模 (MES)]
+]
+]
+
+---
+
+### 长期成本与规模经济 I
+
+.pull-left[
+.center[
+![](./figs/scaleup.png)
+]
+]
+
+
+.pull-right[
+- 注意 .hi[规模经济] **不同于** .hi-purple[规模报酬]! 
+
+- .hi-purple[规模报酬]：投入与产出之间的**技术**关系 → 技术特征表达(数学概念)
+
+- .hi[规模经济]：产出与平均成本之间的**经济**关系 → 经济概念
+
+]
 
 ---
 ### 长期成本、短期成本与生产规模调整
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-20-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-26-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1026,7 +1569,7 @@ AVC和TVC没有加上S或者L是因为它们只有在短期的时候才有区分
 ### 长期成本、短期成本与生产规模调整
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-21-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-27-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1039,11 +1582,14 @@ AVC和TVC没有加上S或者L是因为它们只有在短期的时候才有区分
 ### 长期情况下使用**规模经济与规模不经济**反映要素集中度与经济效益的关系
 
 .pull-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-22-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-28-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
-#### economies/&lt;br&gt;diseconomies of scale:长期平均总成本随**产量**增加而减少的特性
+#### economies/&lt;br&gt;diseconomies of scale
+
+&lt;br&gt; 长期平均总成本随**产量**增加而减少的特性
+
 - **规模经济与规模不经济**
 &lt;br&gt;反映长期中厂商投入生产要素集中度与经济效益之间的关系
   - 规模经济：SAC 相切于 LAC 下降位置
@@ -1071,8 +1617,10 @@ AVC和TVC没有加上S或者L是因为它们只有在短期的时候才有区分
 - 规模不经济(内部不经济)：管理效率下降、分工无法提升生产效率；效果：处于LAC正斜率
 
 ---
-class: title-slide-section, middle, inverse
+class: title-slide-section, middle, inverse ,center
 # 供给曲线从何而来?
+
+Where does the supply curve come from?
 
 ---
 ### 收入线
@@ -1089,9 +1637,11 @@ class: title-slide-section, middle, inverse
 ]
 
 ---
-class: title-slide-section, middle, inverse
+class: title-slide-section, middle, inverse ,center
 
 # 价格接受厂商的供给曲线
+
+Price-accepting firm' supply curve
 
 ---
 #### 价格接受厂商面临的市场环境
@@ -1171,20 +1721,21 @@ class: title-slide-section, middle, inverse
 - 为什么价格接受厂商面临的市场需求曲线是水平?
 ]
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-23-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-29-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 ### 边际收益
 
 .less-right[
-在完全竞争市场中，是价格接受者
+对于一个处于完全竞争市场的公司来说，
+- MR .mono[&lt;=&gt;] D.
 
-- MR .mono[=] P
+- MR .mono[=] P.
 
 ]
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-24-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-30-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1211,7 +1762,7 @@ class: title-slide-section, middle, inverse
 ### 完全竞争市场结构下的厂商决策(短期)
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-25-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-31-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1257,7 +1808,7 @@ count: false
 ### 完全竞争市场结构下的厂商决策(短期)
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-27-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-33-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1303,7 +1854,7 @@ count: false
 ### 完全竞争市场结构下的厂商决策(短期)
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-29-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-35-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1349,7 +1900,7 @@ count: false
 ### 完全竞争市场结构下的厂商决策(短期)
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-31-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-37-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1394,7 +1945,7 @@ count: false
 ### 完全竞争市场结构下的厂商决策(短期)
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-33-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-39-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1440,7 +1991,7 @@ count: false
 ### 完全竞争市场结构下的厂商决策(短期)
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-35-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-41-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1486,7 +2037,7 @@ count: false
 ### 完全竞争市场结构下的厂商决策(短期)
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-37-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-43-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1532,7 +2083,7 @@ count: false
 ### 完全竞争市场结构下的厂商决策(短期)
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-39-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-45-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1577,7 +2128,7 @@ count: false
 ### 完全竞争市场结构下的厂商决策(短期)
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-41-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-47-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1623,7 +2174,7 @@ count: false
 ### 完全竞争市场结构下的厂商决策(短期)
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-43-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-49-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1669,7 +2220,7 @@ count: false
 ### 完全竞争市场结构下的厂商决策(短期)
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-45-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-51-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1715,7 +2266,7 @@ count: false
 ### 完全竞争市场结构下的厂商决策(短期)
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-47-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-53-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1795,7 +2346,7 @@ count: false
 &gt;为什么 AVC 在 SAC 的下方?
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-49-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-55-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1810,7 +2361,7 @@ count: false
 &gt;为什么 AVC 在 SAC 的下方?
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-50-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-56-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1827,7 +2378,7 @@ count: false
 &gt;为什么 AVC 在 SAC 的下方?
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-51-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-57-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1846,7 +2397,7 @@ count: false
 &gt;为什么 AVC 在 SAC 的下方?
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-52-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-58-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1867,7 +2418,7 @@ count: false
 &gt;为什么 AVC 在 SAC 的下方?
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-53-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-59-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1891,7 +2442,7 @@ count: false
 &gt;为什么 AVC 在 SAC 的下方?
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-54-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-60-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1914,7 +2465,7 @@ count: false
 &gt;为什么 AVC 在 SAC 的下方?
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-55-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-61-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1934,7 +2485,7 @@ count: false
 &gt;为什么 AVC 在 SAC 的下方?
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-56-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-62-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1974,7 +2525,7 @@ P .mono[&lt;] P.sub[停工] .mono[--&gt;] 短期供给曲线 .mono[=] Y轴
 ### 单个厂商的长期供给曲线
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-57-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-63-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -1988,23 +2539,7 @@ count: false
 ### 单个厂商的长期供给曲线
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-58-1.svg" style="display: block; margin: auto;" /&gt;
-]
-
-.less-right[
-
-.pink[Q: ] 何时运营？何时停工？
-
-.pink[A: ] 价格接受厂商，是否停工完全依赖市场价格
-
-]
-
----
-count: false
-### 单个厂商的长期供给曲线
-
-.more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-59-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-64-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -2013,8 +2548,6 @@ count: false
 
 .pink[A: ] 价格接受厂商，是否停工完全依赖市场价格
 
-1. P .mono[&gt;] .hi.purple[LAC] &lt;br&gt; .mono[--&gt;] .green[有利润]
-
 ]
 
 ---
@@ -2022,7 +2555,7 @@ count: false
 ### 单个厂商的长期供给曲线
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-60-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-65-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -2033,8 +2566,6 @@ count: false
 
 1. P .mono[&gt;] .hi.purple[LAC] &lt;br&gt; .mono[--&gt;] .green[有利润]
 
-2. .hi.purple[LAC] .mono[&gt;] P &lt;br&gt; .mono[--&gt;] .orange[退出市场]
-
 ]
 
 ---
@@ -2042,7 +2573,7 @@ count: false
 ### 单个厂商的长期供给曲线
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-61-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-66-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -2058,10 +2589,30 @@ count: false
 ]
 
 ---
+count: false
 ### 单个厂商的长期供给曲线
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-62-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-67-1.svg" width="360" style="display: block; margin: auto;" /&gt;
+]
+
+.less-right[
+
+.pink[Q: ] 何时运营？何时停工？
+
+.pink[A: ] 价格接受厂商，是否停工完全依赖市场价格
+
+1. P .mono[&gt;] .hi.purple[LAC] &lt;br&gt; .mono[--&gt;] .green[有利润]
+
+2. .hi.purple[LAC] .mono[&gt;] P &lt;br&gt; .mono[--&gt;] .orange[退出市场]
+
+]
+
+---
+### 单个厂商的长期供给曲线
+
+.more-left[
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-68-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -2079,7 +2630,7 @@ P .mono[&lt;] P.sub[收支平衡] .mono[--&gt;] 长期供给曲线 &lt;br&gt; .m
 ### 单个厂商的长期供给曲线
 
 .more-left[
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-63-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-69-1.svg" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 .less-right[
@@ -2125,11 +2676,11 @@ class: title-slide-section,inverse, middle
 
 .pull-left[
 .center[**单个厂商**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-64-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-70-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 .center[**市场**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-65-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-71-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 &lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -2154,11 +2705,11 @@ class: title-slide-section,inverse, middle
 ### 完全竞争市场的短期均衡(单厂商不改变生产规模报酬)
 .pull-left[
 .center[**单个厂商**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-67-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-73-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 .center[**市场**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-68-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-74-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 &lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -2184,11 +2735,11 @@ count: false
 ### 完全竞争市场的短期均衡(单厂商不改变生产规模报酬)
 .pull-left[
 .center[**单个厂商**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-70-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-76-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 .center[**市场**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-71-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-77-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 &lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -2215,11 +2766,11 @@ class: clear-slide
 
 .pull-left[
 .center[**单个厂商**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-73-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-79-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 .center[**市场**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-74-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-80-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -2268,11 +2819,11 @@ class: clear-slide
 .pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么，从短期到长期，原厂商如何调整产量?
 .pull-left[
 .center[**单个厂商**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-76-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-82-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 .center[**市场**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-77-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-83-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -2281,11 +2832,11 @@ class: clear-slide
 .pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么，从短期到长期，原厂商如何调整产量?
 .pull-left[
 .center[**单个厂商**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-78-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-84-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 .center[**市场**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-79-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-85-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -2294,11 +2845,11 @@ class: clear-slide
 .pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么，从短期到长期，原厂商如何调整产量?
 .pull-left[
 .center[**单个厂商**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-80-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-86-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 .center[**市场**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-81-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-87-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -2307,11 +2858,11 @@ class: clear-slide
 .pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么，从短期到长期，原厂商如何调整产量?
 .pull-left[
 .center[**单个厂商**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-82-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-88-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 .center[**市场**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-83-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-89-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -2320,11 +2871,11 @@ class: clear-slide
 .pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么，从短期到长期，原厂商如何调整产量?
 .pull-left[
 .center[**单个厂商**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-84-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-90-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 .center[**市场**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-85-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-91-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -2378,11 +2929,11 @@ class: clear-slide
 
 .pull-left[
 .center[**单个厂商**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-87-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-93-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 .center[**市场**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-88-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-94-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -2391,11 +2942,11 @@ class: clear-slide
 .pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么，从短期到长期，原厂商如何调整产量?
 .pull-left[
 .center[**单个厂商**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-89-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-95-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 .center[**市场**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-90-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-96-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -2404,11 +2955,11 @@ class: clear-slide
 .pink[Q: ] 一项市场原产品的替代品发明，减少了对原产品的需求。那么，从短期到长期，原厂商如何调整产量?
 .pull-left[
 .center[**单个厂商**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-91-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-97-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 .center[**市场**]
-&lt;img src="Lec03_files/figure-html/unnamed-chunk-92-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lec03_files/figure-html/unnamed-chunk-98-1.svg" width="270" style="display: block; margin: auto;" /&gt;
 ]
 
 ---

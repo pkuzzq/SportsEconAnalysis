@@ -406,7 +406,7 @@ library(htmltools)
 library(shiny)
 
 tags$video(
-  tags$source(src ="./video/RR.mp4", type = "video/mp4"),
+  tags$source(src ="/Users/zhouzhengqing/Desktop/SportsEconRef/RR.mp4", type = "video/mp4"),
   type = "video/mp4",
   width = "840",
   height = "460",
