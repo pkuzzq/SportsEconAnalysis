@@ -1,4 +1,0 @@
-\beamer@sectionintoc {1}{概率空间}{4}{0}{1}
-\beamer@sectionintoc {2}{1-元随机变量}{6}{0}{2}
-\beamer@sectionintoc {3}{多元随机变量}{8}{0}{3}
-\beamer@sectionintoc {4}{独立性}{10}{0}{4}
