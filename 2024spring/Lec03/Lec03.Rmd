@@ -961,7 +961,7 @@ The Cost Minimization Problem
 ### 机会成本的出处
 .left-column[
 .center[
-<img src=../images/mises2.png>
+<img src=./figs/mises2.png>
 
 .smallest[
 Ludwig von Mises
@@ -1026,9 +1026,9 @@ Ludwig von Mises
 
 .less-right[
 .center[
-![ 70%](../images/costrevenue.jpg)
+![ 70%](./figs/costrevenue.jpg)
 
-![ 70%](../images/disappear.jpg)
+![ 70%](./figs/disappear.jpg)
 ]
 ]
 
@@ -1049,9 +1049,9 @@ Ludwig von Mises
 
 .less-right[
 .center[
-![ 70%](../images/costrevenue.jpg)
+![ 70%](./figs/costrevenue.jpg)
 
-![ 70%](../images/disappear.jpg)
+![ 70%](./figs/disappear.jpg)
 ]
 ]
 
@@ -1060,7 +1060,7 @@ Ludwig von Mises
 ### 市场经济中的消费者主权
 .left-column[
 .center[
-<img src=../images/mises2.png>
+<img src=./figs/mises2.png>
 
 .smallest[
 Ludwig von Mises
@@ -1100,7 +1100,7 @@ Ludwig von Mises
 
 .less-right[
 .center[
-![](../images/sunkcost.jpg)
+![](./figs/sunkcost.jpg)
 ]
 ]
 
@@ -1124,7 +1124,7 @@ Ludwig von Mises
 .less-right[
 
 .center[
-![](../images/sunkcost.jpg)
+![](./figs/sunkcost.jpg)
 ]
 ]
 
@@ -1148,7 +1148,7 @@ Ludwig von Mises
 
 .less-right[
 .center[
-![](../images/sunkcost.jpg)
+![](./figs/sunkcost.jpg)
 ]
 ]
 
