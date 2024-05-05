@@ -4,7 +4,7 @@
     <title>体育经济分析: 原理与应用</title>
     <meta charset="utf-8" />
     <meta name="author" content="周正卿" />
-    <meta name="date" content="2024-02-03" />
+    <meta name="date" content="2024-05-06" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
@@ -18,2043 +18,1940 @@ class: center, middle, inverse, title-slide
 # 体育经济分析: 原理与应用
 ]
 .subtitle[
-## 单元4: 从相关到因果的体育经济
+## 单元3: 体育中的外部性与公共财3
 ]
 .author[
 ### 周正卿
 ]
 .date[
-### 03 February 2024
+### 06 May 2024
 ]
 
 ---
 
 
 
-class: title-slide-section,center, middle, inverse
 
-# 大纲
+class:center,middle, inverse
 
----
-### 大纲
+# 市场失灵
 
-- Level 1
-  - 一个例子
-- Level 2
-  - 基本概念
-- Level 3
-  - 具体实战
+Market failures
 
 ---
-### 什么是计量经济学
+### 市场失灵
+- **体育场馆建设的市场失灵**：
+  
+  - 表现为公共资金的使用低效率、竞争恶性循环等造成了市场效率和福利损失 → 为什么？
 
-- 计量经济学是经济学的一个分支，专注于使用数学和统计方法来测试假设、验证理论和估计模型。
-
-- 它将理论经济学、数学和统计学的技术结合起来，旨在提供定量分析经济现象的实证证据。
-
-- 计量经济学的核心目的是识别并量化经济变量之间的关系，以此来预测未来趋势、支持政策制定和决策过程。
-
----
-
-### 计量经济学的研究框架
-
-采用计量经济学的研究框架通常遵循以下步骤：
-
-- **问题定义与假设提出：**(Problem Definition and Hypothesis Formulation):首先明确研究问题，并基于经济理论提出可验证的假设。这一步骤是研究的基础，它确定了研究的方向和焦点。  **Topic → Problem → Question**
-
-- **模型构建(Model Specification )：**根据假设构建经济模型，模型通常以数学方程式的形式表示，描述变量之间的关系。模型的选择和构建依赖于理论知识和实际经验。
-
-- **数据收集(Data Collection)：**根据模型的需要，收集相应的数据。数据可以是时间序列、横截面数据或面板数据。数据的质量和适用性对后续分析至关重要。
-
-- **估计与测试（Estimation and Testing）：**使用统计方法对模型进行估计和假设检验。常用的估计方法包括普通最小二乘法（OLS）、最大似然估计（MLE）和广义矩估计（GMM）等。估计结果用于检验理论假设的有效性。
-
-
----
-
-### 计量经济学的研究框架
-
-- **模型验证与诊断（Model Validation and Diagnostic Testing ）：**通过各种统计检验和诊断方法验证模型的准确性和稳健性。这包括残差分析、异方差性测试、自相关检验等。
-
-- **政策分析与预测（Policy Analysis and Forecasting）：**基于估计和测试结果，进行政策效果分析和经济预测。这一步骤将研究成果应用于实际经济问题和政策制定中。
-
-- **结果解释与报告（Interpretation and Reporting）：**最后，清晰地解释研究结果，并将其撰写成报告或论文。这一步骤要求研究者以易于理解的方式传达复杂的统计和经济分析结果。
-
----
-###应用：球队胜率与上座率
-
-在体育经济学中，球队上座率受哪些因素影响是一个常见的问题。通过经济计量模型进行量化分析，来回答该问题：
-
-### **第一步：理论或常识指向研究假设**
-在文献综述之后，需要指出，球队的获胜比例（WPCT）可能是影响上座率（ATT）的一个重要因素（是符合理论或常识的），而且理论会指向一个基本假设：球队表现越好，吸引的观众越多，从而上座率更高
-
-
-### **第二步：模型构建与可验性**
-模型 `\(ATT=f(WPCT)\)` 是对这种关系的抽象表示，而进一步假设 `\(\frac{\partial ATT}{\partial WPCT} \gt 0\)` 表明，随着胜率的提高，预期上座率也会增加。
-
-
----
-### 应用：球队胜率与上座率
-### **第三步：总体线性模型表达是为与样本链接**
-将理论模型转化为总体线性表达式 `\(ATT= \beta + \tau \times WPCT + e\)` 是为了便于使用统计方法进行估计。这里， `\(\beta\)` 是截距项， `\(\tau\)` 是你感兴趣的斜率参数（即胜率对上座率的影响）， `\(e\)` 是误差项，代表其他未观测因素的影响。
-
----
-### 应用：球队胜率与上座率
-### **第四步：参数估计与方法的限制条件**
-
-OLS是估计线性回归模型参数的常用方法。通过最小化误差项的平方和来找到最佳拟合线，从而估计模型中的 `\(\tau\)` 
-但使用OLS方法在许多假设（如误差项的同方差性和独立性）被满足的情况下，可以提供有效且一致的参数估计
-
-- **关于估计值 `\(\hat\tau\)` 是否为真实值 `\(\tau\)` ？ **
-估计值 `\(\hat\tau\)` 是基于样本数据对真实参数 `\(\tau\)` 的最佳猜测。在理想情况下，如果模型正确指定且所有OLS的假设都被满足， `\(\hat\tau\)` 会随着样本大小的增加趋向于真实值 `\(\tau\)`。但在实际应用中，可能因为**模型设定错误、样本选择偏差、遗漏变量**等问题，导致  `\(\hat\tau\)` 与 `\(\tau\)` 存在偏差。因此， `\(\hat\tau\)` 是对 `\(\tau\)` 的一个估计，它的准确性和可信度取决于模型设定的合理性和样本数据的质量。
-
----
-### 应用：球队胜率与上座率
-### **第四步：参数估计与方法的限制条件**
-
-- 上述问题演变成计量经济学的核心任务，即.bb["识别"（identification)] &lt;br&gt;→ 涉及确定模型中的相关关系是否可以从数据中可靠地推断出来
-  &lt;br&gt; → 通过与已知的标准或模型进行比较，从而确定未知参数的过程
-
-#### **因果效应的识别过程**
-
-- 大部分问题期盼因果结论，因此识别过程的本质就演变为能够准确区分和确定特定参数或因果效应的能力。这个过程要求研究者通过合理的**研究设计**策略来区分因果关系，而不仅仅是相关性。
-- 在社会科学论文中，确立识别策略意味着**明确地指出如何使用数据和模型来估计因果效应，这通常涉及顺应研究传统、排除竞争性理论、实施自然实验等具体问题
-
-
----
-### 应用：球队胜率与上座率
-### **第四步：参数估计与方法的限制条件**
-
-#### **推断是包含在识别过程中必要环节**
-- 在统计学传统中，**推断**（inference）是指基于样本数据对总体参数进行估计和假设检验的过程。这相当于使用现场照片（ `\(\hat\tau\)` ）去推测数据库中的真实照片（ `\(\tau\)` ）。
-- 经济学的推断不仅仅关注于统计学的显著性，还要考虑估计值的经济学意义，即它们在现实世界中的应用和重要性。
-
-#### 区分**统计学意义**与**经济学意义**
-
-- **统计学意义**关注的是估计结果是否不太可能是随机波动所导致的，通常通过p值、置信区间等统计测试来评估。
-- **经济学意义**则更加关注估计结果的实际影响大小和方向，以及这些结果在经济理论和政策制定中的应用。
-
-
----
-### 应用：球队胜率与上座率
-### **第四步：参数估计与方法的限制条件**
-
-#### **因果推断**
-
-- 当我们说估计值 `\(\hat\tau\)` 具有**因果性**时，指的是延续科学研究中的**识别**学术传统去**推断**真实值 `\(\tau\)` 。 隐含的前提是：真实值 `\(\tau\)`  已经具有因果特质。因果推断的目标是使用观察到的数据来估计未被观察到的因果效应。
-- 实现因果推断需要满足一系列假设，包括但不限于无遗漏变量偏差、稳定的单元处理值假设（SUTVA）以及潜在结果的独立性假设。
-
-总之，识别和推断是计量经济学中最重要的概念，它们使研究者能够从数据中提取有意义的因果关系。通过理论建构、稳健性检验、排除竞争性理论等步骤，研究者可以确立他们的研究不仅在统计上显著，而且在经济上具有意义，从而为经济政策和理论提供有力的支持。
-
-
----
-### 例子：球队胜率与上座率
-
-### **第五步：结果解读与应对质疑**
-
-.center[ ATT =-2.4536+65.23 * WPCT ]
-- 估计结果能够识别胜率（WPCT）对上座率（ATT）有显著的正面影响。但是模型的解释力度（ `\(R^2=0.311\)` ）表明还有大部分变异未被模型捕捉，这引出了模型可能存在的问题和进一步改进的方向
-
-#### .purple[质疑1: 模型的解释力度不够]
-
-尽管胜率是上座率的一个重要因素，但显然还有其他因素影响着上座率。这导致了两个主要问题：
-
-- 研究问题是否足够重要？ 即使胜率是一个显著的因素，但如果其他未考虑的因素对上座率有更大的影响，那么仅研究胜率可能不足以全面理解上座率的变化。
-- 模型是否过度简化？ 在实际应用中，很少有单一因素能够完全解释一个经济现象。因此，模型可能需要包含更多的解释变量来提高解释力度。
-
-
----
-### 例子：球队胜率与上座率
-
-### **第五步：结果解读与应对质疑**
-
-#### .purple[质疑 2:用估计值代替真实值是**偏误**的]
-
-**内生性**问题通常出现在模型中的解释变量与误差项相关时。例如，市场规模和联赛差异可能同时影响胜率和上座率，如果不将这些因素纳入模型，可能会导致估计偏误。
-
-- 控制变量的引入：通过将市场规模和联赛差异作为控制变量纳入模型（ `\(\boldsymbol{X}\beta\)` ），可以帮助减少遗漏变量偏差，提高模型估计的准确性。
-  - 将总体线性表达式**修正**为 `\(ATT=\boldsymbol{X} \beta + \tau \times WPCT + e\)`
-  - 市场规模与联赛差异进入了 `\(\boldsymbol{X}\beta\)`
-  - 最关键的：这两个因素同时影响球队胜率和上座率。若忽略它们会导致**遗漏变量偏差**，产生所谓的**内生性**问题 → 
-
-**内生性解决方法**：除了加入控制变量外，还可以使用工具变量等方法解决内生性问题，前提是能找到合适的工具变量。
-
----
-### 例子：球队胜率与上座率
-
-.center[ATT=-.421+1.174POP-2.014 LEAGUE + 59.31*WPCT
-&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/WanJH1.png height=230&gt;]
-
-- 那么59.31就能代表真实值了么?
-- 练习：系数如何解释？具有如何意义？Dummy(AL=1) vs Continuous
-
----
-### 经验研究的研究逻辑
-
-![BigPicture](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/BigPicture.png)
-
-- 观察样本(estmators) .mono[--&gt;] 客观事实(=estmands) .mono[--&gt;] 因果模型(=parameter) .mono[--&gt;] 理论知识(knowledge)
-- 在本次课程中，为建立样本数据与因果推断的逻辑体系，将重点介绍两个最重要的考
-  - 平衡遗漏变量与过度控制的问题 + 避免内生性问题的质疑 
-
-
----
-### 从客观事实到因果模型
-
-- **遗漏变量偏误（Omitted Variable Bias, OVB）**的讨论指出，如果重要的解释变量没有被包括在模型中，可能会导致对其他变量效应的估计产生偏误。这是因为遗漏的变量可能与模型中的变量相关，并且直接影响到结果变量。
-- **过度控制问题**涉及到将那些受到干预变量影响的变量作为控制变量加入模型，这可能会干扰真实的因果关系，导致对感兴趣效应的错误估计。
-
-#### 如何平衡
-- 研究者应当根据理论知识以及对研究领域的深入理解，仔细选择控制变量。理想的控制变量应当是那些影响结果变量、与干预变量相关，但不是由干预变量决定的变量。
-- 遵循**时间原则**，优先考虑那些在干预变量发生前就已确定的变量作为控制变量。这有助于减少因逆向因果或干预变量引起的变化而产生的偏误。
-
-
----
-### 从客观事实到因果模型
-#### 实施建议
-
-- **理论指导**：研究设计和控制变量的选择应该基于坚实的理论基础，确保模型能够反映研究问题的本质。
-- **稳健性检验**：通过稳健性检验，如使用不同的模型规格和控制变量组合，检查估计结果的稳定性。
-- **考虑人的预期**：在某些研究情景下，考虑人的预期和行为对未来的预测也非常重要，这可能要求引入动态模型或使用前瞻性数据。
-
-#### 通过教育回报率的例子具体阐释了如何实施这一过程
-
----
-class: title-slide-section, middle, inverse
-# 从客观事实到因果模型I &lt;br&gt; → 平衡遗漏变量与过度控制
----
-
-### 经验研究的研究逻辑
-
-&lt;br&gt;
-&lt;img src="./figs/BigPicture1.png"&gt;
-- 增加控制变量确实可以提高回归模型解释力，但过度控制会产生失去模型的意义&lt;br&gt; → 引入遗漏变量偏误公式工具
-
----
-### 应用：教育回报率
-
-- 遗漏变量偏误公式提供了一个强有力的工具，用于分析当模型遗漏了重要解释变量时，估计系数偏误的方向和大小。
-- **长回归方程**和**短回归方程**。长回归方程（1）考虑了能力 `\(A_i\)` 对收入 `\(INC_i\)` 的影响，而短回归方程（2）则没有。这种简化假设可能导致对教育 `\(EDU_i\)` 的回报率 `\(\beta\)` 的估计出现偏误。
-
-$$
-`\begin{align}
-  {INC}_{i} &amp;= \alpha + \tau {EDU}_i + {A}_{i}'\gamma + e_i \tag{1}
-\end{align}`
-$$
-$$
-`\begin{align}
-  {INC}_{i} &amp;= \alpha + \beta {EDU}_i + v_i \tag{2}
-\end{align}`
-$$
-
-  - 注意, `\(\alpha, \tau, \gamma\)` 是总体意义上的, `\(e_{i}\)` 表示扰动项。暂且假设系数 `\(\tau\)` 具有因果性，是我们最感性兴趣的
-
----
-- **遗漏变量偏误公式 (Omitted Variable Bias Formula)**为：
-
---- 
-$$
-`\begin{align}
-  \hat \beta_{ols} =\dfrac{\mathop{{Cov}} \left( {INC}_{i},\, {EDU}_i \right)}{\mathop{{Var}} \left( {EDU}_i \right)} = \tau + \gamma' \delta_{A_{EDU}}
-\end{align}`
-$$
-- 其中, `\(\delta_{A_{EDU}}\)` 是对 `\(A_{i}\)` 关于 `\(EDU_{i}\)` 回归得到的系数
-
-#### 解释和含义
-
-在教育回报率的例子中，考虑能力等潜在的混杂变量对于避免偏误和错误的因果推断至关重要，要正确识别感兴趣的参数，以下条件必须满足其一：
-
-1. 如果受教育程度与能力大小无关（ `\(\delta_{A_{EDU}} = 0\)` ），这意味着能力不会影响个体选择受教育的程度。
-2. 如果在控制受教育程度后，能力大小与工资多少无关（ `\(\gamma = 0\)` ），则意味着能力对于收入的影响可以被忽略。
-
----
-### 实际应用中的挑战
-
-实际上，满足以上两个条件是非常困难的，因为教育程度通常与个体能力强相关，而个体的能力又显著影响其收入。
-
-- 尽量把能力这个看不到的变量给控制住 → 找到代理变量
- 
----
-### 例子(MHE)
-
-&lt;table&gt;
-&lt;caption&gt;教育回报率(MHE)&lt;/caption&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 1 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 2 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 3 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 4 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt; 教育程度 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.132 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.131 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.114 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.087 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.009) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt; 控制变量 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; None &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Age Dum. &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 2 + Add'l &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 3 + AFQT &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-MHE给出了4种增加控制变量的方式，关于工资(Y)对上学年限(X)的回归（来自NLSY，美国青年纵向调查）
-
-the regression of Y on X , regress Y on X
-
----
-### 例子(MHE)
-
-&lt;table&gt;
-&lt;caption&gt;教育回报率(MHE)&lt;/caption&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 1 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 2 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 3 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 4 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt; 教育程度 &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; 0.132 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.131 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.114 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.087 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.009) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt; 控制变量 &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; None &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Age Dum. &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 2 + Add'l &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 3 + AFQT &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-.hi[第1列] 没有控制变量 意味着每额外获得1年教育，工资有13.2%的增长。
----
-### 例子(MHE)
-
-&lt;table&gt;
-&lt;caption&gt;教育回报率(MHE)&lt;/caption&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 1 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 2 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 3 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 4 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt; 教育程度 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.132 &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; 0.131 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.114 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.087 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.009) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt; 控制变量 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; None &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; Age Dum. &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 2 + Add'l &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 3 + AFQT &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-.hi[第2列] 控制年龄，意味着每额外获得1年教育，工资有13.1%的增长. 
----
-### 例子(MHE)
-
-&lt;table&gt;
-&lt;caption&gt;教育回报率(MHE)&lt;/caption&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 1 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 2 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 3 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 4 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt; 教育程度 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.132 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.131 &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; 0.114 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.087 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.009) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt; 控制变量 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; None &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Age Dum. &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; 2 + Add'l &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 3 + AFQT &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-.hi[第3列] ，第2列控制变量再加上父母教育和自身人口学特征， 意味着每额外获得1年教育，工资有11.4%的增长。
----
-### 例子(MHE)
-
-&lt;table&gt;
-&lt;caption&gt;教育回报率(MHE)&lt;/caption&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 1 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 2 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 3 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 4 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt; 教育程度 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.132 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.131 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.114 &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; 0.087 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; (0.009) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt; 控制变量 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; None &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Age Dum. &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 2 + Add'l &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; 3 + AFQT &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-- .hi[第4列] (第3列又控制 AFQT.super[.pink[†]] 分数) 意味着每额外获得1年教育，工资有8.7%的增长。 
-
-.footnote[.pink[†] 武装部队资格测验（AFQT）是美国军队招募的基本资格测验。它是由美国国防部于1950年开发的一个筛查测试，用于评估一个人是否符合入伍资格。]
----
-### 例子(MHE)
-
-&lt;table&gt;
-&lt;caption&gt;教育回报率(MHE)&lt;/caption&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 1 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 2 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 3 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 4 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt; 教育程度 &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(106, 90, 205, 255) !important;"&gt; 0.132 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.131 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.114 &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; 0.087 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(106, 90, 205, 255) !important;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; (0.009) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt; 控制变量 &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(106, 90, 205, 255) !important;"&gt; None &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Age Dum. &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 2 + Add'l &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; 3 + AFQT &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-- 可以看到，随着控制变量的增加，从.hi-purple[第1列]到.hi[第4列]教育回报率估计值下降了4.5个百分点（系数下降34%）。
-
-$$
-`\begin{align}
-  \color{#6A5ACD}{\dfrac{\mathop{{Cov}} \left( {INC}_{i},\, {EDU}_i \right)}{\mathop{{Var}} \left( {EDU}_i \right)}} = \color{#e64173}{\tau} + \color{#20B2AA}{\gamma'} \color{#FFA500}{\delta_{A_{EDU}}}
-\end{align}`
-$$
-
-- .hi[讨论] 为什么？
-
----
-### 遗漏变量偏误公式
-
-- OVB公式**并不**要求每一个回归模型都能正确识别因果关系。该公式比较了.hi-purple[短模型]中的回归系数和.hi-pink[长模型]中同一变量的回归系数 → 降低了误判的可能性
-
-- `\(\tau\)` 是否因果还应该有其他的假设：**条件独立假设** → 更理想的方式是RCT
-
-$$
-`\begin{align}
-  \color{#6A5ACD}{\dfrac{\mathop{{Cov}} \left( {Y}_{i},\, {x}_i \right)}{\mathop{{Var}} \left( {x}_i \right)}} = \color{#e64173}{\tau} + \color{#20B2AA}{\gamma'} \color{#FFA500}{\delta_{Omitted-x_i}}
-\end{align}`
-$$
-
-
-### 加入坏的控制变量 → 过度控制问题
-
-- 在加入控制变量时，选择哪些变量进行控制至关重要。理想的控制变量应该是那些与处理变量和潜在结果都相关，但不是由干预变量引起的变量。
-- 不良控制变量，如个人职业和就业行业，在教育研究中可能不适合作为控制变量，因为这些变量可能是教育的结果而非原因。控制这些变量可能引入过度控制问题，从而掩盖教育对收入的真实影响。
-- 控制变量的选择应基于理论和先前的研究，确保这些变量不是处理变量引起的。此外，也需要考虑到变量之间可能存在的动态关系和因果路径
-
-???
-- 因为个人职业及就业行业往往是教育完成之后个人选择的结果，也就是说，这些变量发生在教育之后，可能受到教育的影响。
-- 事实上，教育对职业选择有重要影响，职业和行业往往存在着密切的联系
-
----
-### 例子(MHE)
-
-&lt;table&gt;
-&lt;caption&gt;表 3.2.1  教育回报率(MHE)&lt;/caption&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 1 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 2 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 3 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 4 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; 5 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt; 教育程度 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.132 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.131 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.114 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.087 &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; 0.066 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.007) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.009) &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; (0.010) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt; 控制变量 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; None &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; Age Dum. &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 2 + Add'l &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 3 + AFQT &lt;/td&gt;
-   &lt;td style="text-align:center;color: rgba(230, 65, 115, 255) !important;"&gt; 4 + Occupation &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-- .hi[第5列]，再控制职业。我们如何解释新的结果？
 --
 
-&lt;br&gt;&lt;br&gt;
-教育水平的系数变小可能仅仅是(过度控制导致的)**选择偏误**表现
-
----
-### 如何选择控制变量
-
-1. **理论指导**：控制变量的选择应该由相关理论和以往研究来指导。理论框架可以帮助识别可能影响研究结果的关键变量。
-2. **先前研究**：查阅相关文献，了解在相似研究背景下哪些变量被控制，可以提供有价值的参考。
-3. **与干预和结果相关**：选择与干预变量（例如，受教育程度）和潜在结果（例如，收入）都相关，但不是由处理变量直接引起的变量。
-4. **避免结果变量**：避免使用可能是干预变量结果的变量作为控制变量，因为这可能引入过度控制问题。
-5. **数据可得性**：在实际研究中，控制变量的选择还受限于数据的可得性。选择可靠和准确测量的变量。
-
----
-### 避免过度控制问题
-
-1. **识别中介变量**：中介变量是介于干预变量和结果变量之间的变量，干预变量通过中介变量影响结果变量。在分析中控制中介变量可能会屏蔽干预变量的部分或全部效应。
-2. **考虑变量的时间顺序**：理想的控制变量应该是在干预变量发生之前就已经确定的变量。这有助于保证控制变量不是由干预变量引起的。
-3. **动态关系和因果路径**：在选择控制变量时，考虑变量之间的动态关系和可能的因果路径。理解变量之间是如何相互作用的，可以帮助避免不当的控制变量选择。
-4. **稳健性检验**：通过进行一系列稳健性检验，如在模型中逐步加入或移除控制变量，可以评估控制变量选择对估计结果的影响。
-
----
-class: title-slide-section,inverse, middle
-# 从客观事实到因果模型II&lt;br&gt; → 避免内生性问题
-
----
-
-- 内生性问题通常源于三个个主要因素：遗漏变量、测量误差和互为因果。
-- 如果干扰项 `\(e\)` 和干预变量 `\(X_i\)` 是相关的，那么我们称这个模型存在内生性问题。
-
-### 内生性问题的影响
-
-- **严重问题**：如果没有清楚指出解释变量与因变量之间的因果关系，可能会被学术期刊拒稿。
-- **轻微问题**：如果无法在可信的水平下控制内生性问题，可能无法发表在顶级期刊。
-
----
-### 测量误差对教育回报率估计的影响
-(1) 教育存在测量误差
-
-如果我们在测量教育水平时存在误差，比如受访者报告的受教育年数不准确，
-比如可能忘记了准确的学习年限，或者在提供信息时夸大或缩小了数字：
-
- `$$y_{i}=\beta_{0}+\beta_{1} x_{1 i}+u_{i}$$` 
-
-这里， `\(y_i\)` 是个体 `\(i\)` 的收入， `\(x_{1i}\)` 是受教育年数， `\(u_i\)` 是模型中的随机干扰项。
-
-但是，如果我们实际观察到的教育年数 `\(x_{1i}^{obs}\)` 包含了一些误差 `\(v_i\)`：
-
-`$$x_{1 i}^{obs}=x_{1 i}+v_{i}$$`
-
-那么我们实际估计的模型将变为：
-
-`$$y_{i}=\beta_{0}+\beta_{1} x_{1 i}^{obs}+e_{i}$$`
-
-这里的 `\(e_{i}=\left(u_{i}-\beta_{1} v_{i}\right)\)` 是新的干扰项，它包含了原始干扰项 `\(u_i\)` 和由于测量误差 `\(v_i\)` 引入的额外误差。
-
----
-### 测量误差对教育回报率估计的影响
-
-测量误差导致的主要问题是，我们试图估计的教育对收入影响的系数 `\(\beta_{1}\)` 会受到影响：
-
-`$$plim \hat{\beta}_{1}^{OLS} =\beta_{1}\left(\frac{\sigma_{x_{1}}^{2}}{\sigma_{x_{1}}^{2}+\sigma_{v}^{2}}\right)$$`
-
-这意味着，由于存在测量误差，我们估计的教育对收入影响的系数 `\(\hat{\beta}_{1}^{OLS}\)` 将会比真实的影响 `\(\beta_{1}\)` 小。这种现象被称为衰减偏误（attenuation bias），它使得我们低估了教育对收入的真实影响。
-
-在该例子，对教育的测量无论是系统性夸大还是低报，**估计系数都会是真实值的下限**。
+- 在市场分析中，我们已经知道：
+  - 完全竞争市场 → 社会总剩余最大化
+  - 独占市场中 → 无谓损失 + 社会总剩余损失
+  
+- 之前单元分析对象要么是**市场本身**，要么是**市场内部的经济单位**
+  - **隐含假定**：每个市场行为人在进行消费和生产决策时**无需顾虑他人行为后果**
+  - **放宽 → 隐含假定**：
+  - 市场主体决策的时候，必须考虑该市场或者其他市场的主体带来的影响
 
 
 ---
+### 市场失灵 Market Failure
 
-### 测量误差对教育回报率估计的影响
-(2) 收入存在测量误差
-如果接受调查的个人选择瞒报、乱说收入，这意味这测量误差与收入多少和教育程度都没有关系 → 收入与教育估计上是没有相关性的
+#### 定义
 
-- 尽管结果变量的测量误差不会直接引起内生性问题，但使得相关性在统计学意义不成立了，这意味可能更难以在统计上发现变量之间的真实关系。
+&gt; 监管不充分的市场无法达到最大化社会总剩余，即市场效率低下
+
+--
+
+#### 原因
+
+1. 市场力量导致 Market power
+2. 产权缺失导致 Absence of property rights
+  - **外部性 Externalities**&lt;sup&gt;.hi-pink[†]&lt;/sup&gt;
+  - 公共物品 Public goods 
+3. 信息不对称导致 Asymmetric information
+
+.footnote[&lt;sup&gt;.hi-pink[†]&lt;/sup&gt; 我通常把公共物品与信息不对称视为外部性的**特例**]
+
+!!! 会叠加 !!!
 
 ---
-### 互为因果
+class:center,middle, inverse
 
-.less-right[ 
-- Charles F. Manski
- 在1993年的论文中，深入探讨了内生社会效应的识别问题，90年代初期社会科学对个体行为和群体行为相互作用的兴趣日增
-- 曼斯基的工作是在这一时期对社会互动效应进行量化和识别方法论的重要贡献之一]
+# 认识外部性 
+Exter'nalities
+
+---
+### 外部性
+
+- 定义：经济活动对局外人产生的溢出成本或者溢出收益
+  - **经济单位**而且**至少两个**：个人或者厂商；消费者或者生产者
+  - **可正可负** → 正的代表一个单位行为直接造成另一单位的福利增加
+      - 负外部性代表存在**外部成本**(external costs)；正外部性代表存在**外部收益**(external benefits)
+  - **消费性**或**生产性**：赛事堵车是消费性的、建造场馆设施是生产性的
+  - **直接性**：.hi-purple[不透过]市场机制或价格信号
+      - 通过价格机制，只要相关条件满足且市场达到**帕累托最优状态**，新均衡仍然是有经济效率的
+      - 例如，若害怕拥堵而减少看比赛，使得门票价格下降，便会降低球队收入与福利，就**不是外生性**；因为门票需求减少，改善了场地周边的交通和环境污染则是**负外部性减少**
+  - **相互性**：与**财产权**(property right)的判定密切关联
+      - 如：二手烟与清洁空气权
+
+---
+### 回忆
+
+- 完全竞争市场下，工厂生产扩大直到： `\(MC=MR=P\)` 
+  - 代表性厂商的 `\(MC\)` 右上倾斜， 加总得到行业供给曲线依然右上倾斜
+  - 行业需求是所有代表性消费者需求的加总 → 右下倾斜 → 决定了市场价格  `\(P\)`  → 代表性厂商 `\(MR\)` 是水平的
+  
+- 长期均衡状态下：
+  - 经济利润 **Economic profit** → 0
+  - 生产有效状态 **Productive efficiency**： `\(P=AC^{long}_{min}\)` 
+  - 配置有效状态 **Allocative efficiency**： `\(P=MC\)` 同时  `\((CS+PS)_{max}\)`
+      - `\(边际收益MB=边际成本MC\)` → 通过将资源分配给最有价值的用途，可以最大化资源的**社会价值**！
+        - 资源从最不重视它们的人（最低**接受意愿**WTA）流向最重视它们的人（最高**支付意愿**WTP）
+          - 创造了 `\(WTP - P = CS；WTA - MC = PS\)`
+
+---
+### 题外话：生产效率与配置效率
+
+https://mp.weixin.qq.com/s/OoVOaQ0l233vAL07Zxtfzg
+
+- 生产效率（Productive esfficiency）关注的是从给定的资源存量中可以生产出多少产品。一个经济实体(个人、公司或国家)如果使用“成本最低”的生产方式，就被称为生产效率高。
+
+- 配置效率（Allocative efficiency）。当资源被分配到最有价值的用途时，配置效率就实现了。这是通过消费者对商品或服务的价值来衡量的(反映在他们愿意支付的价格上)。基本理念是，当资源流向出价最高的人时（这是其价值最高的用途)，总经济福利最大化，即达到配置效率
+
+---
+### 题外话：生产效率与配置效率
+
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/TVsqUt.png&gt;
+
+
+---
+### 题外话：生产效率与配置效率
+
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/F80C45.png&gt;
+
+---
+### 题外话：市场结构 → 生产效率与配置效率
+
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/ZYnKge.png  height=500&gt;
+
+---
+### 需求与供给的另一面（不存在外部性）: 社会收益 &amp; 社会成本
+
+.pull-left[
+
+&lt;img src="Lec09_files/figure-html/unnamed-chunk-1-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+- .hi-blue[需求: 边际社会收益 (marginal social benefit，MSB)]
+  - 消费行为对消费者带来的价值
+
+- .hi-pink[供给: 边际社会成本( marginal social cost，MSC)]
+  - 生产行为将资源从其他用途中抽离出的机会成本
+- **均衡状态**: `\(MSB=MSC\)`
+
+  - 使用效率的最大, 没有其他更好的替代使用
+]
+
+---
+
+### 需求与供给的另一面（不存在外部性）: 社会收益 &amp; 社会成本
+
+.pull-left[
+
+&lt;img src="Lec09_files/figure-html/unnamed-chunk-2-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+.small[
+- .hi[理想的社会计价原则：按**产品或服务使用计酬**] → 配置资源
+  - 消费侧在市场定位成本：你消费了产品，就要补偿它的社会边际成本（是一种社会机会，其他人使用机会）
+  - 供给侧在市场定位收益：社会应该补偿你所创造的边际收益
+
+- 当市场运行良好时，利润率可以作为一种激励措施，以促进企业和个人承担更多社会责任，同时奖励那些为社会带来正面影响的行为，惩罚那些导致负面社会影响的行为。
+  - 与责任responsibility；奖励reward/惩罚punishment
+
+]
+]
+
+---
+
+### 需求与供给的另一面（不存在外部性）: 社会收益 &amp; 社会成本
+
+.pull-left[
+
+&lt;img src="Lec09_files/figure-html/unnamed-chunk-3-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+- 价格体系引导人们行为 
+  - 是否进入并与现任者竞争 
+  - 发现新赛道 → 企业家精神
+
+- .hi[**金钱外部性（money  externalities）**]：当购买一件商品的人越多，越对他人造成负面市场影响的情况 → 对他人财务状况的负影响
+
+  - 那么这是真正的外部性么？
+  - 任何市场行为几乎都有外部性
+  ]
+
+---
+### 外部性会作用在哪里？
+
+- 假设市场结构依然是完全竞争：**存在负外部性时，均衡结果不再最有效率**
+  - 生产性负外部性 → 作用在 MC 上
+      
+      - 供给曲线MC → 边际社会成本MSC=私人边际成本MPC + 边际**负外部性**
+
+  -  消费性正外部性 → 作用在 **私人边际收益MPB（mrgnl privt benefit）** 上
+      - 需求曲线MPB → 边际社会收益MSB = 私人边际收益MPB + 边际**正外部性**
+
+---
+
+### 方法论：经济学家喜欢上帝视角
+
+- **Social optimal** vs. **Decentralized (market) equi'librium**
+  
+  - Where are market failures?
+  
+  - What are differences?
+  
+  - How to correct it?
+
+---
+### 理解消费的负外部性
+
+.left[
+- 假设1 个消费者，边际社会收益要从MPB中**扣除**MSD → **边际社会收益**MSB(marginal social benefit) 
+- 结果 `\(x_c\)` 变为 `\(x_s\)` (MSB=MC决定) ，原本市场决策数量**超过**了社会最适消费数量
+- `\(x_s\)` 下的社会总体损失是多少? 
+]
+.right[
+![WPjEz1](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/WPjEz1.png)
+]
+
+---
+### 理解消费的负外部性
+.center[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/iWg69y.png height=380&gt;
+]
+
+- 上述结论扩展到整个行业依然成立(MC成为单调递增)
+- 同理，推广到消费的正外部性
+- 市场均衡数量与社会最适数量不一致根本原因是：**消费者没有将外部性纳入消费决策**
+
+
+---
+### 练习(5')
+
+- 图示解释，理解生产负外部性
+
+- 判断是否是外部性及其正负，同时判断属于生产还是消费？
+
+  1.高尔夫球场每天维护需要大量用水 →     在热带国家过度取水，导致土地盐碱化
+
+  2.球队购买超级明星，导致增加该俱乐部市场影响力和门票收入
+
+  3.超级明星带来联赛整个联赛的影响力和市场吸引力，带来电视转播权增加，但球队并未获得相应补偿
+
+  4.球队买通裁判，导致比赛结果事先确定，该行为获得了比赛胜利与收益，但其行为造成对方球队付出代价，还使得联盟、协会、观众、赞助商、电视转播商等联赛利益相关者付出代价，但这些相关者并未因为“黑哨”获得补偿
+
+
+---
+class:middle,center
+### 是否该补贴 Sofi Stadium 
+
+&lt;video controls width="900" height="500"&gt;
+  &lt;source src="./video/sofi1.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+
+---
+class:center,middle, inverse
+
+# 外部性的解决方案
+
+Externalities Solution
+
+---
+### 无论  .bb[私人解决方案] 还是 .bb[政府解决方案] 的逻辑
+
+
+- 负外部性时 → 过多
+- 正外部性时 → 过少
+
+- 无论政府还是私人的解决方案，都有一个核心主题: 
+
+  - **外部性问题内部化**：除了考虑自己的收益和成本，同时将为其他人带来的成本和收益全部考量
+  
+  - 关键问题是私人自愿揭露还是他人施加？
+
+---
+### 庇古系 vs 科斯系
+
+#### 庇古的外部性理论:
+
+1. 庇古认为,外部性是市场失灵的表现,会导致资源配置的无效率
+2. 主张政府应该通过征税或补贴等方式进行干预,以内部化外部性,使市场达到最优均衡。
+3. 庇古税(Pigovian Tax)就是根据外部成本向造成负外部性的一方征收税款,以矫正资源配置扭曲。
+
+#### 科斯的外部性理论:
+
+1. 科斯认为,只要财产权明晰,交易费用为零,外部性问题就可以通过市场自发地解决,无需政府干预。
+2. 他提出了著名的**科斯定理**,认为在财产权明晰且交易成本为零时,不管财产权初始分配如何,通过自愿交易可实现资源的最优配置。
+3. 科斯主张通过协商和交易解决外部性,而不赞成庇古税那样的政府干预。
+
+#### 总体
+
+- 庇古侧重于政府干预以矫正外部性,科斯则强调市场机制和产权界定在解决外部性中的作用。
+- 庇古的理论在现实中更多被采纳,如环境税等。而科斯的理论对产权制度的完善和交易成本的降低提出了更高要求,在现实中往往难以完全满足
+
+---
+### 私人解决方案I：谈判
+
+- 谈判机制有效的前提依据的是**科斯定理**
+
+  - .bb[**通过自愿协商分配产权**]。科斯（Ronald Coase）思想：在1960年的《社会成本问题》中，通过交易成本的选择和私人谈判、私有产权适当界定、签订可执行合同的方式来解决外部性问题 
+
+- 那么**科斯定理**成立的前提是？
+      - 当事人必须能够进行谈判，交易成本不能太大
+      - 产权能够清晰界定
+      - 谈判双方的人数不能涉及太多
+      - 策略性行为和信息不对称
+    
+  - 财产权可能恶化收入分配差距
+
+---
+### 私人解决方案II：做正确的事
+
+  - 斯蒂格利茨（Joseph Stiglitz）思想，**社会准则**或**道德约束**来解决外部性问题
+  
+    - 社会、道德和舆论压力可以影响个体行为，使得他们更加意识到自己的行为可能对他人造成负面影响
+    
+    - 鼓励社会发生、政府引导舆论方向：NGO、环保组织、动物保护协会、道德教育
+
+
+---
+### 政府解决方案I
+
+1. .bb[**矫正性税收**]。（Arthur Cecil Pigou）思想：负外部性时，征收特别税收增加生产的成本，从而抑制消费或者生产
+  - step1：估计边际外部成本是多少
+  - step2：征收等于边际外部成本的税款
+  
+1. .bb[**矫正性补贴**]。政府补贴创新、助学贷款等
+
+
+---
+### 政府解决方案II
+
+- 基于市场的政策：政府为民间组织提供激励，内在化其外部性
+
+1. .bb[**命令控制型政策**]。直接控制资源分配 → 限制技术、限制生产数量
+  - **行政管制**。
+  -  **法律与监管**。限定配额或者行政处罚等方式
+  - 斯蒂格勒（George Stigler，芝加哥学派代表性人物）思想：采取总量控制或发放生产许可证。其中许可证是可以转让的，通过市场进行交易 → 无法通过税收实现
+
+---
+### 其他解决方案
+
+  - .bb[企业合并]：将外部性产生者与承受者联合一体，实现内部化。比如[中体产业集团](https://www.csig158.com/)是商业设施的所有者、奥林匹克花园的开发商，通过将大型场馆设施的建设、运营和商业开发整合，部分实现场地设施外部性的内部化
+
+---
+### 思考：如何测量外部性的货币价值？
+
+- 研究商品价格如何收到空气质量的影响
+
+  - 1970 年，《清洁空气法案》提出后，空气明显改善，在县级人均收入没有改变的情况下，房价明显提升。估计，房价增加大概带来 450 亿元的价值影响
+
+- 体育设施、体育赛事的外部性如何估算？
+
+---
+class:center,middle, inverse
+
+# 庇古 还是 科斯
+
+Pigou or Coase
+
+---
+### 瑜伽房 与 KTV 的争议
+
+1. 分成两组
+2. 假设你和你的搭档是相邻的体育相关企业：一个瑜伽房和一个KTV
+  - 和你的搭档协商好谁经营瑜伽房，谁经营KTV
+
+3. KTV的噪音让健身房的客户感到不满，导致瑜伽房失去会员，估计损失 40万元
+
+ - **必须**就资源分配（如隔音设施安装费）达成共识
+
+---
+class: clear-slide,middle
+
+.pull-left[
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 房间左侧 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 房间右侧 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;line-height: 110%;"&gt; 法院将产权判给了瑜伽房老板 &lt;/td&gt;
+   &lt;td style="text-align:center;line-height: 110%;"&gt; 法院将财产权判给了 KTV 经理 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+- KTV的噪音让瑜伽房无法做生意，估计损失 40万元
+
+- 建造隔音墙需要花费 30万元
+
+- KTV 搬迁需要花费 90万元
+]
+
+.pull-right[
+
+问：结果是什么？ 
+
+&gt; **A**. KTV搬家
+
+&gt; **B**. KTV 经理赔偿瑜伽房的损失
+
+&gt; **C**. 瑜伽房老板支付KTV经理搬迁费
+
+&gt; **D**. 某人建造隔音墙
+
+]
+
+---
+
+### 庇古解决方案
+
+.left-column[
+.center[
+![ 80%](https://www.dropbox.com/s/ekndrrnmhz2kna6/pigou.png?raw=1)
+
+A.C. Pigou
+
+1877-1959
+]
+]
+
+.right-column[
+
+- 1920, *The Economics of Welfare*
+- 外部性：.hi-red[边际私人成本/收益 与 社会成本/收益  之差] 
+- 人们应该为自己的行为产生的外部性买单 
+  - 市场会让你自动这样做：在理想情况下，市场会自动纳入外部性的成本或收益
+      - 例如，如果消费者对某种产品的负面外部性感到不满，他们可能会减少购买量，这可能会迫使生产商改善产品或减少外部性。
+  - 如果市场失败，政策可以迫使市场重新运作
+      - 政府可以通过政策干预来纠正市场失灵，例如征收污染税、实施排放配额等。这些政策可以迫使市场重新考虑外部性，并在一定程度上修正市场的运作。
+- 外部性的问题在于 .hi-purple[缺少正确的价格！]
+]
+
+---
+
+### 生产负外部性
+
+.pull-left[
+
+&lt;img src="Lec09_files/figure-html/unnamed-chunk-5-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+- 生产者的.hi-pink[边际私人成本]低于社会承担的 .hi-red[边际社会成本]
+
+]
+
+---
+
+### 生产负外部性
+
+.pull-left[
+
+&lt;img src="Lec09_files/figure-html/unnamed-chunk-6-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+- 生产者的.hi-pink[边际私人成本]低于社会承担的 .hi-red[边际社会成本]
+- 在**市场（去中心化）均衡状态**（B）中，商品或服务的供应量 `\(q\)` 过大，价格 `\(p\)` 过低，这与**社会最优状态**（A）相比显著不同。
+
+- 外部成本导致的生产过剩
+]
+
+---
+
+### 生产负外部性
+
+.pull-left[
+
+&lt;img src="Lec09_files/figure-html/unnamed-chunk-7-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+- 生产者的.hi-pink[边际私人成本]低于社会承担的 .hi-red[边际社会成本]
+
+- 在**市场（去中心化）均衡状态**（B）中，商品或服务的供应量 `\(q\)` 过大，价格 `\(p\)` 过低，这与**社会最优状态**（A）相比显著不同。
+
+- 外部成本导致的生产过剩
+
+- 生产过剩造成的无谓损失
+
+]
+
+---
+
+### 生产负外部性：庇古观点（传统）
+
+.left-column[
+.center[
+![ 80%](https://www.dropbox.com/s/ekndrrnmhz2kna6/pigou.png?raw=1)
+
+A.C. Pigou
+
+1877-1959
+]
+]
+
+.right-column[
+
+- 针对外部性的政策解决方案应 .hi-purple[关注缺失的价格] 
+  
+  - 针对性地制定政策以创造或修改价格`
+  
+  - “庇古”税或补贴
+]
+
+---
+
+### 生产负外部性：庇古观点（传统）
+
+.pull-left[
+
+&lt;img src="Lec09_files/figure-html/unnamed-chunk-8-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+- 设置特别税率
+`$$t = MSC-MPC$$`
+
+- 消除 DWL
+
+- .hi-purple[外部性内部化] 进入价格体系
+
+- 生产者（和消费者）现在考虑了对社会的真实成本
+
+  - `\(MPC\)` ( + tax) `\(=MSC\)`
+]
+
+
+---
+class: middle
+### 外部性的法律裁决
+
+.pull-left[
+.small[
+- 大部分外部性问题在美国司法系统中使用**普通法 common law**
+-  **由法院评估损害**：损害程度 → 评估个人的行为是否对他人产生了负面影响
+- 两种偿方式：
+  - **补偿性赔偿 compensatory： damages**：尽可能恢复受害者到伤害前状况
+  - **惩罚性赔偿 punitive damages**：阻止施害者行为的**发生**
+
+- **执法有效性的保证**：很大程度上依赖于产权的清晰性和执行力
+
+]
+]
+
+.pull-right[
+.center[
+&lt;img src=./figs/court1.jpg&gt;
+]
+]
+
+---
+### 产权的重要性
+
+.pull-left[
+.small[
+&gt; .hi[财产]是**一组**法律权利，所有者可以自由行使，并且其行使**不受他人干涉**的保护
+
+- **一组权利**包含了：
+
+&gt; 拥有possess、使用use、开发develop、改进improve、转化transform、消耗consume、耗尽deplete、破坏destroy、出售sell、捐赠donate、遗赠bequeath、转让transfer，抵押mortgage，租赁lease，借贷loan或排除他人exclude others
+
+
+]
+
+.source[Coooter, Robert 和 Douglas Ulen, 2012, 法与经济学, 6&lt;sup&gt;th&lt;/sup&gt; ed.]
+]
+
+.pull-right[
+.center[
+&lt;img src=./figs/propertybundleofrights.png&gt;
+]
+]
+
+---
+### 财产权的三件要素对经济产生影响
+
+.pull-left[
+.small[
+
+- **非人格化的(impersonal)依附性**。旧社会的财产权与身份地位绑定 → 有利于促进市场交易和经济发展
+
+- 业主对其财产享**有完全的支配权**。政府不得任意干预剥夺。只有财产权得到有效保护,市场主体才有积极性去创造财富。当然,财产权的行使不能违反法律法规,损害社会公共利益
+
+- 产权的**排他性**特征。他人被禁止干涉业主行使其权利
+
+]
+
+.source[Coooter, Robert 和 Douglas Ulen, 2012, 法与经济学, 6&lt;sup&gt;th&lt;/sup&gt; ed.]
+]
+
+.pull-right[
+.center[
+&lt;img src=./figs/propertybundleofrights.png&gt;
+]
+]
+
+
+
+---
+
+class:center,middle, inverse
+
+# 应用：污染(生产性负外部性)
+
+Pollution
+
+---
+### 背景
+
+上游养猪场 `\(x\)` 和下游养鱼场 `\(y\)` 的情景，其中养猪场的排放（猪粪 `\(z\)`）对河流造成污染，这种污染影响了下游养鱼场的运营成本。以下是对模型的更为清晰和精简的刻画：
+
+1. **生产与成本函数：**
+   - 养猪场的生产成本 `\(c^x\)` 依赖于其生产量 `\(x\)` 和排放量 `\(z\)`，具体为 `\(c^x(x, z)\)`。生产成本随生产量增加而增加，且边际成本递增。排放量 `\(z\)` 越大，养猪场的处理成本越低，但节省效果递减。
+   - 养鱼场的成本 `\(c^y\)` 依赖于其生产量 `\(y\)` 和受到的污染 `\(z\)`，具体为 `\(c^y(y, z)\)`。成本随生产量和污染程度增加而增加，且两者的边际成本都在增加。
+
+2. **利润函数：**
+   - 养猪场的利润 `\(\pi^x\)` 由其产品市场价格 `\(p_x\)` 乘以生产量 `\(x\)` 减去成本 `\(c^x(x, z)\)` 确定。
+   - 养鱼场的利润 `\(\pi^y\)` 由其产品市场价格 `\(p_y\)` 乘以生产量 `\(y\)` 减去成本 `\(c^y(y, z)\)` 确定。
+
+???
+- 生产成本函数分别为
+`\(\begin{aligned} &amp; c^x=c^x(x, z), \frac{\partial c^x}{\partial x}&gt;0, \frac{\partial^2 c^x}{\partial x^2}&gt;0, \frac{\partial c^x}{\partial z}&lt;0, \frac{\partial^2 c^x}{\partial z^2} \geq 0 \\ &amp; c^y=c^y(y, z), \frac{\partial c^y}{\partial y}&gt;0, \frac{\partial^2 c^y}{\partial y^2}&gt;0, \frac{\partial c^y}{\partial z}&gt;0, \frac{\partial^2 c^y}{\partial z^2}&gt;0\end{aligned}\)`
+- 利润函数分别为 `\(\begin{aligned} &amp; \pi^x=p_x x-c^x(x, z) \\ &amp; \pi^y=p_y y-c^y(y, z)\end{aligned}\)`
+
+---
+### 背景
+
+3. **决策过程与边际收益：**
+
+   - 两家厂商都是价格接受者，即他们不能控制市场价格。养猪场和养鱼场的生产决策使得他们的边际成本等于市场价格，从而实现利润最大化。
+   
+   - 由于污染对双方的利益均有影响，因此仅核算污染给养猪厂带来的**私人边际收益（MPB）**：其增加一单位污染排放能降低的生产成本，计算为 `\(\frac{\partial \pi^x}{\partial z} = -\frac{\partial c^x}{\partial z}\)`。
+
+
+???
+- 猪粪排泄到河流中科防污设备成本(假设节省成本的效果是递减的)，但下游养鱼厂的边际成本会增加
+
+- 假定2家均为产品市场价格接受者，则决策过程为
+`\(\frac{\partial \pi^x}{\partial x}=p_x-\frac{\partial c^x}{\partial x}=0, \frac{\partial \pi^y}{\partial y}=p_y-\frac{\partial c^y}{\partial y}=0, \frac{\partial \pi^x}{\partial z}=-\frac{\partial c^x}{\partial z}=0\)`
+(前2式分别表示2家厂商必须生产到边际成本等价格的水准，会获得利润最大化)
+- .bb[私人边际收益(MPB)] 就是养猪厂增加1单位污染排放量可以降低的产品X的生产成本 `\(\frac{\partial \pi^x}{\partial z}=-\frac{\partial c^x}{\partial z}\)` 
+
+
+
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/4dSdX6.png height=300&gt;
+
+---
+### 应用：整治污染(生产性外部性)
+
+.left[
+
+#### 去中心化决策（由两家厂商独立决策）
+- 养猪场将基于私人利益进行污染排放的决策。当私人边际收益（MPB）等于零时，表明增加一单位污染对养猪场的成本节约已经没有增加效果，即 `\(-\frac{\partial c^x}{\partial z} = 0\)` 
+
+- 此时对养鱼场来说，意味着其所承受的污染伤害达到最高，即**边际社会损害（MSD）**（养鱼场因增加一单位污染而增加的成本）最大，为 `\(\frac{\partial c^y}{\partial z}\)` 
+
+- 去中心化决策时养猪场不会考虑其污染对养鱼场造成的社会损害 → 导致养鱼厂福利的减少
+
+]
+
+
+.right[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/4dSdX6.png height=450&gt;
+]
+
+---
+### 应用：整治污染(生产性外部性)
+#### 为什么.bb[内部化]可以解决? 
+1. **合并后的利润函数：**
+   - 合并后，公司的利润函数变为 `\(\pi = p_x x + p_y y - c^x(x, z) - c^y(y, z)\)`。这意味着公司现在同时考虑养猪和养鱼的收入与成本。
+2. **决策调整：**
+   - 在合并后，决策过程中包括了 `\(\frac{\partial \pi}{\partial x} = 0\)` 和 `\(\frac{\partial \pi}{\partial y} = 0\)`，这与之前相同，确保了每个产品的生产都达到边际成本等于价格的水平。
+   - 关键的变化在于污染决策 `\(\frac{\partial \pi}{\partial z} = -\frac{\partial c^x}{\partial z} - \frac{\partial c^y}{\partial z} = 0\)`。这个条件意味着污染的边际私人收益（节省来自养猪场的成本）必须刚好等于边际社会成本（增加的养鱼场成本）。
+3. **社会最适排污量 `\(z_s\)`：**
+   - 当 `\(\frac{\partial c^x}{\partial z} = -\frac{\partial c^y}{\partial z}\)` 时，实现了边际私人收益等于边际社会损害的条件，这就是社会最优的污染水平 `\(z_s\)`。这意味着污染量在此水平时，社会总福利（收益减成本）最大化。
+4. **极端情况的处理：**
+   - 如果负外部性非常强，即 `\(MSD \gg MPB\)` → ?
+
+---
+### 应用：整治污染(生产性外部性)
+#### 为什么.bb[内部化]可以解决?
+
+- .bb[只要2厂商生产决策影响彼此利润，通过合并或合作，可以获得较独自行动更大的总利润 → 1+1&gt;2]
+
+- 但该模型过于理想化
+
+  - 养猪厂的MSD就是对下游养鱼厂的利润损害 &lt;br&gt; .mono[&lt;==&gt;] 没有牵涉到**第三方利益**，负外部性的社会福利损害就等同于对下游私人厂商的利润损害 → 因此通过.bb[合并]可以实现利润扩大 &lt;br&gt; → 暗含着.bb[科斯定理]的思想
+
+---
+### 应用：整治污染(生产性外部性)
+#### 为什么.bb[政府收税]可以解决?
+
+1. **价格机制失灵的原因：**
+   - 将粪便视为要素时，养猪场在选择排泄量 `\(z_0\)` 时的边际要素成本（MFC，Marginal Factor Cost）为零，因为排放污染本身对养猪场没有直接成本。这种情况下，价格机制失灵，因为它没有反映排放对社会造成的真实成本。
+2. **庇古税的原理与实施：**
+   - 政府可以设立一个税率 `\(t\)`，使得排泄物的**边际私人成本**（税后成本）等于其**边际社会损害** `\(MSD\)`。这个税率应当设为对下游厂商（养鱼场）造成的边际损害，即 `\(t = -\frac{\partial c^y}{\partial z}\)`。
+   - 这种税的征收改变了养猪场关于排泄量的决策：养猪场现在需要支付额外的税费，因此排泄物的边际成本不再是零，而是等于税率 `\(t\)`。
+
+---
+### 应用：整治污染(生产性外部性)
+#### 为什么.bb[政府收税]可以解决?
+
+3. **经济激励的调整：**
+   - 当政府征收庇古税后，养猪场的利润函数变为 `\(\pi^x = p_x x - c^x(x, z) - t z\)`。这迫使养猪场在决策时考虑到排泄对社会的成本。
+   - 在税后，养猪场的排泄量决策需满足 `\(\frac{\partial \pi^x}{\partial z} = -\frac{\partial c^x}{\partial z} - t = 0\)`，这意味着污染量会比没有征税的情况 `\(z_0\)` 更小，从而减少了总体的环境损害。
+4. **社会最优排放量的实现：**
+   - 如果税率被正确设置，与社会最优排放量 `\(z_s\)` 相对应的税收会使得养猪场的边际私人成本等于其边际社会损害。这样，税后的污染水平应接近或等于社会最优水平，从而实现社会福利的最大化
+5. 现实情况：这种税收政策在理论上非常美好，但其成功实施需要准确评估污染的社会成本，并设立合适的税率，同时考虑实施中的行政成本和可能的市场反应
+
+
+---
+### 应用：整治污染(生产性外部性)
+#### 为什么还需要.bb[行政管制]?
+
+ 税率确定的困难性
+- **精确性**：正确设定庇古税需要精确知道社会最适污染量 `\(z_s\)` 和相关的社会损害 `\(MSD\)`
+- **实际的挑战**：即使理论上可以设定正确的税率，实际中的执行也可能受到避税、欺诈等行为的影响，降低政策的有效性 → 暗访、突击检查等
+
+复杂的外部性源头
+- **多元化的污染源和受害者**：现实中，污染的源头和受影响的群体通常不止一个，不同类型的污染（如空气、水、土壤污染）可能需要不同的管理策略。庇古税可能难以针对所有类型的污染制定有效的税率
+- **不同污染的交互作用**：不同的污染源之间可能存在交互作用，使得单一税率难以反映所有外部成本
+
+---
+### 应用：整治污染(生产性外部性)
+#### 为什么还需要.bb[行政管制]?
+
+行政管制的优势
+- **直接性和明确性**：行政管制如排放标准和直接限制提供了清晰的法规界限，为企业和个人提供明确的环境保护要求
+- **更容易实施和监管**：设定具体的排放限制或操作标准比起试图通过税率影响行为更直接，容易监督和执行
+- **适应性和灵活性**：根据不同行业和区域的具体情况调整，更具有针对性和适应性
+
+税收与管制的比较
+- 税收和管制选择哪一种取决于政策目标、可用信息的质量、行政资源、法律框架等
+  - 税收通过**经济激励**改变行为，更适合于可以**量化**外部成本和收益的情况
+  - 管制则在那些需要**立即和明确**减少污染的情况下更有效，特别是在难以科学界定限制的情况下
+
+---
+### 应用：整治污染(生产性外部性)
+.less-right[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/13rbr3.png height=360&gt;
+]
+.center[在信息不完全情况下，.bb[&lt;br&gt;征税更有效]]
+
+**政府税率和征税的影响：**
+   
+   - 政府设定一个统一的税率 `\(t\)`，影响两个养猪厂的排污行为。每家厂的最优排放量 `\(z_1\)` 和 `\(z_2\)` 可能根据其边际私人收益 `\(MPB_1\)` 和 `\(MPB_2\)` 而不同 → 排污量不同
+   
+   - 税收的目标是使每家厂的边际私人成本等于边际社会损害，即 `\(t = -MSD\)`，理想情况下应当促使每个厂商减少其污染到社会最优水平。
+
+---
+### 应用：整治污染(生产性外部性)
+.less-right[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/13rbr3.png height=360&gt;
+]
+.center[在信息不完全情况下，.bb[&lt;br&gt;征税更有效]]
+
+**行政管制的设定与影响：**
+   
+   - 政府不知道每家的 `\(MPB\)`，因此它不能为每家定制个性化的排污限额来达到预期目标。
+   - 相反，它设定一个平均排污标准 `\(z_3\)`，这个标准等于两家厂商当前总排污量的一半
+   - 这种“一刀切”的方法可能导致资源配置不最优，原因是：
+    
+    - 第二家厂的排污量减少，如果 `\(z_3 &lt; z_2\)`，则第二家厂的利润会因为减少排污而减少（B）
+    - 第一家厂如果 `\(z_3 &gt; z_1\)`，则其利润可能增加（A）
+
+---
+### 应用：整治污染(生产性外部性)
+.less-right[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/13rbr3.png height=360&gt;
+]
+.center[在信息不对称情况下，.bb[&lt;br&gt;征税更有效]]
+
+**社会福利的计算与误区：**
+
+   - 如果考虑社会总福利，仅从总排污量保持不变来评估的话，可能会有误导。真实的社会福利应该考虑**环境损害的减少**和**生产效率的提高**。原因是：
+
+   - 当B&gt;A时，即第二家厂的利润减少大于第一家的增加，社会总福利相较于征税而言减少
+   - 在实际政策制定中，可能需要结合这两种方法，或者采用更灵活的政策工具来解决这种信息不对称和效率问题，确保环境保护的同时也优化经济效益。
+
+
+---
+### 应用：整治污染(生产性外部性)
+#### 为什么有时候.bb[仍采用行政管制]?
+
+.right[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/KI4Cbj.png &gt;
+]
+.center[伤害更快、更大时，.bb[&lt;br&gt; 管制更有效率]]
+.left[
+- 图示解释：MSD相较于MPB更陡峭 → 排污带来的社会损害比私人收益增长的更快
+- **征税**：政府制定税率 `\(t_0\)` 比理想的庇古税 `\(t_s\)` 更低，导致上游排放量 `\(z_0\)` 高于最优排放量 `\(z_s\)` ，产生了大量社会损失（区域eab）
+- **管制**：政府设置排放标准 `\(z_1\)` ，即使该标准高于 `\(z_s\)` ，但是它比 `\(z_0\)` 的福利损失小很多（区域ecd）
+- 外部性社会危害程度，政府应尽可能了解的更多
+]
+
+---
+### 应用：整治污染(生产性外部性)
+#### .bb[政府]还有其他选择么?
+
+.less-right[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/wswu17.png &gt;
+]
+.center[征税不可行时，还可以.bb[可交易的排放许可!]]
+.more-left[
+- **政府设定总排污量**：政府首先确定一个可接受的总排污量限制，比如 `\(Q_{total}\)`，并将这个总量分配成多个排污许可证。
+
+- **初始配额分配**：政府根据某种标准（如历史排放水平、生产能力等）将排污许可证初步分配给各个排污企业。在这个假设中，政府将总排污量 `\(Q_{total}\)` 均等地分配给两个厂商，即在 `\(0_1 0_2/2\)` 的中点 `\(M\)`。
+]
+
+---
+### 应用：整治污染(生产性外部性)
+#### .bb[政府]还有其他选择么?
+
+.less-right[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/wswu17.png &gt;
+]
+.center[征税不可行时，还可以.bb[可交易的排放许可!]]
+.more-left[
+- **市场交易**：厂商根据自身的边际私人收益 `\(MPB\)` 决定买入或卖出许可证。第一家厂商由于 `\(MPB_1\)` 较低，意味着其增加污染的边际成本低于其从市场上出售许可证可以获得的收益，因此倾向于**卖出**许可证。第二家厂商由于 `\(MPB_2\)` 较高，将倾向于买入许可证。
+
+- **价格形成和成交**：市场上的许可证交易活动将形成一个均衡价格，第一家厂商将以**不低**于 `\(Mb\)` 的价格出售许可证，第二家厂商愿意以**不高**于 `\(Ma\)` 的价格购买许可证。交易将持续进行，直到达到一个新的均衡点 `\(e\)`，此时市场上没有更多愿意以当前价格交易的买家或卖家。
+]
+
+---
+### 应用：整治污染(生产性外部性)
+#### .bb[政府]还有其他选择么?
+
+.less-right[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/wswu17.png &gt;
+]
+.center[征税不可行时，还可以.bb[可交易的排放许可!]]
+.more-left[
+#### 福利效果
+
+- **成本效率**：通过许可证市场，排污权将从边际成本较低的污染者转移到边际成本较高的污染者手中，从而在整个经济系统中减少了减排成本的总和。
+- **福利增加**：在图中，从初始点 `\(M\)` 到新均衡点 `\(e\)` 的交易将导致福利的增加，表示为面积 `\(eab\)`。这是因为许可证交易使得污染控制成本最小化，同时满足了政府设定的环境标准。
+
+]
+
+---
+### 应用：整治污染(生产性外部性)
+#### 科斯定理与庇古税比较及其争议
+
+1. 科斯定理的核心在于,如果交易费用为零,产权明晰,无论产权初始分配如何,当事人都可以通过自愿谈判实现资源的有效配置。与庇古税相比,科斯谈判更能充分利用当事人的信息优势,达成符合双方利益最大化的契约安排。
+
+2. 但现实中交易费用**总是正**的。谈判过程中存在信息不对称、机会主义行为等问题,达成协议的成本可能很高。即使达成协议,事后的履约监督也有成本。因此能否仅仅依靠科斯谈判达到最优状态值得怀疑。庇古税简化了治理流程,减少了交易费用。
+
+3. 外部性的相互性是科斯定理的重要引申。传统观念认为养猪场是污染的制造者,应该被征税。但换个角度,如果养鱼场不在下游开设,就不会有污染纠纷。这表明污染的产生是养猪场和养鱼场相互作用的结果。单方面归因有失偏颇。
+
+4. 产权明晰是科斯谈判的前提。产权界定了谁有权获得补偿,谁有义务支付补偿。**谁拥有不受污染的财产权,谁就有权禁止他人排污或获得补偿**。这种补偿在性质上等同于课征的庇古税 → 征税与产权明晰是一体两面,应该相互匹配
+
+---
+### 应用：整治污染(生产性外部性)
+#### 科斯定理与庇古税比较及其争议
+
+5. 如果对养猪场征税,就默认了养鱼场拥有不受污染的产权,反之亦然。征收庇古税时不一定会明确界定产权,这是其**不足之处**。如果产权界定不清晰、不合理,征税对象就可能出错,扭曲激励,导致更大的效率损失。
+
+6. 现实中，制造污染通常被认为应该承担治污责任 → **社会舆论（道德、社会规范）**默认污染者没有排污的产权。
+
+总的来说,**产权界定、交易成本大小**是决定是否诉诸科斯谈判的关键因素。在交易费用低、产权明晰的情形,科斯谈判优于庇古税。而在现实中交易费用普遍存在,征税成为一种**必要的次优选择**。即便如此,在征税政策的设计中仍应重视相关方的产权界定,尽量降低交易费用。
+
+针对体育领域的政策设计？
+- 混合模式。征税 + 鼓励当事人谈判 = 自愿达成的治污协议给予税收优惠
+- 各有利弊，切忌教条化、一刀切
+
+---
+class:center,middle, inverse
+# 外部性常见于公共物品
+
+Externalities are common in public goods
+
+---
+### 公共物品 public goods
+
+- 生产或消费不同类别产品，出现外部性问题的可能性是不同的
+
+- 截止目前，讨论的所有范畴都是**私有物品**
+
+- 通常由两个维度考虑
+
+  - **排他性**（excludability）：拥有该产品就.bb[**阻碍**]别人消费、享用该产品的程度 → 无法分享
+  
+  - **敌对性** （rivalry）：一个人消费某产品就会.bb[**降低**]别人消费该产品的**能力**的程度 → 恶化他人体验
+  
+.center[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/4YMiH6.png height=165&gt;]
+
+---
+### 排他性与敌对性
+#### 排他性
+- .hi.green[可排他的](excludable):获得产品的好处仅限于那些为该商品付费的人(一般食品杂货、公寓、车辆等)
+- .hi.purple[非排他的](non-excludable): 无论是否付费，任何人都可以享受好处(国防、阳光等)
+
+#### 敌对性
+- .hi.green[敌对的](rival):（1）阻碍他人进行消费的可能性;（2）降低该产品对别人的价值(你的笔记本、你的牙刷、高峰期道路等)
+- .hi.purple[非敌对的](non-rival): 人们可以同时消费该物品而不减损其价值(灯塔, 风景, 知识等)
+
+---
+### 不同属性的物品
+
+&lt;img src="Lec09_files/figure-html/unnamed-chunk-9-1.svg" style="display: block; margin: auto;" /&gt;
+
+
+---
+### 私有物品
+
+.pull-left[
+&lt;img src="Lec09_files/figure-html/unnamed-chunk-10-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+- .hi[产权]：明确
+- .hi[使用者]：在边际上承担所有成本并获得所有收益
+- .hi[提供者]：通常由市场中公司提供
+- .hi[市场机制]：若不存在外部性，完全竞争市场可以**有效**分配私有物品
+- .hi[代表性产品]：大多数消费品都是私有物品产
+]
+
+---
+### 公共物品 Public goods
+
+.pull-left[
+&lt;img src="Lec09_files/figure-html/unnamed-chunk-11-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+- .hi[产权]：无法界定
+- .hi[使用者]：享受到**所有边际利益**，但**完全不承担边际成本**
+- .hi[提供者]：通常由政府提供
+- .hi[市场机制]：不存在市场机制
+  - **原因是:** 存在**搭便车问题** → 私人部门提供公共物品无利可图，且成本过高导致单个个体无力提供
+  - **结果**：私人供给不足
+  - **解决思路**：通常由政府提供,并通过税收融资 → 确定最优社会水平
+- .hi[代表性产品]：社区健身设施
+]
+
+
+---
+
+### Public Goods `\(\neq\)` “Good for the Public”
+
+&lt;img src="Lec09_files/figure-html/unnamed-chunk-12-1.svg" style="display: block; margin: auto;" /&gt;
+
+.source[Safner, 2021, “‘Public Good’ or ‘Good for the Public?’ Political Entrepreneurship and the Public Funding of Scientific Research,” *Journal of Private Enterprise* 36(1): 17-44]
+
+---
+
+### 公共物品 Public goods
+
+.left-column[
+.center[
+![ 80%](./figs/samuelson.png)
+
+.smallest[
+Paul A. Samuelson
+
+1915-2009
+
+&lt;img src=./figs/Nobel.png height=22&gt; Economics Nobel 1970
+]
+]
+]
+
+.right-column[
+
+&gt; “.hi[集体消费品 Collective consumption goods] 是指所有人共同享用的物品,某个人对该物品的消费并不会减少其他人对该物品的消费"(第387页)” (p.387).
+
+
+.source[Samuelson, Paul A, 1954, “公共支出的纯理论,” *Review of Economics and Statistics* 36(4): 387-89]
+]
+
+---
+
+### 公共物品 Public goods
+
+.left-column[
+.center[
+![ 80%](./figs/samuelson.png)
+
+.smallest[
+Paul A. Samuelson
+
+1915-2009
+
+&lt;img src=./figs/Nobel.png height=22&gt; Economics Nobel 1970
+]
+]
+]
+
+.right-column[
+
+&gt;任何**去中心化的定价系统**都无法用来确定**集体消费的最优水平**。必须尝试其他形式的'投票'或'信号传递'。但是...每个人的自利动机是发出错误信号,假装对某种集体消费活动的兴趣比实际少等等。"
+
+&gt; 定价失灵:由于公共物品的非排他性,即无法将未付费者排除在外,私人供给者难以通过市场价格收回成本,因此缺乏供给动力。分散的市场定价机制无法实现公共物品的最优供给。
+
+&gt; 偏好显示困难:为确定最优供给,需要了解人们对公共物品的需求偏好。但由于非排他性和**搭便车**问题,个人缺乏诚实表达偏好的动机,常常倾向于低报自己的需求,回避成本分摊。传统的市场需求**显示机制**在公共物品供给决策中不起作用。
+
+.source[Samuelson, Paul A, 1954, “A Pure Theory of Public Expenditures,” *Review of Economics and Statistics* 36(4): 387-89]
+]
+
+---
+
+### 公共物品 Public goods
+
+.left-column[
+.center[
+![ 80%](./figs/samuelson.png)
+
+.smallest[
+Paul A. Samuelson
+
+1915-2009
+
+&lt;img src=./figs/Nobel.png height=22&gt; Economics Nobel 1970
+]
+]
+]
+
+.right-column[
+
+&gt; 集体决策困境:公共物品的最优供给决策需要求助于投票等集体抉择方式,以汇总个人偏好。但个人出于**自利动机而歪曲偏好表达**,会导致集体决策扭曲,难以达成真正的帕累托最优(Pareto optimum)。
+
+&gt; - 克拉克税(Clarke tax)机制,以诱导人们真实表达偏好
+
+&gt; - 隐形机制设计(mechanism design)来激励相容等。
+
+&gt; 但总的来说,在公共物品的最优供给上实现个人理性和集体理性的统一仍然是一个巨大的理论和实践难题
+
+.source[Samuelson, Paul A, 1954, “A Pure Theory of Public Expenditures,” *Review of Economics and Statistics* 36(4): 387-89]
+]
+
+---
+
+###  搭便车问题
+
+.pull-left[
+- 需要公共物品，但人们不愿意付费使用 
+
+- 个人承担私人成本来做出贡献，但只能获得一小部分（分散的）收益 
+
+- 如果个人可以在不支付的情况下获得该物品（非排他性），可能会导致...
+
+  - .hi[搭便车]：个人在不支付的情况下消费该物品
+  
+]
+
+.pull-right[
+.center[
+&lt;img src=./figs/freeriding.jpg&gt;
+]
+]
+
+---
+### 公共物品由市场供给不足的必然性
+.center[
+&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/4YMiH6.png height=165&gt;]
+
+- 公共物品的最优供给量应该由边际社会收益(MSB)和边际社会成本(MSC)的均衡决定
+  - SMB=SMC,即公共物品的边际社会价值恰等于提供该物品边际社会成本
+  - 确保了公共资源配置的帕累托效率(Pareto efficiency)。
+- 但是搭便车问题的存在,单纯依靠市场机制难以实现均衡
+  - 自愿供给公共物品的个人无法将**所有**受益者的支付意愿(willingness to pay)**内部化**为自己的私人收益,
+  - 缺乏足够的供给动力
+  - 市场均衡下的供给量将低于社会最优水平
+
+---
+
+### Adam Smith 关于公共物品
+
+.left-column[
+.center[
+![ 80%](./figs/smith.png)
+
+.smallest[
+Adam Smith
+
+1723-1790
+]
+]
+]
+.right-column[
+
+.smaller[
+&gt; 国家或公权力的一个重要职责是.hi[创建和维持那些公共机构和工程]
+
+&gt; 虽然这些设施对大社会极为有益，但.hi[其性质决定了个人或少数人的利润无法抵偿投入的成本]，
+
+&gt; 因此.hi[不应期待个人或少数人来建立或维护这些设施]。
+
+&gt; 此外，根据社会发展的不同阶段，执行这一职责所需的开支也大不相同
+  - 在经济起飞阶段,公共物品应更多投向基础设施、产业政策等经济建设领域
+  - 经济发展水平提高,教育、医疗等民生领域和生态环保等可持续发展领域应逐渐成为供给重心
+  - 公共物品供给应与经济发展水平相适应
+]
+
+.source[Smith, Adam, 1776, *An Enquiry into the Nature and Causes of the Wealth of Nations*]
+
+]
+
+
+---
+### 政府三种主要手段来提供公共物品
+
+- 直接供给、合同外包和凭单补贴。
+
+  - 直接供给是指政府自己生产供给公共物品
+
+  - 合同外包是指政府付费给私人企业提供
+
+  - 凭单补贴是指政府直接补贴消费者,而由消费者用补贴去购买私人供给的公共物品
+
+---
+### 应用：凭单补贴
+
+- 全民健身补贴:为鼓励全民健身,提高国民身体素质,某些国家为健身卡或体育场馆消费提供补贴。
+  - 比如日本实施"体育健身券"制度,为老年人、未成年人的健身消费提供定额补贴,补贴资金直接发放到个人,用于购买健身服务
+- 青少年体育培训补贴:为支持青少年体育事业发展,许多国家为参加体育培训的青少年提供专项补贴。
+  - 澳大利亚的"体育培训凭单计划"(Sports Voucher Program),为符合条件的5-17岁青少年提供体育培训补贴,资金直接发放给家长,用于支付孩子参加体育俱乐部或协会的培训费用。
+- 体育旅游补贴
+  - 意大利的"体育旅游补贴计划",为在指定旅行社报名参加体育旅游项目的消费者提供定额补贴,以刺激体育旅游消费。
+- 体育彩票补贴
+  - 中国体彩,部分彩票公益金以"体育健身卡"的形式直接补贴给特定人群,包括老年人、学生、低收入者等,用于购买健身服务
+
+
+---
+### 应用：社区（公共物品）还是俱乐部：青少年运动的分异
+
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+<iframe src="https://www.youtube.com/embed/AGxxBER5xJU" width="100%" height="100%" frameborder="0" allowfullscreen="true"></iframe>
+</div>
+
+
+
+---
+class:center,middle, inverse
+
+# 引申的核心议题：集体行动的逻辑
+
+The Logic of Collective Action
+
+---
+
+### 公共物品供给中的集体行动问题
+
+.pull-left[
+
+- 公共物品的非排他性和非敌对性导致了"搭便车"动机。个人可以不付成本而享受他人供给的公共物品,因而缺乏主动提供的积极性。而当所有人都持搭便车心态时,公共物品就会供给不足。
+
+- 集体行动问题：集体行动的结果影响每一个成员,但要实现群体利益最大化,需要成员做出个人牺牲,而个人未必有足够动力这样做 → 个人动机与集体目标的张力
+
+- 个人偏好整合为集体偏好,把个人决策汇总为集体决策
+]
+
+.pull-right[
+.center[
+&lt;img src=./figs/individualvsgroup.png&gt;
+]
+]
+
+---
+
+### 例子：节假日出游
+
+.center[
+&lt;img src=./figs/trafficjam.png&gt;
+
+]
+
+---
+
+### 集体行动的逻辑
+
+.left-column[
+.center[
+![80%](https://www.dropbox.com/s/e38p2ajh8af3a9g/mancurolson.png?raw=1)
+
+Mancur Olson
+
+1932-1998
+]
+]
+
+.right-column[
+
+.small[
+
+&gt; .hi[理性且自私自利的个人不会采取行动来实现他们的共同或集体利益]
+
+ - 通常认为，有共同利益的群体会自发地采取集体行动。像个人通常有望代表其个人利益采取行动一样
+ - 但事实上，群体将根据其自身利益采取行动的想法并不合乎理性且自私自利的行为前提.
+
+]
+
+.source[奥尔森, 1962, 集体行动的逻辑]
+
+]
+
+---
+
+### 集体行动的逻辑
+
+.left-column[
+.center[
+![80%](https://www.dropbox.com/s/e38p2ajh8af3a9g/mancurolson.png?raw=1)
+
+Mancur Olson
+
+1932-1998
+]
+]
+
+.right-column[
+
+&gt;  在小群体中,个体贡献的重要性更容易被察觉,集体行动更容易实现;在大群体中,个体的搭便车行为更难识别,组织成本更高,集体行动更难达成（第 48 页）。
+
+&gt; 一般来说，**社会压力和社会激励**只在较小规模的团体中起作用，在这些团体中，成员可以彼此面对面接触
+
+.source[奥尔森, 1962, 集体行动的逻辑]
+
+]
+
+---
+
+### 集体行动的逻辑
+
+.left-column[
+.center[
+![80%](https://www.dropbox.com/s/e38p2ajh8af3a9g/mancurolson.png?raw=1)
+
+Mancur Olson
+
+1932-1998
+]
+]
+
+.right-column[
+.smaller[
+&gt; 在异质群体中,成员的贡献能力和受益水平往往是不平等的。较大或较富有的成员拥有更多资源,因而有能力为集体利益做出更大贡献。而较小或较贫穷的成员资源有限,贡献能力不足。
+
+&gt; 然而,一旦集体利益实现,所有成员都能平等地享受集体利益带来的好处,无论其贡献大小。这就产生了**大对小的剥削**效应:资源雄厚者多付出而资源匮乏者少付出甚至不付出,却能平等受益。这实际上是一种利益的转移。
+
+&gt; 如果所有较小成员都选择搭便车,集体利益的供给就全靠大成员的贡献。这对大成员是不公平的。从长远看,大成员也会因此丧失贡献的积极性,导致集体利益供给不足甚至完全中止
+
+&gt; 成员禀赋的不平等加剧了搭便车问题
+]
+.source[奥尔森, 1962, 集体行动的逻辑]
+
+]
+
+---
+
+### 应对思路：选择性激励
+
+.pull-left[
+
+- 选择性激励创造排他性，能够将个人贡献与个人利益挂钩,从而激励成员积极参与集体行动
+  - 奖励贡献并惩罚**搭便车**行为
+
+  - 向缴纳会费的成员提供附加级私人商品（保险计划、获取行业出版物、折扣、津贴等）  &lt;br&gt; → 将公共物品变为俱乐部
+
+- 积极和消极激励
+]
+
+.pull-right[
+.center[
+![](https://www.dropbox.com/s/8jx5curi1qtjst8/incentives.jpg?raw=1)
+]
+
+]
+
+---
+
+### 宗教和社会团体
+
+.pull-left[
+.smaller[
+- 团体为个人提供非物质的“社会/精神产品”，例如安慰、社区、友谊、支持系统、疗法、良好氛围 
+  - 例如：宗教、俱乐部、邪教、兄弟会/姐妹会、社会团体等 
+- 要成为一名好成员，您必须为团体做出贡献，而不仅仅是消耗其资源
+- 团体通常会采取以下措施的某种组合来克服搭便车的问题： 
+  - 牺牲机制：成员投资于昂贵且显眼的行为（信号）：穿着特定服装、参加会议、学习仪式、缴纳会费、食用特定饮食等 
+  - 耻辱机制：通过道德压力督促成员履行责任。没有尽到贡献义务的成员会受到谴责、排斥乃至开除。担心遭受名誉损失,成员往往会自觉地参与贡献。
+
+]
+
+]
+
+.pull-right[
+.center[
+![100%](./figs/crossfit.jpg)
+]
+
+
+]
+
+.source[Iannaconne, 1992, “Sacrifice and Stigma: Reducing Free-riding in Cults, Communes, and Other Collectives,” *Journal of Political Economy* 100(2):271-291]
+
+
+
+---
+### 应用: 社区足球场的建造
 
 .more-left[
-&lt;img src = https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/zTXjeS.png &gt;
+- 假设建社区足球场总共需要2万元
+- 集体的边际社会收益为 &lt;br&gt; `\(\quad\)` .mono[=] 0.5w .mono[+] 0.5w .mono[+] 0.4w .mono[+] 0.4w .mono[+] 0.3w .mono[+] 0.3w .mono[+] 0.3w .mono[+] 0.2w .mono[=] 2.9w
+
+- 建设费用低于**社会总收益** &lt;br&gt; .mono[--&gt;]  **建设社区足球场是划算的！**
+
+- 然而，建设费用超过了每个邻居的愿意支付意愿 &lt;br&gt; .bb[.mono[--&gt; 没有任何居民愿意投资建造社区足球场！]]
+
+- 私人部门不愿意提供公共物品 → 社会总福利受损
+
 ]
 
+.less-right[
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 居民 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 最大支付意愿 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;line-height: 110%;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:center;line-height: 110%;"&gt; 0.5w &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;line-height: 110%;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:center;line-height: 110%;"&gt; 0.5w &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;line-height: 110%;"&gt; C &lt;/td&gt;
+   &lt;td style="text-align:center;line-height: 110%;"&gt; 0.4w &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;line-height: 110%;"&gt; D &lt;/td&gt;
+   &lt;td style="text-align:center;line-height: 110%;"&gt; 0.4w &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; E &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.3w &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.3w &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; G &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.3w &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; H &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.2w &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
 
 ---
-### 互为因果
-论文中提出的模型可以表述为：
+class:center,middle, inverse
 
-$$
-`\begin{aligned}
-Y &amp; =\underbrace{\beta E(Y \mid g)}_{\text {endogeneous }}+\underbrace{\gamma_1 E(X \mid g)}_{\text {exogeneous }}+\gamma_2 X  +\underbrace{\gamma_3 g}_{\text {contextual }}+u
-\end{aligned}`
-$$
+# 俱乐部物品 
 
-这里， `\(Y\)` 是个体的行为或结果变量， `\(X\)` 是解释变量（可以是个体的特征或行为）， `\(g\)` 代表个体所在的群体（如班级、俱乐部等）， `\(E(Y|g)\)` 和 `\(E(X|g)\)` 分别表示在群体 `\(g\)` 内个体行为 `\(Y\)` 和解释变量 `\(X\)` 的平均水平。
-- 模型的参数 `\(\beta\)` 、 `\(\gamma_1\)` 、 `\(\gamma_2\)` 和 `\(\gamma_3\)` 代表不同的效应，其中 `\(\beta\)` 是内生效应参数，表示个体行为如何受到群体行为平均水平的影响； `\(\gamma_1\)`  和 `\(\gamma_2\)` 是解释变量的外生效应参数； `\(\gamma_3\)` 是群体特征的影响； `\(u\)` 是误差项。
-- "同伴"（Peers）的定义往往不是很明确，但通常指的是如班级、俱乐部等具有共同特征或共同目标的群体。群体成员可能在年龄、兴趣、地理位置或社会经济地位等方面具有相似性。在分析同伴效应时，研究人员关注的是这些群体内部成员间的相互作用及其对个体行为、态度或成就的影响。
-- 在教育回报率中，同伴效应指学生在班级环境中相互影响的过程，对个体行为的影响
-
----
-### 互为因果
-曼斯基关注的一个关键问题是群体中的同伴（peers）效应，并指出在实证研究中通常难以明确定义什么是同伴群体。尽管同伴群体通常是指如班级、俱乐部这样的集体，但这些群体的边界和构成在现实世界中可能并不清晰。
-
-进一步，曼斯基展开了模型的简约形式（Reduced Form, RF）：
-
-$$
-`\begin{aligned}
-Y &amp; =\gamma_1 /(1-\beta) E(X \mid g)+\left(\gamma_2 /(1-\beta)\right) X +\left(\gamma_3 /(1-\beta)\right) g+\tilde{u}
-\end{aligned}`
-$$
-
-该方程形式揭示的是：在考虑内生的社会效应时，个体行为 `\(Y\)` 如何受到个体特征 `\(X\)` 、同伴效应 `\(E(X|g)\)` 和群体特征 `\(g\)` 的综合影响。通过这种形式，曼斯基试图提供一种方法来估计内生社会效应的大小，同时指出在存在内生性时进行准确估计的困难。
-
-曼斯基的这篇论文为理解和分析社会互动效应提供了一个重要的理论框架，同时也指出了在实际应用这些模型时面临的挑战，特别是如何准确识别和量化这些效应。这项工作对后来的研究产生了深远的影响，促进了对社会互动和个体决策之间复杂关系更深入的理解和分析。
+Club Goods
 
 ---
 
-class: title-slide-section,inverse, middle
-## 小结: 偏误类型与解决办法
-
----
-### 有向无环图
+### 俱乐部物品 Club Goods
 
 .pull-left[
-
-- .hi.pink[教育回报率]
-- 根据理论将总体模型设定为： `\(INC = \alpha + \beta_1 EDU + \beta_2 IQ + e\)` 
-
-&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/drGBU8.png &gt;
+&lt;img src="Lec09_files/figure-html/unnamed-chunk-15-1.svg" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
-- **有向无环图**(directed acyclic graph)
-- 实心-可观测；空心-不可观测；单向箭头-因果关系；无法递归
-- EDU .mono[-&gt;] INC 直接因果路径
-- EDU .mono[&lt;-] IQ .mono[-&gt;] INC 混淆路径1
-- EDU .mono[&lt;-] e  .mono[-&gt;] INC 混淆路径2
-- 右图：干扰项条件均值独立于干预变量
-- 左图：即便控制了IQ无效
+- .hi[产权]：不明确
+- .hi[使用者]：支付加入俱乐部的费用，一旦加入后就不一定支付边际成本
+- .hi[提供者]： 通常由私人提供，但提供者通常具有**市场势力**
+- .hi[市场机制]：厂商会在 MV .mono[&gt;] MC 处定价 &lt;br&gt; .mono[--&gt;] 人为造成稀缺性 &lt;br&gt; .mono[--&gt;] 市场无谓损失
+- .hi[代表性产品]：大部分的订阅或会员制服务都是俱乐部物品( HBO、健身房、高尔夫俱乐部等) 
 ]
 
----
-### 偏回归系数
-
-- 对于LPF： `\(INC = \alpha + \beta_1 EDU + \beta_2 IQ + e\)`  
-- 两边取条件期望, 得到对应的线性CEF:
-$$
-`\begin{aligned}
-&amp;{E}(I N C \mid E D U, I Q) \\
-&amp;=\alpha+\beta_{1} E D U+\beta_{2} I Q+{E}(e \mid E D U, I Q) \\
-&amp;=\alpha+\beta_{1} E D U+\beta_{2} I Q
-\end{aligned}`
-$$
-- 对EDU求偏导：**偏回归系数**
-$$
-\frac{d {E}(INC \mid EDU, IQ)}{d EDU}=\beta_{1}
-$$
-
-`\(\beta_{1}\)` 表示在IQ固定不变，INC 的期望值（均值）随 EDU 如何变化
-
 
 ---
-### 有向无环图表达偏误类型
 
-  - 因果路径
-  - 混淆路径: A .mono[&lt;-] B .mono[-&gt;] C , B是A和C的混淆变量；混淆变量会产生相关关系 → 必须控制 
-  - 对撞路径: A .mono[-&gt;] B .mono[&lt;-] C , B是A和C的对撞变量；对撞变量不会产生相关性，但若错误地控制了就会产生相关关系
-
-- 估计X与Y的因果关系的本质是找到二者间所有的因果路径，同时排除二者间所有非因果关系路径
-
----
-### 混淆偏误（好的控制）
-
-- 混淆偏误是指在X和Y之间存在未截断的混淆路径，造成X和Y的相关性不仅包含因果关系，还包含非因果关系
-
-- 截断混淆路径是通过给定混淆变量（conditional on confounding variable）为条件，从而排除混淆变量的干扰。给定混淆变量可以简单的理解为固定混淆变量的值。在关系图中，我们加个方框表示这个变量是给定的
-
-- 当混淆变量给定时，X和Y的相关性就与混淆变量无关，二者相关性就是因果关系
+### 俱乐部物品 Club Goods
 
 .center[
-![H1mMrc](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/H1mMrc.png)
+![](./figs/clubgoods.png)
 ]
 
 ---
-### 过度控制偏误
 
-- 过度控制偏误是指控制了因果路径上的变量造成的偏误
 
-- 在研究中我们要避免控制受X影响并会影响Y的中介变量，否则会造成过度控制偏差
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
+---
+### 应用：俱乐部
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+<iframe src="https://www.youtube.com/embed/ZvgFTxhQw1s" width="100%" height="100%" frameborder="0" allowfullscreen="true"></iframe>
+</div>
+
+
+---
+
+### 俱乐部物品的经济学分析
+
+
+- 非敌对性 (潜在排他性)：非敌对性 意味着一个成员的消费不会减少其他成员可消费的数量,而排他性允许提供者收取费用并控制访问
+
+- 俱乐部物品的成本结构：即高固定成本和低可变成本,意味着规模经济的显著作用。随着越来越多的成员加入俱乐部,平均到每个成员的提供成本下降。这使得拥有更大成员基础的俱乐部物品在财务上更加可行,因为固定成本可以分摊到更多的个人身上。
+
+- 虽然俱乐部物品最初是非敌对性的,但随着成员数量的增加,它们可能会变得拥挤
+  - 面临扩大会员和保持质量的权衡取舍
+  - 排他性还允许价格歧视和针对性供：分层会员 + 基于使用强度的定价
+
+- 虽然俱乐部物品能够由私人提供，但如果存在显著的正外部性或公平问题，则需要政府干预
+
+  
+
+
+---
+
+### 应用：俱乐部最优规模边际决策的三体维度
+
+- .hi-purple[容量提供Provision]:提供最优容量，使为减少拥挤成本congestion costs给成员带来的边际收益总和(**sum of MB**)等于提供额外容量的边际成本(**MC**)
+  - 在保持成员数量不变下,更大的容量意味着更少的拥挤,但提供额外的容量的成本是高昂的
+
+- .hi-purple[容量利用Utilization]:收取最优费用,使成员消费的边际收益(**MB**)等于施加于其他成员的拥挤成本的边际成本(**MC**)
+  - 在给定容量下，收费太低会导致过度拥挤/过度利用;收费太高则会导致利用不足
+
+- .hi-purple[成员资格Membership]:新成员加入,直到成员资格的边际收益(**MB**)(会员均摊固定成本的降低)等于会员规模扩大带来的额外拥挤成本(**MC**)
+
+
+---
+
+### 最优会员费经济学
+
+.left-column[
 .center[
-![gVegRq](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/gVegRq.png)
-.center[.cap[图：过度控制偏差]]
+membershipfee
+]
 ]
 
-- 控制了生活规律，就截断了一条因果路径，估计得到的只是锻炼对健康的直接因果关系，相当于**低估**真实值
+.right-column[
+
+
+- 通常采用两部分定价方案 
+  
+  1. （高）固定预付会员费 
+      - 涵盖容量成本 
+  
+  2. （低）每单位使用费 
+      - 确保容量得到最优利用
+
+]
 
 ---
-### 对撞偏误
 
-- 对撞偏误可以理解为当给定两个变量的共同结果（对撞变量） 时（或者对撞变量的延伸结果变量），两个变量间会产生一个衍生路径。 衍生路径会造成两个原本不相关的变量变为相关，或造成两个原本相关 的变量的相关性发生改变。
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
+### 美国人组建协会的倾向 → 生产关系
+
+.left-column[
 .center[
-![Uldp6M](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/Uldp6M.png).center[.cap[图：对撞偏误]]
+tocqueville.jpg
+
+.smallest[
+
+托克维尔
+
+1805-1859
 ]
----
-### 对撞偏误
-
-.center[
-&lt;img src="https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/0lB77J.png" height="200"&gt;
-]
-.center[
-&lt;img src="https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/tCw3Dn.png" height="200"&gt;
-]
-
----
-### 偏误的解决办法
-在面对社会科学研究中的偏误时，我们可以采取一系列步骤来识别和解决这些问题。这些步骤包括：
-
-1. 深入了解数据生成过程
-2. 寻找偏误的潜在来源
-3. 建立有向无环图 (DAG)
-4. 寻找对应的解决办法
-
----
-### 教育回报率的例子
-
-考虑一个简单的案例，我们想要估计教育对收入的影响：
-
-- 假设我们最初通过下面线性总体模型 (LPF) 来估计教育的效应：
- `$$INC_{it} = \alpha + \beta_{1} EDU_{it} + \varepsilon_{it}$$`
-
-- 当可观测变量（如性别、年龄）和不可观测变量同时进入误差项 `\(\varepsilon_{it}\)` 时，导致我们无法准确识别因果影响系数 `\(\beta\)`：
-
-.center[
-&lt;img src =https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/AxVxif.png&gt;
-]
-*将性别和年龄作为控制变量加入模型中，可以帮助我们更准确地估计教育对收入的影响*
-
----
-### 解决办法
-
-为了解决这个问题，我们可以将误差项 `\(\varepsilon_{it}\)` 中的可观测变量分离出来进行控制：
-
-- 通过将年龄和性别作为控制变量纳入模型，我们可以得到改进的模型：
-`$$INC_{it} = \alpha + \beta_{1} EDU_{it} + \beta_{2} AGE_{it} + \beta_{3} GENDER_{i} + e_{it}$$`
-
-- 这样， `\(e_{it}\)`  就只包含不可观测的变量（如个性和竞争意识），从而帮助我们更准确地估计教育的真实效应。
-- `\(A G E_{i t}\)` 和 `\(E D U_{i t}\)` 为时变变量； `\(G E N D E R_{i}\)` 为非时变变量（虚拟变量、类别变量）
-
-.center[
-![DlOEnk](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/DlOEnk.png)
-]
----
-### 例子：解决办法
-在面对复杂的因果关系时，特别是当结果变量与干预变量可能存在互为因果的关系时，我们需要采取更精细化的方法来识别和估计因果效应。
-
-#### 进一步分解误差项
-
-一个有效的策略是将误差项 `\(\varepsilon_{it}\)` 进一步分解为不可观测的非时变变量 `\(\alpha_i\)` 和不可观测的时变变量 `\(u_{it}\)` ，即：
-
-`$$INC_{it} = \alpha + \beta_{1} EDU_{it} + \beta_{2} AGE_{it} + \beta_{3} GENDER_{i} + \alpha_{i} + u_{it}$$`
-
-这样做的目的是尝试隔离和控制那些可能导致偏误的不可观测因素。
-
-
----
-#### 控制不可观测的非时变变量
-
-- 如果我们认为混淆路径主要是由 `\(\alpha_i\)` 造成的，那么我们可以通过控制 `\(\alpha_i\)` 来截断这些混淆路径。
-- 面板数据分析法提供了一种有效的方式来达成这一目标，通过考虑数据中的时间维度来控制不可观测的非时变变量。
-
-
-.center[
-
-![](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/IGD9bh.png)
-]
-
----
-在社会科学研究中，尤其是在处理可能存在内生性问题的情形时，分离可观测和不可观测变量对于确保因果推断的准确性至关重要。然而，实际上，很难直接在误差项 `\(\varepsilon_{it}\)` 中区分这两类变量。这就需要我们采取一些特别的方法来解决这个问题，其中引入工具变量 `\(Z_i\)` 是一种有效的策略。
-
-#### 引入工具变量
-
-工具变量 `\(Z_i\)` 的引入旨在帮助分解干预变量$EDU_{it}$中与误差项$e_{it}$无关的部分，即：
-
-`$$EDU_{it} = \widehat{EDU_{it}} + v_{it}$$`
-
-这里的 `\(\widehat{EDU_{it}}\)` 表示 `\(EDU_{it}\)` 中与 `\(e_{it}\)` 无关的部分，而 `\(v_{it}\)` 则是剩余的部分，可能与 `\(e_{it}\)` 相关。通过这种分解，我们能够更清晰地识别出 `\(EDU_{it}\)` 对结果变量 `\(Y\)` 的影响，而不被 `\(e_{it}\)` 的混淆所影响。
-
-
----
-#### 引入工具变量
-工具变量需要满足两个主要条件：
-
-1. **外生性**：工具变量 `\(Z_i\)` 必须与误差项 `\(e_{it}\)` 无关，这意味着它不受模型中未观察到的变量的影响。
-2. **相关性**：工具变量 `\(Z_i\)` 必须与干预变量 `\(EDU_{it}\)` 有统计上的相关性，但这种相关性不通过误差项 `\(e_{it}\)` 产生。
-
-.center[
-&lt;img src="https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/t36Yi3.png" height="220"&gt;
-]
----
-### 选择偏误（Selection Bias）
-
-指在选择研究样本的过程中由于非随机选择导致的研究结果系统性偏差。选择偏误可以以多种形式出现，主要包括以下几种：
-
-1. **自我选择偏误（Self-Selection Bias）**：
-   发生在研究参与者能够自主决定是否参加研究的情况下。参与者的选择是主动的，基于他们自己的特征、偏好或行为。这导致了参与研究的样本可能在某些关键特征上与那些选择不参与的个体有显著差异
-2. **样本选择偏误（Sample-Selection Bias）**：发生在从总体中选择样本的过程中由于非随机选择而引起的偏差。主要特点是选择过程受到某种机制的影响，导致最终的样本不能准确反映整个总体的特性：研究设计的限制、数据收集方法等问题导致某些观测值更容易被包括或排除在样本之外
-  - 假设想评估某种培训或教育对个体收入的影响。然而，如果我们的样本仅仅包括了选择参加工作的个体，那么我们的样本并不是从总体随机抽取的。这种情况下，选择参加工作的决定（由"Utility"变量表示）可能与个体的教育水平和其他未观察到的因素（如个人能力、动机等）有关，从而导致样本中的干预变量（如教育水平）和不可观测因素 `\(e\)` 之间存在相关性。这种情况下，就是因样本选择产生了**对撞偏误**（collider bias）
-
----
-#### 解决方法
-.center[
-&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/EEzLAW.png height=220&gt;
-]
-
-- 尽管两者都会影响研究结果的代表性和准确性，但解决这两种偏误的策略可能不同。
-- **自我选择偏误**，可能需要采用如 **使用倾向得分匹配**通过估计个体选择参加工作的概率（倾向得分），然后在选择参加工作和未选择参加工作的个体之间进行匹配，以创建一个在观察到的协变量上平衡的样本
-- **样本选择偏误**，需要设计更加周密的抽样方案或统计方法来调整选择过程中的偏差：
-  - **采用Heckman两步法**。第一步使用一个选择方程来建模个体选择参加工作的决策，然后在第二步的收入方程中加入从第一步得到的逆米尔斯比率（Inverse Mills Ratio）作为控制变量，以纠正选择偏差
-
----
-### 解决办法小结
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-![MpdV2x](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/MpdV2x.png)
-&lt;br&gt;
-
-
----
-class: title-slide-section,inverse, middle
-# 从观测样本到客观事实 &lt;br&gt; → 避免 Garbage in, Garbage out
-
----
-
-### 理论、总体分布与样本
-
-&lt;br&gt;
-
-&lt;img src="./figs/BigPicture3.png"&gt;
-
----
-### 假设检验和统计推断
-
-是统计学中两个基本且互相关联的概念。它们共同构成了科学研究中推断总体参数的基础
-
-### 假设检验
-- 假设检验是一种统计方法，用于判断样本数据是否支持对总体参数的某个假设。通常涉及两个假设：零假设（ `\(H_0\)` ）和备择假设（ `\(H_1\)` ）
-- 零假设通常表示为没有效应或没有差异，而备择假设表示有效应或有差异。
-
-#### 步骤：
-- 设定零假设和备择假设。
-- 选择合适的检验统计量。
-- 确定显著性水平（通常是0.05）。
-- 根据样本数据计算检验统计量和p值。
-- 根据p值决定是否拒绝零假设。
-
----
-### 假设检验和统计推断
-### 统计推断
-
-在进行经济学或社会科学研究时，我们经常面临从样本数据中推断总体特征的需求。统计推断提供了一种方法，让我们能够基于样本信息来估计和推断总体参数（如平均值、比例或回归系数等），并评估这些估计的可靠性。
-
-- 统计推断的目标是基于样本数据对总体进行可靠的推断
-- 点估计：提供一个单一的数值作为总体参数的估计
-- 区间估计：提供一个区间，预计总体参数会落在这个区间内。最常见的是置信区间
----
-### 假设检验和统计推断
-### 统计推断
-#### 线性投影模型（LPF）
-
-在引入统计推断的背景下，我们通常从一个确定的模型开始，如线性投影模型
-(LPF)，它假设一个变量（比如个体收入Y）可以通过一组其他变量 (X) 的线性组合来预测, 同时考虑到一个误差项(e), 这个误差项代表了除 `\(X\)` 之外的其他所有影响Y的因素
-$$
-Y=X^{\prime} \beta+e, \quad E(e \mid X)=0
-$$
-目标是使用最小二乘法 (OLS) 来估计模型中的系数 `\(\beta\)`, 这些系数告诉我们变量 $X $ 如何线性影响变量 `\(Y\)` 
-
----
-### 统计推断的关键
-
-为了进行有效的统计推断，我们需要理解样本估计值与总体真值之间的关系。
-
-- 大样本理论告诉我们，随着样本量的增加，通过样本计算得到的系数估计值会越来越接近总体真实的系数值。
-  - **样本量**：在n&gt;200，样本估计值 `\(\hat{\beta}\)` 是总体估计值(真实值)的 `\({\beta}\)` 的一致估计( `\(\operatorname{plim} \hat{\beta}=\beta\)`)
-
-- 标准误差给出了估计值可能的变异范围
-  - 较小的标准误差意味着我们的估计值更加接近总体真实值
-
----
-### 功效分析
-
-除了经济领域注重识别过程外，通常研究者会进行功效分析来确定在**预期效应大小**和所选**显著性水平**下，达到足够统计功效所需的**最小样本量**。这有助于确保研究设计可以有效地检测到感兴趣的效应，同时控制研究的成本和可行性。
-
-### 统计功效
-
-以教育回报为例：为确保研究设计拥有足够的统计功效，即：假如教育真的对收入有显著影响，我们能够检测到这一点。反之，我们的研究设计没有足够的统计功效，那么我们可能会错误地得出教育对收入无显著影响的结论
-- 这就好比我们试图听到远处的轻声细语，但周围的噪音太大，我们的“听力”（即统计功效）不足以分辨出那些微弱的声音
-
-
----
-### 样本大小
-
-- 样本大小起到了决定性作用。
-- 如果我们只调查了很少数的毕业生，那么得出的结论可能会因为样本太小而不具代表性
-  - 试图通过观察一个小村庄的天气来推断整个国家的气候一样不可靠。增加样本大小，相当于增加了研究“听力”，让我们更有可能准确捕捉到教育对收入的影响
-
-### 显著性水平
-
-- 显著性水平决定了我们愿意接受多大风险，错误地拒绝零假设（事实是没有效应，但拒绝了）
-  - 设定显著性水平，就像是设置一个“听力测试”的通过标准，决定了什么样的结果我们才认为是显著的
-  - 如果我们设置的显著性水平过于严格（例如α=0.01），那么我们可能错过一些真正的效应，因为我们要求的证据过于强硬
-  - 相反，如果显著性水平过于宽松（例如α=0.10），我们可能会错误地认为教育对收入有显著影响，尽管实际上这种影响可能只是随机变化的结果。
-
-
----
-### 教育回报率的情景化例子
-
-- 想象我们正在研究一个大型的数据集，包括成千上万的个人，旨在分析高等教育对个人收入的影响。
-- 我们决定设置显著性水平为0.05，意味着我们愿意接受5%的错误拒绝真实无效果的零假设的风险
-- 通过计算得知，为了确保80%的统计功效能够检测到教育对收入的最小显著影响，我们需要至少1000名参与者的数据
-- 通过这种设计，如果我们发现高等教育与收入增加之间有显著的相关性，就可以相对自信地说，这种关系不太可能是偶然发现的。
-  - 这就好比我们通过大量数据和合理的“听力测试”标准，准确地听到了教育对收入提升这一细微却重要的“声音”
-
----
-### 第I型错误（False Positive）→ 设定显著性水平 `\(\alpha\)`
-
-- 第I型错误，或称为假阳性，发生在错误地拒绝了一个实际为真的零假设。假设正在研究是否更高的教育水平会导致更高的收入。零假设（ `\(H_0\)` ）是教育水平不影响收入，即教育回报率为零。如果实际上教育并不影响收入，但的研究错误地得出“教育水平提高了收入”的结论，那么就犯了第一型错误。
-- 想象这就像是误判一位无辜的人有罪。设置的显著性水平（比如5%或0.05）就是愿意接受犯第一型错误的最大概率。
-
-### 第II型错误（False Negative）→ 统计功效 `\(1- \beta\)`
-
-- 第II型错误，或称为假阴性，发生在错误地没有拒绝一个实际为假的零假设。还是以教育和收入的研究为例，如果实际上更高的教育水平确实能显著提高收入，但的研究未能检测到这种影响，那么就犯了第二型错误。
-- 这就像是误判一位有罪的人无辜。统计功效衡量正确发现实际效应（如果存在的话）的能力。功效越高，越有可能正确地识别出教育对收入有显著正面影响（如果真的有的话）。功效受多种因素影响，包括样本大小、效应大小、显著性水平和数据的变异性。提高样本量、增加效应大小或接受更高的第一型错误风险都可以增加统计功效。
-
----
-
-class:center,middle
-
-.pull-left[&lt;img src="figs/power.jpg"&gt;
-.tiny[Type I error (significance level，P-value)、 statistical power(sensitivity)、expected effect size、sample size]]
-
-
-.pull-right[&lt;img src="figs/pregnant.jpg"&gt;]
-
----
-- **统计功效与样本大小**：在其他条件不变的情况下，样本大小增加会增加统计功效，使研究更有可能检测到实际存在的效应。
-- **统计功效与显著性水平**：在样本大小固定的情况下，降低显著性水平（设置更严格的标准）会降低统计功效。换句话说，更严格的判断标准使我们更难拒绝正确的零假设，除非数据提供了更强的证据。
-- **样本大小与显著性水平**：在设计研究时，研究者通常需要在保持适当统计功效的同时选择合适的样本大小和显著性水平。这通常涉及权衡，因为更大的样本需要更多的资源。
-
-
----
-
-### Type I/II error
-
-.center[
-&lt;video controls width="800" height="500"&gt;
-  &lt;source src="./video/error.mp4", type="video/mp4"&gt;
-  &lt;track label="中文" kind="subtitles" srclang="zh" src="./video/error.srt" default&gt;
-&lt;/video&gt;
-]
-
-
----
-class: title-slide-section,inverse, middle
-# 经验研究中的客观事实是什么?&lt;br&gt; → 总体意义上的模型
-
----
-
-### 理论、总体分布与样本
-
-&lt;br&gt;
-
-&lt;img src="./figs/BigPicture2.png"&gt;
-
----
-- 模型代表什么?
-
---
-
-  - 总体意义上的抽象关系
-
-### 条件分布 (Conditional Distribution)
-- 刻画变量间关系
-  - 观察**条件期望**是最直接、简单办法
-- 最感兴趣的 `\(Y\)` 与 `\(X\)` 是随机变量
-    - `\(Y\)` 是结果变量（结果变量|结果变量|被解释变量）; `\(X\)` 是干预变量（干预变量|干预变量|解释变量）. 
-    - 是随机变量就会有概率分布，而最常见的是**正态分布**
-
----
-### 例子：想知道工资与性别的关系
-
-- 工资对数的条件均值可以写成如下形式：
-
-$$ E[ log(wage) \mid gender = man ] = 3.05 $$
-
-$$ E[ log(wage) \mid gender = woman ] = 2.81 $$
-若是我们还好奇在种族与工资的关系，还可以增加新的条件、
-$$ E[\log (wage ) \mid gender =\operatorname{man}, race = white]=3.07 $$
-$$ E [\log ( wage ) \mid gender = woman, race = black ]=2.73 $$
-
----
-### 通过条件密度函数获得条件期望值
-- 离散形式： `$$P(y|x)=\frac{P(y,x)}{P(x)}$$` 其中 `\(P(x)=\sum_{i=1}^{N}P(y_{i},x)\)` ，条件密度相当于联合密度 `\(f(y, x)\)` 在保持x不变情况下的随机化“切片”
-- **概率迭代法则**
-`$$P(y)=\sum_{i=1}^{N}P(y|x_{i})P(x_{i})$$`   
-- **方差加法法则**
-`$$Var(Y)=E[V(Y|X)]+V[E(Y|X)]$$`
-
----
-### 通过条件密度函数获得条件期望值
-
- **为什么**用联合概率分布函数和联合密度函数也可以捕捉两个变量的关系? 
- 
---
-
-.middle[
-.center[
-&lt;img src="figs/logWage_Exp.png" height="450"&gt;
 ]
 ]
 
+.right-column[
+
+.smaller[
+&gt; 1.协会的多样性:涵盖了商业、宗教、道德、教育和慈善等领域
+
+&gt; 2.结社自由:组建协会的便利性和自由度被视为民主社会的标志，它反映了集会自由和公民社会相对于国家控制的自主性
+
+&gt; 3.参与文化:将协会视为公民积极参与公共事务的载体，通过为共同事业而联合,培养了公民参与和共同责任的意识。
+
+&gt; 4.个人主义的制衡:协会被视为对个人主义原子化倾向的解药,在民主的个体化力量面前培育社会凝聚力、互助和社区意识
+
+&gt; 5.自愿精神:源于公民的自愿倡议,而非国家权力的强加。这种自愿精神是美国公民社会理念的核心
+
+&gt; 6.社会资本:预示了社会资本的概念——协会所产生的信任、互惠和合作的网络,是健康民主的支柱 
+
+]
+
+.source[de Tocqueville, Alexis, 1840, *Democracy in America*]
+]
 
 ---
-class: title-slide-section,inverse,middle
-# 特性良好且能被认知的客观事实&lt;br&gt; → 经验研究是有边界的
+
+class: inverse, center, middle
+
+# 公共池资源
+
+Common Pool Resources
 
 ---
-### 条件期望函数及其误差项的优良性质
+### 公共池资源 Common Pool Resources
 
 .pull-left[
-- Conditional Expectation Function Error （CEFE）
-$$ e = Y - E(Y|X) = Y - m(x) $$
-    - `\(X\)` 是随机变量， `\(E(Y|X)\)` 也是随机变量
-    - `\(e\)` 是误差项，也是随机变量，具有概率分布
+&lt;img src="Lec09_files/figure-html/unnamed-chunk-17-1.svg" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
-- CEFE优良性质
-
-    1. `\(E(e|X)=0\)`
-    1. `\(E(e)=0\)`
-    1. 对于随机变量 `\(X\)` 任意函数形式 `\(h(x)\)` , `\(E(h(X)·e)=0\)` → 通常利用该性质进行线性变换
-
+- .hi[产权]：不够明确
+- .hi[使用者]：享受到**所有边际利益**，但**完全不承担边际成本**
+- .hi[提供者]： 自然或者集体
+- .hi[市场机制]：通常没有规范化市场，也就无法有效地管理
+  - **敌对性**会让使用者有**紧张感**(每个人都想比其他人更早使用资源)
+  - **非排他性**导致没人愿意去维护
+  - **结果**不是**过度使用**就是**被遗弃**；拥堵、污染或闲置
+- .hi[代表性产品]：道路、清洁水源、国家公园、集体宿舍
 ]
 
----
-### CEF与总体模型间的关系
-
-
-step1: 定义条件期望函数 `\(m(x) = E(Y|X)\)`
-
-step2: 定义条件期望函数的误差项 `\(e = Y - m(x)\)`
-
-推导出：$$Y = m(x) + e$$
-
-因此模型类别由 `\(m(x)\)` 形式决定：如截距模型，线性模型，Logit模型等
 
 ---
-### CEF是从样本到总体的桥梁 
 
-- 期望本身是总体概念（价值观）
-- 实际中，我们是基于样本信息推断总体信息，例如用样本均值推断总体期望
-- 将CEF写作基于样本的CEF:
-`\(E[Y_i \mid {X}_{i}]\)` 
-
-从图形上看CEF...
-
----
-class: clear, center, middle
-
-条件分布 `\({Y}_{i}\)`,  对于8, ..., 22不同教育年限的 `\({X}_{i}=x\)`.
-
-
-
-&lt;img src="Lec09_files/figure-html/fig_cef_dist-1.svg" style="display: block; margin: auto;" /&gt;
----
-class: clear, middle, center
-条件期望函数 `\(\mathop{E}\left[ {Y}_{i}\mid {X}_{i} \right]\)` 其实是这些条件分布的均值
-
-&lt;img src="Lec09_files/figure-html/fig_cef-1.svg" style="display: block; margin: auto;" /&gt;
-
----
-class: clear, middle, center
-
-若只关注条件期望函数 `\(\mathop{E}\left[ {Y}_{i}\mid {X}_{i} \right]\)`...
-
-&lt;img src="Lec09_files/figure-html/fig_cef_only-1.svg" style="display: block; margin: auto;" /&gt;
----
-## 实际数据（MHE）
-
-.middle[
+### 公共池资源
+.left-column[
 .center[
-&lt;img src="figs/MHE-CEF.png" height="500"&gt;
+![ 80%](./figs/ostrom.jpg)
+
+.smallest[
+Elinor Ostrom
+
+1933—2012
+
+&lt;img src=./figs/Nobel.png height=22&gt; Economics Nobel 2009
 ]
 ]
+]
 
+.right-column[
 
----
-###  CEF的性质1
+.smaller[
+- 管理公共池资源的有效解决方案有很多 
+  - 政府管理 
+  - 纯的私有财产 
+  - 公民社会组织 
 
-.hi.pink[分解结构清楚:] CEF将观测的结果变量分解成两部分
+- 解决搭便车问题、**消除过度使用**资源的动机、**缺乏维护**
+  - 数字技术：区块链、物联网等技术
+]
 
-$$
-`\begin{align}
-  {Y}_{i} = \color{#e64173}{\mathop{E}\left[ {Y}_{i}\mid {X}_{i} \right]} + \color{#6A5ACD}{e_i}
-\end{align}`
-$$
-
-1. 被 `\(\color{#e64173}{{X}_{i}}\)` 解释的部分(_i.e._, CEF `\(\color{#e64173}{\mathop{E}\left[ {Y}_{i} \mid {X}_{i} \right]}\)`)
-&lt;br&gt;
-1. 具有特殊性质的干扰项&lt;sup&gt;.pink[†]&lt;/sup&gt;
-&lt;br&gt;&lt;br&gt; i.  `\(\color{#6A5ACD}{e_i}\)` 均值独立于  `\({X}_{i}\)`, _i.e._, `\(\mathop{E}\left[ \color{#6A5ACD}{e_i} \mid {X}_{i} \right] = 0\)`
-&lt;br&gt; ii.  `\(\color{#6A5ACD}{e_i}\)` 与 `\({X}_{i}\)`的任何函数不相干
-
-
-.footnote[.pink[†] 回忆之前的例子]
-
----
-###  CEF的性质2
-.hi.pink[ANOVA 定理:]
-
-无条件方差与条件方差的关系：可将结果变量 `\(Y_i\)` 方差分解为两部分
-
-$$
-`\begin{align}
-  \mathop{{Var}} \left( {Y}_{i} \right) =  \mathop{E}\left[ \mathop{{Var}} \left( {Y}_{i} \mid {X}_{i} \right) \right]+ \mathop{{Var}} \left( \color{#e64173}{\mathop{E}\left[ {Y}_{i} \mid {X}_{i} \right]} \right) 
-\end{align}`
-$$
- 
-1. 组内方差(的均值)(within group variance)。每个"等级"内Y的分布的方差的期望值(均值)。
-
-2. 组间方差(across group variance)。条件期望值在"等级"间的分布的方差
-
-解释为：结果变量的变动 = CEF的方差(CEF可以解释) .mono[+] 干扰项的方差(CEF无法解释)
-
----
-###  CEF的性质3
-
-.hi.pink[良好预测:]  `\(\mathop{m}\left( {X}_{i} \right)\)` 为 `\({X}_{i}\)` 任意形式函数, CEF是最小均方误差（**性质5**）
-$$
-`\begin{align}
-  \color{#e64173}{\mathop{E}\left[ {Y}_{i} \mid {X}_{i} \right]} = \underset{\mathop{m}\left( {X}_{i} \right)}{{arg min}}\enspace \mathop{E}\left[ \left( {Y}_{i} - \mathop{m}\left( {X}_{i} \right) \right)^2 \right]
-\end{align}`
-$$
-CEF是给定 `\({X}_{i}\)` 能够预测 `\({Y}_{i}\)` 最好预测方式.
-
-
-
- `\(m\)` 可以是任意形式函数（包含非线性），但更偏好**线性投影函数（LPF）**(也叫总体回归模型)
-
----
-### 练习：手算条件期望 → 从数据出发
-
-[CEF基于数据出发，对于理解变量间至关重要](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/yh7RUZ.png)
-
-研究问题 `\({E}\left[ {工资}_i \mid {运动技能}_i \right]\)` :
-
-- step 1：选取 `\(Y\)` 与 `\(X\)` (从研究问题出发)
-
-- step 2：在总体中重复抽样，获得样本
-
-- step 3：对 `\(X\)` "切片" ，获得 `\(Y \mid X=x\)` 的 条件密度和条件分布 
-
-- step 4：制作联合密度表格  `\(P(Y=y , X=x)\)`
-
-- step 5：计算边缘密度 `\(P(X=x)\)`
-
-- step 6：制作条件密度表格 `\(P(Y \mid X=x) = \frac{P(Y=y , X=x)} {P(X=x)}\)`
-
-- step 7：计算条件期望 `\(E(Y \mid X=x)\)` 
-
----
-### 条件期望函数及其误差项的优良性质
-
-- **性质1** (期望迭代法则,law of iterated expectation)
-$$
-E[E[Y \mid X]]=E[Y]
-$$
-
- `\(E[Y|X]\)` 的期望值是 `\([Y]\)` 的无条件期望值。
- &lt;br/&gt;&lt;br/&gt;
-例如：
-![Fx16GT](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/Fx16GT.png)
----
-- **性质1**推论
-`$$E\left[E[Y|X_{1},X_{2}]|X_{1}\right]=E[Y|X_{1}]$$`
-    - 内部期望值以X1和X2同时为条件,外部期望值只以X1为条件。迭代后的期望值可以得到简单的答案E[Y|X1],即只以X1为条件的期望值。《E》表述为"较小的信息集获胜" → 以小谋大
-&lt;br/&gt;&lt;br/&gt;
-例：
-![Q65T2b](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/Q65T2b.png)
-
----
-- **性质2** (线性) `$$E[a(X)Y+b(X)|X]=a(X)E[Y|X]+b(X)$$` 对于函数 `\(a(\cdot)\)` and `\(b(\cdot)\)`. 
- &lt;br/&gt;&lt;br/&gt;
- &lt;br/&gt;&lt;br/&gt;
-
-- **性质3**（独立意味着均值独立）
- &lt;br/&gt;&lt;br/&gt;
-若 `\(X\)` 与 `\(Y\)` 独立, 则 `\(E[Y|X]=E[Y]\)`
-
----
-- **性质3**的证明 (以离散变量为例): 
-$$
-`\begin{eqnarray}
-E[Y|X]&amp;=&amp;\sum_{i=1}^{N}y_{i}P(Y=y_{i}|X) \\
-	  &amp;=&amp;\sum_{i=1}^{N}y_{i}\frac{P(Y=y_{i},X)}{P(X)} \\
-	  &amp;=&amp;\sum_{i=1}^{N}y_{i}\frac{P(Y=y_{i})\times P(X)}{P(X)} 
-	  &amp;=&amp;E[Y].
-\end{eqnarray}`
-$$
-用到了 `\(P(Y=y,X=x)=P(X=x)P(Y=y)\)` .
-
----
-    
-- **性质4** （均值独立意味着不相干）
-&lt;br/&gt;
-若 `\(E[Y|X]=E[Y]\)`, 则 `\(Cov(X,Y)=0\)`.
-    -  `\(E[Y|X]=E[Y]\)` is 均值独立(**mean independence**)
-    - 记住: 均值独立意味着不相干，反过来不一定成立.
-
-- **性质5** （条件期望值是最小均值平方误差）
-&lt;br/&gt;
-假设对于任意函数 `\(g\)` 有 `\(E[Y^{2}]&lt;\infty\)` 并 `\(E[g(X)]&lt;\infty\)` , 那么 `$$E[(Y-\mu(X))^{2}]\leq E[(Y-g(X))^{2}]$$` 
-其中 `\(\mu(X)=E[Y|X]\)`
-&lt;br/&gt;
-解读:
-    - 假设使用某种函数形式 `\(g\)` 和数据 `\(X\)` 来解释 `\(Y\)`
-    -  那么 `\(g\)` 的最小均方误（ **the mean squared error** ）就是条件期望。
-
-
----
-
-- **性质5**的证明:
-$$
-`\begin{eqnarray}
-E[(Y-g(X))^{2}]	&amp;=&amp;E[\left\{ \left(Y-\mu(X)\right)+\left(\mu(X)-g(X)\right)\right\} ^{2}]\\
-	&amp;=&amp;E\left[\left(Y-\mu(X)\right)^{2}\right]+E\left[\left(\mu(X)-g(X)\right)^{2}\right]\\
-	&amp;+&amp; 2E\left[\left(Y-\mu(X)\right)\left(\mu(X)-g(X)\right)\right].
-\end{eqnarray}`
-$$
-使用期望迭代法则
-$$
-`\begin{eqnarray}
-E\left[\left(Y-\mu(X)\right)\left(\mu(X)-g(X)\right)\right]	&amp;=&amp;E\left\{E\left[\left(Y-\mu(X)\right)\left(\mu(X)-g(X)\right)|X\right]\right\} \\
-	&amp;=&amp;E\left\{ \left(\mu(X)-g(X)\right)\left(E[Y|X]-\mu(X)\right)\right\} \\
-	&amp;=&amp;0
-\end{eqnarray}`
-$$
-所以，
-$$
-E[(Y-g(X))^{2}]=E\left[\left(Y-\mu(X)\right)^{2}\right]+E\left[\left(\mu(X)-g(X)\right)^{2}\right]
-$$ 
-上式取最小值，当且仅当 `\(g(X)=\mu(X)\)`.
-
-
----
-### 经验研究为什么从LPF而不是CEF开始？
-
-- .bb[Meaningful] !!  → 实证模型的建立基于的理论模型
-
-- 线性CEF不是也有经济意义么? 未必。
-&lt;br&gt; → 一个原因是：总体模型 `\(m(x1,x2)\)` 等价线性CEF形式为 `\(m\left(x_{1}, x_{2}\right)=x_{1} \beta_{1}+x_{2} \beta_{2}+x_{1}^{2} \beta_{3}+x_{2}^{2} \beta_{4}+x_{1} x_{2} \beta_{5}+\beta_{6}\)`  
-
-- 转向LPF(linear projection function) 
-&lt;br&gt; `\(m^{LPF}\left(x_{1}, x_{2}\right)=x_{1} \beta_{1}+x_{2}\beta_{2}+\beta_{3}\)` 
-
----
-### 经验研究为什么从LPF而不是CEF开始？
-
-- LPF是MSE最小的线性函数:
-
-$$
-`\begin{align}
-  \beta = \underset{b}{{arg min}}\thinspace \mathop{E}\left[ \left( {Y}_{i} - {X}_{i}'b \right)^2 \right]
-\end{align}`
-$$
-
-- 依据一阶条件: `\(\mathop{E}\left[ {X}_{i} \left( {Y}_{i} - {X}_{i}'b \right) \right] = 0\)`得到 `\(b\)` 的最优解 `\(\beta = \mathop{E}\left[ {X}_{i} {X}_{i}' \right]^{-1} \mathop{E}\left[ {X}_{i} {Y}_{i} \right]\)`
-- `\(X_{i}^{\prime} \beta\)` 是 `\(Y_i\)` 在 `\(X_i\)` 上的最优线性投影（best linear projection, BLP）, 向量 `\(\beta\)` 是线性投影系数（linear projection coefficient） 
-- 根据一阶条件重新构建 `\(E\left[X_{i}\left(Y_{i}-X_{i}^{\prime} \beta\right)\right]=0\)` , 也就是说 `\(Y\)` 的线性投影函数误差(linear projection function error,LPFE )
-`\(e_i = Y_i - X_{i}^{\prime} \beta\)` 与 `\(X_i\)` 不相关, 也就是说LPF具有
-`\(E(X_i e_i) = 0\)` (矩阵形式为 `\(E[Xe]=0\)` )
-的性质.
-
-- .hi.pink[思考：]与CEFE的性质比较
-
----
-### 经验研究为什么从LPF而不是CEF开始？
-
-- .bb[补充一个知识点]:CEF 还有一个非常好的性质 → 预测
-
-- 好”的**准则**。定义**损失函数(loss function)**,  表达为常用的二次型形式：
-
-$$ L(Y, g(x))=(Y-g(x))^{2} $$
-- 其中 `\(L(·)\)` 是r.v.，取期望得**均值平方误差（mean squared error，MSE）**，简称**均方误**
-$$ R(Y, g(x)) = E[L(Y, g(x))] = E[(Y-g(x))^{2}] $$
-
----
-### 经验研究为什么从LPF而不是CEF开始？
-
-- CEF是MMSE → LPF 也是MMSE。继续使用最小化MSE**准则**：
-$$
-`\begin{align}
-  \beta = \underset{b}{{arg min}}\thinspace \mathop{E}\left[ \left( m({X_i})-{X_i}^{\prime} b \right)^2 \right]
-\end{align}`
-$$
-
-- 回归与条件期望函数定理（ Regression-CEF Theorem）
-- 结论：
-  - **LPF是CEF的MMSE(最小均方误)和BLP(最优线性预测)**
-  - 通常而言，CEF不一定是线性的(才需要多项式表达) &lt;br&gt; 但CEF若是线性的, 那么LPF就是CEF
-
----
-class: clear, middle, center
-**CEF**
-
-&lt;img src="Lec09_files/figure-html/fig_reg_cef-1.svg" style="display: block; margin: auto;" /&gt;
----
-class: clear, center, middle
-
-**LPF**去估计**CEF**
-
-&lt;img src="Lec09_files/figure-html/fig_reg_cef2-1.svg" style="display: block; margin: auto;" /&gt;
----
-
-### 实际数据
-
-.middle[
 .center[
-&lt;img src=https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/RgBq9Q.png height="500"&gt;
+![ 25%](./figs/governingthecommons.jpg)
 ]
 ]
 
 ---
-### 推断因果是基于CEF而不是LPF
 
+### 公共池资源
 
-- 若CEF是相关关系的 .mono[--&gt;] LPF是相关的
+.left-column[
+.center[
+![ 80%](./figs/ostrom.jpg)
 
-- 若CEF是因果关系 .mono[--&gt;] LPF是因果的
+.smallest[
+Elinor Ostrom
 
-- 问题是：怎样获得一个因果的 CEF ？(客观)
+1933—2012
 
-  .mono[--&gt;]  必须依赖于理论认知(主观) 
+&lt;img src=./figs/Nobel.png height=22&gt; Economics Nobel 2009
+]
+]
+]
 
+.right-column[
 
----
-### 推断因果是基于CEF而不是LPF，但经验研究更多从LPF出发
+.smaller[
 
-- .hi-pink.bb[实际上]的做法是使用 LPF 进行建模(to see is to believe)
+&gt; 经典经济学模型倾向于将个人简化为理性经济人,假设他们总是追求自身利益最大化。这种假设忽视了人们在现实生活中展现出的道德情操、同理心、互帮互助等丰富特质。个人不仅仅是理性的,也是情感的、道德的存在
 
-- 由于只有 **线性CEF .mono[=] LPF**，即使使用了**模型设定**正确的LPF，      
-一部分信息(高阶项)也会**先天地**进入到了干扰项 `\(e\)` ，所以**必须**假定 **干扰项条件均值独立于干预变量** ，即  `\(E(e \mid X) = E(e)=c\)` ，才保证LPF的估计系数距离线性CEF的真实值不远
+&gt; 在分析公共资源困境时,经典模型过于聚焦个人决策,而忽视了群体的自组织能力。现实中,个人不是孤立存在的,而是嵌入在社群网络之中。人们可以通过组建志愿团体、制定公约、培育互信等方式,实现公共资源的有效治理
 
-- 即便统计推断可靠，总体是线性CEF的形式仍然是概率事件，这就凸显了**识别过程的重要性**
+&gt; 面对公共资源挑战,与其预设个人无法合作,不如去分析人们在何种条件下能够实现合作。这需要我们深入剖析个人偏好、战略互动、制度演化的动态过程,而不是简单套用静态模型
 
----
-class: title-slide-section,inverse,middle
-# 因果模型 &lt;br&gt; → 建立在潜在结果框架之下   
+&gt; 彰显了政府、市场二分法的局限。国家与私有化并非公共资源治理的唯一出路,**志愿组织、社群自治**同样大有可为
 
----
-### 理论、总体分布与样本
+]
 
-&lt;br&gt;
-&lt;img src="./figs/BigPictureC.png"&gt;
+.source[Ostrom, Elinor, 2009, “超越市场与国家：复杂经济系统的多中心治理,” 诺贝尔奖演讲]
 
----
-
-### 个体处置效应
-
--   `\(Y_{i}\)`: 对个体的 `\(i\)` **观察结果**, 每个个体都有2个**潜在结果**
--   `\(D_{i}\)`: 二元 **干预状态** 
-
-1. `\(\color{#e64173}{{Y}_{i}(1)}\)` .pink[若] `\(\color{#e64173}{{D}_i = 1}\)`
-&lt;br&gt; 表示： `\(\color{#e64173}{i}\)`  .pink[ 干预后的结果]
-
-
-2. `\(\color{#6A5ACD}{{Y}_{i}(0)}\)` .purple[若] `\(\color{#6A5ACD}{{D}_i = 0}\)`
-&lt;br&gt; 表示： `\(\color{#6A5ACD}{i}\)`  .purple[没有被干预的结果]
-
-
-两者之差就是 .hi-orange[个体处置效应], 
-$$
-`\begin{align}
-  \color{#FFA500}{\tau_i} = \color{#e64173}{{Y}_{i}(1)} - \color{#6A5ACD}{{Y}_{i}(0)}
-\end{align}`
-$$
-
-- 个体处置效应存在异质性
+]
 
 ---
 
-### 因果推断的根本难点在于反事实无法观测
 
-.hi-slate[问题是] 无法直接计算: `\(\color{#FFA500}{\tau_i} = \color{#e64173}{{Y}_{i}(1)} - \color{#6A5ACD}{{Y}_{i}(0)}\)`
+### 公共池资源
 
-- 数据上只能同时观察每个个体的 `\((Y_{i},D_{i})\)` 
+.left-column[
+.center[
+![ 80%](./figs/ostrom.jpg)
 
-- 永远无法**同时**观 `\({Y}_{i}(0)\)` 和 `\({Y}_{i}(1)\)`, 必须借助**反事实（conterfactual）**概念
+.smallest[
+Elinor Ostrom
 
+1933—2012
 
-.mono[--&gt;] **两个潜在结果只能观测其一**，这就是Holland(1986)提出的**因果推断的根本难点**
+&lt;img src=./figs/Nobel.png height=22&gt; Economics Nobel 2009
+]
+]
+]
 
----
-### 系数的重新命名
+.right-column[
+.smaller[
 
--   **个体处置效应：** `\(\color{#FFA500}{\tau_i} = \color{#e64173}{{Y}_{i}(1)} - \color{#6A5ACD}{{Y}_{i}(0)}\)` 
-    -   关键点: **因人而异**
-    -   由于潜在结果根本矛盾而永远无法获得
-    
-    
--   作为替代转向**总体平均处置效应 (Average Treatment Effect)**： 用于描述处置效应的平均效果
-    - `\(ATE=E[{Y}_{i}(1)-{Y}_{i}(0)]\)` ，ATE只是这些异质性干预的平均值。
--   干预组平均处置效应(最关注的效应，是干预行为的直接后果): 
-    - `\(ATT=E[{Y}_{i}(1)-{Y}_{i}(0)|D_{i}=1]\)`
--   控制组平均处置效应:  
-    - `\(ATU=E[{Y}_{i}(1)-{Y}_{i}(0)|D_{i}=0]\)`
--   协变量条件平均处置效应:  
-    - `\(ATE(x)=E[{Y}_{i}(1)-{Y}_{i}(0)|D_{i}=1,X_{i}=x]\)`
-    
----
-### ATE与ATT、ATU的关系
+&gt; 加勒特·哈丁在1968年提出的"公地悲剧"理论 → 悲观主义
+  - 牧场是一种公共池塘资源,每个牧民都有动机过度放牧以获取私人利益,但最终导致牧场退化,陷入"公地悲剧"
+  - 与囚徒困境博弈的逻辑类似,即追求个体利益最大化的策略导致集体利益受损
 
--   总体平均处置效应 (ATE)
-$$
-`\begin{aligned}
-A T E &amp;=E\left[Y_{i}(1)-Y_{i}(0)\right] \\
-&amp;=E\left[Y_{i}(1)\right]-E\left[Y_{i}(0)\right] \\
-&amp;=\omega \times A T T+(1-\omega) \times A T U
-\end{aligned}`
-$$
-- ATE是ATT和ATU的加权平均
+&gt; 如果个人无法实现合作,避免公共资源悲剧,那么就需要外部力量(如国家)的强制干预,或者通过明晰产权将公共资源私有化
+
+&gt; Ostrom通过大量实证研究发现,在现实生活中,人们在面临公共资源困境时,通过自主组织、制定规则等方式,实现了合作治理,避免了"公地悲剧
+
+]
+
+.source[Ostrom, Elinor, 2009, “超越市场与国家：复杂经济系统的多中心治理,” 诺贝尔奖演讲]
+
+]
 
 ---
-### 观察结果
+### 制度规则对行动情境(action situations)结构的影响
 
-- 个体根据是否接受了干预而表现出来的潜在结果
-- 可表示为潜在结果和干预状态的函数
- `\(Y_{i}=Y_{i}(0)+\left[Y_{i}(1)-Y_{i}(0)\right] \times D_{i}\)`
-- `\(D_{i}=0\)` 表示个体 `\(i\)` 没有接受干预, `\(Y_{i}=Y_{i}(0)\)` 
-- `\(D_{i}=1\)` 表示接受了干预, `\(Y_{i}=Y_{i}(1)\)` 
+.left-column[
+.center[
+![ 80%](./figs/ostrom.jpg)
 
----
+.smallest[
+Elinor Ostrom
 
-### 所谓的“朴素”估计量
+1933—2012
 
-.hi-slate[问题] 既然 ATE、ATT和ATU均无法获得
+&lt;img src=./figs/Nobel.png height=22&gt; Economics Nobel 2009
+]
+]
+]
 
-&lt;br&gt;.hi-slate[简单方案]:
+.right-column[
 
-直接比较 .pink[干预组] `\(\left( \color{#e64173}{{Y}_{i}(1)\mid \color{#e64173}{{D}_{i}=1}} \right)\)` 和 .purple[控制组] 均值, 即: `\(\left( \color{#6A5ACD}{{Y}_{i}(0)\mid \color{#6A5ACD}{{D}_{i}=0}} \right)\)`.
+.smallest[
+-  制度分析发展框架(IAD)的核心思想,即通过分析制度规则如何塑造行动者的互动,来理解社会现象
 
-$$
-`\begin{align}
-  \mathop{E}\left[ {Y}_{i} \mid \color{#e64173}{{D}_{i}=1} \right] - \mathop{E}\left[ {Y}_{i}\mid \color{#6A5ACD}{{D}_{i}=0} \right]
-\end{align}`
-$$
+- IAD框架为分析规则提供了一个强大的思维工具。既然行动情境可以划分为七个工作部件,那么我们就可以相应地划分出七种一般性规则,分别影响行动情境的不同部件。这为比较分析具体规则、研究规则的系统效应开辟了一条思路
 
----
-### 3种“朴素”估计偏误形式
+- 七种一般性规则包括**界定规则、地位规则、选择规则、聚合规则、信息规则、支付规则和范围规则**。分别回答了谁有资格参与、参与者的地位差异、参与者可采取的行动、行动如何形成集体决策、参与者掌握何种信息、参与者获得何种收益、行动情境产生何种结果等问题。
 
-`\(\mathop{E}\left[ {Y}_{i} \mid \color{#e64173}{{D}_{i}=1} \right] - \mathop{E}\left[ {Y}_{i}\mid \color{#6A5ACD}{{D}_{i}=0} \right]\)`
-&lt;br&gt;  `\(= \underbrace{\mathop{E}\left[ \color{#e64173}{{Y}_{i}(1)}\mid \color{#e64173}{{D}_{i}=1} \right] - \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)}\mid \color{#e64173}{{D}_{i}=1} \right]}_{ATT\ 😀} + \underbrace{\mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)}\mid \color{#e64173}{{D}_{i}=1} \right] - \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)}\mid \color{#6A5ACD}{{D}_{i}=0} \right]}_{ATT估计偏差\ 😞}\)`
-&lt;br&gt;  `\(= \underbrace{\mathop{E}\left[ \color{#e64173}{{Y}_{i}(1)}\mid \color{#6A5ACD}{{D}_{i}=0} \right] - \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)}\mid \color{#6A5ACD}{{D}_{i}=0} \right]}_{ATU\ 😀} + \underbrace{\mathop{E}\left[ \color{#e64173}{{Y}_{i}(1)}\mid \color{#e64173}{{D}_{i}=1} \right] - \mathop{E}\left[ \color{#e64173}{{Y}_{i}(1)}\mid \color{#6A5ACD}{{D}_{i}=0} \right]}_{ATU估计偏差\ 😞}\)`
-&lt;br&gt;  `\(=  {\underbrace{\omega \times(\mathop{E}\left[ \color{#e64173}{{Y}_{i}(1)}\mid \color{#e64173}{{D}_{i}=1} \right]-\mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)}\mid \color{#e64173}{{D}_{i}=1} \right]) + (1-\omega) \times(\mathop{E}\left[ \color{#e64173}{{Y}_{i}(1)}\mid \color{#6A5ACD}{{D}_{i}=0} \right]-\mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)}\mid \color{#6A5ACD}{{D}_{i}=0} \right])}_{ATE\ 😀}}\)` 
-&lt;br&gt;  `\(+  {\underbrace{\omega \times(\mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)}\mid \color{#e64173}{{D}_{i}=1} \right]-\mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)}\mid \color{#6A5ACD}{{D}_{i}=0} \right])+(1-\omega) \times(\mathop{E}\left[ \color{#e64173}{{Y}_{i}(1)}\mid \color{#e64173}{{D}_{i}=1} \right]-\mathop{E}\left[ \color{#e64173}{{Y}_{i}(1)}\mid \color{#6A5ACD}{{D}_{i}=0} \right])}_{ATE估计偏差\ 😀}}\)`
+- 不同的规则组合,会形成不同的激励结构、信息结构和权力结构,进而导致不同的互动模式和社会绩效
 
----
-### 选择偏误 selection bias
+- 决策者在设计制度时,需要综合考虑七种规则,力求系统平衡,避免顾此失彼。好的制度应激励个体合作、促进信息共享、确保公平回报,同时防止寻租、遏制腐败。这需要在不同规则之间进行智慧的权衡组合。
 
-- ATE估计偏差 `\(= \omega \times\)` ATT估计偏差 `\(+ (1-\omega)\)` ATU估计偏差 
+]
 
-    - 造成ATE 估计偏差的原因包含造成 ATT 和 ATU  估计偏差的原因
-    
-- 造成“朴素”估计量估计处置效应产生偏差的原因：
-
-  1. **非随机因素**导致接受干预
-  2. 若这个非随机因素是**个体的自我选择**，其造成的估计偏误就是**选择偏误**（selection bias）
-  3. 目标，使得选择偏误 → 0
-  
----
-### 例子： 吃药对健康的影响
-
-![y8Xmf9](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/y8Xmf9.png)
-- “上帝”视角
-- 阴影部分为可观测到的结果，而下划线部分为无法观测到的**反事实结果**
-
----
-### 例子： 吃药对健康的影响
-
-- 干预组：  `\(T1=\mathop{E}\left[ \color{#e64173}{{Y}_{i}(1)}\mid \color{#e64173}{{D}_{i}=1} \right]; \quad T0=\mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)}\mid \color{#e64173}{{D}_{i}=1} \right]（反事实）\)` 
-  
-- 控制组：  `\(C0=\mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)}\mid \color{#6A5ACD}{{D}_{i}=0} \right]; \quad C1=\mathop{E}\left[ \color{#e64173}{{Y}_{i}(1)}\mid \color{#6A5ACD}{{D}_{i}=0} \right]（反事实）\)` 
-
-![ueiga0](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/ueiga0.png)
-
----
-### 例子： 吃药对健康的影响
-
-若知道所有个体的潜在结果, 就可以得到准确的平均处置效应
-- ATT `\((\)`接受干预的个体的平均处置效应 `\()=T 1-T 0=3.3\)`
-- ATU `\((\)`未接受干预的个体的平均处置效应 `\()=C 1-C 0=3\)`
-- ATE `\((\)` 总体平均处置效应 `\()=\omega \times A T T+(1-\omega) \times A T U\)` `\(=3.18\)`
+.source[Ostrom, Elinor, 2009, “超越市场与国家：复杂经济系统的多中心治理,” 诺贝尔奖演讲]
 
 
-但在实际情况中, 无法观测到反事实结果
-- 存在偏误的“朴素” 估计量 `\(=T 1-C 0=2.8\)`
-- 存在偏误的ATT `\(=T 0-C 0=-0.5\)`
-- 存在偏误的ATU `\(=T 1-C 1=-0.2\)`
-- 存在偏误的ATE `\(=\omega \times(T 0-C 0)+(1-\omega) \times(T 1-C 1)=-0.38\)` 
-
-- 三组有不同程度的偏差
----
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-.hi-pink[问题：]既然由于反事实的根本问题存在，通常使用"朴素"估计量又会存在选择偏误，那么如何通过观测数据识别处置效应?
-
-.hi-pink[回答：] 通过研究设计
-
----
-### 理论、总体分布与样本
-
-&lt;br&gt;
-&lt;img src="./figs/BigPictureC2D.png"&gt;
+]
 
 ---
 
-### 研究设计：随机实验
+### 七种一般性规则
 
-- 理解一：潜在结果独立性假设（independence assumption）
+.left-column[
+.center[
+![ 80%](./figs/ostrom.jpg)
 
- `$$\left\{{Y}_{{i}}(1), Y_{i}(0)\right\} \perp D_{i}$$`
+.smallest[
+Elinor Ostrom
 
-- 理解二：**可观测特征、不可观测特征和处置效应**完全独立于是否接受干预，也就是说那些干扰因素在随机分配后都要被控制
-  
-  - 若潜在结果可以表示为可观测特征 `\(X_{i}\)` 、不可观测特征 `\(e_{i}\)` 和处置效应 `\(\tau_{i}\)` 的函数
-$$
-`\begin{aligned}
-&amp;Y_{i}(0)=a+b X_{i}+{e}_{{i}}, D_{i}=0 \\
-&amp;Y_{i}(1)=a+\tau_{i}+b X_{i}+{e}_{{i}}, D_{i}=1 \\
-&amp;\left(X_{i}, e_{i}, \tau_{i}\right) \perp D_{i}
-\end{aligned}`
-$$
-  - 通俗理解: 将总体随机分为干预组和控制组, 个体的特征在总体、干预组、控制组均一致
+1933—2012
+
+&lt;img src=./figs/Nobel.png height=22&gt; Economics Nobel 2009
+]
+]
+]
+
+.right-column[
+
+.smallest[
+
+1. 界定规则(Boundary rules):界定谁有资格进入或离开特定行动位置。这决定了参与者的范围和行动情境的开放程度。例如,一些职业准入规则设定了从业者的资质要求。
+2. 地位规则(Position rules):设定行动情境中的地位数量和类型。不同地位意味着不同的权责义务。例如,公司组织结构规定了不同岗位的职权划分。
+3. 选择规则(Choice rules):规定每个地位的行动者可以采取哪些行动。这界定了个体的行动空间。例如,公司授权规定了不同岗位的决策权限。
+4. 信息规则(Information rules):规定行动者之间的沟通渠道,以及信息共享的要求。这影响了行动情境的信息结构。例如,政府信息公开条例规定了哪些信息必须公开,哪些可以公开。
+5. 范围规则(Scope rules):规定行动情境可能影响哪些结果。这界定了互动的外部性边界。例如,环保法规定了排污者需要承担的环境责任。
+6. 聚合规则(Aggregation rules):规定行动者的决策如何形成集体决策。常见的聚合规则包括多数规则、一致同意规则等。例如,股东会通常采取多数表决规则。
+7. 回报规则(Payoff rules):规定行动者的收益和成本如何分配。这直接影响参与者的激励。例如,税收制度规定了不同群体的税收义务和财政待遇。
+]
+
+.source[Ostrom, Elinor, 2009, “超越市场与国家：复杂经济系统的多中心治理,” 诺贝尔奖演讲]
+
+]
+
 
 ---
-### 研究设计：随机实验
 
-- 问题是：班级人数对学生成绩的影响？
+
+
+---
+### 概念：公地悲剧
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+<iframe src="https://www.youtube.com/embed/CxC161GvMPc" width="100%" height="100%" frameborder="0" allowfullscreen="true"></iframe>
+</div>
+
+
+
+---
+
+### 一个例子：维基百科
+
 .pull-left[
-&lt;img src="figs/随机分配.svg" &gt;
+.center[
+![ 75%](./figs/wikipedia.png)
+]
 ]
 
 .pull-right[
-
-- 总体随机抽取各1000人
-- 可观测特征：性别、年龄、教育程度
-- 不可观测特征：个性、学习动力
-- 处置效应：在两组分布没有差异
-]
----
-### 潜在结果独立假设包含的两个“独立”(1)
-
-- 独立性的第1个维度: 未受干预个体的潜在结果独立于干预变量
- `$$\left\{Y_{i}(0)\right\} \perp D_{i}$$`
-
-    - 意味着, 它的均值也和 `\(D_{i}\)` 不相关
-
- `$$\mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)}\mid \color{#6A5ACD}{{D}_{i}=0} \right]=\mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)}\mid \color{#e64173}{{D}_{i}=1} \right]$$`
-
-    - 化简为: `\({E}\left[Y_{i}(0) \mid {D}_{i}\right]={E}\left[Y_{i}(0)\right]\)`
-    
-    - 该条件就意味着， `\({T} 0={C} 0\)` 
-
-- 通俗理解: 可以用控制组的观测结果 `\(C0\)` 来衡量不可观测的反事实结果 `\({T}0\)`, 此时干预组的平均处置效应ATT无偏
-`$$T 1-C 0=\underbrace{({T} 1-{T} 0)}_{\text {ATT }}+\underbrace{({T} 0-{C} 0)}_{\text {ATT的偏差 }=0}=A T T$$`
-
----
-### 潜在结果独立假设包含的两个“独立”(2)
-- 独立性的第2个维度: 接受干预个体的潜在结果独立于干预变量
- `$$\left\{Y_{i}(1)\right\} \perp D_{i}$$`
-
-    - 意味着, 它的均值也和 `\(D_{i}\)` 不相关
-
- `$$\mathop{E}\left[ \color{#e64173}{{Y}_{i}(1)}\mid \color{#e64173}{{D}_{i}=1} \right]=\mathop{E}\left[ \color{#e64173}{{Y}_{i}(1)}\mid \color{#6A5ACD}{{D}_{i}=0} \right]$$`
-
-    - 同理: `\({E}\left[Y_{i}(1) \mid {D}_{i}\right]={E}\left[Y_{i}(1)\right]\)`
-    
-    - 该条件就意味着， `\({C} 1={T} 1\)` 
-
-- 通俗理解: 可以用干预组的观测结果 `\(T1\)` 来衡量不可观测的反事实结果 `\({C}1\)`, 此时控制组的平均处置效应ATU无偏
-`$$T 1-C 0=\underbrace{({C} 1-{C} 0)}_{\text {ATU }}+\underbrace{({T} 1-{C} 1)}_{\text {ATU的偏差 }=0}=A T T$$`
-
----
-### 研究设计：类似RCT的回归
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-- RCT实验昂贵
-- 以人为实验对象会受伦理审查委员会严格审查
-- 那么当不是RCT时，是否也可以使用"朴素"估计量呢？
-
---
-
-- .hi-pink[回答：] 可以，但需要施加**额外假设**。只要潜在结果的差异是由是否接受干预和**可观测的**个体特征造成时，就可以通过**控制可观测的个体特征**来消除选择偏差
-
----
-### 研究设计：CMI假设下，控制可观测特征 + 回归 → 消除选择偏误
-
-- 药物与健康的例子
-    - 服药个体普遍年龄偏大，且年龄大的个体普遍的潜在健康状况差 → 年龄因素与健康Y负相关
-    - 对干预组和控制组的年龄进行分类，相同年龄段来比较用药前后的健康状况的差异（同年龄段内，干预组和控制组可以看成随机分配，满足潜在结果独立性假设）
 .center[
-![KQ0CRA](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/KQ0CRA.png)
+![ 60%](./figs/Wikipedia-paper.png)
 ]
-- `\(ATT(30)=ATU(30)=ATE(30)=T1(30) - C0(30)\)` 
-- `\(ATT(40)=ATU(40)=ATE(40)=T1(40) - C0(40)\)` 
-- `\(ATT=P(30 | D = 1 ) × ATT(30) + P (40 | D = 1) × ATT(40)\)` 
+]
+
+.source[Safner, Ryan, 2016, [“Institutional Entrepreneurship, Wikipedia, and the Opportunity of the Commons,”](https://ryansafner.com/publication/institutional-entrepreneurship-wikipedia-and-the-opportunity-of-the-commons/) *Journal of Institutional Economics* 12(4): 743-771]
 
 ---
-### 研究设计：CMI假设下，控制可观测特征 + 回归 → 消除选择偏误
 
-- 给定可观测特征条件 `\(X_{i}=x\)` 的干预组和控制组
-$$
-`\begin{aligned}
-&amp;A T T(x)=T 1(x)-C 0(x) \\
-&amp;A T T=\sum_{x} P(x \mid D=1) \times {ATT}(x)
-\end{aligned}`
-$$
+# An Example: 19th C. American Piracy of British Books
 
-- 有 `\(A T E={E}_{x}[{ATE}(X)]=\sum_{x} P(x) \times ATE(x)\)`
+.pull-left[
+.smallest[
+- 1790—1891 U.S. did not recognize copyrights to foreign authors
 
-该假设称为: **条件均值独立假设(CMI)**
-`\({E}\left[Y_{i}(0) \mid D_{i}=1, X_{i}=x\right]={E}\left[Y_{i}(0) \mid D_{i}=0, X_{i}=x\right]={E}\left[Y_{i}(0)=x\right]\)`
-`\({E}\left[Y_{i}(1) \mid D_{i}=1, X_{i}=x\right]={E}\left[Y_{i}(1) \mid D_{i}=0, X_{i}=x\right]={E}\left[Y_{i}(0)=x\right]\)`
+- U.S. publishing industry largely pirated famous British authors
+ - Set up “courtesy of the trade” system of voluntary norms to avoid tragedy of commons
+ - Created pseudo-property rights in foreign authors works
+ - Ended up paying authors despite no obligation to, nor any legal protection earned
 
-- 满足CMI最直接的方式是条件随机分配, 如给定30岁群体, 从中随机抽取 一些人服药、一些人不服药
-- CMI只能估计该条件下ATE, 更强的假设是**条件独立假设（CIA）**
+]
+
+
+]
+.pull-right[
+.center[
+![](./figs/cartel.jpg)
+]
+]
+
+.source[Safner, Ryan, 2021, “Honor Among Thieves: How 19th Century American Pirate Publishers Simulated Copyright Protection”]
 
 ---
-### 若我们关心总体：从CMI到条件独立假设 CIA
+### 应用: 公共池资源的悲剧（社区健身设施的过度使用）
 
-.note[定义]:
+.more-left[
+- 社区健康收益函数： 想象一个社区里有一些健身设施，每增加一台设施，居民的整体健康会产生一定的增益。这个增益被称为健康收益，用函数 `\(f(x)\)` 来表示，其中 `\(x\)` 是设施数量
+- 货币价值： 如果我们把健康收益用货币价值来表示，每单位健康增益的价值是 `\(p\)`。这意味着每多健康一点，你会得到 `\(p\)` 的收益。
+- 场地私有情况下： 如果健身设施是私有的，社区可以选择出租一定数量的设施。这时，社区会考虑每多一台设施带来的额外收益（边际收益），记作 `\(MRP(x_s)\)`，其中 `\(x_s\)` 是设施数量。这个边际收益等于每单位健康增益乘以边际效用的变化，也就是 `\(p f^{\prime}(x_s)\)`。社区会选择出租设施数量，使得边际收益等于每台设施的成本 `\(c\)`
+]
 
--  在 `\({X}_{i}\)` 的条件下,潜在结果 `\(\left(\color{#6A5ACD}{{Y}_{i}(0)},\, \color{#6A5ACD}{{Y}_{i}(1)} \right)\)` 与干预变量 `\(\color{#e64173}{{D}_{i}}\)` 独立(选择偏误消失), 数学形式为:
+.less-right[
+![a14OKU](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/a14OKU.png)
+**公共池资源的实际使用超出了最适使用**
+]
 
-$$
-`\begin{align}
-  \def\ci{\perp\mkern-10mu\perp}
-  \left\{ \color{#6A5ACD}{{Y}_{i}(0)},\,\color{#6A5ACD}{{Y}_{i}(1)} \right\} \ci  \color{#e64173}{{D}_{i}} | {X}_{i}
-\end{align}`
-$$
- &lt;br&gt;
-- 选择偏误 `\(= \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)} \mid {X}_{i},\, \color{#e64173}{{D}_{i}= 1} \right] - \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)} \mid {X}_{i},\, \color{#e64173}{{D}_{i}= 0} \right]\)`
-&lt;br&gt;.white[选择偏误] `\(= \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)} \mid {X}_{i} \right] - \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)} \mid {X}_{i} \right]\)`
-&lt;br&gt;.white[选择偏误] `\(= 0\)`
+
+---
+### 应用: 公共池资源的悲剧（社区健身设施的过度使用）
+
+.more-left[
+
+- 场地开放使用情况： 如果社区决定开放所有设施供居民使用，那么只要居民从锻炼中获得的健康收益超过了成本，就会有人加入使用。这意味着只要平均每台设施带来的健康收益大于成本，即 `\(ARP(x_s+1) &gt; c\)`，就会有人加入。这个平均生产收益 `\(ARP\)` 就是每增加一台设施，整体收益的变化。这一步骤会一直进行，直到平均生产收益等于成本，即 `\(ARP(x_c) = c\)`
+- 边际收益递减： 通常情况下，健康收益函数 `\(f(x)\)` 会呈现出边际收益递减的性质，也就是说，随着设施数量的增加，每增加一台设施带来的边际收益逐渐减少。这会导致边际收益曲线 `\(MRP(x)\)` 一般会位于平均生产收益曲线 `\(ARP(x)\)` 下方
+
+- 在最终决策中，实际出租或使用的设施数量 `\(x_s\)` 会小于达到平均生产收益等于成本时的设施数量 `\(x_c\)` 
+]
+
+.less-right[
+![a14OKU](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/a14OKU.png)
+**公共池资源的实际使用超出了最适使用**
+]
+
+---
+### 应用：政府代替市场提供公共物品
+#### 林达均衡原理
+
+.left[
+- 假设有两个人，A 和 B，他们都可以消费公共物品（比如公园、道路等）和私有物品（比如食物、衣服等），这两类物品的价格都是1
+
+- 消费愿望和价格： A 愿意为公共物品支付一定比例 `\(\alpha\)` 的价格，而 B 愿意支付剩下的比例 `\(1-\alpha\)` 的价格，表示他们的愿意付出程度。在图表上，横轴代表公共物品的价格比率，纵轴代表公共物品的数量
+]
+
+
+.right[
+![sGmJlS](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/sGmJlS.png)
+]
+
 
 ???
-前面假设我们只能获得ATT，但是想要ATE或者ATU呢？
-
----
-### 若我们关心总体：从CMI到条件独立假设 CIA
-
-- CIA的意思是：控制协变量 `\({X}_{i}\)` 后, 干预措施就像  .hi-slate[随机分配一样]
-
-- 将之前的"朴素"估计量写为在控制 `\({X}_{i}\)` 的条件下
-
-$$
-`\begin{align}
-  &amp;\mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}} \mid {X}_{i},\, \color{#e64173}{{D}_{i}=1} \right] - \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}} \mid {X}_{i},\, \color{#e64173}{{D}_{i}=0} \right] \\[0.5em]
-  &amp;= \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(1)} \mid {X}_{i} \right] - \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(0)} \mid {X}_{i} \right] \\[0.5em]
-  &amp;= \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}(1)} - \color{#6A5ACD}{{Y}_{i}(0)} \mid {X}_{i} \right]
-\end{align}`
-$$
-
----
-### 若我们关心剂量多少而不是是否干预：扩展的CIA
-
-.pink.hi[继续考虑：教育回报率的例子]
-
-- 现在，将CIA拓展到**多值**干预变量的情况，如.pink[接受教育年限] `\(\left( \color{#e64173}{s_i} \right)\)` 取值为整数 t `\(\in\left\{ 0,\,1,\,\ldots,\, T \right\}\)`。由于受教育水平和收入之间的因果关系可能因人而异，所以我们用个体的收入函数：
-$$
-`\begin{align}
-  \color{#6A5ACD}{{Y}_{si}} \equiv \mathop{f_i}(\color{#e64173}{s})
-\end{align}`
-$$
-- `\(\color{#6A5ACD}{{Y}_{i}(1)}\)` 为个体 `\(i\)` 是否接受教育的潜在收入 → `\(\color{#6A5ACD}{{Y}_{si}}\)` 是个体 `\(i\)` 接受 `\(s\)` 年教育后的潜在收入，函数 `\(\mathop{f_i}(\color{#e64173}{s})\)` 告诉我们：即使个体 `\(i\)` 接受 `\(s\)` 的潜在收入是因人而异的（符合理论）
-→  `\(\mathop{f_i}(\color{#e64173}{s})\)` 回答了“如果……，就会……”这样的一个因果性问题
-
-- 模型建构具有一般性，因为两个人即使接受相同的教育年限，但潜在的收入也可能是不同的
-
----
-### 若我们关心剂量多少而不是是否干预：扩展的CIA
-
-- 将 CIA 扩展到多值干预变量 
-- CIA表示在给定控制变量集合 `\(X_i\)`的条件下，潜在结果 `\(\color{#6A5ACD}{{Y}_{si}}\)` 和 `\(\color{#e64173}{s_i}\)` 是相互独立的，在更一般的条件下，CIA变为∶
-.center[
-`\(\color{#6A5ACD}{{Y}_{si}} \ci \color{#e64173}{s_i} \mid {X}_{i}\enspace\)` 对于 `\(\color{#e64173}{s}\)` 的每个取值
-]
-- 给定 `\(X_i\)`  ，多接受一年教育带来的平均处置效应就是 `\(\mathop{E}\left[ \mathop{f_i}(\color{#e64173}{s}) - \mathop{f_i}(\color{#e64173}{s-1}) \mid {X}_{i} \right]\)` ，多接受四年教育带来的平均处置效应就是 `\(\mathop{E}\left[ \mathop{f_i}(\color{#e64173}{s}) - \mathop{f_i}(\color{#e64173}{s-4}) \mid {X}_{i} \right]\)` 
-- 数据只能告诉我们 `\(\color{#6A5ACD}{{Y}_{i}} = f_i(\color{#e64173}{s_i})\)` ，也就是当 `\(\color{#e64173}{s}=\color{#e64173}{s_i}\)` 取定每个人接受的教育年限时的 `\(f_i(\color{#e64173}{s_{i}})\)` 
-
-- 在CIA"护身符"下，给定 `\(X_i\)` ，不同教育水平下平均收入的差异就可解释为教育的处置效应。因此多接受1年教育的处置效应可以写为:
-$$
-`\begin{align}
-  \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}} \mid {X}_{i},\, \color{#e64173}{s_i = s} \right] - \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}} \mid {X}_{i},\, \color{#e64173}{s_i = s-1} \right]=
-  \mathop{E}\left[ \mathop{f_i}(\color{#e64173}{s}) - \mathop{f_i}(\color{#e64173}{s-1}) \mid {X}_{i} \right]
-\end{align}`
-$$
-  - 对任何的 `\(s\)` 的取值都成立 → 该假设可能**很强**，因为多接受小学1年和大学1年很可能不同
-  
----
-### 若我们关心剂量多少而不是是否干预：扩展的CIA
-
-在CIA下，给定 `\({X}_{i}\)`, 潜在结果 `\(\color{#6A5ACD}{{Y}_{si}}\)` 和每个人的干预剂量多少 `\(\color{#e64173}{s_i}\)` 是独立的:
-
-$$
-`\begin{align}
-\def\ci{\perp\mkern-10mu\perp}
-  &amp;\mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}} \mid {X}_{i},\, \color{#e64173}{s_i = s} \right] - \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}} \mid {X}_{i},\, \color{#e64173}{s_i = s-1} \right] \\[0.5em]
-  &amp;=\mathop{E}\left[ \color{#6A5ACD}{f_{i}(s_{i})} \mid {X}_{i},\, \color{#e64173}{s_i = s} \right] - \mathop{E}\left[ \color{#6A5ACD}{f_{i}(s_{i})} \mid {X}_{i},\, \color{#e64173}{s_i = s-1} \right] \\[0.5em] 
-  &amp;=\mathop{E}\left[ \color{#6A5ACD}{f_{i}(s)} \mid {X}_{i},\, \color{#e64173}{s_i = s} \right] - \mathop{E}\left[ \color{#6A5ACD}{f_{i}(s-1)} \mid {X}_{i},\, \color{#e64173}{s_i = s-1} \right] \\[0.5em]
-  &amp;=\mathop{E}\left[ \color{#6A5ACD}{{Y}_{si}} \mid {X}_{i},\, \color{#e64173}{s_i = s} \right] - \mathop{E}\left[ \color{#6A5ACD}{{Y}_{(s-1)i}} \mid {X}_{i},\, \color{#e64173}{s_i = s-1} \right] \\[0.5em]
-  {CIA:} f_{i}(s) \ci s_{i} \mid X_{i} \\[0.5em] 
-  &amp;=\mathop{E}\left[ \color{#6A5ACD}{{Y}_{si}} \mid {X}_{i} \right] - \mathop{E}\left[ \color{#6A5ACD}{{Y}_{(s-1)i}} \mid {X}_{i} \right] \\[0.5em]
-  &amp;=\mathop{E}\left[ \color{#6A5ACD}{{Y}_{si}} - \color{#6A5ACD}{{Y}_{(s-1)i}} \mid {X}_{i} \right] \\[0.5em]
-  &amp;=\mathop{E}\left[ \mathop{f_i}(\color{#e64173}{s}) - \mathop{f_i}(\color{#e64173}{s-1}) \mid {X}_{i} \right]
-\end{align}`
-$$
-
-- CIA下 → 控制条件后，相差1年教育的人的收入均值的差异就可以解释为**多接受1年教育的平均处置效果**
-
----
-### 若我们关心剂量多少而不是是否干预：扩展的CIA
-
-.hi-pink[例子] 可以比较教育水平为11年和12年的个体间平均收入的差别，以此来了解高中毕业带来的平均处置效应
-.big-left[
-`\(\mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}} \mid {X}_{i},\, \color{#e64173}{s_i = 12} \right] -   \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}} \mid {X}_{i},\, \color{#e64173}{s_i = 11} \right]\)`
-]
-.big-left[
-`\(=\mathop{E}\left[ f_i(\color{#e64173}{12}) \mid {X}_{i},\, \color{#e64173}{s_i = 12} \right] -   \mathop{E}\left[ f_i(\color{#e64173}{11}) \mid {X}_{i},\, \color{#e64173}{s_i = 11} \right]\)`
-]
-.big-left[
-`\(=\mathop{E}\left[ f_i(\color{#e64173}{12}) \mid {X}_{i},\, \color{#e64173}{s_i = 12} \right] -   \mathop{E}\left[ f_i(\color{#e64173}{11}) \mid {X}_{i},\, \color{#e64173}{s_i = 12} \right]\)`  .grey-light[(CIA)]
-]
-.big-left[
-`\(=\mathop{E}\left[ f_i(\color{#e64173}{12}) - f_i(\color{#e64173}{11}) \mid {X}_{i},\, \color{#e64173}{s_i = 12} \right]\)`
-]
-.big-left[
-`\(=\)` .hi[给定] `\(X_{i}\)` .hi[下] , .hi[已高中毕业学生]因高中毕业带来的平均处置效应 
-]
-.big-left[
-`\(=\mathop{E}\left[ f_i(\color{#e64173}{12}) - f_i(\color{#e64173}{11}) \mid {X}_{i} \right]\)` .grey-light[(再次CIA)]
-]
-.big-left[
-`\(=\)` .hi[给定] `\(X_{i}\)` .hi[下] , 高中是否毕业（为条件）的平均处置效应
+.smaller[
+- 首先从**消费者选定负担的价格比率看**。当政府选定A消费者承担的公共物品比率为a1，此时其公共物品需求将超过B消费者。但因为两个消费者对公共物品需求量必须相同，政府就必须提高a以降低消费者A对X的需求
+- 其次**从政府提供公共数量看**，假定政府决定提供公共物品的数量是xb，此时消费者A愿意承担的价格比率为a2，消费者B愿意承担的价格比率为1-a1，a2+(1-a1)&gt;1，表示两人合起来愿意支付的价格超过xb的公共物品成本了，因此消费者就会要求政府提供超过xb的公共物品
 ]
 
 ---
-### 若我们关心剂量多少而不是是否干预：扩展的CIA（从多条件到无条件）
+### 应用：政府代替市场提供公共物品
+#### 林达均衡原理
 
-- 目前为止，对 `\(X_i\)` 可取的每一个值都构造了一个处置效果 `\(ATE_{X_i=x}\)` 。这样做的结果是协变量 `\(X_i\)` 有多少个条件取值就可能会存在多少处置效果
+.left[
+- 林达均衡： 林达均衡是指在图表上，消费者 A 和 B 愿意支付的价格比率的曲线（ `\(d^A\)` 和 `\(d^B\)`）相交的点。在这个点上，两位消费者都愿意为了公共物品付出一定的代价，而资源的分配也就达到了平衡
 
-- 就刚才例子，如果CIA假设满足，我们可以计算任意条件(组合)下的教育年限为12和11的人的平均收入的差来得到该条件下的处置效应。例如 `\(X_i\)` 包含的变量为（Sex，Age）。那么，Sex=1表示女性，Age的取值范围从20-60。在上面的条件下，一个因果关系可以表示为：
-
-- `\(E[f_i(\color{#e64173}{12})-f_i(\color{#e64173}{11}) \mid\)` Sex `\(=1\)`, Age `\(=20至30]\)` 表示20至30岁的女性，高中毕业比高中肄业的平均教育回报水平。
-- `\(E[f_i(\color{#e64173}{12})-f_i(\color{#e64173}{11}) \mid\)` Sex `\(=0\)`, Age `\(=65岁以上]\)` 表示65岁以上的男性，高中毕业比高中肄业的平均教育回报水平
-- 能否获得高中毕业比高中肄业的平均教育回报水平呢？
-
----
-
-### 若我们关心剂量多少而不是是否干预：扩展的CIA（从多条件到无条件）
-
-.pink.hi[问题] 那么.hi-pink[无条件]高中毕业相对于高中肄业的平均处置效应是什么?
-
-.pink.hi[回答] 利用迭代期望定理对不同的因果效果进行综合。首先, 回忆下刚证明的...
-
-$$
-`\begin{align}
-  \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}} \mid {X}_{i},\, \color{#e64173}{s_i = 12} \right] -  \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}} \mid {X}_{i},\, \color{#e64173}{s_i = 11} \right] = \mathop{E}\left[ f_i(\color{#e64173}{12}) - f_i(\color{#e64173}{11}) \mid {X}_{i} \right]
-\end{align}`
-$$
-
-现在取两边的期望值并应用迭代期望法则(LIE)
-
-.big-left[
-`\(E_X\!\bigg(\mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}} \mid {X}_{i},\, \color{#e64173}{s_i = 12} \right] -  \mathop{E}\left[ \color{#6A5ACD}{{Y}_{i}} \mid {X}_{i},\, \color{#e64173}{s_i = 11} \right] \bigg)\)`
-]
-.big-left[
-`\(=E_X\! \bigg( \mathop{E}\left[ f_i(\color{#e64173}{12}) - f_i(\color{#e64173}{11}) \mid {X}_{i}\right] \bigg)\)`
-]
-.big-left[
-`\(=\mathop{E}\left[ f_i(\color{#e64173}{12}) - f_i(\color{#e64173}{11}) \right]\)` .grey-light[(迭代期望)]
-]
----
-### 理论、总体分布与样本
-
-&lt;br&gt;
-&lt;img src="./figs/BigPictureC2D.png"&gt;
-
----
-### 基于RCT理念的LPF得到因果效应还需要CIA 
-
-- RCT的研究设计 → LPF（总体）→ 能够得到因果效应么？→ CIA
-- 别忽略**线性CEF**的假设！
-- **LPF模型设置的假设**：线性、**同质的**的LPF可以刻画**线性CEF**：
-$$
-`\begin{align}
-  f_i(\color{#e64173}{s}) = \alpha + \tau \color{#e64173}{s} + \eta_i \tag{A}
-\end{align}`
-$$
-  - 为什么 `\((\text{A})\)` 式是LPF？ → 个体 `\(i\)` 在 `\(\color{#e64173}{s}\)` 的任意取值下潜在收入， 而不是依据 `\(\color{#e64173}{s_i}\)` 观测值，所以省略了 `\(\color{#e64173}{s}\)` 的下标 `\(i\)` 
-  - `\((\text{A})\)` 假设在 `\(f_i(\color{#e64173}{s})\)` 中唯一因人而异的部分是干扰项 `\(\eta_{i}\)` 的无条件均值为 0 (回想CEF) 用以捕捉决定潜在收入水平 `\(f_i(\color{#e64173}{s})\)` 的其他不可观测因素。将观察到的 `\(\color{#e64173}{s_i}\)` 和观察值 `\(\color{#6A5ACD}{{Y}_{i}}\)`  代入模型，就得到了**可回归的模型**:
-
-$$
-`\begin{align}
-  \color{#6A5ACD}{{Y}_{i}} = \alpha + \tau \color{#e64173}{s_i} + \eta_i \tag{B}
-\end{align}`
-$$
--  `\((\text{A})\)` 式中 `\(\tau\)` 是**真实处置效应**，而 `\((\text{B})\)` 式 `\(\tau\)` 的 **样本估计值** `\(\hat\tau\)` 通常会因为 `\(s_i\)` 的**样本选择问题**产生偏误
-- 文章的**研究设计**中说明如何能得到真实处置效应(内生性问题必须说明)
-
----
-### 基于RCT理念的LPF得到因果效应还需要CIA 
-
-- CIA下，意味着加入多个**可观察**的协变量 `\(X_{i}\)` ， 能够排除潜在的**干扰因素**
-- 将潜在收入 `\(f_i(\color{#e64173}{s})\)` 的干扰项结构化为**可观察因素** `\(X_{i}\)` (因人而异)和**残差项** `\(v_{i}\)` 的线性函数：
-
-$$
-`\begin{align}
-  \eta_i = {X}_{i}'\beta + \nu_i \tag{C}
-\end{align}`
-$$
-
--  `\(\beta\)` 是 `\(\eta_i\)` 对 `\({X}_{i}\)` 回归的**总体系数向量**(意味着可以通过最小二乘估计获得正确的系数估计)，所以有：
-
-1.  `\(\mathop{E}\left[ \eta_i \mid {X}_{i} \right] = {X}_{i}'\beta\)` 
-1. 残差项 `\(v_{i}\)` 与 `\(X_{i}\)` 不相关
-
----
-### 基于RCT理念的LPF得到因果效应还需要CIA 
-
-根据CIA可以得到：
-
-.big-left[
-`\(\mathop{E}\left[ f_i(\color{#e64173}{s}) \mid {X}_{i},\, \color{#e64173}{s_i} \right]\)`
-]
-.big-left[
-`\(=\mathop{E}\left[ f_i(\color{#e64173}{s}) \mid {X}_{i} \right]\)` .grey-light[(根据CIA)]
-]
-.big-left[
-`\(=\mathop{E}\left[ \alpha + \tau \color{#e64173}{s_i} + \eta_i \mid {X}_{i} \right]\)` .grey-light[(代入B式)]
-]
-.big-left[
-`\(=\alpha + \tau \color{#e64173}{s_i} + \mathop{E}\left[ \eta_i \mid {X}_{i} \right]\)`
-]
-.big-left[
-`\(=\alpha + \tau \color{#e64173}{s_i} + {X}_{i}'\beta\)` .grey-light[(最小二乘回归方程)]
+- 帕累托最优效率： 在林达均衡交汇的点上，资源的分配达到了帕累托最优效率。这意味着没有人可以通过改变他们的消费选择，而不使其他人变得更糟。换句话说，没有一方可以单方面改变而使整体变得更好
 ]
 
-- .hi-pink[回忆] 这里再次使用到，若 `\(f_i(\color{#e64173}{s})\)` 所代表的CEF是线性的(倒数第2行)，则意味着"**正确地模型设定为LPF**.super[.pink[†]]" 可以正确代表线性CEF
 
-
-.footnote[
-.pink[†] 这里"正确"是指若控制了 `\({X}_{i}\)` 就像RCT一样。
+.right[
+![sGmJlS](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/sGmJlS.png)
 ]
 
 ---
-### 基于RCT理念的LPF得到因果效应还需要CIA 
+### 应用：政府代替市场提供公共物品
+#### 林达均衡原理
 
-所以把**可回归的模型**形式设定如下： 
-$$
-`\begin{align}
-  {Y}_{i} = \alpha + \tau \color{#e64173}{s_i} + {X}_{i}'\beta + \nu_i
-\end{align}`
-$$
+.left[
+- **政府随机选定价格比率**：假设政府决定让消费者 A 承担一部分公共物品的价格，为 `\(\alpha_1\)`。但如果按照这个比率，A 消费者的需求量会超过 B ，会不公平。为了使两个消费者的需求量相等，政府必须提高 `\(\alpha_1\)`，也就是降低 A 消费者对公共物品的需求
 
-- 通过假设，限制扰动项 `\(\nu_i\)` 来估计**真正的因果效应** `\(\tau\)`
-1. `\(\color{#e64173}{s_i}\)` (根据 CIA)
-2. `\({X}_{i}\)` (根据定义 `\(\beta\)` 是 `\(\eta\)` 对 `\({X}_{i}\)` 回归的总体系数向量)
+- **政府随机提供公共数量**：假设政府决定提供公共物品的数量为 `\(x_b\)`。消费者 A 愿意支付的价格比率变成 `\(\alpha_2\)`，消费者 B 愿意支付的价格比率变成 `\(1-\alpha_1\)`。 `\(\alpha_2+(1-\alpha_1)&gt;1\)` 意味着两消费者愿意支付价格超过提供公共物品 `\(x_b\)` 的成本。消费者会要求政府提供更多公共物品原本的 `\(x_b\)`
+]
 
----
-class: title-slide-section,inverse, middle
-# 从观测样本到因果模型&lt;br&gt; → 必须排除的偏误
 
----
+.right[
+![sGmJlS](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/sGmJlS.png)
+]
 
-### 理论、总体分布与样本
 
-&lt;br&gt;
-
-&lt;img src="./figs/BigPictureD2C.png"&gt;
 
 ---
-### 理解"朴素"估计值与LPF.super[ols]的关系
+### 应用：政府代替市场提供公共物品
+#### 林达均衡原理
 
-.hi-pink[回忆："朴素"估计量是干预组与控制组的观测结果均值之差] `\(E[Y_{i}|D_{i}=1]-E[Y_{i}|D_{i}=0]\)`
+- 林达均衡似乎提供了一个解决公共物品的可靠方法，即：政府能够了解每一人对公共物品的**真实**偏好，进而刻画其**需求函数**，**代替市场机制**进行定价
 
-当干预变量为二值时，可以证明回归系数 `\(\hat\tau_{{OLS}}\)` 等于处理组与控制组样本均值之差(by Mixtape)。在样本视角下：
-`$$\hat\tau_{{OLS}} = \frac{1}{N_{T}} \sum_{i=1}^{n}\left(y_{i} \mid d_{i}=1\right)-\frac{1}{N_{C}} \sum_{i=1}^{n}\left(y_{i} \mid d_{i}=0\right) = \bar{Y}_{T}-\bar{Y}_{C}$$`
-在大样本下:
-`$$\hat\tau_{{OLS}} = \bar{Y}_{T}-\bar{Y}_{C} \stackrel{p}{\longrightarrow} E\left[Y_{i} \mid D_{i}=1\right]-E\left[Y_{i} \mid D_{i}=0\right]=\tau_{{OLS}}$$`
-- 综上, `\(\hat\tau_{{OLS}} = \bar{Y}_{T}-\bar{Y}_{C} \stackrel{p}{\longrightarrow}\tau_{{OLS}} = “朴素”估计量\)`  
+- 假设政府在考虑修建一个足球场，但其建设成本不知如何分担。假设有100个球迷，且对球赛的支付意愿不同。一个球迷可以支付10美元，而另一个可能愿意支付20美元。每个球迷的支付意愿都是建立在其自己的使用场地的边际成本基础上的。那么政府就可以根据这些支付意愿分摊建设成本
 
-.bb["朴素"估计量 .mono[=] ATE + 选择偏误 +异质性干预偏误]
- &lt;br&gt; &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-↑ 基于SUTVA假设可以使第三项为0&lt;/p&gt;
+- 当使用者意识到要为其使用支付成本时，就会**掩盖偏好** → **低报支付意愿** → 两条需求曲线同时下移 → 实际供给量必然低于社会最适供给量 → &lt;br&gt; .bb[因此处理公共物品最重要的是诱导消费者展现真实偏好]
+
+---
+### 应用：政府代替市场提供公共物品
+#### 克拉克税
+
+- 政府建造体育场馆问题： 假设有三位消费者 A、B 和 C，政府在考虑是否建造一个体育场馆，消费者愿意支付的价格分别为 `\(v_A\)`、 `\(v_B\)` 和 `\(v_C\)`。只要消费者的愿意支付的总额大于建造成本 `\(c\)`，政府就会建造体育场馆
+- **诱导消费者透露真实评价**： 问题在于，政府怎样才能让消费者诚实地透露他们愿意支付的价格，从而确保正确的决策。如果未来的费用与透露的评价成正比，消费者可能会低报自己的愿意支付价格，这可能导致建设决策的失误，造成社会福利损失
+- **事前机制和克拉克税**： 为了解决这个问题，需要设计一个事前机制，使得消费者未来的费用与他们当前的支付愿望无关。这就引入了**克拉克税**的概念
+  - 克拉克税的基本思想是，对于隐瞒或谎言行为，引入一种内部化成本，使得消费者考虑到隐瞒真实信息会带来代价
+- **成本内部化**： 克拉克税的核心思想是让消费者意识到他们隐瞒真实信息会带来成本，从而让他们更倾向于透露真实的支付意愿。这样，政府可以通过合理的费用信息来做出决策，从而实现资源的正确分配
+
+---
+### 应用：政府提供公共物品方式
+#### 克拉克税
+
+- **分摊建设成本**： 假设政府要求三位消费者 A、B 和 C 共同分摊场馆的建设成本，每个人分摊的费用分别为 `\(c_A\)`、 `\(c_B\)` 和 `\(c_C\)`，而总成本为 `\(c\)`
+- **考虑净剩余价值**： 考虑到建设成本，每个人的净剩余价值是他们愿意支付的价格减去他们分摊的成本。用 `\(v^{net}_i\)` 表示。如果总的净剩余价值满足 `\(v^{net}_A+v^{net}_B+v^{net}_C \geq 0\)`，则不管个人的 `\(v^{net}_i\)` 是多少，都不会影响决定是否建设场馆。反之，如果不成立，各人的净剩余价值也不重要，因此关键在于影响是否能建设场馆的那个人 
+- **关键者**定义： 在这种情况下，被称为关键者的人，就是在某种情况下会改变决策结果的人。例如，当 `\(v^{net}_B+v^{net}_C &lt; 0\)` 和 `\(v^{net}_A+v^{net}_B+v^{net}_C \geq 0\)` 同时成立，A 消费者就是关键者。类似地， `\(v^{net}_B+v^{net}_C \geq 0\)` 和 `\(v^{net}_A+v^{net}_B+v^{net}_C &lt; 0\)` 同时成立时，A 也是关键者。
+- **非关键者损害**： 由于关键者的决策会影响建设决策，非关键者会受到损害。例如，在第一种情况下，因为 A 的决策导致建设，B 和 C 都会受到损害，损害程度是 `\(-(v^{net}_B+v^{net}_C)\)` 
+
+---
+### 应用：政府提供公共物品方式
+#### 克拉克税
+
+- 克拉克税的应用： 根据克拉克税的精神，关键者需要为其决策的影响付出代价。因此，作为关键者的 A 需要支付的税额 `\(T_A = |v^{net}_B+v^{net}_C|\)`，以内部化其决策对其他人的影响
+- 克拉克税听上去很陌生，但实际使用中却非常熟悉
+- 例如：促进球队的竞争力和公平竞争，防止球队投资过度，以及维护联盟的竞争均衡
+- **工资帽**。规定每个球队在薪酬方面的支出总额不能超过特定的上限。如果球队超过了这个上限，就需要向联盟缴纳一定的克拉克税。这可以防止富有的球队在薪酬方面过度投资，从而确保竞争的公平性
+- **奢侈税**。联盟对球队的支出额度设置一个阈值，超过这个阈值的球队需要向联盟缴纳奢侈税。这也可以防止球队过度投资，并促进联盟内的公平竞争
+- 由于竞争均衡是联盟生存的“必需品”，但并不**直接**是各支球队生存的依赖。而一个竞争均衡的联盟有助于吸引更多球迷和投资方。通过**克拉克税**的方式，将各个球队(每支球队都是关键者)**过度投资行为**造成的**外部性内部化**
 
 ---
 
-### "朴素"估计值 + 控制变量 + CIA .mono[-&gt;] 因果效应
+### 解决公共物品供给不足的方式
 
-现在我们已经知道在：
-`\({E}\left[Y_{i}(0) \mid D_{i}=1\right] \neq {E}\left[Y_{i}(0) \mid D_{i}=0\right]\)` 时, 无法识别处置效应。
-
-假如造成差异的原因: 个体未干预时的潜在结果 `\(Y_i(0)\)`  是可观测特征和不可观测特征的线性函数
-`$$Y_{i}(0)=\alpha+\beta X_{i}+e_{i}$$` 
-代入方程:  `\({Y}_{{i}}=\underbrace{{E}\left[{Y}_{{i}}(0)\right]}_{a}+\underbrace{\left[Y_{i}(1)-Y_{i}(0)\right] \times {D}_{i}}_{\tau}+\underbrace{Y_{i}(0)-{E}\left[Y_{i}(0)\right]}_{u_{i}}\)`
-
-得: `\(Y_{i}=\alpha+\tau D_{i}+\beta X_{i}+e_{i}\)`  （观测结果、干预状态、可观测特征、不可观测特征的关系）
-
-将 `\(Y_{i}\)` 对 `\(D_{i} 、 X_{i}\)` 归回: `\({E}\left({Y}_{{i}} \mid {D}_{{i}}, {X}_{{i}}\right)=\alpha+\ D_{i}+\beta X_{i}+{E}\left[e_{i} \mid {D}_{{i}}, {X}_{{i}}\right]\)`
+- 政府供给。直接供给：国企或非国企来提供生产，如教育、保健和医院等；间接供给：利用预算安排、政策或合约安排行程经济激励，引导私人企业参与生产
+- 私人供给。一般形式有合同承包、公私竞争、特许经营、公私合营的基础设施发展与运营（PPP）
+- 联合供给。德姆塞茨：在非排他性的场所出售私有物品，实现混合搭配销售
+- 自愿供给。自愿组织 → 给个人去开发**赛事活动** → 火人节
 
 ---
-### "朴素"估计值+控制变量+假设 .mono[-&gt;] LPF.super[ols] .mono[-&gt;] 有因果理论支撑的线性CEF
+### 物品分类与分类供给
 
-- 与CIA思路一样，若要使得条件期望函数的 `\(D_i\)` 的系数等于 `\(\tau\)` ,需要以观测结果、干预状态、可观测特征为基础的LPF的干扰项 `\(e_i\)` 的条件均值独立于干预变量：
+.right[
+![HWegeB](https://pkuzzq-image.oss-cn-beijing.aliyuncs.com/uPic/HWegeB.png)
+]
 
-  `\(E[e_i \mid D_i,X_i] = E[e_i \mid X_i]\)` 
-
-- 可证明：**(建立在LPF.super[ols]基础上的)干扰项条件均值独立于干预变量**和 **平均未干预潜在结果条件独立**（ `\(E\left[Y_{i}(0) \mid D_{i}=1\right] = E\left[Y_{i}(0) \mid D_{i}=0\right]\)`  ）是等价的
-
-- 这个条件使得LPF.super[ols]可以通过加入控制变量X 来达到估计处置变量D的真实因果效应系数 `\(\tau\)` 的目的
-
-- **CMI** 与 **CIA** 是直接建立在 **潜在结果**上的；**干扰项条件均值独立于干预变量** 和 **平均潜在结果条件独立** 是建立在**平均潜在结果**基础上（是在CEF-LPF 框架下能够识别处置效应的关键条件）
+.left[
+- 公共物品：政府供给 .mono[+] 联合供给
+- 非俱乐部物品：联合供给 .mono[+] 私人供给
+- 公共池资源：政府供给 .mono[+] 联合供给 .mono[+] 自愿供给
+]
 
 ---
-### SUTVA 
+### 场馆的投融资
+### 综合体的规模效应
+### 修建场馆的寻租
 
-- 在之前的例子中，都是假设个体处置效应是相同的，即 `\(\tau_i= \tau\)`
-- **稳定个体干预值假设（The Stable Unit Treatment Value Assumption， SUTVA）**:简单说，每个个体的潜在结果不依赖于其他个体的干预状态。有两层含义：1. 不同个体的潜在结果之间不会有交互影响。2. 干预水平对所有个体都是相同的
-- 第1个含义：它排除了**外部性**或**整体均衡效应**
-    - 例：研究班级规模对个体学习效果的影响，同学之间往往存在外部性，如果班级里好学生多，相互讨论、相互促进，产生正外部性，从而提高了整体学习效率
-    - 例：如果劳动力培训项目规模很大，改变整改市场技能结构，使得技能劳动力供给很多，则接受培训的个体干预效果就不显著。
-- 第2层含义：处置效应对所有个体相同
-    - 例如：教育对个人收入影响。要求纳入的教育程度要求教育质量相同
-
+## 投融资
+## 智慧场馆建设
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script src="https://platform.twitter.com/widgets.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
-"highlightLines": true,
+"highlightLπnes": true,
 "countIncrementalSlides": true,
 "ratio": "16:10.85"
 });
@@ -2135,24 +2032,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       links[i].target = '_blank';
     }
   }
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
+})();</script>
 
 <script>
 slideshow._releaseMath = function(el) {
