@@ -499,25 +499,10 @@ class: title-slide-section, middle, inverse
 ---
 ### Why Hosting The Super Bowl Isn't Worth It
 
-```{r, echo=FALSE}
-library(knitr)
-library(htmltools)
+.center[
+<iframe width="980" height="550" src="https://www.youtube.com/watch?v=74V2duDb4Lo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+]
 
-video_url <- "https://www.youtube.com/watch?v=74V2duDb4Lo"
-video_id <- gsub(".*\\?v=|&.*", "", video_url)
-
-iframe_html <- tags$iframe(
-  src = paste0("https://www.youtube.com/embed/", video_id),
-  width = "100%",
-  height = "100%",
-  frameborder = "0",
-  allowfullscreen = "true"
-)
-
-div(style = "position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;",
-  iframe_html
-)
-```
 
 ---
 #### 过度理想化的乘数效应
